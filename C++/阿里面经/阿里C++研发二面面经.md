@@ -106,7 +106,7 @@ int main() {
 
 #### 问题描述
 
-请你设计并实现一个满足[LRU (最近最少使用) 缓存](https://baike.baidu.com/item/LRU)约束的数据结构。
+请你设计并实现一个满足LRU (最近最少使用) 缓存约束的数据结构。
 
 实现 `LRUCache` 类：
 
