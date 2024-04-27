@@ -665,7 +665,7 @@ std::for_each(numbers.begin(), numbers.end(), [&total](int x) { total += x; });
 
 C++ 中的完美转发是一项在函数模板中的技术，用于在不丢失函数参数信息的情况下将参数传递给其他函数。
 
-完美转发的主要应用场景之一是在函数模板中传递参数给其他函数，同时保留参数的值类别（左值或右值）和 const 限定。这在实现通用的包装器或回调函数时特别有用。
+xxxxxxxxxx class Base {public:    // 构造函数不能声明为虚函数    Base() {        std::cout << "Base Constructor" << std::endl;    }​    // 虚析构函数    virtual ~Base() {        std::cout << "Base Destructor" << std::endl;    }};​class Derived : public Base {public:    // 构造函数    Derived() {        std::cout << "Derived Constructor" << std::endl;    }​    // 虚析构函数    virtual ~Derived() {        std::cout << "Derived Destructor" << std::endl;    }};​int main() {    Base* obj = new Derived(); // 通过基类指针指向派生类对象​    delete obj; // 通过基类指针删除对象，应该调用派生类的析构函数​    return 0;}C++
 
 1. 右值引用和 std::forward： 完美转发使用右值引用（Rvalue Reference）来捕获传递给函数的参数。同时，为了将参数传递给其他函数，它使用 `std::forward` 来保持参数的值类别。
 
