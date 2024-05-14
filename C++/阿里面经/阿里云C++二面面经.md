@@ -353,7 +353,7 @@ int main() {
 
 流程图如下：
 
-![image-20231220001045731](E:\GitHub\Interview-experience\阿里面经\assets\image-20231220001045731.png)
+![TLS握手流程](https://cdn.jsdelivr.net/gh/aqjsp/Pictures/202405150017021.png)
 
 14、手撕算法冒泡排序
 
