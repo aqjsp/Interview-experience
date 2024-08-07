@@ -1,3 +1,5 @@
+# 金山C++一面
+
 来源：https://www.nowcoder.com/feed/main/detail/8f4ef378972d411cb6961255b58a560e
 
 ### 1、静态变量生命周期和普通变量比较？
