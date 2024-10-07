@@ -578,10 +578,492 @@ char *ptr = malloc(30000);  // 调用 malloc 分配 30K 内存
 
 ### 9、Linux内核中内存怎么管理的？（回答了伙伴系统、大页分配，他不太满意）
 
-### 10、C++中多态怎么实现的（我答对基类的虚函数进行重写然后使用父类的指针或引用来调用，他说这是应用层，底层怎么实现的，我答了虚函数表那一套）
+#### 1. 物理内存管理
 
-### 11、虚函数表的本质是什么（指针数组）
+##### 1.1 物理内存模型
 
-### 12、里面存了什么东西？（静态区的函数地址）
+Linux内核通过将物理内存划分为页（Page）来管理。每个页的大小通常是4KB。内核使用 `struct page` 结构体来描述每个物理页的状态信息，如页的状态（脏、锁定）、引用计数等。
 
-### 13、手撕两个链表逆置相加（20min）
+##### 1.2 内存区域（Zone）
+
+为了更好地管理不同类型的内存，Linux内核将物理内存划分为不同的区域（Zone）。常见的内存区域包括：
+
+- ZONE_DMA：用于直接内存访问（DMA）的内存区域。
+- ZONE_NORMAL：常规内存区域，内核可以直接映射。
+- ZONE_HIGHMEM：高地址内存区域，主要用于32位系统，内核不能直接映射这部分内存。
+
+##### 1.3 内存分配器
+
+Linux内核提供了多种内存分配器来管理物理内存：
+
+- 页分配器（Buddy Allocator）：用于分配连续的物理页。它通过将物理内存划分为不同大小的块（伙伴），并使用链表来管理这些块，从而实现高效的内存分配和回收。
+- SLAB分配器：用于分配小块内存。SLAB分配器通过预分配内存块（slab）来减少内存碎片，并提高内存分配的效率。每个slab包含多个相同大小的对象。
+
+#### 2. 虚拟内存管理
+
+##### 2.1 虚拟地址空间
+
+Linux内核将虚拟地址空间划分为用户空间和内核空间。在32位系统中，通常将4GB的虚拟地址空间划分为3GB的用户空间和1GB的内核空间。在64位系统中，虚拟地址空间更大，但划分方式类似。
+
+##### 2.2 页表
+
+虚拟地址到物理地址的映射通过页表（Page Table）实现。页表由多个层次的表组成，每个表项（PTE）包含物理页的地址和访问权限等信息。页表由操作系统维护，MMU（内存管理单元）使用页表来完成虚拟地址到物理地址的转换。
+
+##### 2.3 虚拟内存区域（VMA）
+
+每个进程的虚拟地址空间被划分为多个虚拟内存区域（VMA），每个VMA表示一个连续的虚拟地址范围。VMA包含关于该区域的详细信息，如起始地址、结束地址、访问权限等。
+
+#### 3. 内存分配与回收
+
+##### 3.1 内存分配
+
+Linux内核提供了多种内存分配函数：
+
+- kmalloc：分配连续的物理内存，返回虚拟地址。
+- vmalloc：分配虚拟地址连续但物理地址不连续的内存。
+- get_free_page：分配一个物理页。
+- alloc_pages：分配多个连续的物理页。
+
+#### 3.2 内存回收
+
+Linux内核通过多种机制回收不再使用的内存：
+
+- LRU（最近最少使用）算法：将最近最少使用的页标记为可回收，以便在内存紧张时优先回收。
+- Swap：将不经常使用的页换出到磁盘上的交换分区，以释放物理内存。
+- 内存压缩：通过压缩内存中的数据来减少内存使用。
+
+#### 4. 内存管理机制
+
+##### 4.1 缺页中断处理
+
+当进程访问一个未映射到物理内存的虚拟地址时，会触发缺页中断。缺页中断处理程序会分配一个物理页，并更新页表，建立虚拟地址到物理地址的映射。
+
+##### 4.2 页面替换算法
+
+Linux内核使用多种页面替换算法来决定哪些页应该被换出到磁盘。常见的算法包括：
+
+- LRU（最近最少使用）
+- CLOCK：基于时钟的页面替换算法
+- Working Set：基于工作集的页面替换算法
+
+##### 4.3 内存碎片管理
+
+Linux内核通过多种机制来减少内存碎片：
+
+- 伙伴系统：通过合并相邻的空闲页来减少外部碎片。
+- SLAB分配器：通过预分配内存块来减少内部碎片。
+
+#### 5. 内存管理优化
+
+##### 5.1 内存预分配
+
+为了减少缺页中断的频率，Linux内核支持内存预分配。例如，`mmap` 系统调用可以预先分配虚拟地址空间，实际的物理内存分配在首次访问时进行。
+
+##### 5.2 内存压缩
+
+在内存紧张时，Linux内核可以通过压缩内存中的数据来减少内存使用。例如，`zram` 驱动可以将内存中的数据压缩并存储在内存中，从而释放物理内存。
+
+##### 5.3 内存回收策略
+
+Linux内核通过多种策略来回收不再使用的内存，包括：
+
+- 主动回收：定期扫描内存，回收不活跃的页。
+- 被动回收：在内存紧张时，通过缺页中断处理程序回收内存。
+
+### 10、C++中多态怎么实现的？
+
+#### 编译时多态（静态多态）
+
+编译时多态是指在编译阶段就确定了函数调用的方式。C++中最常见的编译时多态是通过函数重载（Function Overloading）和运算符重载（Operator Overloading）来实现的。
+
+##### 1. 函数重载（Function Overloading）
+
+函数重载是指在同一个作用域内定义多个同名函数，但这些函数的参数列表不同（参数的数量、类型或顺序不同）。编译器根据传入的参数类型和数量来选择合适的函数版本进行调用。
+
+```c++
+void print(int x) {
+    std::cout << "Integer: " << x << std::endl;
+}
+
+void print(double x) {
+    std::cout << "Double: " << x << std::endl;
+}
+
+int main() {
+    print(10);      // 调用 void print(int)
+    print(3.14);    // 调用 void print(double)
+    return 0;
+}
+```
+
+##### 2. 运算符重载（Operator Overloading）
+
+运算符重载是指重新定义某个运算符在特定类型对象上的行为。通过运算符重载，可以使用标准的运算符符号来操作自定义的数据类型，使代码更直观和自然。
+
+```c++
+class Complex {
+public:
+    double real, imag;
+
+    Complex(double r, double i) : real(r), imag(i) {}
+
+    // 重载加法运算符
+    Complex operator+(const Complex& other) const {
+        return Complex(real + other.real, imag + other.imag);
+    }
+
+    // 重载输出运算符
+    friend std::ostream& operator<<(std::ostream& os, const Complex& c) {
+        os << c.real << " + " << c.imag << "i";
+        return os;
+    }
+};
+
+int main() {
+    Complex c1(1.0, 2.0);
+    Complex c2(3.0, 4.0);
+    Complex c3 = c1 + c2;  // 使用重载的加法运算符
+    std::cout << c3 << std::endl;  // 输出 4 + 6i
+    return 0;
+}
+```
+
+#### 运行时多态（动态多态）
+
+##### 1. 虚函数（Virtual Functions）
+
+###### 1.1 虚函数的定义
+
+虚函数是在基类中使用 `virtual` 关键字声明的成员函数。虚函数允许派生类重写（Override）基类中的同名函数，从而实现多态行为。
+
+```c++
+class Base {
+public:
+    virtual void display() {
+        std::cout << "Display from Base" << std::endl;
+    }
+};
+
+class Derived : public Base {
+public:
+    void display() override {
+        std::cout << "Display from Derived" << std::endl;
+    }
+};
+```
+
+###### 1.2 虚函数的重写
+
+派生类中的虚函数必须与基类中的虚函数具有相同的函数签名（函数名、参数列表和返回类型），才能构成重写。重写的关键在于 `override` 关键字，它用于显式地表示派生类中的函数重写了基类中的虚函数。
+
+```c++
+class Derived : public Base {
+public:
+    void display() override {
+        std::cout << "Display from Derived" << std::endl;
+    }
+};
+```
+
+##### 2. 动态绑定（Dynamic Binding）
+
+###### 2.1 动态绑定的实现
+
+动态绑定是指在运行时根据对象的实际类型来调用相应的函数。在C++中，动态绑定通过虚函数表（Virtual Table, vtable）和虚表指针（Virtual Table Pointer, vptr）来实现。
+
+- 虚函数表（vtable）：每个类都有一个虚函数表，表中存储了该类所有虚函数的地址。
+- 虚表指针（vptr）：每个对象都有一个虚表指针，指向其所属类的虚函数表。
+
+###### 2.2 动态绑定的过程
+
+1. 对象创建：当创建一个对象时，编译器会在对象的内存布局中添加一个虚表指针，该指针指向类的虚函数表。
+2. 函数调用：当通过基类指针或引用调用虚函数时，编译器会通过虚表指针查找虚函数表，找到实际的函数地址，从而调用派生类中的函数。
+
+```c++
+Base* basePtr = new Derived();
+basePtr->display();  // 输出 "Display from Derived"
+```
+
+##### 3. 构成多态的条件
+
+###### 3.1 继承关系
+
+多态依赖于类之间的继承关系。至少需要一个基类和一个或多个派生类。派生类从基类继承属性和方法，并可以重写基类的方法。
+
+###### 3.2 虚函数
+
+基类中必须有一个或多个虚函数。这些虚函数是用 `virtual` 关键字声明的。虚函数允许派生类重写它们，从而实现多态性。
+
+###### 3.3 基类指针或引用
+
+必须通过基类的指针或引用调用虚函数。这是实现多态性的关键，因为通过基类指针或引用调用虚函数时，程序会根据实际指向的对象类型调用对应的方法。
+
+##### 4. 析构函数的多态
+
+###### 4.1 虚析构函数
+
+如果基类的析构函数是虚函数，那么派生类的析构函数也会被视为虚函数。这样可以确保在通过基类指针删除派生类对象时，能够正确调用派生类的析构函数，从而避免内存泄漏。
+
+```c++
+class Base {
+public:
+    virtual ~Base() {
+        std::cout << "Base destructor" << std::endl;
+    }
+};
+
+class Derived : public Base {
+public:
+    ~Derived() {
+        std::cout << "Derived destructor" << std::endl;
+    }
+};
+
+int main() {
+    Base* basePtr = new Derived();
+    delete basePtr;  // 输出 "Derived destructor" 和 "Base destructor"
+    return 0;
+}
+```
+
+##### 5. 抽象类（Abstract Class）
+
+抽象类是包含一个或多个纯虚函数（Pure Virtual Function）的类。纯虚函数是在基类中声明但没有实现的虚函数，形式为 `virtual ReturnType FunctionName() = 0;`。抽象类不能被实例化，但可以作为基类被派生。
+
+```c++
+class AbstractClass {
+public:
+    virtual void doSomething() = 0;  // 纯虚函数
+};
+
+class ConcreteClass : public AbstractClass {
+public:
+    void doSomething() override {
+        std::cout << "Doing something in ConcreteClass" << std::endl;
+    }
+};
+```
+
+##### 6. 协变返回类型（Covariant Return Types）
+
+协变允许派生类的虚函数返回类型与基类的虚函数返回类型不同，但必须是基类返回类型的派生类。
+
+```c++
+class Base {};
+class Derived : public Base {};
+
+class BaseClass {
+public:
+    virtual Base* getBase() {
+        return new Base();
+    }
+};
+
+class DerivedClass : public BaseClass {
+public:
+    virtual Derived* getBase() override {
+        return new Derived();
+    }
+};
+```
+
+### 11、虚函数表的本质是什么？
+
+主要用于解决在继承层次结构中的虚函数调用问题。**虚函数表本质上是一个函数指针数组**，其中每个条目都是指向虚函数的指针。通过虚函数表，编译器和程序能够在运行时确定调用哪个版本的虚函数。
+
+#### 1. 虚函数表的定义
+
+虚函数表是一个静态数组，每个包含虚函数的类都有自己的虚函数表。虚函数表中存储了该类中所有虚函数的地址。虚函数表在编译时生成，并且每个类只有一个虚函数表。
+
+#### 2. 虚表指针（vptr）
+
+每个对象都有一个虚表指针（Virtual Table Pointer，简称 vptr），指向其所属类的虚函数表。虚表指针通常位于对象的内存布局的最前面，由编译器自动插入。
+
+#### 3. 虚函数表的结构
+
+虚函数表的结构如下：
+
+- 虚函数表：一个函数指针数组，每个条目指向一个虚函数的实现。
+- 虚表指针：每个对象中包含一个指针，指向其所属类的虚函数表。
+
+#### 4. 虚函数表的工作原理
+
+##### 4.1 对象创建
+
+当创建一个对象时，编译器会在对象的内存布局中插入一个虚表指针，并将其初始化为指向该类的虚函数表。
+
+```c++
+class Base {
+public:
+    virtual void func1() { std::cout << "Base::func1" << std::endl; }
+    virtual void func2() { std::cout << "Base::func2" << std::endl; }
+};
+
+class Derived : public Base {
+public:
+    void func1() override { std::cout << "Derived::func1" << std::endl; }
+    void func2() override { std::cout << "Derived::func2" << std::endl; }
+};
+
+int main() {
+    Base* basePtr = new Derived();
+    return 0;
+}
+```
+
+上述代码中，`Derived` 对象的内存布局如下：
+
+```c++
++-----------------+
+| vptr            |  -> 指向 Derived 的虚函数表
++-----------------+
+| ...             |
++-----------------+
+```
+
+##### 4.2 虚函数调用
+
+当通过基类指针或引用调用虚函数时，编译器会通过虚表指针查找虚函数表，找到实际的函数地址，从而调用派生类中的函数。
+
+```c++
+basePtr->func1();  // 输出 "Derived::func1"
+basePtr->func2();  // 输出 "Derived::func2"
+```
+
+具体步骤如下：
+
+1. 获取虚表指针：通过基类指针 `basePtr` 获取对象的虚表指针 `vptr`。
+2. 查找虚函数表：通过虚表指针 `vptr` 查找虚函数表。
+3. 定位函数地址：根据虚函数的索引在虚函数表中找到对应的函数地址。
+4. 调用函数：根据找到的函数地址调用相应的虚函数。
+
+#### 5. 虚函数表的生成
+
+虚函数表的生成由编译器在编译阶段完成。编译器会为每个包含虚函数的类生成一个虚函数表，并将虚函数的地址填充到表中。
+
+#### 6. 虚函数表的继承
+
+在继承关系中，派生类会继承基类的虚函数表，并在其中添加自己新增的虚函数的地址。如果派生类重写了基类的虚函数，虚函数表中的相应条目会被更新为指向派生类的实现。
+
+```c++
+class Base {
+public:
+    virtual void func1() { std::cout << "Base::func1" << std::endl; }
+    virtual void func2() { std::cout << "Base::func2" << std::endl; }
+};
+
+class Derived : public Base {
+public:
+    void func1() override { std::cout << "Derived::func1" << std::endl; }
+    void func2() override { std::cout << "Derived::func2" << std::endl; }
+    virtual void func3() { std::cout << "Derived::func3" << std::endl; }
+};
+
+// 基类的虚函数表
+// +-----------------+
+// | Base::func1     |
+// +-----------------+
+// | Base::func2     |
+// +-----------------+
+
+// 派生类的虚函数表
+// +-----------------+
+// | Derived::func1  |
+// +-----------------+
+// | Derived::func2  |
+// +-----------------+
+// | Derived::func3  |
+// +-----------------+
+```
+
+#### 7. 虚函数表的内存开销
+
+由于每个对象都需要一个虚表指针，因此虚函数表会增加对象的内存开销。对于每个包含虚函数的类，编译器会生成一个虚函数表，这也会占用一定的内存。然而，这种开销通常是可接受的，因为虚函数表带来的多态性和灵活性远大于其内存开销。
+
+#### 8. 虚函数表的性能影响
+
+虚函数调用涉及到两次间接寻址：一次是通过虚表指针找到虚函数表，另一次是通过虚函数表找到函数地址。这比直接调用非虚函数稍微慢一些，但在大多数情况下，这种性能差异是可以忽略不计的。
+
+### 12、手撕两个链表逆置相加
+
+#### 思路
+
+1. 链表逆序存储：由于链表中的数字是逆序存储的，我们可以逐位相加两个链表的数字，类似于手动加法时从右到左加。
+2. 进位处理：在相加过程中，如果某一位的和大于等于10，就需要产生进位。
+3. 构建新链表：将每位的和（考虑进位）存储到新的链表中。
+4. 遍历两个链表：同时遍历两个链表，直到两个链表都遍历完，并处理任何剩余的进位。
+
+#### 参考代码
+
+```c++
+#include <iostream>
+using namespace std;
+
+// 定义链表节点结构
+struct ListNode {
+    int val; // 节点值
+    ListNode* next; // 指向下一个节点的指针
+    ListNode(int x) : val(x), next(nullptr) {} // 构造函数
+};
+
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode* dummyHead = new ListNode(0); // 创建一个虚拟头节点
+        ListNode* current = dummyHead; // 用于构建新链表
+        int carry = 0; // 进位初始化为 0
+
+        // 遍历两个链表
+        while (l1 != nullptr || l2 != nullptr || carry != 0) {
+            int sum = carry; // 从进位开始
+            if (l1 != nullptr) { // 如果 l1 不为空
+                sum += l1->val; // 加上 l1 当前位的值
+                l1 = l1->next; // 移动到 l1 的下一个节点
+            }
+            if (l2 != nullptr) { // 如果 l2 不为空
+                sum += l2->val; // 加上 l2 当前位的值
+                l2 = l2->next; // 移动到 l2 的下一个节点
+            }
+            
+            carry = sum / 10; // 计算新的进位
+            current->next = new ListNode(sum % 10); // 创建新节点存储当前位的和
+            current = current->next; // 移动到新节点
+        }
+
+        return dummyHead->next; // 返回新链表的头节点
+    }
+};
+
+// 辅助函数用于打印链表
+void printList(ListNode* head) {
+    while (head) {
+        cout << head->val << " ";
+        head = head->next;
+    }
+    cout << endl;
+}
+
+// 主函数示例
+int main() {
+    // 创建第一个链表 l1 = [2, 4, 3] (表示数字 342)
+    ListNode* l1 = new ListNode(2);
+    l1->next = new ListNode(4);
+    l1->next->next = new ListNode(3);
+
+    // 创建第二个链表 l2 = [5, 6, 4] (表示数字 465)
+    ListNode* l2 = new ListNode(5);
+    l2->next = new ListNode(6);
+    l2->next->next = new ListNode(4);
+
+    // 创建 Solution 对象并调用 addTwoNumbers
+    Solution solution;
+    ListNode* result = solution.addTwoNumbers(l1, l2);
+
+    // 打印结果链表
+    cout << "Result: ";
+    printList(result); // 输出: [7, 0, 8] (表示数字 807)
+
+    return 0;
+}
+```
+
