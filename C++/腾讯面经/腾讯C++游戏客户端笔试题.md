@@ -1,0 +1,455 @@
+### 腾讯C++游戏客户端笔试分享 (2023-09-15) - 参考答案
+
+#### 1. 对k个链表进行排序。
+
+**问题分析：**
+这是一个经典的链表操作问题，通常指的是将k个已排序的链表合并成一个大的已排序链表。常见的解法有两种：分治法和最小堆法。
+
+**参考答案：**
+
+**方法一：分治法 (Divide and Conquer)**
+
+*   **思路：** 类似于归并排序，将k个链表两两合并，直到合并成一个链表。例如，先合并`lists[0]`和`lists[1]`，再合并`lists[2]`和`lists[3]`，以此类推。然后将合并后的链表继续两两合并，直到只剩一个。
+*   **步骤：**
+    1.  定义一个`mergeTwoLists(list1, list2)`函数，用于合并两个已排序的链表。这个函数会遍历两个链表，比较当前节点的值，将较小的节点添加到结果链表，直到其中一个链表为空，然后将另一个链表的剩余部分直接连接到结果链表。
+    2.  使用循环或递归的方式，将k个链表进行两两合并。如果链表数量为`k`，则第一次合并后剩下`k/2`个链表，第二次合并后剩下`k/4`个，直到剩下1个。
+*   **时间复杂度：** 假设每个链表的平均长度为`n`。合并两个链表的时间复杂度是`O(n)`。总共有`log k`层合并。因此，总时间复杂度为`O(k * n * log k)`。
+*   **空间复杂度：** `O(1)`（不考虑输出链表的空间）或 `O(n * k)`（如果需要创建新的节点）。
+
+**示例代码 (C++)：**
+
+```cpp
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
+
+ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+    if (!l1) return l2;
+    if (!l2) return l1;
+
+    ListNode dummy(0);
+    ListNode* current = &dummy;
+
+    while (l1 && l2) {
+        if (l1->val <= l2->val) {
+            current->next = l1;
+            l1 = l1->next;
+        } else {
+            current->next = l2;
+            l2 = l2->next;
+        }
+        current = current->next;
+    }
+
+    if (l1) {
+        current->next = l1;
+    } else if (l2) {
+        current->next = l2;
+    }
+
+    return dummy.next;
+}
+
+ListNode* mergeKLists(std::vector<ListNode*>& lists) {
+    if (lists.empty()) {
+        return nullptr;
+    }
+    int interval = 1;
+    while (interval < lists.size()) {
+        for (int i = 0; i + interval < lists.size(); i += interval * 2) {
+            lists[i] = mergeTwoLists(lists[i], lists[i + interval]);
+        }
+        interval *= 2;
+    }
+    return lists[0];
+}
+```
+
+**方法二：最小堆法 (Min-Heap / Priority Queue)**
+
+*   **思路：** 使用一个最小堆来存储k个链表的当前头节点。每次从堆中取出最小的节点，将其添加到结果链表，然后将该节点的下一个节点（如果存在）插入到堆中。
+*   **步骤：**
+    1.  创建一个最小堆（优先队列），用于存储`ListNode*`，并根据节点值进行排序。
+    2.  将k个链表的头节点（非空）全部加入到最小堆中。
+    3.  初始化一个结果链表的哑节点（dummy node）和当前指针。
+    4.  当最小堆不为空时，循环执行以下操作：
+        a.  从堆中取出堆顶元素（即当前所有链表头节点中最小的那个）。
+        b.  将该节点添加到结果链表的末尾。
+        c.  如果该节点的下一个节点不为空，则将其下一个节点加入到最小堆中。
+    5.  返回哑节点的下一个节点。
+*   **时间复杂度：** 假设每个链表的平均长度为`n`。堆中最多有`k`个元素。每次堆操作（插入、删除）的时间复杂度是`O(log k)`。总共有`k * n`个节点需要处理。因此，总时间复杂度为`O(k * n * log k)`。
+*   **空间复杂度：** `O(k)`，用于存储堆。
+
+**示例代码 (C++)：**
+
+```cpp
+#include <vector>
+#include <queue>
+
+// ListNode结构体定义同上
+
+struct CompareListNode {
+    bool operator()(ListNode* a, ListNode* b) {
+        return a->val > b->val; // 最小堆
+    }
+};
+
+ListNode* mergeKListsHeap(std::vector<ListNode*>& lists) {
+    std::priority_queue<ListNode*, std::vector<ListNode*>, CompareListNode> pq;
+
+    for (ListNode* list : lists) {
+        if (list) {
+            pq.push(list);
+        }
+    }
+
+    ListNode dummy(0);
+    ListNode* current = &dummy;
+
+    while (!pq.empty()) {
+        ListNode* smallest = pq.top();
+        pq.pop();
+
+        current->next = smallest;
+        current = current->next;
+
+        if (smallest->next) {
+            pq.push(smallest->next);
+        }
+    }
+
+    return dummy.next;
+}
+```
+
+**总结：**
+两种方法的时间复杂度都是`O(k * n * log k)`。在实际应用中，当`k`较小（例如，`k < log n`）时，分治法可能因为常数因子较小而表现更好；当`k`较大时，最小堆法通常更稳定且易于实现。面试时，通常两种方法都应有所了解，并能解释其原理和复杂度。
+
+#### 2. 对一个正整数数组中的数字执行k次操作，求k次操作后数组和的最小值。对数字的操作如下：如果x是偶数，则操作后x = 2*x + 1；如果x是奇数，则操作后x = 2*x。
+
+**问题分析：**
+目标是使数组和最小，这意味着每次操作都应该选择能使当前数字增加最少的，或者减少最多的操作。观察操作规则：
+*   偶数 `x` -> `2x + 1` (增加 `x + 1`)
+*   奇数 `x` -> `2x` (增加 `x`)
+
+所有操作都会使数字变大，因此我们希望每次操作选择增加量最小的那个数字。这提示我们使用优先队列（最小堆）来动态选择每次操作的数字。
+
+**参考答案：**
+
+**思路：**
+为了使最终数组和最小，我们每次操作都应该选择当前数组中，经过一次操作后，其值增加最少的那个数字。由于每次操作都会改变数字的值，并可能改变其奇偶性，因此我们需要一个数据结构来动态维护“操作后增加量最小”的数字。最小堆（优先队列）是实现这一目标的理想选择。
+
+**步骤：**
+1.  计算初始数组的总和。
+2.  创建一个最小堆，存储数组中的所有数字。
+3.  执行`k`次操作：
+    a.  从最小堆中取出堆顶元素 `x`（当前数组中最小的数字）。
+    b.  根据 `x` 的奇偶性执行操作：
+        *   如果 `x` 是偶数，新值为 `2x + 1`。
+        *   如果 `x` 是奇数，新值为 `2x`。
+    c.  将 `x` 的旧值从总和中减去，将新值加到总和中。
+    d.  将新值 `x'` 重新插入到最小堆中。
+4.  `k`次操作结束后，返回最终的总和。
+
+**时间复杂度：**
+*   初始化堆：`O(N log N)`，其中`N`是数组的长度。
+*   `k`次操作：每次操作包括堆顶元素的取出和新元素的插入，时间复杂度为`O(log N)`。总共`k`次操作，所以是`O(k log N)`。
+*   总时间复杂度：`O(N log N + k log N)`。
+
+**空间复杂度：**
+*   `O(N)`，用于存储最小堆。
+
+**示例代码 (C++)：**
+
+```cpp
+#include <vector>
+#include <queue>
+#include <numeric> // For std::accumulate
+
+long long minArraySumAfterKOperations(std::vector<int>& nums, int k) {
+    // 使用最小堆，每次取出当前最小的数字进行操作
+    std::priority_queue<long long, std::vector<long long>, std::greater<long long>> min_heap;
+    long long current_sum = 0;
+
+    for (int num : nums) {
+        min_heap.push(num);
+        current_sum += num;
+    }
+
+    for (int i = 0; i < k; ++i) {
+        long long x = min_heap.top();
+        min_heap.pop();
+
+        long long new_x;
+        if (x % 2 == 0) { // 偶数
+            new_x = 2 * x + 1;
+        } else { // 奇数
+            new_x = 2 * x;
+        }
+
+        current_sum = current_sum - x + new_x;
+        min_heap.push(new_x);
+    }
+
+    return current_sum;
+}
+
+// 另一种理解：每次操作都选择当前数组中值最小的元素进行操作，
+// 因为操作是固定的，对最小的元素操作，其增加的绝对值也最小，
+// 从而使得总和的增加量最小。
+// 验证：
+// 偶数 x -> 2x+1 (增加 x+1)
+// 奇数 x -> 2x (增加 x)
+// 假设有 x1 < x2，如果 x1 是偶数，x2 是奇数，x1+1 和 x2 哪个小？
+// 如果 x1 是奇数，x2 是偶数，x1 和 x2+1 哪个小？
+// 这种贪心策略是正确的，因为操作是独立于其他元素的，且每次操作都使当前元素增大。
+// 为了使总和最小，每次都应该选择当前最小的元素进行操作，
+// 这样可以保证每次增加的绝对值最小。
+// 例如：[1, 2], k=1
+// 初始和 = 3
+// 1是奇数 -> 2 (增加1)
+// 2是偶数 -> 5 (增加3)
+// 应该选择1操作，变为[2, 2]，和为4。
+// 如果选择2操作，变为[1, 5]，和为6。
+// 贪心策略是正确的。
+```
+
+#### 3. 有n辆赛车，以及所有赛车的当前位置p，速度v，假设赛车均做匀速直线运动。问你t时刻后，有多少赛车的名次发生了改变？
+
+**问题分析：**
+这是一个关于相对位置和排序的问题。赛车在`t`时刻后的位置可以通过 `p + v * t` 计算得出。名次改变意味着在`t`时刻后，至少有一辆赛车相对于其他赛车的排名发生了变化。
+
+**参考答案：**
+
+**思路：**
+要判断有多少赛车的名次发生了改变，我们可以比较赛车在初始时刻和`t`时刻后的排名。如果一辆赛车在两个时刻的排名不同，那么它的名次就改变了。更直接的方法是，计算出所有赛车在`t`时刻后的位置，然后比较初始排名和最终排名。
+
+**步骤：**
+1.  **定义赛车结构：** 创建一个结构体或类来存储每辆赛车的初始位置 `p`、速度 `v`、初始索引（用于唯一标识赛车）以及在`t`时刻后的位置 `p_t`。
+2.  **计算初始排名：**
+    a.  创建一个包含所有赛车初始状态的列表。
+    b.  根据初始位置 `p` 对赛车进行排序（位置越大排名越靠前，或者反之，需要明确排名规则）。如果位置相同，可以根据速度或其他规则进一步排序，或者保持原始顺序。
+    c.  记录每辆赛车的初始排名（例如，使用一个`map<int, int>`存储`赛车索引 -> 初始排名`）。
+3.  **计算`t`时刻后的位置：**
+    a.  对于每辆赛车，计算其在`t`时刻后的位置 `p_t = p + v * t`。
+4.  **计算`t`时刻后的排名：**
+    a.  根据`t`时刻后的位置 `p_t` 对赛车进行排序。
+    b.  记录每辆赛车在`t`时刻后的排名。
+5.  **比较排名：**
+    a.  遍历所有赛车，比较其初始排名和`t`时刻后的排名。
+    b.  统计排名发生改变的赛车数量。
+
+**关键点：**
+*   **排名规则：** 需要明确位置相同时的排名规则。通常是保持原始顺序或根据速度等次要条件。如果题目没有明确，可以假设位置不同才算排名不同，或者按索引排序。
+*   **浮点数精度：** 位置计算涉及浮点数乘法，可能会有精度问题。在比较位置时，应使用一个小的误差范围（epsilon）进行比较，而不是直接比较相等。
+
+**时间复杂度：**
+*   排序两次：`O(N log N)`，其中`N`是赛车数量。
+*   计算位置和比较排名：`O(N)`。
+*   总时间复杂度：`O(N log N)`。
+
+**空间复杂度：**
+*   `O(N)`，用于存储赛车信息和排名。
+
+**示例代码 (C++)：**
+
+```cpp
+#include <vector>
+#include <algorithm>
+#include <map>
+#include <cmath> // For std::fabs
+
+struct Car {
+    int id; // 赛车唯一标识
+    double p; // 初始位置
+    double v; // 速度
+    double p_t; // t时刻后的位置
+    int initial_rank; // 初始排名
+    int final_rank; // 最终排名
+
+    // 初始位置排序规则 (位置越大排名越靠前)
+    bool operator<(const Car& other) const {
+        if (std::fabs(p - other.p) < 1e-9) { // 考虑浮点数精度
+            return id < other.id; // 位置相同按id排序，保持稳定性
+        }
+        return p > other.p;
+    }
+};
+
+// t时刻后位置排序规则
+struct CompareCarByFinalPosition {
+    bool operator()(const Car& a, const Car& b) const {
+        if (std::fabs(a.p_t - b.p_t) < 1e-9) {
+            return a.id < b.id;
+        }
+        return a.p_t > b.p_t;
+    }
+};
+
+int countRankChanges(std::vector<double>& positions, std::vector<double>& velocities, double t) {
+    int n = positions.size();
+    std::vector<Car> cars(n);
+
+    for (int i = 0; i < n; ++i) {
+        cars[i].id = i;
+        cars[i].p = positions[i];
+        cars[i].v = velocities[i];
+    }
+
+    // 1. 计算初始排名
+    std::sort(cars.begin(), cars.end());
+    for (int i = 0; i < n; ++i) {
+        cars[i].initial_rank = i;
+    }
+
+    // 2. 计算t时刻后的位置
+    for (int i = 0; i < n; ++i) {
+        cars[i].p_t = cars[i].p + cars[i].v * t;
+    }
+
+    // 3. 计算t时刻后的排名
+    std::sort(cars.begin(), cars.end(), CompareCarByFinalPosition());
+    for (int i = 0; i < n; ++i) {
+        cars[i].final_rank = i;
+    }
+
+    // 4. 统计名次改变的赛车数量
+    int rank_changes = 0;
+    // 由于cars向量已经被排序，我们需要通过原始id来查找其初始排名
+    // 更好的做法是，在初始排序后，将initial_rank存入一个map，
+    // 然后在final_rank排序后，再通过id查找。
+    // 这里为了简化，我们重新构建一个按id排序的向量来比较。
+    std::vector<Car> cars_by_id = cars;
+    std::sort(cars_by_id.begin(), cars_by_id.end(), [](const Car& a, const Car& b) { return a.id < b.id; });
+
+    for (int i = 0; i < n; ++i) {
+        // 找到原始id为i的赛车在初始排序和最终排序后的排名
+        // 注意：这里需要确保cars_by_id中的元素是原始id对应的Car对象
+        // 实际上，我们可以在第一次排序后，将initial_rank直接存入原始的cars[i]中
+        // 然后再对cars进行第二次排序，最后通过原始id来比较。
+        // 修正后的逻辑：
+        // 1. 初始时，为每辆车创建一个Car对象，包含id, p, v。
+        // 2. 复制一份Car对象列表，按p排序，记录initial_rank到原始Car对象中。
+        // 3. 计算p_t。
+        // 4. 复制一份Car对象列表，按p_t排序，记录final_rank到原始Car对象中。
+        // 5. 遍历原始Car对象列表，比较initial_rank和final_rank。
+
+        // 简化起见，我们假设cars在第一次排序后，其id仍然能唯一标识原始赛车
+        // 并且我们可以在排序后直接访问其initial_rank和final_rank
+        // 这要求我们不能直接在原始cars上进行两次不同规则的排序，
+        // 而是应该将排名信息回填到原始的、按id索引的Car对象中。
+
+        // 更清晰的实现方式：
+        std::vector<Car> initial_sorted_cars = cars;
+        std::sort(initial_sorted_cars.begin(), initial_sorted_cars.end(), [](const Car& a, const Car& b) {
+            if (std::fabs(a.p - b.p) < 1e-9) return a.id < b.id;
+            return a.p > b.p;
+        });
+
+        std::map<int, int> initial_ranks;
+        for (int i = 0; i < n; ++i) {
+            initial_ranks[initial_sorted_cars[i].id] = i;
+        }
+
+        std::vector<Car> final_sorted_cars = cars;
+        for (int i = 0; i < n; ++i) {
+            final_sorted_cars[i].p_t = final_sorted_cars[i].p + final_sorted_cars[i].v * t;
+        }
+        std::sort(final_sorted_cars.begin(), final_sorted_cars.end(), CompareCarByFinalPosition());
+
+        std::map<int, int> final_ranks;
+        for (int i = 0; i < n; ++i) {
+            final_ranks[final_sorted_cars[i].id] = i;
+        }
+
+        int changes = 0;
+        for (int i = 0; i < n; ++i) {
+            if (initial_ranks[i] != final_ranks[i]) {
+                changes++;
+            }
+        }
+        return changes;
+    }
+    return rank_changes; // 实际上不会执行到这里，因为上面已经返回
+}
+```
+
+**注意：** 上述代码中的`countRankChanges`函数为了演示清晰，重新构建了排序逻辑。在实际实现中，可以优化为只对`Car`对象进行一次排序，然后将排名信息存储在`Car`对象内部，再进行第二次排序，最后比较。或者使用`std::map`来存储`id -> rank`的映射。
+
+#### 4. 对于一个字符串，将其首字符放在末尾，这个操作称为旋转字符串("abcdef" -> "bcdefa") 。对于两个字符串，如果其中一个字符串可以通过一次或多次旋转变成另一个字符串，则这两个字符串“互旋”。给你T组数据，问你每组数据中是否存在两个字符串“互旋”？
+
+**问题分析：**
+这是一个判断两个字符串是否是旋转字符串的问题。如果字符串A可以通过旋转得到字符串B，那么B一定是A的某个旋转版本。一个关键的性质是，如果字符串B是字符串A的旋转版本，那么B一定出现在`A + A`这个字符串中。
+
+**参考答案：**
+
+**思路：**
+判断两个字符串`s1`和`s2`是否“互旋”，可以利用以下性质：
+1.  如果`s1`和`s2`的长度不同，它们不可能互旋。
+2.  如果`s1`和`s2`的长度相同，那么`s2`是`s1`的旋转字符串的充要条件是`s2`是`s1 + s1`的子串。
+
+**证明：**
+*   **充分性：** 如果`s2`是`s1`的旋转字符串，例如`s1 = 
+
+abcde`，`s2 = `cdeab`。那么`s1 + s1 = abcdeabcde`，显然`s2`是`s1 + s1`的子串。
+*   **必要性：** 如果`s2`是`s1 + s1`的子串，且`s1`和`s2`长度相同。设`s1`的长度为`L`。`s1 + s1`的长度为`2L`。`s2`是`s1 + s1`的子串，意味着`s1 + s1`可以表示为`X s2 Y`。由于`s2`的长度为`L`，且`s1 + s1`是由两个`s1`拼接而成，那么`s2`必然是从`s1`的某个位置开始，截取`L`个字符得到的。例如，`s1 = AB`，`s1 + s1 = ABAB`。如果`s2 = BA`，它是`ABAB`的子串。`BA`可以通过将`s1`的第一个字符`A`移到末尾得到。因此，`s2`是`s1`的旋转字符串。
+
+**步骤：**
+1.  对于给定的两个字符串`s1`和`s2`：
+    a.  首先检查它们的长度是否相等。如果`s1.length() != s2.length()`，则它们不可能互旋，返回`false`。
+    b.  如果长度相等，则将`s1`自身拼接一次，得到`s1s1 = s1 + s1`。
+    c.  检查`s2`是否是`s1s1`的子串。如果`s1s1`包含`s2`，则它们互旋，返回`true`；否则，返回`false`。
+
+**时间复杂度：**
+*   字符串长度检查：`O(1)`。
+*   字符串拼接：`O(L)`，其中`L`是字符串的长度。
+*   子串查找：通常使用KMP算法，时间复杂度为`O(L)`。如果使用`std::string::find`，其平均时间复杂度也是`O(L)`，最坏情况下可能达到`O(L^2)`，但对于大多数标准库实现，它会进行优化，接近`O(L)`。
+*   总时间复杂度：`O(L)`。
+
+**空间复杂度：**
+*   `O(L)`，用于存储拼接后的字符串`s1s1`。
+
+**示例代码 (C++)：**
+
+```cpp
+#include <string>
+#include <vector>
+
+bool areRotations(const std::string& s1, const std::string& s2) {
+    // 1. 长度检查
+    if (s1.length() != s2.length()) {
+        return false;
+    }
+    // 2. 空字符串特殊处理 (可选，根据题目要求)
+    if (s1.empty()) {
+        return true; // 两个空字符串互旋
+    }
+
+    // 3. 拼接s1s1
+    std::string s1s1 = s1 + s1;
+
+    // 4. 检查s2是否是s1s1的子串
+    // std::string::find 返回子串第一次出现的位置，如果未找到则返回std::string::npos
+    return s1s1.find(s2) != std::string::npos;
+}
+
+// 对于T组数据，可以在主函数中循环调用此函数
+// int main() {
+//     int T;
+//     std::cin >> T;
+//     while (T--) {
+//         std::string s1, s2;
+//         std::cin >> s1 >> s2;
+//         if (areRotations(s1, s2)) {
+//             std::cout << "YES\n";
+//         } else {
+//             std::cout << "NO\n";
+//         }
+//     }
+//     return 0;
+// }
+```

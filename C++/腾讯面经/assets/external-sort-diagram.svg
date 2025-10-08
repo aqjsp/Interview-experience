@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="1000" height="600" fill="#f8f9fa"/>
+  
+  <!-- 标题 -->
+  <text x="500" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#2c3e50">外部排序（External Sort）去重原理图</text>
+  
+  <!-- 阶段1：原始数据 -->
+  <text x="50" y="70" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2c3e50">阶段1：原始数据文件（40亿QQ号）</text>
+  <rect x="50" y="80" width="900" height="40" fill="#3498db" stroke="#2980b9" rx="5"/>
+  <text x="500" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="white">12345, 67890, 12345, 99999, 54321, 67890, 11111, 22222, 33333, 12345, ...</text>
+  
+  <!-- 箭头 -->
+  <path d="M 500 130 L 500 150" stroke="#7f8c8d" stroke-width="3" marker-end="url(#arrowhead)"/>
+  
+  <!-- 阶段2：分块读取和排序 -->
+  <text x="50" y="180" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2c3e50">阶段2：分块读取到内存（每块≤1GB）</text>
+  
+  <!-- 内存块1 -->
+  <g transform="translate(50, 200)">
+    <rect x="0" y="0" width="200" height="80" fill="#e74c3c" stroke="#c0392b" rx="5"/>
+    <text x="100" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white" font-weight="bold">内存块1</text>
+    <text x="100" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">原始：12345, 67890, 12345</text>
+    <text x="100" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">排序去重：12345, 67890</text>
+    <text x="100" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">写入 temp1.txt</text>
+  </g>
+  
+  <!-- 内存块2 -->
+  <g transform="translate(270, 200)">
+    <rect x="0" y="0" width="200" height="80" fill="#f39c12" stroke="#e67e22" rx="5"/>
+    <text x="100" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white" font-weight="bold">内存块2</text>
+    <text x="100" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">原始：99999, 54321, 67890</text>
+    <text x="100" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">排序去重：54321, 67890, 99999</text>
+    <text x="100" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">写入 temp2.txt</text>
+  </g>
+  
+  <!-- 内存块3 -->
+  <g transform="translate(490, 200)">
+    <rect x="0" y="0" width="200" height="80" fill="#9b59b6" stroke="#8e44ad" rx="5"/>
+    <text x="100" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white" font-weight="bold">内存块3</text>
+    <text x="100" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">原始：11111, 22222, 33333</text>
+    <text x="100" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">排序去重：11111, 22222, 33333</text>
+    <text x="100" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">写入 temp3.txt</text>
+  </g>
+  
+  <!-- 省略号 -->
+  <text x="750" y="240" font-family="Arial, sans-serif" font-size="20" fill="#7f8c8d">...</text>
+  
+  <!-- 箭头 -->
+  <path d="M 500 290 L 500 310" stroke="#7f8c8d" stroke-width="3" marker-end="url(#arrowhead)"/>
+  
+  <!-- 阶段3：临时文件 -->
+  <text x="50" y="340" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2c3e50">阶段3：生成的有序临时文件</text>
+  
+  <!-- 临时文件 -->
+  <g transform="translate(50, 360)">
+    <rect x="0" y="0" width="150" height="40" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+    <text x="75" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#2c3e50" font-weight="bold">temp1.txt</text>
+    <text x="75" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#7f8c8d">12345, 67890</text>
+    
+    <rect x="170" y="0" width="150" height="40" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+    <text x="245" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#2c3e50" font-weight="bold">temp2.txt</text>
+    <text x="245" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#7f8c8d">54321, 67890, 99999</text>
+    
+    <rect x="340" y="0" width="150" height="40" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+    <text x="415" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#2c3e50" font-weight="bold">temp3.txt</text>
+    <text x="415" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#7f8c8d">11111, 22222, 33333</text>
+    
+    <text x="520" y="20" font-family="Arial, sans-serif" font-size="16" fill="#7f8c8d">...</text>
+  </g>
+  
+  <!-- 箭头 -->
+  <path d="M 500 410 L 500 430" stroke="#7f8c8d" stroke-width="3" marker-end="url(#arrowhead)"/>
+  
+  <!-- 阶段4：多路归并 -->
+  <text x="50" y="460" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2c3e50">阶段4：多路归并去重</text>
+  
+  <!-- 归并过程可视化 -->
+  <g transform="translate(50, 480)">
+    <!-- 文件指针 -->
+    <rect x="0" y="0" width="120" height="25" fill="#e74c3c" stroke="#c0392b" rx="3"/>
+    <text x="60" y="17" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">temp1: 12345</text>
+    
+    <rect x="130" y="0" width="120" height="25" fill="#f39c12" stroke="#e67e22" rx="3"/>
+    <text x="190" y="17" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">temp2: 54321</text>
+    
+    <rect x="260" y="0" width="120" height="25" fill="#9b59b6" stroke="#8e44ad" rx="3"/>
+    <text x="320" y="17" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">temp3: 11111</text>
+    
+    <!-- 比较过程 -->
+    <text x="400" y="17" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">→ 比较：min(12345, 54321, 11111) = 11111</text>
+    
+    <!-- 输出 -->
+    <rect x="0" y="40" width="600" height="25" fill="#27ae60" stroke="#229954" rx="3"/>
+    <text x="300" y="57" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">输出到结果文件：11111</text>
+  </g>
+  
+  <!-- 下一步归并 -->
+  <g transform="translate(50, 520)">
+    <rect x="0" y="0" width="120" height="25" fill="#e74c3c" stroke="#c0392b" rx="3"/>
+    <text x="60" y="17" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">temp1: 12345</text>
+    
+    <rect x="130" y="0" width="120" height="25" fill="#f39c12" stroke="#e67e22" rx="3"/>
+    <text x="190" y="17" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">temp2: 54321</text>
+    
+    <rect x="260" y="0" width="120" height="25" fill="#9b59b6" stroke="#8e44ad" rx="3"/>
+    <text x="320" y="17" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">temp3: 22222</text>
+    
+    <text x="400" y="17" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">→ 比较：min(12345, 54321, 22222) = 12345</text>
+    
+    <rect x="0" y="40" width="600" height="25" fill="#27ae60" stroke="#229954" rx="3"/>
+    <text x="300" y="57" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">输出到结果文件：11111, 12345</text>
+  </g>
+  
+  <!-- 特点说明 -->
+  <rect x="700" y="360" width="280" height="180" fill="#ecf0f1" stroke="#bdc3c7" rx="5"/>
+  <text x="840" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#2c3e50">外部排序特点</text>
+  
+  <text x="720" y="405" font-family="Arial, sans-serif" font-size="12" fill="#27ae60" font-weight="bold">优点：</text>
+  <text x="720" y="420" font-family="Arial, sans-serif" font-size="11" fill="#27ae60">✓ 可处理任意大数据量</text>
+  <text x="720" y="435" font-family="Arial, sans-serif" font-size="11" fill="#27ae60">✓ 内存使用可控（≤1GB）</text>
+  <text x="720" y="450" font-family="Arial, sans-serif" font-size="11" fill="#27ae60">✓ 精确去重，无误判</text>
+  <text x="720" y="465" font-family="Arial, sans-serif" font-size="11" fill="#27ae60">✓ 结果自然有序</text>
+  
+  <text x="720" y="485" font-family="Arial, sans-serif" font-size="12" fill="#e74c3c" font-weight="bold">缺点：</text>
+  <text x="720" y="500" font-family="Arial, sans-serif" font-size="11" fill="#e74c3c">✗ I/O开销大</text>
+  <text x="720" y="515" font-family="Arial, sans-serif" font-size="11" fill="#e74c3c">✗ 时间复杂度O(N log N)</text>
+  <text x="720" y="530" font-family="Arial, sans-serif" font-size="11" fill="#e74c3c">✗ 需要额外磁盘空间</text>
+  
+  <!-- 箭头标记定义 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#7f8c8d"/>
+    </marker>
+  </defs>
+</svg>

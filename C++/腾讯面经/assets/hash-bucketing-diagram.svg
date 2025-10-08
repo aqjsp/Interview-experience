@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="820" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="1200" height="820" fill="#f8f9fa"/>
+  
+  <!-- 标题 -->
+  <text x="600" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#2c3e50">哈希分桶（Hash Bucketing）去重原理图</text>
+  
+  <!-- 阶段1：原始数据 -->
+  <text x="60" y="70" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2c3e50">阶段1：原始数据文件（40亿QQ号）</text>
+  <rect x="60" y="80" width="1080" height="40" fill="#3498db" stroke="#2980b9" rx="5"/>
+  <text x="600" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="white">12345, 67890, 12345, 99999, 54321, 67890, 11111, 22222, 33333, 12345, ...</text>
+  
+  <!-- 箭头1 -->
+  <path d="M 600 130 L 600 160" stroke="#7f8c8d" stroke-width="3" marker-end="url(#arrowhead)"/>
+  
+  <!-- 阶段2：哈希函数分桶 -->
+  <text x="60" y="190" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2c3e50">阶段2：哈希函数分桶 hash(QQ号) % N</text>
+  
+  <!-- 哈希函数 -->
+  <rect x="500" y="210" width="200" height="60" fill="#e67e22" stroke="#d35400" rx="10"/>
+  <text x="600" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="white" font-weight="bold">哈希函数</text>
+  <text x="600" y="255" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="white">hash(QQ号) % 1000</text>
+  
+  <!-- 示例计算框 -->
+  <rect x="60" y="290" width="280" height="120" fill="#ecf0f1" stroke="#bdc3c7" rx="5"/>
+  <text x="200" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#2c3e50" font-weight="bold">示例计算：</text>
+  <text x="80" y="340" font-family="Arial, sans-serif" font-size="12" fill="#7f8c8d">hash(12345) % 1000 = 345 → 桶345</text>
+  <text x="80" y="360" font-family="Arial, sans-serif" font-size="12" fill="#7f8c8d">hash(67890) % 1000 = 890 → 桶890</text>
+  <text x="80" y="380" font-family="Arial, sans-serif" font-size="12" fill="#7f8c8d">hash(99999) % 1000 = 999 → 桶999</text>
+  <text x="80" y="400" font-family="Arial, sans-serif" font-size="12" fill="#7f8c8d">hash(54321) % 1000 = 321 → 桶321</text>
+  
+  <!-- 箭头2 -->
+  <path d="M 600 280 L 600 430" stroke="#7f8c8d" stroke-width="3" marker-end="url(#arrowhead)"/>
+  
+  <!-- 阶段3：分桶结果 -->
+  <text x="60" y="460" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2c3e50">阶段3：数据分散到不同桶文件</text>
+  
+  <!-- 桶文件 - 重新布局，避免重叠 -->
+  <g transform="translate(60, 480)">
+    <!-- 桶321 -->
+    <rect x="0" y="0" width="200" height="70" fill="#e74c3c" stroke="#c0392b" rx="5"/>
+    <text x="100" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="white" font-weight="bold">桶321 (bucket_321.txt)</text>
+    <text x="100" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white">54321, 88321, 54321</text>
+    <text x="100" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#ecf0f1">大小：约4MB</text>
+    
+    <!-- 桶345 -->
+    <rect x="220" y="0" width="200" height="70" fill="#f39c12" stroke="#e67e22" rx="5"/>
+    <text x="320" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="white" font-weight="bold">桶345 (bucket_345.txt)</text>
+    <text x="320" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white">12345, 77345, 12345</text>
+    <text x="320" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#ecf0f1">大小：约4MB</text>
+    
+    <!-- 桶890 -->
+    <rect x="440" y="0" width="200" height="70" fill="#9b59b6" stroke="#8e44ad" rx="5"/>
+    <text x="540" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="white" font-weight="bold">桶890 (bucket_890.txt)</text>
+    <text x="540" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white">67890, 11890, 67890</text>
+    <text x="540" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#ecf0f1">大小：约4MB</text>
+    
+    <!-- 省略号 -->
+    <text x="680" y="35" font-family="Arial, sans-serif" font-size="24" fill="#7f8c8d">...</text>
+    
+    <!-- 桶999 -->
+    <rect x="720" y="0" width="200" height="70" fill="#27ae60" stroke="#229954" rx="5"/>
+    <text x="820" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="white" font-weight="bold">桶999 (bucket_999.txt)</text>
+    <text x="820" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white">99999, 33999, 99999</text>
+    <text x="820" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#ecf0f1">大小：约4MB</text>
+  </g>
+  
+  <!-- 箭头3 -->
+  <path d="M 600 560 L 600 590" stroke="#7f8c8d" stroke-width="3" marker-end="url(#arrowhead)"/>
+  
+  <!-- 阶段4：逐个处理桶 -->
+  <text x="60" y="620" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2c3e50">阶段4：逐个处理每个桶（内存内去重）</text>
+  
+  <!-- 处理示例 - 重新布局 -->
+  <g transform="translate(60, 640)">
+    <!-- 处理桶345 -->
+    <rect x="0" y="0" width="220" height="80" fill="#f39c12" stroke="#e67e22" rx="5"/>
+    <text x="110" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="white" font-weight="bold">处理桶345</text>
+    <text x="110" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">1. 读入内存：12345, 77345, 12345</text>
+    <text x="110" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">2. 哈希表去重：12345, 77345</text>
+    <text x="110" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">3. 写入结果文件</text>
+    
+    <!-- 箭头 -->
+    <path d="M 230 40 L 280 40" stroke="#7f8c8d" stroke-width="2" marker-end="url(#arrowhead)"/>
+    
+    <!-- 内存处理 -->
+    <rect x="290" y="10" width="160" height="60" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+    <text x="370" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50" font-weight="bold">内存处理</text>
+    <text x="370" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#7f8c8d">std::unordered_set</text>
+    <text x="370" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#7f8c8d">内存使用：&lt;4MB</text>
+    
+    <!-- 箭头 -->
+    <path d="M 460 40 L 510 40" stroke="#7f8c8d" stroke-width="2" marker-end="url(#arrowhead)"/>
+    
+    <!-- 结果 -->
+    <rect x="520" y="20" width="140" height="40" fill="#27ae60" stroke="#229954" rx="3"/>
+    <text x="590" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white" font-weight="bold">去重结果</text>
+    <text x="590" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">12345, 77345</text>
+    
+    <!-- 重复处理说明 -->
+    <text x="700" y="30" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">重复处理所有1000个桶...</text>
+    <text x="700" y="50" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">最后合并所有桶的去重结果</text>
+  </g>
+  
+  <!-- 特点说明框 - 移到右侧避免重叠 -->
+  <rect x="860" y="290" width="320" height="160" fill="#ecf0f1" stroke="#bdc3c7" rx="5"/>
+  <text x="1020" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#2c3e50">哈希分桶特点</text>
+  
+  <text x="880" y="340" font-family="Arial, sans-serif" font-size="13" fill="#27ae60" font-weight="bold">优点：</text>
+  <text x="880" y="360" font-family="Arial, sans-serif" font-size="12" fill="#27ae60">✓ 内存使用可控</text>
+  <text x="880" y="380" font-family="Arial, sans-serif" font-size="12" fill="#27ae60">✓ 可并行处理不同桶</text>
+  <text x="880" y="400" font-family="Arial, sans-serif" font-size="12" fill="#27ae60">✓ 精确去重，无误判</text>
+  
+  <text x="880" y="425" font-family="Arial, sans-serif" font-size="13" fill="#e74c3c" font-weight="bold">缺点：</text>
+  <text x="880" y="445" font-family="Arial, sans-serif" font-size="12" fill="#e74c3c">✗ 需要好的哈希函数</text>
+  
+  <!-- 关键信息框 -->
+  <rect x="60" y="770" width="1080" height="50" fill="#d5dbdb" stroke="#85929e" rx="5"/>
+  <text x="600" y="790" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#2c3e50" font-weight="bold">关键：选择合适的桶数量N，使每个桶的数据量 ≤ 1GB内存限制</text>
+  <text x="600" y="810" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#7f8c8d">例如：40亿QQ号 ÷ 1000桶 = 每桶约400万QQ号 ≈ 16MB &lt;&lt; 1GB ✓</text>
+  
+  <!-- 箭头标记定义 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#7f8c8d"/>
+    </marker>
+  </defs>
+</svg>
