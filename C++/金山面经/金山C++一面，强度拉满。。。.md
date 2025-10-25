@@ -1,4 +1,4 @@
-# 金山C++一面，强度拉满。。。
+# 金山C++一面，强度拉满
 
 > 来源：https://www.nowcoder.com/share/jump/1729599335273
 

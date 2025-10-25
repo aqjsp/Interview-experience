@@ -1,6 +1,6 @@
-> 来源：https://www.nowcoder.com/discuss/523972047945334784
-
 # 腾讯wxg后台开发二面
+
+> 来源：https://www.nowcoder.com/discuss/523972047945334784
 
 ## 数据库
 
@@ -244,10 +244,6 @@ Kafka消息积压是指由于某种原因导致消息在Kafka中堆积积累，�
 4. 返回结果：
    - 最后根据记录的起始位置 `start` 和最大长度 `maxLen`，使用 `substr` 方法从原始字符串中取出最长回文子串并返回。
 
-给个表格帮助大家理解：
-
-![image-20231228002424008](E:\GitHub\Interview-experience\腾讯面经\assets\image-20231228002424008.png)
-
 表格中，对角线上的格子都表示长度为 1 的子串，因为单个字符肯定是回文串，所以都标记为 `true`。
 
 然后我们开始计算长度为 2 的子串，例如 `ba` 和 `ab`，如果两个字符相同，则标记为 `true`，否则标记为 `false`。在这个例子中，`ba` 和 `ab` 都不是回文串，所以对应的格子都标记为 `false`。
@@ -260,7 +256,7 @@ Kafka消息积压是指由于某种原因导致消息在Kafka中堆积积累，�
 
 #### 参考代码：
 
-```
+```c++
 #include <iostream>
 #include <vector>
 #include <string>
@@ -322,7 +318,7 @@ int main() {
 
 #### 参考代码：
 
-```
+```c++
 #include <iostream>
 #include <vector>
 

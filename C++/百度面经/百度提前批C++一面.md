@@ -1,3 +1,5 @@
+# 百度提前批C++一面
+
 来源：https://www.nowcoder.com/feed/main/detail/7ef8161d101149b6b0c5b18c7b6b6fb0?sourceSSR=users
 
 ### 1、水平触发和边缘触发的区别
@@ -362,7 +364,7 @@ Connection: keep-alive
 
 ##### 递归：
 
-```
+```c++
 #include <iostream>
 #include <vector>
 
@@ -425,7 +427,7 @@ int main() {
 
 ##### 非递归：
 
-```
+```c++
 #include <iostream>
 #include <vector>
 #include <stack>

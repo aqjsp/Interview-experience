@@ -1,4 +1,6 @@
-来源：https://www.nowcoder.com/feed/main/detail/1a71f716bcae4e14b0ae6bf2e4ca0724
+# 理想汽车C++面经
+
+> 来源：https://www.nowcoder.com/feed/main/detail/1a71f716bcae4e14b0ae6bf2e4ca0724
 
 ### 1、分别介绍一下OSI七层网络模型每层的作用？
 
@@ -110,10 +112,6 @@ DHCP使用UDP协议之所以合适，是因为UDP更加轻量级，不需要建�
 UDP在DHCP中的使用是为了简化配置和提高效率，但它不提供TCP那样的可靠性。虽然DHCP可以快速分配IP地址和配置信息，但在某些情况下，数据包可能会丢失或重复，因此需要适当的超时和重试机制来处理潜在的问题。
 
 ### 7、Socket建立连接的过程？
-
-一图胜千言
-
-![image-20240110003855906](../../../GitHub_Photos/image-20240110003855906-1704991817023-2-1704991872314-4.png)
 
 客户端：
 

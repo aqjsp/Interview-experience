@@ -10,7 +10,7 @@
    - 这种方式在程序启动时就会创建单例对象，无论是否需要使用，可能会导致资源浪费。
    - 不适合在多线程环境下使用，因为没有进行线程安全的处理。
 
-   ```
+   ```c++
    class Singleton {
    public:
        static Singleton& getInstance() {
@@ -32,7 +32,7 @@
    - 在第一次调用时才创建单例对象，避免了在程序启动时就创建对象的资源浪费。
    - 不适合在多线程环境下使用，因为没有进行线程安全的处理。
 
-   ```
+   ```c++
    class Singleton {
    public:
        static Singleton& getInstance() {
@@ -54,7 +54,7 @@
    - 使用加锁的方式保证在多线程环境下也能正常工作，但会影响性能。
    - 在 `getInstance` 方法中加锁，避免了多个线程同时创建实例的问题。
 
-   ```
+   ```c++
    #include <mutex>
    
    class Singleton {
@@ -82,7 +82,7 @@
    - 利用 C++11 的特性，在静态变量的初始化阶段进行初始化，保证了线程安全性。
    - 使用静态局部变量的特性，在第一次调用 `getInstance` 方法时才进行实例化。
 
-   ```
+   ```c++
    class Singleton {
    public:
        static Singleton& getInstance() {
@@ -124,7 +124,7 @@
 
 1. 硬件寄存器：在与硬件交互时，例如从设备读取状态寄存器的数据，寄存器的值可能随时变化，使用 `volatile` 可以防止编译器优化掉这些读取操作。
 
-   ```
+   ```c++
    volatile int* statusRegister = (int*)0x40001000; // 假设是硬件寄存器地址
    while (*statusRegister != READY) {
        // 等待状态变化
@@ -133,7 +133,7 @@
 
 2. 共享内存（多线程）：一个线程可能会修改一个变量，而另一个线程则需要不断读取这个变量的变化。在这种情况下，`volatile` 可以防止编译器优化导致读取不到最新值。
 
-   ```
+   ```c++
    volatile bool stopThread = false;
    
    void threadFunction() {
@@ -145,7 +145,7 @@
 
 3. 中断服务程序：在中断处理程序中，某些变量可能会被中断处理程序修改，但主程序中也会访问这些变量，使用 `volatile` 可以防止编译器优化。
 
-   ```
+   ```c++
    volatile bool interruptFlag = false;
    
    void interruptHandler() {
@@ -175,7 +175,7 @@
 
 问题要求查询平均分不及格的学生 `student_id` 和他们的平均分（假设及格线为 60 分）。
 
-```
+```sql
 SELECT s.student_id, AVG(sc.score) AS avg_score
 FROM students s
 JOIN scores sc ON s.student_id = sc.student_id
@@ -670,7 +670,7 @@ sar -p <PID> 1
 
 ##### 参考代码
 
-```
+```c++
 #include <iostream>
 #include <algorithm>
 #include <climits>
@@ -751,7 +751,7 @@ int main() {
 
 ##### 参考代码
 
-```
+```c++
 #include <iostream>
 #include <stack>
 #include <algorithm>

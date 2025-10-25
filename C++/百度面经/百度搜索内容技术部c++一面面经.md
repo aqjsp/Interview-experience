@@ -52,7 +52,7 @@
 
 `auto` 关键字允许编译器根据初始化表达式推导变量的类型，从而简化代码书写，特别是在需要声明复杂类型时。
 
-```
+```c++
 auto x = 42;     // int
 auto y = 3.14;   // double
 auto z = "Hello"; // const char*
@@ -62,7 +62,7 @@ auto z = "Hello"; // const char*
 
 C++11 引入了一种新的初始化语法，可以统一地对数组、结构体、类等进行初始化。
 
-```
+```c++
 int arr[] = {1, 2, 3, 4};
 std::vector<int> vec = {1, 2, 3, 4};
 struct Point { int x, y; };
@@ -73,7 +73,7 @@ Point p = {1, 2};
 
 Lambda 表达式提供了一种简洁的方式来定义匿名函数，可以在需要函数对象的地方直接使用。
 
-```
+```c++
 auto add = [](int a, int b) { return a + b; };
 int result = add(2, 3); // result = 5
 ```
@@ -82,7 +82,7 @@ int result = add(2, 3); // result = 5
 
 右值引用 (`&&`) 和移动语义允许更高效地管理资源，减少不必要的拷贝操作。
 
-```
+```c++
 class MyClass {
 public:
     MyClass(const MyClass& other); // 拷贝构造函数
@@ -97,7 +97,7 @@ std::vector<int> v2 = std::move(v1); // v1 的资源被移动到 v2
 
 C++11 引入了智能指针 (`std::unique_ptr` 和 `std::shared_ptr`)，用于自动管理动态内存，避免内存泄漏。
 
-```
+```c++
 std::unique_ptr<int> p1(new int(10));
 std::shared_ptr<int> p2 = std::make_shared<int>(20);
 ```
@@ -106,7 +106,7 @@ std::shared_ptr<int> p2 = std::make_shared<int>(20);
 
 `nullptr` 引入了一个明确表示空指针的值，代替传统的 `NULL`。
 
-```
+```c++
 int* p = nullptr;
 ```
 
@@ -114,7 +114,7 @@ int* p = nullptr;
 
 `constexpr` 关键字用于声明在编译时求值的常量表达式，可以提高程序的运行效率。
 
-```
+```c++
 constexpr int square(int x) {
     return x * x;
 }
@@ -125,7 +125,7 @@ constexpr int result = square(5); // result 在编译时计算
 
 范围循环提供了一种遍历容器元素的简洁语法。
 
-```
+```c++
 std::vector<int> vec = {1, 2, 3, 4};
 for (int x : vec) {
     std::cout << x << " ";
@@ -136,7 +136,7 @@ for (int x : vec) {
 
 可以直接在类定义中对成员变量进行初始化。
 
-```
+```c++
 class MyClass {
     int x = 10;
     int y = 20;
@@ -147,7 +147,7 @@ class MyClass {
 
 C++11 对标准库进行了大量增强，包括新容器（如 `std::array`）、多线程支持（`<thread>`、`<mutex>`）、正则表达式（`<regex>`）、随机数库（`<random>`）等。
 
-```
+```c++
 std::array<int, 4> arr = {1, 2, 3, 4};
 std::thread t([]{ std::cout << "Hello from thread!"; });
 t.join();
@@ -157,7 +157,7 @@ t.join();
 
 包括 `noexcept` 指定函数不会抛出异常，以及 `override` 和 `final` 用于更好地控制虚函数的行为。
 
-```
+```c++
 void func() noexcept {
     // 不会抛出异常的函数
 }
@@ -175,7 +175,7 @@ class Derived : public Base {
 
 包括变长模板参数（Variadic Templates）和别名模板（Alias Templates）。
 
-```
+```c++
 template<typename... Args>
 void print(Args... args) {
     (std::cout << ... << args) << std::endl; // C++17 折叠表达式
@@ -189,7 +189,7 @@ using Vec = std::vector<T>;
 
 `enum class` 提供了强类型的枚举，避免与其他枚举类型或整数类型混淆。
 
-```
+```c++
 enum class Color { Red, Green, Blue };
 Color c = Color::Red;
 ```
@@ -198,7 +198,7 @@ Color c = Color::Red;
 
 `decltype` 关键字用于查询表达式的类型，可以用于声明与表达式类型一致的变量。
 
-```
+```c++
 int x = 10;
 decltype(x) y = 20; // y 的类型是 int
 ```
@@ -207,7 +207,7 @@ decltype(x) y = 20; // y 的类型是 int
 
 `static_assert` 在编译时进行条件检查，提供更好的调试和错误提示。
 
-```
+```c++
 static_assert(sizeof(int) == 4, "Unexpected int size");
 ```
 
@@ -232,7 +232,7 @@ static_assert(sizeof(int) == 4, "Unexpected int size");
 
 通过移动构造函数和移动赋值运算符，可以将资源从一个对象转移到另一个对象，而不需要进行昂贵的深拷贝操作。
 
-```
+```c++
 #include <iostream>
 #include <vector>
 
@@ -273,7 +273,7 @@ int main() {
 
 完美转发允许函数模板将其参数完全地传递给另一个函数，无论是左值还是右值。
 
-```
+```c++
 #include <utility>
 #include <iostream>
 
@@ -306,7 +306,7 @@ int main() {
 
 `std::unique_ptr` 是独占所有权的智能指针，一个 `unique_ptr` 指针不能被拷贝，只能移动。这保证了同一时间只有一个指针拥有该对象的所有权。
 
-```
+```c++
 #include <iostream>
 #include <memory>
 
@@ -328,7 +328,7 @@ int main() {
 
 `std::shared_ptr` 是共享所有权的智能指针，多个 `shared_ptr` 可以指向同一个对象，通过引用计数来管理对象的生命周期。当最后一个 `shared_ptr` 被销毁时，对象才会被释放。
 
-```
+```c++
 #include <iostream>
 #include <memory>
 
@@ -350,7 +350,7 @@ int main() {
 
 `std::weak_ptr` 是一种不拥有对象所有权的智能指针，它与 `shared_ptr` 搭配使用，避免循环引用问题。`weak_ptr` 可以观察对象，但不会影响其生命周期。
 
-```
+```c++
 #include <iostream>
 #include <memory>
 
@@ -386,7 +386,7 @@ int main() {
 
 确保一个类只有一个实例，并提供一个全局访问点。
 
-```
+```c++
 class Singleton {
 private:
     static Singleton* instance;
@@ -409,7 +409,7 @@ Singleton* Singleton::instance = nullptr;
 
 定义一个创建对象的接口，但由子类决定实例化哪个类。工厂方法使一个类的实例化延迟到其子类。
 
-```
+```c++
 class Product {
 public:
     virtual void use() = 0;
@@ -453,7 +453,7 @@ public:
 
 提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类。
 
-```
+```c++
 class AbstractProductA {
 public:
     virtual void use() = 0;
@@ -503,7 +503,7 @@ public:
 
 将一个类的接口转换成客户希望的另一个接口，使原本由于接口不兼容而不能一起工作的那些类可以一起工作。
 
-```
+```c++
 class Target {
 public:
     virtual void request() {
@@ -535,7 +535,7 @@ public:
 
 动态地给对象添加职责，而不改变其接口。装饰者模式提供了比继承更灵活的扩展功能的方式。
 
-```
+```c++
 class Component {
 public:
     virtual void operation() = 0;
@@ -579,7 +579,7 @@ public:
 
 为子系统中的一组接口提供一个一致的界面，外观模式定义了一个高层接口，这个接口使得这一子系统更加容易使用。
 
-```
+```c++
 class Subsystem1 {
 public:
     void operation1() {
@@ -620,7 +620,7 @@ public:
 
 定义对象间的一种一对多的依赖关系，使得每当一个对象改变状态，则所有依赖于它的对象都会得到通知并自动更新。
 
-```
+```c++
 #include <vector>
 #include <algorithm>
 
@@ -668,7 +668,7 @@ public:
 
 定义一系列算法，把它们一个个封装起来，并且使它们可互相替换。本模式使得算法可以独立于使用它的客户而变化。
 
-```
+```c++
 class Strategy {
 public:
     virtual void execute() = 0;
@@ -707,7 +707,7 @@ public:
 
 将一个请求封装为一个对象，从而使你可以用不同的请求对客户进行参数化；对请求排队或记录请求日志，以及支持可撤销的操作。
 
-```
+```c++
 class Command {
 public:
     virtual void execute() = 0;
@@ -755,7 +755,7 @@ public:
 
 饿汉式单例在类加载时就创建实例，线程安全，但如果实例初始化很重或者程序未使用到该实例，会造成资源浪费。
 
-```
+```c++
 class Singleton {
 private:
     static Singleton instance; // 静态实例
@@ -788,7 +788,7 @@ Singleton Singleton::instance;
 
 ##### 非线程安全实现
 
-```
+```c++
 class Singleton {
 private:
     static Singleton* instance;
@@ -817,7 +817,7 @@ Singleton* Singleton::instance = nullptr;
 
 ##### 线程安全实现（使用互斥锁）
 
-```
+```c++
 #include <mutex>
 
 class Singleton {
@@ -853,7 +853,7 @@ std::mutex Singleton::mtx;
 
 双重检查锁定是在懒汉式单例的基础上进一步优化，减少加锁的开销，但需要使用 `volatile` 关键字确保编译器不会对代码进行重排序。
 
-```
+```c++
 #include <mutex>
 
 class Singleton {
@@ -891,7 +891,7 @@ std::mutex Singleton::mtx;
 
 C++11 引入的 `std::call_once` 可以保证只调用一次初始化代码，简化线程安全的单例实现。
 
-```
+```c++
 #include <mutex>
 
 class Singleton {
@@ -926,7 +926,7 @@ std::once_flag Singleton::initFlag;
 
 C++11 之后，局部静态变量的初始化是线程安全的，可以利用这一特性简化单例实现。
 
-```
+```c++
 class Singleton {
 private:
     Singleton() {}
@@ -1143,7 +1143,7 @@ public:
 
 **可靠UDP发送方**（C++）：
 
-```
+```c++
 #include <iostream>
 #include <cstring>
 #include <unistd.h>
@@ -1215,7 +1215,7 @@ int main() {
 
 **可靠UDP接收方**（C++）：
 
-```
+```c++
 #include <iostream>
 #include <cstring>
 #include <unistd.h>
@@ -1420,7 +1420,7 @@ gdb ./my_program
 
 ### 16、简单多线程，一个count两个线程轮流count++？
 
-```
+```c++
 #include <iostream>
 #include <thread>
 #include <mutex>

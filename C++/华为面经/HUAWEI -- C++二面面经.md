@@ -56,7 +56,7 @@
 
 在C++中，多态是通过虚函数（virtual function）机制实现的。多态允许我们在运行时决定调用哪个函数。下面是一个实现多态的示例：
 
-```
+```c++
 #include <iostream>
 using namespace std;
 
@@ -114,7 +114,7 @@ int main() {
 
 **虚函数示例：**
 
-```
+```c++
 #include <iostream>
 using namespace std;
 
@@ -176,7 +176,7 @@ int main() {
 
 **虚函数表的例子：**
 
-```
+```c++
 #include <iostream>
 using namespace std;
 
@@ -250,7 +250,7 @@ int main() {
 
 **虚析构函数的示例：**
 
-```
+```c++
 #include <iostream>
 using namespace std;
 
@@ -284,7 +284,7 @@ int main() {
 
 **输出：**
 
-```
+```c++
 Base constructor called
 Derived constructor called
 Derived destructor called
@@ -369,7 +369,7 @@ a   b               b   c
 
 **示例代码：**
 
-```
+```c++
 #include <iostream>
 #include <string>
 
@@ -434,7 +434,7 @@ int main() {
 
 **示例代码：**
 
-```
+```c++
 #include <iostream>
 #include <string>
 
@@ -507,7 +507,7 @@ int main() {
 
 `auto` 关键字允许编译器根据初始化表达式推导变量的类型，从而简化代码书写，特别是在需要声明复杂类型时。
 
-```
+```c++
 auto x = 42;     // int
 auto y = 3.14;   // double
 auto z = "Hello"; // const char*
@@ -517,7 +517,7 @@ auto z = "Hello"; // const char*
 
 C++11 引入了一种新的初始化语法，可以统一地对数组、结构体、类等进行初始化。
 
-```
+```c++
 int arr[] = {1, 2, 3, 4};
 std::vector<int> vec = {1, 2, 3, 4};
 struct Point { int x, y; };
@@ -528,7 +528,7 @@ Point p = {1, 2};
 
 Lambda 表达式提供了一种简洁的方式来定义匿名函数，可以在需要函数对象的地方直接使用。
 
-```
+```c++
 auto add = [](int a, int b) { return a + b; };
 int result = add(2, 3); // result = 5
 ```
@@ -537,7 +537,7 @@ int result = add(2, 3); // result = 5
 
 右值引用 (`&&`) 和移动语义允许更高效地管理资源，减少不必要的拷贝操作。
 
-```
+```c++
 class MyClass {
 public:
     MyClass(const MyClass& other); // 拷贝构造函数
@@ -552,7 +552,7 @@ std::vector<int> v2 = std::move(v1); // v1 的资源被移动到 v2
 
 C++11 引入了智能指针 (`std::unique_ptr` 和 `std::shared_ptr`)，用于自动管理动态内存，避免内存泄漏。
 
-```
+```c++
 std::unique_ptr<int> p1(new int(10));
 std::shared_ptr<int> p2 = std::make_shared<int>(20);
 ```
@@ -561,7 +561,7 @@ std::shared_ptr<int> p2 = std::make_shared<int>(20);
 
 `nullptr` 引入了一个明确表示空指针的值，代替传统的 `NULL`。
 
-```
+```c++
 int* p = nullptr;
 ```
 
@@ -569,7 +569,7 @@ int* p = nullptr;
 
 `constexpr` 关键字用于声明在编译时求值的常量表达式，可以提高程序的运行效率。
 
-```
+```c++
 constexpr int square(int x) {
     return x * x;
 }
@@ -580,7 +580,7 @@ constexpr int result = square(5); // result 在编译时计算
 
 范围循环提供了一种遍历容器元素的简洁语法。
 
-```
+```c++
 std::vector<int> vec = {1, 2, 3, 4};
 for (int x : vec) {
     std::cout << x << " ";
@@ -591,7 +591,7 @@ for (int x : vec) {
 
 可以直接在类定义中对成员变量进行初始化。
 
-```
+```c++
 class MyClass {
     int x = 10;
     int y = 20;
@@ -602,7 +602,7 @@ class MyClass {
 
 C++11 对标准库进行了大量增强，包括新容器（如 `std::array`）、多线程支持（`<thread>`、`<mutex>`）、正则表达式（`<regex>`）、随机数库（`<random>`）等。
 
-```
+```c++
 std::array<int, 4> arr = {1, 2, 3, 4};
 std::thread t([]{ std::cout << "Hello from thread!"; });
 t.join();
@@ -612,7 +612,7 @@ t.join();
 
 包括 `noexcept` 指定函数不会抛出异常，以及 `override` 和 `final` 用于更好地控制虚函数的行为。
 
-```
+```c++
 void func() noexcept {
     // 不会抛出异常的函数
 }
@@ -630,7 +630,7 @@ class Derived : public Base {
 
 包括变长模板参数（Variadic Templates）和别名模板（Alias Templates）。
 
-```
+```c++
 template<typename... Args>
 void print(Args... args) {
     (std::cout << ... << args) << std::endl; // C++17 折叠表达式
@@ -644,7 +644,7 @@ using Vec = std::vector<T>;
 
 `enum class` 提供了强类型的枚举，避免与其他枚举类型或整数类型混淆。
 
-```
+```c++
 enum class Color { Red, Green, Blue };
 Color c = Color::Red;
 ```
@@ -653,7 +653,7 @@ Color c = Color::Red;
 
 `decltype` 关键字用于查询表达式的类型，可以用于声明与表达式类型一致的变量。
 
-```
+```c++
 int x = 10;
 decltype(x) y = 20; // y 的类型是 int
 ```
@@ -662,7 +662,7 @@ decltype(x) y = 20; // y 的类型是 int
 
 `static_assert` 在编译时进行条件检查，提供更好的调试和错误提示。
 
-```
+```c++
 static_assert(sizeof(int) == 4, "Unexpected int size");
 ```
 
@@ -678,7 +678,7 @@ static_assert(sizeof(int) == 4, "Unexpected int size");
 - **用法：** 用于需要独占控制权的资源管理。
 - **示例：**
 
-```
+```c++
 #include <iostream>
 #include <memory>
 
@@ -701,7 +701,7 @@ int main() {
 - **用法：** 用于需要共享资源的场景。
 - **示例：**
 
-```
+```c++
 #include <iostream>
 #include <memory>
 
@@ -722,7 +722,7 @@ int main() {
 - **用法：** 用于观察 `std::shared_ptr` 而不干扰其生命周期。
 - **示例：**
 
-```
+```c++
 #include <iostream>
 #include <memory>
 
@@ -765,7 +765,7 @@ int main() {
 
    **示例：**
 
-   ```
+   ```c++
    #include <iostream>
    #include <memory>
    
@@ -781,7 +781,7 @@ int main() {
 
    **示例：**
 
-   ```
+   ```c++
    void foo() {
        int* ptr = new int(10);
        // 记得在不再需要时释放内存
@@ -795,7 +795,7 @@ int main() {
 
    **示例：**
 
-   ```
+   ```c++
    void foo() {
        std::vector<int> vec = {1, 2, 3, 4, 5};
        // vec 的内存在函数结束时自动释放
@@ -808,7 +808,7 @@ int main() {
 
    **Valgrind 使用示例：**
 
-   ```
+   ```c++
    valgrind --leak-check=full ./your_program
    ```
 
@@ -818,7 +818,7 @@ int main() {
 
    **示例：**
 
-   ```
+   ```c++
    class Resource {
    public:
        Resource() {
@@ -857,7 +857,7 @@ int main() {
 
 **示例：**
 
-```
+```c++
 #include <iostream>
 
 void modifyValue(int* ptr) {
@@ -887,7 +887,7 @@ int main() {
 
 **示例：**
 
-```
+```c++
 #include <iostream>
 
 void modifyValue(int& ref) {
@@ -1077,7 +1077,7 @@ int main() {
 
 以下是一个使用递归实现深度优先遍历的示例代码（假设图的表示采用邻接表）：
 
-```
+```c++
 #include <iostream>
 #include <vector>
 #include <stack>

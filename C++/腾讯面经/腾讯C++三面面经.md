@@ -183,7 +183,7 @@ Windows 下的异步编程通常使用 I/O Completion Port（I/OCP）来实现�
 
 **示例 1：**
 
-```
+```c++
 输入：text1 = "abcde", text2 = "ace" 
 输出：3  
 解释：最长公共子序列是 "ace" ，它的长度为 3 。
@@ -191,7 +191,7 @@ Windows 下的异步编程通常使用 I/O Completion Port（I/OCP）来实现�
 
 **示例 2：**
 
-```
+```c++
 输入：text1 = "abc", text2 = "abc"
 输出：3
 解释：最长公共子序列是 "abc" ，它的长度为 3 。
@@ -199,7 +199,7 @@ Windows 下的异步编程通常使用 I/O Completion Port（I/OCP）来实现�
 
 **示例 3：**
 
-```
+```c++
 输入：text1 = "abc", text2 = "def"
 输出：0
 解释：两个字符串没有公共子序列，返回 0 。
@@ -219,7 +219,7 @@ Windows 下的异步编程通常使用 I/O Completion Port（I/OCP）来实现�
 
 #### 参考代码
 
-```
+```c++
 #include <iostream>
 #include <vector>
 #include <string>

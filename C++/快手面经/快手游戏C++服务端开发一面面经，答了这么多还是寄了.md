@@ -1,4 +1,4 @@
-# 快手游戏C++服务端开发一面面经，答了这么多还是寄了。。。
+# 快手游戏C++服务端开发一面面经
 
 > 来源：https://www.nowcoder.com/discuss/620359211850977280
 
@@ -15,7 +15,7 @@
 
 给一个示例代码，静态成员函数的使用：
 
-```
+```c++
 #include <iostream>
 using namespace std;
 
@@ -62,7 +62,7 @@ int main() {
 
 输出：
 
-```
+```c++
 Static Function Called. staticVar = 0
 Static Function Called. staticVar = 10
 Static Function Called. staticVar = 10
@@ -109,7 +109,7 @@ Static Function Called. staticVar = 10
 
 在单一继承的情况下，每个包含虚函数的类的对象会有一个vptr，这个vptr指向该类的虚函数表（vtable）。
 
-```
+```c++
 class Base {
 public:
     virtual void show() {
@@ -132,7 +132,7 @@ public:
 
 在多重继承的情况下，每个对象可能会有多个虚函数指针。这是因为每个基类都有自己的虚函数表，而每个继承自多个基类的类的对象必须维护多个虚函数指针，以指向各个基类的虚函数表。
 
-```
+```c++
 class Base1 {
 public:
     virtual void show1() {
@@ -166,7 +166,7 @@ public:
 
 对于单一继承，一个类只有一个基类，因此对象只需一个vptr。
 
-```
+```c++
 Base* ptr = new Derived();
 ptr->show(); // 调用Derived的show函数
 ```
@@ -175,7 +175,7 @@ ptr->show(); // 调用Derived的show函数
 
 对于多重继承，一个类有多个基类，每个基类都有自己的虚函数表，因此对象需要多个vptr。
 
-```
+```c++
 Derived* d = new Derived();
 Base1* b1 = d;
 Base2* b2 = d;
@@ -192,7 +192,7 @@ b2->show2(); // 调用Derived的show2函数
 
 友元函数是一种非成员函数，但它可以访问类的私有成员和保护成员。友元函数是通过在类内声明`friend`关键字来指定的。友元函数的主要目的是为了提供一种机制，使非成员函数可以访问类的私有数据。
 
-```
+```c++
 class MyClass {
 private:
     int data;
@@ -221,7 +221,7 @@ int main() {
 
 虚函数是类的成员函数，通过在基类中使用`virtual`关键字声明。虚函数的主要目的是实现多态性，使得通过基类指针或引用调用派生类的重写函数。
 
-```
+```c++
 class Base {
 public:
     virtual void show() {
@@ -277,7 +277,7 @@ int main() {
    - 如果编译器在编译时能够确定虚函数的实际类型（例如，通过具体对象调用而不是通过基类指针或引用），那么编译器可能会内联该虚函数。
    - 以下示例展示了这种情况：
 
-```
+```c++
 #include <iostream>
 
 class Base {
@@ -310,7 +310,7 @@ int main() {
 
 模板函数是一种函数，它允许我们在编写代码时使用泛型类型。模板函数在编译时会根据提供的具体类型生成具体的函数实例。
 
-```
+```c++
 template<typename T>
 void show(T value) {
     std::cout << value << std::endl;
@@ -321,7 +321,7 @@ void show(T value) {
 
 虚函数是用于实现运行时多态性的成员函数，允许基类指针或引用调用派生类的重写函数。虚函数依赖于虚函数表（vtable）和虚函数指针（vptr）来在运行时动态绑定函数调用。
 
-```
+```c++
 class Base {
 public:
     virtual void show() {
@@ -359,7 +359,7 @@ public:
 
 模板函数的实现是通过模板实例化完成的。当我们定义一个模板函数时，并不会立即生成函数代码。只有在使用该模板函数时（即实例化模板函数时），编译器才会生成对应的具体函数代码。
 
-```
+```c++
 template<typename T>
 void show(T value) {
     std::cout << value << std::endl;
@@ -368,7 +368,7 @@ void show(T value) {
 
 当我们调用这个模板函数时，
 
-```
+```c++
 show(10);     // T 实例化为 int
 show(3.14);   // T 实例化为 double
 show("Hello"); // T 实例化为 const char*
@@ -376,7 +376,7 @@ show("Hello"); // T 实例化为 const char*
 
 编译器会生成以下具体的函数实例：
 
-```
+```c++
 void show(int value) {
     std::cout << value << std::endl;
 }
@@ -394,7 +394,7 @@ void show(const char* value) {
 
 模板函数通过模板实例化实现编译时多态性，这意味着在编译期生成不同类型的函数实例。编译时多态性主要依赖于编译期的类型推导和模板实例化机制。
 
-```
+```c++
 template<typename T>
 T add(T a, T b) {
     return a + b;
@@ -426,7 +426,7 @@ int main() {
 
 - **示例代码**：
 
-  ```
+  ```c++
   #include <memory>
   #include <iostream>
   
@@ -459,7 +459,7 @@ int main() {
 
 - **示例代码**：
 
-  ```
+  ```c++
   #include <memory>
   #include <iostream>
   
@@ -488,7 +488,7 @@ int main() {
 
 - **示例代码**：
 
-  ```
+  ```c++
   #include <memory>
   #include <iostream>
   
@@ -523,7 +523,7 @@ int main() {
 
 无条件形式的`noexcept`声明一个函数在任何情况下都不会抛出异常。
 
-```
+```c++
 void func() noexcept {
     // This function is guaranteed not to throw an exception
 }
@@ -533,7 +533,7 @@ void func() noexcept {
 
 条件形式的`noexcept`根据一个布尔表达式来决定函数是否不会抛出异常。常见的用法是通过类型特性来判断。
 
-```
+```c++
 template<typename T>
 void func(T t) noexcept(noexcept(T())) {
     // This function will not throw an exception if T's constructor does not throw
@@ -552,7 +552,7 @@ void func(T t) noexcept(noexcept(T())) {
 
 ##### 简单的无条件`noexcept`
 
-```
+```c++
 void doWork() noexcept {
     // Guaranteed not to throw an exception
 }
@@ -565,7 +565,7 @@ int main() {
 
 ##### 带有条件的`noexcept`
 
-```
+```c++
 #include <type_traits>
 
 template<typename T>
@@ -589,7 +589,7 @@ int main() {
 
 在实现移动构造函数和移动赋值运算符时，使用`noexcept`可以避免不必要的性能开销。
 
-```
+```c++
 class MyClass {
 public:
     MyClass(MyClass&& other) noexcept {
@@ -613,7 +613,7 @@ C++标准库中很多函数和运算符都使用了`noexcept`来优化性能和�
 
 万能引用是指模板参数的类型推导时可以同时表示左值引用和右值引用的引用。万能引用的形式是`T&&`，其中`T`是模板参数。
 
-```
+```c++
 template<typename T>
 void func(T&& arg) {
     // arg 是万能引用
@@ -628,7 +628,7 @@ void func(T&& arg) {
 
 `std::forward`是一个标准库函数，用于保留参数的左值或右值性质。以下是一个例子：
 
-```
+```c++
 #include <utility>
 #include <iostream>
 
@@ -682,7 +682,7 @@ C++标准并没有规定`std::vector`必须是线程安全的。因此，在多�
 
 #### 示例代码
 
-```
+```c++
 #include <iostream>
 #include <vector>
 
@@ -854,7 +854,7 @@ int main() {
 
    使用`mmap`将文件映射到进程的地址空间，然后通过`write`系统调用直接将数据发送到网络或其他输出设备。这种方式避免了用户态和内核态之间的数据拷贝。
 
-   ```
+   ```c++
    int fd = open("file.txt", O_RDONLY);
    struct stat file_stat;
    fstat(fd, &file_stat);
@@ -868,7 +868,7 @@ int main() {
 
    `sendfile`系统调用可以在文件描述符之间直接传输数据，而无需将数据复制到用户态。这在网络编程中非常有用，例如从文件发送数据到套接字。
 
-   ```
+   ```c++
    int file_fd = open("file.txt", O_RDONLY);
    off_t offset = 0;
    sendfile(socket_fd, file_fd, &offset, file_size);
@@ -879,7 +879,7 @@ int main() {
 
    `splice`系统调用允许在两个文件描述符之间移动数据，而无需将数据复制到用户态。`tee`系统调用可以复制数据流，而无需额外的数据拷贝。
 
-   ```
+   ```c++
    int pipe_fds[2];
    pipe(pipe_fds);
    splice(file_fd, NULL, pipe_fds[1], NULL, file_size, SPLICE_F_MOVE);
@@ -927,7 +927,7 @@ int main() {
 
    在Unix和Linux系统中，创建一个新进程时，通常使用`fork`系统调用。`fork`创建一个新进程，并使新进程共享父进程的内存区域。当任一进程尝试写入共享内存时，系统才执行实际的数据复制。这种方式提高了进程创建的效率。
 
-   ```
+   ```c++
    pid_t pid = fork();
    if (pid == 0) {
        // 子进程
@@ -1244,7 +1244,7 @@ MTU值可以在网络接口（如以太网接口、无线接口等）上进行�
 
 ##### C++
 
-```
+```c++
 #include <iostream>
 
 struct ListNode {

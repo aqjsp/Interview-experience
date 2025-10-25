@@ -12,7 +12,7 @@
 
    - 类（class）：成员变量和成员函数默认是 `private` 访问权限。
 
-```
+```c++
 struct MyStruct {
     int x;          // 默认是 public
     void foo() {}   // 默认是 public
@@ -30,7 +30,7 @@ class MyClass {
 
    - 继承：在继承时，`class` 的继承默认是 `private`，而 `struct` 的继承默认是 `public`。
 
-```
+```c++
 struct Base1 {};
 class Base2 {};
 
@@ -43,7 +43,7 @@ class Derived2 : Base2 {};  // private 继承
 
 C++ 的 `struct` 可以定义成员函数。实际上，`struct` 和 `class` 除了默认访问权限不同外，语法上几乎是一样的。
 
-```
+```c++
 struct MyStruct {
     int x;
     void setX(int val) {
@@ -63,7 +63,7 @@ struct MyStruct {
 
 1. 提高代码重用性和可维护性： 多态允许你编写更加通用的代码。例如，可以编写一个函数来处理不同类型的对象，而不需要了解这些对象的具体类型。这样，当需要增加新的类型时，只需要新增类的实现，而不需要修改已经存在的代码。
 
-   ```
+   ```c++
    // 基类
    class Animal {
    public:
@@ -124,7 +124,7 @@ struct MyStruct {
 
 ##### 例子
 
-```
+```c++
 class Print {
 public:
     void display(int i) {
@@ -161,7 +161,7 @@ int main() {
 
 ##### 例子
 
-```
+```c++
 class Animal {
 public:
     virtual void makeSound() {
@@ -280,7 +280,7 @@ int main() {
 
 ##### C++
 
-```
+```c++
 #include <iostream>
 
 struct ListNode {
@@ -450,7 +450,7 @@ int main() {
 
 #### C++
 
-```
+```c++
 #include <iostream>
 #include <vector>
 #include <string>

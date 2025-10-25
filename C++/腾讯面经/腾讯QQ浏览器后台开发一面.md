@@ -310,7 +310,7 @@ B+树是一种自平衡的树结构，是B-树的改进版本。它在数据库�
 
 假设有一个表`t_users`，包含以下列：
 
-```
+```sql
 CREATE TABLE t_users (
     id INT PRIMARY KEY,
     name VARCHAR(50),
@@ -321,13 +321,13 @@ CREATE TABLE t_users (
 
 为`name`列创建一个非聚簇索引：
 
-```
+```sql
 CREATE INDEX idx_name ON t_users (name);
 ```
 
 执行以下查询：
 
-```
+```sql
 SELECT id, age FROM t_users WHERE name = 'John';
 ```
 
@@ -342,7 +342,7 @@ SELECT id, age FROM t_users WHERE name = 'John';
 
 - 覆盖索引：在索引中包含所有查询所需的列，避免回表。例如，创建包含`id`和`age`列的联合索引：
 
-```
+```sql
 CREATE INDEX idx_name_id_age ON t_users (name, id, age);
 ```
 
@@ -395,7 +395,7 @@ ZSet 的底层数据结构是跳跃表（Skip List）和哈希表（Hash Table�
 
 ##### C++
 
-```
+```c++
 #include <iostream>
 #include <vector>
 #include <algorithm>

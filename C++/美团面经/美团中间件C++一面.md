@@ -92,7 +92,7 @@
 
 #### 三次挥手
 
-![三次握手](https://raw.githubusercontent.com/aqjsp/Pictures/main/202401172143735.png)
+![三次握手](https://cdn.jsdelivr.net/gh/aqjsp/photos/202401172143735.png)
 
 在建立连接之前，Client处于CLOSED状态，而Server处于LISTEN的状态。
 
@@ -102,7 +102,7 @@
 
 #### 四次挥手
 
-![四次挥手](https://raw.githubusercontent.com/aqjsp/Pictures/main/202401172144645.png)
+![四次挥手](https://cdn.jsdelivr.net/gh/aqjsp/photos/202401172144645.png)
 
 1. 第一次挥手（FIN-1）：
    - 客户端发送一个 FIN 报文段给服务器，表示客户端已经没有数据要发送了，请求关闭连接。
@@ -125,7 +125,7 @@
 
 算法思路：由小到大逐渐增大拥塞窗口，当自己主机刚连进网络时如果一下注入太多资源可能造成网络拥塞，因此循序渐进的探测网络的拥塞程度。每收到一个确认报文拥塞窗口就增加一个报文段。
 
-![慢启动](https://raw.githubusercontent.com/aqjsp/Pictures/main/202401172141897.png)
+![慢启动](https://cdn.jsdelivr.net/gh/aqjsp/photos/202401172141897.png)
 
 发送方每接收到一个确认报文就将拥塞窗口增加一个报文段。如图所示我们可以看出发送一个收到一个确认下次发两个，收到两个确认下次发2+2=4个收到4个确认下次发4+4等于8个由此可见慢启动算法并不慢。
 
@@ -279,7 +279,7 @@ Page Cache 是虚拟内存管理的一部分。操作系统将文件系统的页
 
 #### 参考代码
 
-```
+```c++
 struct ListNode {
     int val;
     ListNode* next;
@@ -594,7 +594,7 @@ InnoDB 适用于以下场景：
 
 ##### C++
 
-```
+```c++
 #include <iostream>
 #include <unordered_map>
 #include <climits>

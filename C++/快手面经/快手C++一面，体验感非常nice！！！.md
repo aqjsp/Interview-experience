@@ -1,6 +1,4 @@
-# 快手C++一面，体验感非常nice！！！
-
-
+# 快手C++一面
 
 > 来源：https://www.nowcoder.com/discuss/660221651866468352
 
@@ -23,7 +21,7 @@
 
 ##### C++
 
-```
+```c++
 #include <iostream>
 #include <stack>
 #include <unordered_map>
@@ -96,7 +94,7 @@ int main() {
 
 #### C++
 
-```
+```c++
 #include <iostream>
 #include <vector>
 #include <string>
@@ -179,7 +177,7 @@ int main() {
 - **`protected`**：受保护成员可以在类的内部及其子类中访问。
 - **`public`**：公共成员可以在类的内部和外部访问。
 
-```
+```c++
 class Car {
 private:
     int speed;  // 私有属性，无法直接从类外部访问
@@ -204,7 +202,7 @@ public:
 - **单继承**：一个类继承自一个基类。
 - **多继承**：一个类可以继承自多个基类（C++ 支持多继承）。
 
-```
+```c++
 class Vehicle {
 public:
     void move() {
@@ -229,7 +227,7 @@ public:
 - **函数重载**：同一个类中可以有多个同名函数，但参数列表不同。
 - **虚函数和动态绑定**：通过使用虚函数（`virtual` 关键字），派生类可以重写基类的方法。使用指向基类的指针或引用来调用这些方法时，会根据实际的对象类型调用相应的方法，实现运行时多态。
 
-```
+```c++
 class Animal {
 public:
     virtual void speak() {  // 声明虚函数
@@ -274,7 +272,7 @@ int main() {
 - **作用**：默认构造函数用于创建类的对象，并执行初始化操作。即使没有定义，编译器也会生成一个不带参数的默认构造函数。
 - **形式**：`ClassName() {}`
 
-```
+```c++
 class Empty {};
 
 int main() {
@@ -290,7 +288,7 @@ int main() {
 - **作用**：拷贝构造函数用于创建一个新对象，并将另一个对象的值复制到新对象中。即使没有定义，编译器也会生成一个默认的拷贝构造函数。
 - **形式**：`ClassName(const ClassName& other)`
 
-```
+```c++
 class Empty {};
 
 int main() {
@@ -307,7 +305,7 @@ int main() {
 - **作用**：拷贝赋值运算符用于将一个对象的值赋给另一个已经存在的对象。即使没有定义，编译器也会生成一个默认的拷贝赋值运算符。
 - **形式**：`ClassName& operator=(const ClassName& other)`
 
-```
+```c++
 class Empty {};
 
 int main() {
@@ -325,7 +323,7 @@ int main() {
 - **作用**：析构函数用于在对象的生命周期结束时清理资源。即使没有定义，编译器也会生成一个默认的析构函数。
 - **形式**：`~ClassName() {}`
 
-```
+```c++
 class Empty {};
 
 int main() {
@@ -342,7 +340,7 @@ int main() {
 
 构造函数不能是虚函数。构造函数的主要作用是初始化对象的成员数据，在对象创建时被调用。而虚函数的调用依赖于对象的虚函数表（vtable），在对象构造过程中，虚函数表尚未完全建立，因此无法在构造函数中调用虚函数。
 
-```
+```c++
 class Base {
 public:
     virtual Base() {}  // 错误：构造函数不能是虚函数
@@ -353,7 +351,7 @@ public:
 
 静态成员函数不能是虚函数。静态成员函数与类的实例无关，它们通过类名调用，而不是通过对象调用。由于虚函数的多态性依赖于对象的实例来确定调用哪个重写的函数，而静态成员函数没有这种实例依赖，因此不能声明为虚函数。
 
-```
+```c++
 class Base {
 public:
     virtual static void func() {}  // 错误：静态成员函数不能是虚函数
@@ -364,7 +362,7 @@ public:
 
 虽然虚函数可以在类的定义中是内联的，但是在运行时，多态调用的虚函数往往是非内联的。编译器在静态编译期并不知道将要调用哪个重写函数，因此在多态调用中，虚函数几乎总是被作为非内联函数处理。也就是说，函数可以被标记为 `inline`，但如果该函数也是虚函数，那么它在多态情况下不会作为内联函数处理。
 
-```
+```c++
 class Base {
 public:
     inline virtual void func() {}  // 合法，但在多态情况下不会被内联
@@ -375,7 +373,7 @@ public:
 
 模板函数本身可以是虚函数，但模板函数的特化（具体化版本）不能是虚函数。虚函数的多态性依赖于类的继承关系，而模板的特化版本不是通过继承机制实现的，因此不能用作虚函数。
 
-```
+```c++
 template <typename T>
 class Base {
     virtual void func(T t) {}  // 合法，模板函数可以是虚函数
@@ -389,7 +387,7 @@ void Base<int>::func(int t) {}  // 错误：特化版本不能是虚函数
 
 友元函数不能是虚函数。友元函数不是类的成员函数，它们在类的外部定义，拥有类的私有成员的访问权限。由于友元函数不是通过类的对象调用的，因此无法成为虚函数。
 
-```
+```c++
 class Base {
     friend virtual void func(Base& b);  // 错误：友元函数不能是虚函数
 };
@@ -401,7 +399,7 @@ class Base {
 
 一个纯虚函数的定义形式是在虚函数的声明后面加上 `= 0`。语法如下：
 
-```
+```c++
 virtual ReturnType FunctionName(ParameterList) = 0;
 ```
 
@@ -413,7 +411,7 @@ virtual ReturnType FunctionName(ParameterList) = 0;
 
 举个例子：
 
-```
+```c++
 #include <iostream>
 
 // 定义一个抽象基类 Shape
@@ -489,7 +487,7 @@ int main() {
 
 智能指针是 C++11 引入的标准库组件，自动管理动态分配的内存，确保在智能指针对象超出作用域时释放内存。
 
-```
+```c++
 #include <iostream>
 #include <memory>  // 包含智能指针的头文件
 
@@ -517,7 +515,7 @@ int main() {
 
 RAII 原则是一种编程技术，通过对象的构造函数和析构函数来管理资源。构造函数在对象创建时分配资源，析构函数在对象销毁时释放资源。这样可以确保资源总是被正确地释放。
 
-```
+```c++
 #include <iostream>
 #include <fstream>
 
@@ -558,7 +556,7 @@ int main() {
 
 当使用 `new` 进行动态内存分配时，必须使用 `delete` 来释放分配的内存。对于数组使用 `new[]` 分配的内存，必须使用 `delete[]` 释放。
 
-```
+```c++
 int* ptr = new int(5);  // 使用 new 动态分配内存
 delete ptr;  // 使用 delete 释放内存
 
@@ -570,7 +568,7 @@ delete[] arr;  // 使用 delete[] 释放数组内存
 
 在可能的情况下，尽量使用 STL 容器（如 `std::vector`, `std::string`）和智能指针，而不是手动管理内存。STL 容器和智能指针会自动管理内存和资源，可以有效避免内存泄漏。
 
-```
+```c++
 #include <vector>
 #include <string>
 
@@ -608,7 +606,7 @@ int main() {
 
 ##### 1. 动态内存管理
 
-```
+```c++
 #include <iostream>
 
 class IntArray {
@@ -647,7 +645,7 @@ int main() {
 
 ##### 2. 文件管理
 
-```
+```c++
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -698,7 +696,7 @@ int main() {
 
 在多线程环境中，RAII 可以用于自动管理线程锁，防止死锁。
 
-```
+```c++
 #include <iostream>
 #include <mutex>
 #include <thread>
@@ -739,7 +737,7 @@ int main() {
   - 自动释放内存：当 `std::unique_ptr` 超出其作用域或被销毁时，会自动调用 `delete` 释放所指向的对象。
   - 轻量级：由于不需要维护引用计数，相比 `std::shared_ptr`，`std::unique_ptr` 更加轻量。
 
-```
+```c++
 #include <memory>
 #include <iostream>
 
@@ -763,7 +761,7 @@ void example() {
   - 引用计数：内部维护一个引用计数器，当引用计数变为 0 时，自动释放内存。
   - 线程安全：增加和减少引用计数的操作是线程安全的。
 
-```
+```c++
 #include <memory>
 #include <iostream>
 
@@ -784,7 +782,7 @@ void example() {
   - 用于观察：`std::weak_ptr` 用于观察但不拥有对象，适合用于避免循环引用。
   - 检查对象有效性：可以使用 `expired()` 检查对象是否已经被释放，也可以使用 `lock()` 从 `weak_ptr` 创建一个 `shared_ptr`（如果对象还存在）。
 
-```
+```c++
 #include <memory>
 #include <iostream>
 
@@ -1024,10 +1022,6 @@ ARP 协议存在一些安全问题，如 **ARP 欺骗**（ARP Spoofing），其�
 6. 服务端收到后利用私钥解密信息，获得客户端发来的对称密钥。
 7. 通信双方可用对称密钥来加密解密信息。
 
-流程图如下：
-
-![https工作流程](https://raw.githubusercontent.com/aqjsp/Pictures/main/202401172136524.png)
-
 ### 6、quic协议知道吗？
 
 QUIC（Quick UDP Internet Connections）是一种传输层网络协议，旨在提高互联网应用的性能和安全性。QUIC 是 Google 提出的，并且在 IETF（Internet Engineering Task Force）标准化过程中发展起来。它主要设计用于改善基于 TCP 的传输层协议（如 HTTP/2）的性能和安全性。
@@ -1199,7 +1193,7 @@ cat /proc/<PID>/net/tcp
 - `select` 会阻塞，直到有一个或多个文件描述符可以进行 I/O 操作，或者超时时间到达。
 - `select` 返回后，进程可以检查哪些文件描述符准备好了相应的 I/O 操作。
 
-```
+```c++
 #include <sys/select.h>
 #include <unistd.h>
 #include <iostream>
@@ -1238,7 +1232,7 @@ int main() {
 - `poll` 会阻塞，直到有一个或多个文件描述符准备好了 I/O 操作，或者超时时间到达。
 - `poll` 返回后，检查 `pollfd` 结构体中的事件，确定哪些文件描述符准备好了相应的 I/O 操作。
 
-```
+```c++
 #include <poll.h>
 #include <unistd.h>
 #include <iostream>
@@ -1273,7 +1267,7 @@ int main() {
 - 使用 `epoll_ctl` 注册或修改文件描述符的监听事件。
 - 使用 `epoll_wait` 等待事件发生，并获取就绪的文件描述符列表。
 
-```
+```c++
 #include <sys/epoll.h>
 #include <unistd.h>
 #include <iostream>
@@ -1323,7 +1317,7 @@ int main() {
 - 使用 `kevent` 注册感兴趣的事件。
 - 使用 `kevent` 等待事件发生，并获取就绪的事件列表。
 
-```
+```c++
 #include <sys/types.h>
 #include <sys/event.h>
 #include <unistd.h>

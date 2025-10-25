@@ -1,3 +1,5 @@
+# 富途后端C++一面
+
 总体时间1h多几分钟
 
 面试官人感觉挺不错的，全程语气都挺温和，不会为难
@@ -31,10 +33,6 @@ int main() {
     return 0;
 }
 ```
-
-结果输出：
-
-![img](https://vnkshn64w3.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjVjNGE0ZGIwNjM5NTY4MDNkODRkOTljYjgwMmQ2ZjBfOWROVVMwbWJldkFPTm14M0ZaQWo1b3V4NWxGVVE5UzJfVG9rZW46R2dSRWJkbVlTb2hSR2Z4SDJsdmM5N2xSbkhmXzE3MDQ5MDU1NjM6MTcwNDkwOTE2M19WNA)
 
 ### 2、简单问了点项目
 
@@ -270,7 +268,7 @@ HTTP/1.1 200 OK
 
 示例：
 
-```C
+```c++
 #include <iostream>
 #include <list>
 using namespace std;
@@ -365,7 +363,7 @@ int main() {
 
 ### 16、场景题1
 
-```C
+```c++
 #include <iostream>
 
 class A {
@@ -414,7 +412,7 @@ b 对象调用的是子类 B 的 func()。这是因为在 B 类中重写了虚�
 
 ### 17、场景题2：
 
-```C
+```c++
 class B {
     virtual void funcB(){};
 };
@@ -446,7 +444,7 @@ void func() {
 
 ### 18、场景题3：
 
-```C
+```sql
 事务隔离级别
 SELECT a FROM tbl1 WHERE id = 1; a = 1000
 事务1

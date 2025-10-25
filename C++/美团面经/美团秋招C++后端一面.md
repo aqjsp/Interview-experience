@@ -1,3 +1,5 @@
+# 美团秋招C++后端一面
+
 ## 八股
 
 ### 1、指针和引用的区别，常引用了解吗，简单介绍下？
@@ -31,7 +33,7 @@
 
 示例（C++）：
 
-```
+```c++
 #include <iostream>
 using namespace std;
 
@@ -82,7 +84,7 @@ int main() {
 
 示例（C++）：
 
-```
+```c++
 class Base {
 public:
     virtual ~Base() { // 虚析构函数
@@ -149,7 +151,7 @@ int main() {
 
 示例（C++）：
 
-```
+```c++
 #include <iostream>
 using namespace std;
 
@@ -210,7 +212,7 @@ int main() {
 
 示例：
 
-```
+```c++
 #include <iostream>
 #include <cstring>
 using namespace std;
@@ -448,7 +450,7 @@ LeetCode 56题
 
 参考代码：
 
-```
+```c++
 #include <iostream>
 #include <vector>
 #include <algorithm>

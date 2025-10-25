@@ -14,7 +14,7 @@
 
 1、继承：继承是指一个类（称为子类或派生类）可以继承另一个类（称为父类或基类）的属性和方法。子类可以访问父类的非私有成员（即公有成员和保护成员），并且可以在自己的定义中添加新的成员或重写父类的成员函数。继承可以实现代码的重用和扩展，使得代码更易于维护和理解。
 
-```
+```c++
 class Animal {
 public:
     void eat() {
@@ -44,7 +44,7 @@ int main() {
 
 虚函数可以在父类中被声明为虚函数，子类可以根据需要覆盖（重写）这些虚函数。当通过父类的指针或引用调用虚函数时，会根据实际对象的类型来决定调用哪个版本的虚函数，从而实现多态。
 
-```
+```c++
 class Animal {
 public:
     virtual void eat() {
@@ -231,7 +231,7 @@ int main() {
 
 归并排序是一种稳定的排序算法，其时间复杂度为O(nlogn)，空间复杂度为O(n)。由于归并排序是一种分治算法，因此其适用于大规模数据的排序，且具有良好的稳定性和可靠性。
 
-```
+```c++
 #include <iostream>
 #include <vector>
 
@@ -324,7 +324,7 @@ int main() {
 
 #### 参考代码
 
-```
+```c++
 #include <iostream>
 #include <stack>
 #include <string>
@@ -403,7 +403,7 @@ int main() {
 
 虚函数可以在父类中被声明为虚函数，子类可以根据需要覆盖（重写）这些虚函数。当通过父类的指针或引用调用虚函数时，会根据实际对象的类型来决定调用哪个版本的虚函数，从而实现多态。
 
-```
+```c++
 class Animal {
 public:
     virtual void eat() {
@@ -438,7 +438,7 @@ int main() {
 
      - 可以包括同名函数或方法的不同版本，例如：
 
-       ```
+       ```c++
        int add(int a, int b);
        float add(float a, float b);
        ```
@@ -498,7 +498,7 @@ int main() {
 
    示例代码：
 
-   ```
+   ```c++
    #include <iostream>
    #include <thread>
    #include <mutex>
@@ -529,7 +529,7 @@ int main() {
 
    示例代码：
 
-   ```
+   ```c++
    #include <iostream>
    #include <thread>
    #include <mutex>
@@ -575,7 +575,7 @@ int main() {
 
    示例代码：
 
-   ```
+   ```c++
    #include <iostream>
    #include <thread>
    #include <atomic>
@@ -623,7 +623,7 @@ int main() {
 
 - 示例代码如下所示：
 
-  ```
+  ```c++
   #include <iostream>
   #include <thread>
   #include <mutex>
@@ -661,7 +661,7 @@ int main() {
 2. 第二次握手：服务端收到客户端发来的SYN报文之后，就会以自己的SYN报文作为应答，然后将自己的初始化序列号发送给客户端，并且会将客户端的初始化序列号+1作为自己的ACK值发送给客户端，以表示自己已经收到了客户端的SYN报文。此时服务端处于一个SYN_RECV的状态。
 3. 第三次握手：客户端收到服务端发来的SYN报文之后，会把服务端的初始化序列号+1作为ACK值发送给服务端，用来表示自己已经收到了服务端发来的SYN报文。此时客户端处于一个ESTABLISHED的状态。
 
-![三次握手](https://raw.githubusercontent.com/aqjsp/Pictures/main/202402110052745.png)
+![三次握手](https://cdn.jsdelivr.net/gh/aqjsp/photos/202402110052745.png)
 
 ### 4、进程和线程的区别？
 
@@ -716,7 +716,7 @@ int main() {
 
 #### 参考代码
 
-```
+```c++
 #include <vector>
 #include <algorithm>
 #include <iostream>

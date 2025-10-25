@@ -1,4 +1,6 @@
-来源：https://www.nowcoder.com/discuss/547456005882298368
+# 科大讯飞C++面经
+
+> 来源：https://www.nowcoder.com/discuss/547456005882298368
 
 ### 1、谈谈你对面向对象的理解？
 

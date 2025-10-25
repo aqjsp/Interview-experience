@@ -1,3 +1,5 @@
+# 快手音视频C++开发
+
 > https://www.nowcoder.com/discuss/528703603104632832
 
 ### 1、看到有iOS项目，问为什么用Moya，相比于NSURLSession好在哪里？
@@ -38,7 +40,7 @@
 
 例如，使用 `std::atomic<int>` 来声明 `i` 变量，可以确保 `i++` 操作的原子性：
 
-```
+```c++
 #include <atomic>
 
 std::atomic<int> i{0};
@@ -175,7 +177,7 @@ TLS/SSL 协议的基本过程如下：
 
    - 例如：
 
-     ```
+     ```c++
      int i = 10;
      double d = static_cast<double>(i); // 将整数类型转换为浮点类型
      ```
@@ -186,7 +188,7 @@ TLS/SSL 协议的基本过程如下：
 
    - 例如：
 
-     ```
+     ```c++
      class Base {
        virtual void foo() {}
      };
@@ -206,7 +208,7 @@ TLS/SSL 协议的基本过程如下：
 
    - 例如：
 
-     ```
+     ```c++
      class Shape {
      public:
        virtual void draw() const {
@@ -232,7 +234,7 @@ TLS/SSL 协议的基本过程如下：
 
    - 例如：
 
-     ```
+     ```c++
      Shape* shapePtr = new Circle();
      shapePtr->draw(); // 调用派生类的 draw 函数
      ```
@@ -318,7 +320,7 @@ TCP 拥塞控制通过动态调整拥塞窗口大小，根据网络的拥塞情�
 
 参考代码：
 
-```
+```c++
 #include <iostream>
 #include <vector>
 #include <string>

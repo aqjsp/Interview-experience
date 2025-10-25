@@ -152,7 +152,7 @@ Coredump 是指当一个程序发生严重错误（如段错误、内存访问�
 
 ### 11、手撕线程池？
 
-```
+```c++
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -292,7 +292,7 @@ ZooKeeper 提供了简单而强大的 API，可以用于创建、删除、读取
 
 使用 `std::function` 需要指定函数的签名，即函数的参数类型和返回类型。以下是 `std::function` 的基本用法：
 
-```
+```c++
 #include <functional>
 #include <iostream>
 
@@ -320,7 +320,7 @@ int main() {
 
 以下是 `std::bind` 的基本用法：
 
-```
+```c++
 #include <functional>
 #include <iostream>
 
@@ -371,7 +371,7 @@ int main() {
 
 **值传递的拷贝构造函数**
 
-```
+```c++
 class MyClass {
 public:
     int data;
@@ -388,7 +388,7 @@ public:
 
 **引用传递的拷贝构造函数**
 
-```
+```c++
 class MyClass {
 public:
     int data;
@@ -431,7 +431,7 @@ public:
 
 `resize` 方法用于改变 `std::vector` 的大小，可以增加或减少元素的数量。当增加元素时，新元素将使用默认值进行初始化；当减少元素时，多余的元素将被删除。
 
-```
+```c++
 #include <vector>
 #include <iostream>
 
@@ -452,7 +452,7 @@ int main() {
 
 `reserve` 方法用于预留容器的存储空间，但不改变容器的大小。这样做可以避免由于容器重新分配内存而导致的多次分配和拷贝，从而提高了 `push_back` 操作的性能。
 
-```
+```c++
 #include <vector>
 #include <iostream>
 
@@ -644,7 +644,7 @@ int main() {
 
 **参考代码**：
 
-```
+```c++
 #include <iostream>
 
 // 链表节点的定义

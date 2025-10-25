@@ -188,7 +188,7 @@ TCP支持连接保持机制，发送周期性的保持活动（Keep-Alive）消�
 
 #### 快速排序的实现
 
-```
+```c++
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -250,7 +250,7 @@ int main() {
    - 使用数组最后一个元素作为基准。
    - 从数组的第一个元素开始遍历，将小于基准的元素交换到数组的前部，最后将基准元素放到正确的位置。
 
-```
+```c++
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -297,7 +297,7 @@ int main() {
 
    - 从数组的两端开始，找到左侧大于基准的元素和右侧小于基准的元素，然后交换它们。
 
-```
+```c++
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -377,7 +377,7 @@ int main() {
    - 在哈希表的每个桶（数组位置）中存储一个链表，所有映射到同一个哈希值的元素都存储在这个链表中。
    - 插入、删除和查找操作需要遍历链表，效率取决于链表的长度。
 
-```
+```c++
 #include <iostream>
 #include <list>
 #include <vector>
@@ -446,7 +446,7 @@ int main() {
 
    - 常见的探测方法有线性探测、二次探测和双重哈希。
 
-```
+```c++
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -560,7 +560,7 @@ int main() {
 
 下面是一个简单的示例，演示如何使用虚函数和继承实现多态性：
 
-```
+```c++
 #include <iostream>
 using namespace std;
 
@@ -626,7 +626,7 @@ int main() {
 
 饿汉式单例在类加载时就创建实例，线程安全，但如果实例初始化很重或者程序未使用到该实例，会造成资源浪费。
 
-```
+```c++
 class Singleton {
 private:
     static Singleton instance; // 静态实例
@@ -659,7 +659,7 @@ Singleton Singleton::instance;
 
 ##### 非线程安全实现
 
-```
+```c++
 class Singleton {
 private:
     static Singleton* instance;
@@ -688,7 +688,7 @@ Singleton* Singleton::instance = nullptr;
 
 ##### 线程安全实现（使用互斥锁）
 
-```
+```c++
 #include <mutex>
 
 class Singleton {
@@ -724,7 +724,7 @@ std::mutex Singleton::mtx;
 
 双重检查锁定是在懒汉式单例的基础上进一步优化，减少加锁的开销，但需要使用 `volatile` 关键字确保编译器不会对代码进行重排序。
 
-```
+```c++
 #include <mutex>
 
 class Singleton {
@@ -762,7 +762,7 @@ std::mutex Singleton::mtx;
 
 C++11 引入的 `std::call_once` 可以保证只调用一次初始化代码，简化线程安全的单例实现。
 
-```
+```c++
 #include <mutex>
 
 class Singleton {
@@ -797,7 +797,7 @@ std::once_flag Singleton::initFlag;
 
 C++11 之后，局部静态变量的初始化是线程安全的，可以利用这一特性简化单例实现。
 
-```
+```c++
 class Singleton {
 private:
     Singleton() {}
@@ -829,7 +829,7 @@ public:
 
 ##### C++
 
-```
+```c++
 #include <iostream>
 #include <vector>
 #include <algorithm>

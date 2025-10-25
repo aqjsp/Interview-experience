@@ -1,7 +1,5 @@
 # 科大讯飞C++开发一面面经
 
-
-
 > 来源：https://www.nowcoder.com/share/jump/1727183347618
 
 ### 1、内存泄漏和内存溢出的概念？
@@ -509,7 +507,7 @@ int main() {
 
 为了避免这种问题，可以使用 C++11 中的 `std::atomic` 来确保在构造完成之前，指针不会被其他线程看到。
 
-```
+```c++
 #include <iostream>
 #include <atomic>
 #include <mutex>

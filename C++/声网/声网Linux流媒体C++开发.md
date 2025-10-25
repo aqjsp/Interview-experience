@@ -1,4 +1,4 @@
-
+# 声网Linux流媒体C++开发
 
 > https://www.nowcoder.com/feed/main/detail/38a87df1514f48b187cc7e2234656b73
 
@@ -264,7 +264,7 @@ SPS 和 PPS 的作用在于：
 
    使用 auto 关键字可以让编译器根据初始化表达式的类型推导出变量的类型。
 
-   ```
+   ```c++
    auto i = 42; // i 的类型被推导为 int
    auto f = 3.14; // f 的类型被推导为 double
    ```
@@ -273,7 +273,7 @@ SPS 和 PPS 的作用在于：
 
    使用范围-based for 循环可以方便地遍历容器中的元素。
 
-   ```
+   ```c++
    std::vector<int> vec = {1, 2, 3, 4, 5};
    for (auto& element : vec) {
        std::cout << element << " ";
@@ -284,7 +284,7 @@ SPS 和 PPS 的作用在于：
 
    - nullptr 用于表示空指针常量，取代了传统的 NULL 宏。
 
-   ```
+   ```c++
    int* ptr = nullptr; // ptr 是空指针
    ```
 
@@ -292,7 +292,7 @@ SPS 和 PPS 的作用在于：
 
    - Lambda 表达式可以定义匿名函数，简化了函数对象的定义和使用。
 
-   ```
+   ```c++
    auto sum = [](int a, int b) { return a + b; };
    std::cout << sum(1, 2); // 输出 3
    ```
@@ -301,7 +301,7 @@ SPS 和 PPS 的作用在于：
 
    - 智能指针用于管理动态分配的内存，避免了手动管理内存可能出现的问题。
 
-   ```
+   ```c++
    std::shared_ptr<int> ptr = std::make_shared<int>(42);
    ```
 
@@ -309,7 +309,7 @@ SPS 和 PPS 的作用在于：
 
    - 右值引用和移动语义允许将资源的所有权从一个对象转移到另一个对象，提高了资源的利用效率。
 
-   ```
+   ```c++
    std::vector<int> source = {1, 2, 3};
    std::vector<int> destination = std::move(source); // source 被移动到 destination
    ```
@@ -318,7 +318,7 @@ SPS 和 PPS 的作用在于：
 
    - 初始化列表可以用于对数组、容器和类的成员进行初始化。
 
-   ```
+   ```c++
    std::vector<int> vec = {1, 2, 3, 4, 5}; // 使用初始化列表初始化 vector
    ```
 
@@ -326,7 +326,7 @@ SPS 和 PPS 的作用在于：
 
    - constexpr 关键字用于声明常量表达式，可以在编译时求值。
 
-   ```
+   ```c++
    constexpr int factorial(int n) {
        return (n <= 1) ? 1 : n * factorial(n - 1);
    }
@@ -373,7 +373,7 @@ SPS 和 PPS 的作用在于：
 
    通过值捕获，Lambda 表达式会复制外部变量的值，并在 Lambda 内部使用这个副本。
 
-   ```
+   ```c++
    int x = 5;
    auto lambda = [x]() { return x; };
    ```
@@ -384,7 +384,7 @@ SPS 和 PPS 的作用在于：
 
    通过引用捕获，Lambda 表达式会捕获外部变量的引用，而不是复制其值。
 
-   ```
+   ```c++
    int x = 5;
    auto lambda = [&x]() { return x; };
    ```
@@ -395,7 +395,7 @@ SPS 和 PPS 的作用在于：
 
    通过隐式捕获，Lambda 表达式可以自动捕获其所在作用域中的变量。
 
-   ```
+   ```c++
    int x = 5;
    auto lambda = [&]() { return x; };
    ```
@@ -406,7 +406,7 @@ SPS 和 PPS 的作用在于：
 
    Lambda 表达式还可以同时使用值捕获和引用捕获。
 
-   ```
+   ```c++
    int x = 5;
    auto lambda = [x, &y]() { return x + y; };
    ```
@@ -443,7 +443,7 @@ SPS 和 PPS 的作用在于：
 
 参考代码：
 
-```
+```c++
 #include <iostream>
 
 struct ListNode {

@@ -710,7 +710,7 @@ std::auto_ptr<int> autoInt(new int(42)); // 已废弃
 
 基类构造函数先执行：当创建一个子类对象时，基类的构造函数会在子类的构造函数之前被调用。这确保了基类的部分在子类的特定实现之前被正确初始化。
 
-```
+```c++
 class Base {
 public:
     Base() { std::cout << "Base constructor" << std::endl; }
@@ -732,7 +732,7 @@ int main() {
 
 子类析构函数先执行：在销毁一个子类对象时，子类的析构函数会在基类的析构函数之后被调用。这确保了子类的资源被释放后，基类仍然有效，以便可以安全地清理基类的资源。
 
-```
+```c++
 class Base {
 public:
     ~Base() { std::cout << "Base destructor" << std::endl; }
@@ -766,7 +766,7 @@ int main() {
 
 函数原型：
 
-```
+```c++
 int pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine)(void *), void *arg);
 ```
 
@@ -788,7 +788,7 @@ int pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_
 - `pthread_detach(pthread_t thread)` 用于将线程设置为“分离状态”，使得线程在结束时自动释放其资源，而不需要被其他线程调用 `pthread_join` 来回收。
 - 这样做的好处是可以避免资源泄漏，适用于那些不需要等待线程结束结果的情况。
 
-```
+```c++
 #include <pthread.h>
 #include <stdio.h>
 
@@ -839,7 +839,7 @@ int main() {
 
 这个是类似于魔方阵的题目，给段代码帮助大家理解。
 
-```
+```c++
 #include <iostream>
 #include <vector>
 

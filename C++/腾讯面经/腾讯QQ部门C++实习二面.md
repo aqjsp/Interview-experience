@@ -1,13 +1,5 @@
 # 腾讯QQ部门C++实习二面
 
-大家好，我是Q。
-
-还记得昨天给大家分享的面经吗？这位小伙伴答了85%，还担心一面过不了，今天又给我来报喜了，不仅二面了，二面应该也能过！
-
-![](https://raw.githubusercontent.com/aqjsp/Pictures/main/202403072149071.png)
-
-
-
 ## 腾讯QQ部门C++实习二面
 
 ### 1、什么时候开始接触计算的？平常怎样学习？
@@ -93,7 +85,7 @@ int main() {
 
 1. 概念（Concepts）：概念是一种约束，用于定义模板参数的要求。概念可以在编译时检查模板参数是否符合要求，提供了更加灵活和明确的模板编程方式。例如：
 
-   ```
+   ```c++
    template <typename T>
    concept Integral = std::is_integral_v<T>;
    
@@ -105,7 +97,7 @@ int main() {
 
 2. 协程（Coroutines）：协程是一种轻量级的线程，可以在函数内部实现暂停和恢复执行，提供了一种更加高效和可控的并发编程方式。例如：
 
-   ```
+   ```c++
    #include <coroutine>
    #include <iostream>
    
@@ -179,20 +171,20 @@ int main() {
 
 1. std::unique_ptr：独占式智能指针，表示对其指向的对象拥有独占所有权。当 unique_ptr 被销毁时，它所管理的对象也会被销毁。不能进行复制，但可以进行移动。可以通过 std::make_unique 来创建。
 
-   ```
+   ```c++
    std::unique_ptr<int> ptr = std::make_unique<int>(10);
    ```
 
 2. std::shared_ptr：共享式智能指针，允许多个指针共享同一个对象。它使用引用计数来管理对象的生命周期，当最后一个 shared_ptr 被销毁时，引用计数为0，对象被销毁。可以通过 std::make_shared 来创建。
 
-   ```
+   ```c++
    std::shared_ptr<int> ptr1 = std::make_shared<int>(20);
    std::shared_ptr<int> ptr2 = ptr1; // 共享所有权
    ```
 
 3. std::weak_ptr：弱引用智能指针，用于解决 shared_ptr 的循环引用问题。weak_ptr 可以观测 shared_ptr 的生命周期，但不会增加引用计数。可以通过 shared_ptr 的成员函数 `weak_ptr::lock` 来获取一个指向同一对象的 shared_ptr。
 
-   ```
+   ```c++
    std::weak_ptr<int> weakPtr = ptr1;
    if (std::shared_ptr<int> sharedPtr = weakPtr.lock()) {
        // 使用 sharedPtr
@@ -232,7 +224,7 @@ int main() {
 
 #### 参考代码
 
-```
+```c++
 #include <iostream>
 
 // 定义链表节点结构
@@ -302,7 +294,7 @@ int main() {
 
 #### 参考代码
 
-```
+```c++
 #include <vector>
 #include <iostream>
 
@@ -352,7 +344,7 @@ int main() {
 
 #### 参考代码
 
-```
+```c++
 #include <vector>
 #include <iostream>
 

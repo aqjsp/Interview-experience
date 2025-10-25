@@ -852,7 +852,7 @@ SSL/TLS 加密：
 
 #### SQL 查询语句
 
-```
+```sql
 SELECT u.name
 FROM users u
 JOIN user_group_relations ugr ON u.id = ugr.user_id
@@ -875,7 +875,7 @@ WHERE u.age > 20
 
 #### 参考代码
 
-```
+```c++
 #include <vector>
 #include <algorithm>
 #include <iostream>

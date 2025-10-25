@@ -12,7 +12,7 @@
 
 示例：
 
-```
+```c++
 const int MAX_VALUE = 100;
 int main() {
     const int a = 10;
@@ -29,7 +29,7 @@ int main() {
 
 示例：
 
-```
+```c++
 class MyClass {
 public:
     void func() const {
@@ -54,7 +54,7 @@ int main() {
 
 在C++中，可以在类的构造函数初始化列表中对const成员变量进行初始化，因为const成员变量在创建对象时必须进行初始化。示例如下：
 
-```
+```c++
 #include <iostream>
 
 class MyClass {
@@ -80,7 +80,7 @@ int main() {
 
 在C语言中没有类的概念，但可以使用结构体来模拟类的功能。对于const成员变量的初始化，可以在结构体的初始化函数中进行初始化。示例如下：
 
-```
+```c++
 #include <stdio.h>
 
 struct MyClass {
@@ -111,7 +111,7 @@ int main() {
 
 ### 3、sizeof一个类，类有5个函数，其中2个虚函数，还有一个整型，一个short。sizeof结果？
 
-```
+```c++
 class MyClass {
 public:
     virtual void func1();
@@ -313,7 +313,7 @@ Redis过期管理： Redis中可以通过设置过期时间（expire）来管理
 
 ##### C++
 
-```
+```c++
 #include <iostream>
 
 struct ListNode {

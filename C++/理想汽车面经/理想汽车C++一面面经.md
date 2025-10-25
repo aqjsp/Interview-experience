@@ -1,6 +1,6 @@
-> https://www.nowcoder.com/discuss/397761865479106560
-
 # 理想汽车C++一面面经
+
+> https://www.nowcoder.com/discuss/397761865479106560
 
 **二叉树的后序遍历是一种深度优先遍历方式，它的遍历顺序是先访问左子树，然后访问右子树，最后访问根节点。**
 
@@ -17,7 +17,7 @@
 
 参考代码：（这里给出ACM模式的）
 
-```
+```c++
 #include <iostream>
 #include <vector>
 #include <stack>
@@ -183,7 +183,7 @@ int main() {
 
 Lambda表达式的一般形式如下：
 
-```
+```c++
 [capture](parameters) -> return_type { body }
 ```
 

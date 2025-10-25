@@ -28,7 +28,7 @@
 4. 数据传输：客户端和服务器使用协商好的密钥进行加密和解密，保证了数据在传输过程中的保密性和完整性。
 5. 断开连接：通信结束后，客户端和服务器可以选择关闭连接。
 
-![TLS握手流程](https://raw.githubusercontent.com/aqjsp/Pictures/main/202402042306258.jpeg)
+![TLS握手流程](https://cdn.jsdelivr.net/gh/aqjsp/photos/202402042306258.jpeg)
 
 #### 3、TCP连接的三次握手 为什么是三次 不是两次 四次挥手 为什么是四次 ？
 
@@ -40,25 +40,21 @@
 2. 第二次握手：服务端收到客户端发来的SYN报文之后，就会以自己的SYN报文作为应答，然后将自己的初始化序列号发送给客户端，并且会将客户端的初始化序列号+1作为自己的ACK值发送给客户端，以表示自己已经收到了客户端的SYN报文。此时服务端处于一个SYN_RECV的状态。
 3. 第三次握手：客户端收到服务端发来的SYN报文之后，会把服务端的初始化序列号+1作为ACK值发送给服务端，用来表示自己已经收到了服务端发来的SYN报文。此时客户端处于一个ESTABLISHED的状态。
 
-![三次握手](https://raw.githubusercontent.com/aqjsp/Pictures/main/202402042308488.png)
+![三次握手](https://cdn.jsdelivr.net/gh/aqjsp/photos/202402042308488.png)
 
 ##### 为什么是三次不是两次？
 
 ###### 三次的原因
 
-![流程图](https://raw.githubusercontent.com/aqjsp/Pictures/main/202402042311957.jpg)
+![流程图](https://cdn.jsdelivr.net/gh/aqjsp/photos/202402042311957.jpg)
 
 如图所示它主要是为了起始数据字节编号协商1是我发送的报文序号是456,2是我接受到了你下次从457开始发，3是好的我准备接收124。如果没有这个3号报文B端就不知道下次从哪开始发。
 
 ###### 为什么不是两次？
 
-![image-20240204231135624](https://raw.githubusercontent.com/aqjsp/Pictures/main/202402042311137.png)
-
 一开始A向B发出建立连接的请求但是这个报文超时了，A又向B发送了一个请求连接报文然后通过两次握手建立连接传送数据最后释放连接。但是这时候，超时的报文迟到发送他们又会建立连接然后服务端等待发送数据，但是这时候客户端已经没有数据可发了。
 
 ##### 四次挥手
-
-![](https://raw.githubusercontent.com/aqjsp/Pictures/main/202402042322881.png)
 
 1. 客户端向服务端发送一个报文FIN为1，序号为u然后进入FIN-WAIT1状态。
 2. 服务端向客户端发送确认报文序号为v，确认序号为u+1然后进入CLOSE-WAIT状态。
@@ -115,7 +111,7 @@
 
 1. 互斥锁（Mutex）：使用互斥锁来保护共享资源，确保同一时刻只有一个线程可以访问共享资源。在C++中，可以使用 `std::mutex` 来实现互斥锁。
 
-```
+```c++
 #include <iostream>
 #include <thread>
 #include <mutex>
@@ -140,7 +136,7 @@ int main() {
 
 3. 原子操作：对于简单的操作（如增加计数器），可以使用原子操作来保证操作的原子性。在C++中，可以使用 `std::atomic` 模板来定义原子操作的变量。
 
-```
+```c++
 #include <iostream>
 #include <thread>
 #include <atomic>
@@ -163,7 +159,7 @@ int main() {
 
 4. 条件变量（Condition Variable）：用于线程间的通信，允许线程等待某个条件成立后再继续执行。在C++中，可以使用 `std::condition_variable` 来实现条件变量。
 
-```
+```c++
 #include <iostream>
 #include <thread>
 #include <mutex>
@@ -208,7 +204,7 @@ int main() {
 
 1. 定义任务类：首先需要定义一个任务类，用于封装需要在线程池中执行的任务。任务类至少应该包含一个执行任务的方法，可以是一个函数指针或者是一个函数对象。
 
-   ```
+   ```c++
    class Task {
    public:
        virtual void execute() = 0;
@@ -217,7 +213,7 @@ int main() {
 
 2. 定义线程池类：接下来定义线程池类，其中包含了线程池的管理逻辑，如线程的创建、销毁、任务的添加等。线程池类需要包含一个线程池容器，用于存放线程对象。
 
-   ```
+   ```c++
    #include <vector>
    #include <thread>
    #include <queue>
@@ -242,7 +238,7 @@ int main() {
 
 3. 实现线程池类的构造函数和析构函数：在构造函数中创建指定数量的线程，并启动这些线程；在析构函数中停止线程池中的所有线程。
 
-   ```
+   ```c++
    ThreadPool::ThreadPool(size_t numThreads) : stop(false) {
        for (size_t i = 0; i < numThreads; ++i) {
            workers.emplace_back([this] {
@@ -276,7 +272,7 @@ int main() {
 
 4. 实现添加任务的方法：在线程池类中添加一个方法用于向任务队列中添加任务。
 
-   ```
+   ```c++
    void ThreadPool::addTask(Task* task) {
        {
            std::unique_lock<std::mutex> lock(queueMutex);
@@ -288,7 +284,7 @@ int main() {
 
 5. 使用线程池：最后，在主程序中使用定义好的线程池类来执行任务。
 
-   ```
+   ```c++
    int main() {
        ThreadPool pool(4);  // 创建一个包含4个线程的线程池
    
@@ -325,8 +321,7 @@ int main() {
 
 ### 9、map 和multimap unordered_map区别 为什么要有 unordered_map 使用场景是什么，这三者访问元素的时间复杂度 底层实现？
 
-
-手撕： 
+## 手撕： 
 
 ### 1、IP4V地址字符串转化为 32整型数字
 

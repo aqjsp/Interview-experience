@@ -1,6 +1,6 @@
-> https://www.nowcoder.com/discuss/569974504026378240
-
 # 快手秋招C++面经，
+
+> 来源：https://www.nowcoder.com/discuss/569974504026378240
 
 ## 一面
 
@@ -33,7 +33,7 @@
 
 参考代码：
 
-```
+```c++
 #include <iostream>
 
 struct ListNode {
@@ -107,7 +107,7 @@ int main() {
 
 1. 定义任务类：首先需要定义一个任务类，用于封装需要在线程池中执行的任务。任务类至少应该包含一个执行任务的方法，可以是一个函数指针或者是一个函数对象。
 
-   ```
+   ```c++
    class Task {
    public:
        virtual void execute() = 0;
@@ -116,7 +116,7 @@ int main() {
 
 2. 定义线程池类：接下来定义线程池类，其中包含了线程池的管理逻辑，如线程的创建、销毁、任务的添加等。线程池类需要包含一个线程池容器，用于存放线程对象。
 
-   ```
+   ```c++
    #include <vector>
    #include <thread>
    #include <queue>
@@ -141,7 +141,7 @@ int main() {
 
 3. 实现线程池类的构造函数和析构函数：在构造函数中创建指定数量的线程，并启动这些线程；在析构函数中停止线程池中的所有线程。
 
-   ```
+   ```c++
    ThreadPool::ThreadPool(size_t numThreads) : stop(false) {
        for (size_t i = 0; i < numThreads; ++i) {
            workers.emplace_back([this] {
@@ -175,7 +175,7 @@ int main() {
 
 4. 实现添加任务的方法：在线程池类中添加一个方法用于向任务队列中添加任务。
 
-   ```
+   ```c++
    void ThreadPool::addTask(Task* task) {
        {
            std::unique_lock<std::mutex> lock(queueMutex);
@@ -187,7 +187,7 @@ int main() {
 
 5. 使用线程池：最后，在主程序中使用定义好的线程池类来执行任务。
 
-   ```
+   ```c++
    int main() {
        ThreadPool pool(4);  // 创建一个包含4个线程的线程池
    
@@ -208,7 +208,7 @@ int main() {
 
 来个例子：
 
-```
+```c++
 #include <functional>
 
 // 使用 std::function 来表示任务
@@ -233,7 +233,7 @@ struct Task {
 
 使用 `std::future` 和 `std::promise` 实现线程 A 向线程 B 发起异步请求并获取处理结果的简单示例：
 
-```
+```c++
 #include <iostream>
 #include <future>
 #include <thread>
@@ -304,7 +304,7 @@ int main() {
    - 这种方式在程序启动时就会创建单例对象，无论是否需要使用，可能会导致资源浪费。
    - 不适合在多线程环境下使用，因为没有进行线程安全的处理。
 
-   ```
+   ```c++
    class Singleton {
    public:
        static Singleton& getInstance() {
@@ -326,7 +326,7 @@ int main() {
    - 在第一次调用时才创建单例对象，避免了在程序启动时就创建对象的资源浪费。
    - 不适合在多线程环境下使用，因为没有进行线程安全的处理。
 
-   ```
+   ```c++
    class Singleton {
    public:
        static Singleton& getInstance() {
@@ -348,7 +348,7 @@ int main() {
    - 使用加锁的方式保证在多线程环境下也能正常工作，但会影响性能。
    - 在 `getInstance` 方法中加锁，避免了多个线程同时创建实例的问题。
 
-   ```
+   ```c++
    #include <mutex>
    
    class Singleton {
@@ -376,7 +376,7 @@ int main() {
    - 利用 C++11 的特性，在静态变量的初始化阶段进行初始化，保证了线程安全性。
    - 使用静态局部变量的特性，在第一次调用 `getInstance` 方法时才进行实例化。
 
-   ```
+   ```c++
    class Singleton {
    public:
        static Singleton& getInstance() {
@@ -393,9 +393,6 @@ int main() {
        ~Singleton() {}
    };
    ```
-
-   
-
 
 
 #### 6、泛型编程使用经验

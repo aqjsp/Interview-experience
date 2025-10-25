@@ -1,4 +1,4 @@
-# 饿了么一面凉经，C++选手硬着头皮投了Java岗，奇怪的是还过筛了，然后就被拷打了。。。
+# 饿了么一面凉经
 
 > 来源：https://www.nowcoder.com/discuss/603369018782728192
 
@@ -41,7 +41,7 @@
 
 具体实现可以使用计数器来记录读锁和写锁的数量，以及条件变量来控制线程的等待和唤醒。一种简单的实现方式是使用 Python 的 threading 模块：
 
-```
+```python
 import threading
 
 class RWLock:

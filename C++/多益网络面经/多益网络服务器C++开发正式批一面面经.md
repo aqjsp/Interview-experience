@@ -1,7 +1,5 @@
 # 多益网络服务器C++开发正式批一面面经
 
-
-
 > 来源：https://www.nowcoder.com/feed/main/detail/1fdb6b582e1843d5bbac3f200c262a82
 
 ### 1、对C++的理解以及C++的优缺点？
@@ -66,7 +64,7 @@
 - 存储对象：全局变量、静态变量（包括局部静态变量）、常量等。
 - 释放时机：程序结束时自动释放。
 
-```
+```c++
 int globalVar = 10;  // 全局变量
 static int staticVar = 20;  // 静态变量
 ```
@@ -77,7 +75,7 @@ static int staticVar = 20;  // 静态变量
 - 存储对象：局部变量、函数参数等。
 - 释放时机：当函数返回时，栈上的内存会自动释放，局部变量的生命周期结束。
 
-```
+```c++
 void func() {
     int localVar = 5;  // 局部变量，栈上分配
 }
@@ -89,7 +87,7 @@ void func() {
 - 存储对象：动态分配的对象或数组。
 - 释放时机：由程序员手动管理，如果不释放则会造成内存泄漏。
 
-```
+```c++
 int* p = new int(10);  // 堆上分配
 delete p;  // 释放内存
 ```
@@ -100,7 +98,7 @@ delete p;  // 释放内存
 - 存储对象：全局变量和静态变量。
 - 释放时机：程序退出时由系统自动释放。
 
-```
+```c++
 static int staticVar = 5;  // 静态变量，全局/静态变量区分配
 ```
 
@@ -110,7 +108,7 @@ static int staticVar = 5;  // 静态变量，全局/静态变量区分配
 - 存储对象：字符串常量、`const` 修饰的常量。
 - 释放时机：常量区由系统管理，在程序结束时释放。
 
-```
+```c++
 const int constVar = 100;  // 常量，存储在常量区
 ```
 
@@ -138,7 +136,7 @@ const int constVar = 100;  // 常量，存储在常量区
 
 原理：`unique_ptr` 通过移动语义实现所有权的转移，不允许拷贝，因此只允许 `move` 构造和赋值。它的实现包含一个指针，当智能指针被销毁时，它会自动调用所指向对象的析构函数并释放内存。
 
-```
+```c++
 std::unique_ptr<int> p1(new int(10));
 std::unique_ptr<int> p2 = std::move(p1);  // p1所有权转移给p2
 ```
@@ -158,7 +156,7 @@ std::unique_ptr<int> p2 = std::move(p1);  // p1所有权转移给p2
 
 原理：`shared_ptr` 内部维护一个引用计数（`use_count`），每当一个新的 `shared_ptr` 指向同一对象时，引用计数加1；当某个 `shared_ptr` 离开作用域或被销毁时，引用计数减1。当引用计数为0时，自动释放资源。
 
-```
+```c++
 std::shared_ptr<int> p1(new int(20));
 std::shared_ptr<int> p2 = p1;  // 引用计数加1
 ```
@@ -179,7 +177,7 @@ std::shared_ptr<int> p2 = p1;  // 引用计数加1
 
 原理：`weak_ptr` 不参与引用计数的增加，但可以观测对象是否还存在。它不直接拥有对象，而是持有一个弱引用（弱引用指向 `shared_ptr` 的控制块），可以通过 `lock()` 获得一个临时的 `shared_ptr`。
 
-```
+```c++
 std::shared_ptr<int> sp = std::make_shared<int>(30);
 std::weak_ptr<int> wp = sp;  // wp 不增加引用计数
 
@@ -202,7 +200,7 @@ if (std::shared_ptr<int> temp = wp.lock()) {
 
 原理：通过拷贝操作将资源所有权转移（浅拷贝），但这会带来一些潜在问题，特别是在函数传参或返回值时容易引发所有权的不明确性。
 
-```
+```c++
 std::auto_ptr<int> p1(new int(10));
 std::auto_ptr<int> p2 = p1;  // p1被置为nullptr，p2获得所有权
 ```
@@ -227,7 +225,7 @@ C++ 中，如果希望通过基类指针删除一个派生类对象，基类的�
 
 例子：
 
-```
+```c++
 class Base {
 public:
     ~Base() {
@@ -252,7 +250,7 @@ delete obj;
 
 由于 `Base` 的析构函数不是虚函数，编译器在 `delete` 时只会调用 `Base` 的析构函数，而不会调用 `Derived` 的析构函数，因此 `Derived` 类中的资源不会被释放。输出会是：
 
-```
+```c++
 Base destructor
 ```
 
@@ -262,7 +260,7 @@ Base destructor
 
 修改后的代码：
 
-```
+```c++
 class Base {
 public:
     virtual ~Base() {
@@ -280,14 +278,14 @@ public:
 
 现在，如果再次执行相同的操作：
 
-```
+```c++
 Base* obj = new Derived();
 delete obj;
 ```
 
 输出将变为：
 
-```
+```c++
 Derived destructor
 Base destructor
 ```
@@ -314,7 +312,7 @@ Base destructor
 
    指针：可以声明一个指针而不初始化，指针可以指向空或某个变量的地址。
 
-   ```
+   ```c++
    int* ptr;  // 未初始化
    ptr = nullptr;  // 可以指向空
    ptr = &a;  // 指向变量 a
@@ -322,7 +320,7 @@ Base destructor
 
    引用：在声明引用时，必须立即初始化，且引用一旦绑定一个对象，就不能再指向其他对象。
 
-   ```
+   ```c++
    int a = 10;
    int& ref = a;  // 引用必须初始化
    ```
@@ -331,7 +329,7 @@ Base destructor
 
    指针：指针可以指向 `nullptr` 或者其他无效地址，这意味着在使用指针之前，必须检查指针是否为 `nullptr` 以防止空指针错误。
 
-   ```
+   ```c++
    int* ptr = nullptr;  // 可以指向空
    if (ptr) {
        // 确保指针有效才使用
@@ -340,7 +338,7 @@ Base destructor
 
    引用：引用必须绑定有效对象，不能为空。因此，引用的使用更加安全，不需要检查是否为有效对象。
 
-   ```
+   ```c++
    int& ref = a;  // 始终指向 a，不能为空
    ```
 
@@ -348,7 +346,7 @@ Base destructor
 
    指针：可以随时改变指向的对象。
 
-   ```
+   ```c++
    int a = 10, b = 20;
    int* ptr = &a;
    ptr = &b;  // 可以重新指向 b
@@ -356,7 +354,7 @@ Base destructor
 
    引用：一旦引用被初始化为某个对象，它就无法重新绑定到其他对象。
 
-   ```
+   ```c++
    int a = 10, b = 20;
    int& ref = a;
    ref = b;  // 这里并不是重新绑定，而是修改 a 的值为 b 的值
@@ -366,7 +364,7 @@ Base destructor
 
    指针：操作指针时需要使用解引用操作符 `*`，这增加了一些语法复杂性。
 
-   ```
+   ```c++
    int a = 10;
    int* ptr = &a;
    *ptr = 20;  // 通过指针修改 a 的值
@@ -374,7 +372,7 @@ Base destructor
 
    引用：引用的使用更加简洁，像使用普通变量一样直接使用即可，不需要解引用操作。
 
-   ```
+   ```c++
    int a = 10;
    int& ref = a;
    ref = 20;  // 直接修改 a 的值
@@ -389,14 +387,14 @@ Base destructor
 
 1. 动态内存管理：当你需要动态分配内存并手动管理内存的生命周期时，使用指针（或智能指针）。
 
-   ```
+   ```c++
    int* ptr = new int(10);  // 动态分配内存
    delete ptr;  // 手动释放内存
    ```
 
 2. 处理数组和链表：指针可以用于遍历数组、链表等数据结构，特别是在你需要访问内存中的多个元素时。
 
-   ```
+   ```c++
    int arr[] = {1, 2, 3, 4};
    int* ptr = arr;
    for (int i = 0; i < 4; i++) {
@@ -406,7 +404,7 @@ Base destructor
 
 3. 需要修改函数参数并且可能为空：如果你需要在函数中修改传入参数，并且该参数可能为空，使用指针。
 
-   ```
+   ```c++
    void modify(int* ptr) {
        if (ptr) {
            *ptr = 20;  // 修改指针指向的值
@@ -420,7 +418,7 @@ Base destructor
 
 1. 函数参数传递：引用通常用于函数参数传递，避免拷贝大量数据，同时可以安全地操作传递的对象。
 
-   ```
+   ```c++
    void modify(int& ref) {
        ref = 20;  // 修改引用对象的值
    }
@@ -428,7 +426,7 @@ Base destructor
 
 2. 返回函数结果：当需要返回函数内部的对象或者成员时，可以使用引用，以避免复制大量数据。
 
-   ```
+   ```c++
    int& getElement(int arr[], int index) {
        return arr[index];  // 返回数组中的元素的引用
    }
@@ -436,7 +434,7 @@ Base destructor
 
 3. 常量引用：使用 `const` 引用来确保在函数中不会修改传入对象，尤其是传递大对象时，引用可以避免拷贝的开销。
 
-   ```
+   ```c++
    void print(const std::string& str) {
        std::cout << str << std::endl;
    }
@@ -444,7 +442,7 @@ Base destructor
 
 4. 操作容器元素：当你在迭代容器并修改其中的元素时，使用引用可以直接操作容器中的元素。
 
-   ```
+   ```c++
    for (int& elem : vec) {
        elem *= 2;  // 通过引用修改容器元素
    }
@@ -458,7 +456,7 @@ Base destructor
 
 浅拷贝是指在对象复制时，复制对象的成员变量值**而不复制动态分配的内存**。对于指针成员变量，浅拷贝只复制指针的地址（即指向相同的内存区域），不会创建新对象。
 
-```
+```c++
 class Example {
 public:
     int* data;
@@ -480,7 +478,7 @@ public:
 
 深拷贝是在对象复制时，**不但复制对象的成员变量，还重新分配内存并复制数据内容**。深拷贝确保新对象拥有自己的独立数据副本，不共享原始对象的数据，避免了潜在的指针问题。
 
-```
+```c++
 class Example {
 public:
     int* data;
@@ -527,7 +525,7 @@ public:
 
 在实际开发中，特别是在管理动态内存或涉及复杂对象关系的场景中，深拷贝是非常常见的。开发者需要通过**自定义拷贝构造函数**和**赋值运算符**来实现深拷贝，以确保内存管理的安全和正确性。
 
-```
+```c++
 class Example {
 public:
     int* data;
@@ -570,7 +568,7 @@ public:
 - 匿名管道（Unnamed Pipe）：只能用于父子进程之间，通信是单向的，进程必须通过`fork()`生成子进程。
 - 命名管道（Named Pipe，FIFO）：通过在文件系统中创建一个特殊文件，可以实现任意进程之间的通信，允许双向通信。
 
-```
+```c++
 int pipefd[2];
 pipe(pipefd);  // 创建管道
 write(pipefd[1], "message", strlen("message"));  // 写入数据
@@ -586,7 +584,7 @@ read(pipefd[0], buffer, sizeof(buffer));  // 读取数据
 - 支持随机读取消息，而不像管道只能顺序读取。
 - 适合用于多个进程之间的通信。
 
-```
+```c++
 int msgid = msgget(key, IPC_CREAT | 0666);  // 创建消息队列
 msgsnd(msgid, &message, sizeof(message), 0);  // 发送消息
 msgrcv(msgid, &message, sizeof(message), 0, 0);  // 接收消息
@@ -601,7 +599,7 @@ msgrcv(msgid, &message, sizeof(message), 0, 0);  // 接收消息
 - 高效，多个进程可以直接访问同一内存，不需要通过内核来传递数据。 缺点：
 - 需要同步机制（如信号量）来避免竞争条件。
 
-```
+```c++
 int shmid = shmget(key, size, IPC_CREAT | 0666);  // 创建共享内存段
 char* mem = (char*)shmat(shmid, nullptr, 0);  // 连接到共享内存
 strcpy(mem, "Hello World");  // 写入数据
@@ -615,7 +613,7 @@ shmdt(mem);  // 断开共享内存连接
 - 二值信号量：类似于互斥锁，用于保证某个时刻只有一个进程访问某一共享资源。
 - 计数信号量：允许多个进程同时访问共享资源，但数量有限。
 
-```
+```c++
 sem_t sem;
 sem_init(&sem, 0, 1);  // 初始化信号量
 sem_wait(&sem);  // P操作：等待信号量
@@ -632,7 +630,7 @@ sem_post(&sem);  // V操作：释放信号量
 - 简单，可以快速通知进程事件的发生。 缺点：
 - 信号只能传递有限的信息，且信号处理不适合复杂的通信场景。
 
-```
+```c++
 signal(SIGINT, signal_handler);  // 注册信号处理函数
 ```
 
@@ -643,7 +641,7 @@ signal(SIGINT, signal_handler);  // 注册信号处理函数
 - 本地域套接字（Unix Domain Socket）：用于同一台机器上进程之间的通信。
 - 网络套接字（TCP/IP Socket）：用于跨网络的进程间通信。
 
-```
+```c++
 int sockfd = socket(AF_INET, SOCK_STREAM, 0);  // 创建套接字
 bind(sockfd, (struct sockaddr*)&addr, sizeof(addr));  // 绑定地址
 listen(sockfd, 5);  // 监听连接
