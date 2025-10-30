@@ -8,7 +8,7 @@
 
 1. 静态变量： 在函数内部使用`static`声明的变量被称为静态变量。与普通的局部变量不同，静态变量在函数执行完毕后并不会被销毁，而是会一直存在于程序的整个生命周期内，并且其值在函数调用之间保持不变。
 
-```
+```c++
 void exampleFunction() {
     static int staticVar = 0; // 静态变量
     staticVar++;
@@ -25,7 +25,7 @@ int main() {
 
 2. 静态函数： 使用`static`关键字声明的函数被称为静态函数。静态函数只能在声明它的文件中可见，不能被其他文件访问。这样可以避免函数名冲突，并且可以隐藏实现细节。
 
-```
+```c++
 static void staticFunction() {
     printf("This is a static function.\n");
 }
@@ -38,7 +38,7 @@ int main() {
 
 3. 静态全局变量： 在全局作用域中使用`static`声明的变量被称为静态全局变量。静态全局变量的作用域仅限于声明它的文件内部，不能被其他文件访问。
 
-```
+```c++
 // File1.c
 static int staticGlobalVar = 10;
 
@@ -52,7 +52,7 @@ extern int staticGlobalVar; // 编译错误，无法访问 staticGlobalVar
 
 1. 声明外部变量： 当在一个文件中使用另一个文件中定义的全局变量时，可以在当前文件中使用`extern`来声明这个变量，以便编译器知道该变量是在其他文件中定义的。
 
-```
+```c++
 // File1.c
 int globalVar = 10;
 
@@ -65,7 +65,7 @@ void someFunction() {
 
 2. 声明外部函数： 当在一个文件中使用另一个文件中定义的函数时，可以在当前文件中使用`extern`来声明这个函数，以便编译器知道该函数是在其他文件中定义的。
 
-```
+```c++
 // File1.c
 void externalFunction(); // 函数声明
 
@@ -78,7 +78,7 @@ void someOtherFunction() {
 
 3. 在头文件中使用extern： 通常，在头文件中声明变量或函数时会使用`extern`关键字，因为头文件通常用于包含其他文件中定义的内容，而不是实际定义这些内容。
 
-```
+```c++
 // SomeHeader.h
 extern int globalVar; // 外部变量声明
 extern void externalFunction(); // 外部函数声明
@@ -90,19 +90,19 @@ extern void externalFunction(); // 外部函数声明
 
 1. 硬件映射： 在嵌入式系统中，`volatile`通常用于声明与硬件相关的变量，因为这些变量的值可以被硬件异步地改变，而不是由程序控制。
 
-```
+```c++
 volatile int *ptr = (int *)0x1000; // 指向硬件地址的指针
 ```
 
 2. 多线程或信号处理： 当一个变量被多个线程或信号处理程序访问并可能被修改时，应该使用`volatile`关键字来声明这个变量，以确保每次访问都是实际的读取或写入操作，而不是从缓存中读取。
 
-```
+```c++
 volatile int flag = 0; // 多线程或信号处理中的标志位
 ```
 
 3. 防止优化： 当编译器对代码进行优化时，会尝试将变量的值缓存在寄存器中，而不是每次访问内存。但是对于`volatile`变量，编译器必须确保每次访问都是对内存的实际读取或写入，而不是使用寄存器中的缓存值。
 
-```
+```c++
 volatile int value = 10; // 防止编译器对 value 进行优化
 ```
 

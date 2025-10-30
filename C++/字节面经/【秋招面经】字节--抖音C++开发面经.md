@@ -1,4 +1,4 @@
-# 【秋招面经】字节--抖音C++开发面经
+# 字节--抖音C++开发面经
 
 > 来源：https://www.nowcoder.com/feed/main/detail/0f1cf5724c584895ab38beeec379a838
 

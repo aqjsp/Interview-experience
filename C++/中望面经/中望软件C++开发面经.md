@@ -1,3 +1,7 @@
+# 中望软件C++开发面经
+
+> 来源：https://www.nowcoder.com/feed/main/detail/25b3f953c6b34898b33a165c6dd5aab5
+
 ### 1、常见的qt特性？
 
 1. 信号与槽机制
@@ -443,5 +447,3 @@ int main() {
 ### 19、设计模式？单例模式？工厂模式？
 
 这个已经是老生常谈的问题了，建议多看，前边也有总结。  
-
-来源：https://www.nowcoder.com/feed/main/detail/25b3f953c6b34898b33a165c6dd5aab5

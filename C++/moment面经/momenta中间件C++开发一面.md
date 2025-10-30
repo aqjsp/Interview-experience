@@ -1,7 +1,5 @@
 # momenta中间件C++开发一面
 
-
-
 > 来源：https://www.nowcoder.com/feed/main/detail/c275081d6f1a4aa5a2c160b97f1eba36
 
 ### 1、C++智能指针？
@@ -12,7 +10,7 @@
 - 用途：用于明确一个对象只会有一个所有者的场景，保证独占所有权。
 - 用法：不能通过拷贝构造函数或赋值运算符复制 `std::unique_ptr`，但可以通过 `std::move` 转移所有权。
 
-```
+```c++
 #include <memory>
 #include <iostream>
 
@@ -37,7 +35,7 @@ int main() {
 - 用途：适用于多个地方需要共同拥有对象的场景，自动管理引用计数。
 - 用法：`std::shared_ptr` 支持拷贝和赋值，每一个 `std::shared_ptr` 实例都会维护一个引用计数。当引用计数变为 0 时，自动释放对象。
 
-```
+```c++
 #include <memory>
 #include <iostream>
 
@@ -66,7 +64,7 @@ int main() {
 - 用途：用于观察 `std::shared_ptr` 管理的对象，但不增加引用计数。它不会影响对象的生命周期，适合用于缓存、回调等场景。
 - 用法：`std::weak_ptr` 不能直接访问对象，需要通过 `lock()` 方法将其提升为 `std::shared_ptr` 才能访问对象。
 
-```
+```c++
 #include <memory>
 #include <iostream>
 
@@ -96,7 +94,7 @@ int main() {
 - 特点：早期 C++98 引入的智能指针，单一所有权。
 - 缺点：不支持标准的拷贝语义（拷贝时所有权转移），导致使用上的困惑。由于 `std::unique_ptr` 提供了更好的替代方案，`std::auto_ptr` 在 C++11 中被废弃。
 
-```
+```c++
 #include <memory>
 #include <iostream>
 
@@ -117,7 +115,7 @@ int main() {
 
    资源的所有权只能属于一个 `unique_ptr`，不能被拷贝或共享。当你尝试将一个 `unique_ptr` 赋值给另一个时，编译器会报错。
 
-   ```
+   ```c++
    std::unique_ptr<int> ptr1(new int(10));
    std::unique_ptr<int> ptr2 = ptr1;  // 错误：不能拷贝
    ```
@@ -126,7 +124,7 @@ int main() {
 
    `unique_ptr` 支持移动语义，意味着你可以通过 `std::move` 将资源的所有权从一个 `unique_ptr` 转移到另一个。这在函数返回时或需要重新分配所有权时非常有用。
 
-   ```
+   ```c++
    std::unique_ptr<int> ptr1(new int(10));
    std::unique_ptr<int> ptr2 = std::move(ptr1);  // 所有权从 ptr1 转移到 ptr2，ptr1 变为 nullptr
    ```
@@ -135,7 +133,7 @@ int main() {
 
    当 `unique_ptr` 离开作用域或被销毁时，管理的对象会自动释放，不需要手动调用 `delete`。这极大减少了内存泄漏的风险。
 
-   ```
+   ```c++
    {
        std::unique_ptr<int> ptr(new int(10));
    }  // 离开作用域时，自动调用 delete
@@ -145,7 +143,7 @@ int main() {
 
    `unique_ptr` 支持自定义删除器，你可以为其指定如何删除所管理的对象，尤其适合需要复杂清理逻辑的场景（例如需要调用 `free` 或其他自定义释放函数时）。
 
-   ```
+   ```c++
    std::unique_ptr<int, void(*)(int*)> ptr(new int(10), [](int* p) {
        std::cout << "Custom deleter called.\n";
        delete p;
@@ -164,7 +162,7 @@ int main() {
 
 `std::unique_ptr` 是一个模板类，用于管理动态分配的对象，模板参数指定了它管理的资源类型。
 
-```
+```c++
 template <typename T, typename Deleter = std::default_delete<T>>
 class unique_ptr {
 private:
@@ -180,7 +178,7 @@ private:
 
 构造函数用于初始化 `unique_ptr`，并且它不会默认创建任何资源，除非显式传递了一个资源指针。析构函数确保当 `unique_ptr` 离开作用域时，调用删除器释放资源。
 
-```
+```c++
 unique_ptr(T* ptr = nullptr) : ptr(ptr) {}
 
 ~unique_ptr() {
@@ -192,7 +190,7 @@ unique_ptr(T* ptr = nullptr) : ptr(ptr) {}
 
 为了保证独占所有权，`std::unique_ptr` 禁止拷贝构造和拷贝赋值运算符。这通过将它们声明为 `delete` 来实现。
 
-```
+```c++
 unique_ptr(const unique_ptr&) = delete;  // 禁止拷贝构造
 unique_ptr& operator=(const unique_ptr&) = delete;  // 禁止拷贝赋值
 ```
@@ -201,7 +199,7 @@ unique_ptr& operator=(const unique_ptr&) = delete;  // 禁止拷贝赋值
 
 `unique_ptr` 支持移动语义，这意味着可以通过移动构造或移动赋值将资源的所有权从一个 `unique_ptr` 转移到另一个。
 
-```
+```c++
 unique_ptr(unique_ptr&& other) noexcept : ptr(other.ptr) {
     other.ptr = nullptr;  // 转移所有权后，原指针置空
 }
@@ -222,7 +220,7 @@ unique_ptr& operator=(unique_ptr&& other) noexcept {
 
 通过 `operator*` 和 `operator->` 可以访问 `unique_ptr` 管理的资源，而 `release()` 可以手动释放资源但不销毁资源。
 
-```
+```c++
 T& operator*() const { return *ptr; }  // 解引用
 T* operator->() const { return ptr; }  // 指针访问
 
@@ -242,7 +240,7 @@ T* release() {
 
 `std::unique_ptr` 中删除拷贝构造和拷贝赋值运算符的方式：
 
-```
+```c++
 template<typename T>
 class unique_ptr {
 public:
@@ -266,13 +264,13 @@ public:
 
 1. 删除拷贝构造函数：
 
-```
+```c++
 unique_ptr(const unique_ptr&) = delete;
 ```
 
 当你尝试使用 `std::unique_ptr` 进行拷贝时，比如：
 
-```
+```c++
 std::unique_ptr<int> ptr1(new int(10));
 std::unique_ptr<int> ptr2 = ptr1;  // 错误，编译不通过
 ```
@@ -281,13 +279,13 @@ std::unique_ptr<int> ptr2 = ptr1;  // 错误，编译不通过
 
 2. 删除拷贝赋值运算符：
 
-```
+```c++
 unique_ptr& operator=(const unique_ptr&) = delete;
 ```
 
 类似地，当你尝试给一个 `unique_ptr` 赋值时，比如：
 
-```
+```c++
 std::unique_ptr<int> ptr1(new int(10));
 std::unique_ptr<int> ptr2;
 ptr2 = ptr1;  // 错误，编译不通过
@@ -299,7 +297,7 @@ ptr2 = ptr1;  // 错误，编译不通过
 
 虽然 `unique_ptr` 禁止了拷贝操作，但它支持**移动语义**，允许将所有权从一个 `unique_ptr` 转移到另一个。这通过实现移动构造函数和移动赋值运算符来完成：
 
-```
+```c++
 // 移动构造函数
 unique_ptr(unique_ptr&& other) noexcept : ptr(other.ptr) {
     other.ptr = nullptr;  // 将其他对象的指针置空
@@ -333,7 +331,7 @@ unique_ptr& operator=(unique_ptr&& other) noexcept {
 
 工作方式：
 
-```
+```c++
 template <typename T>
 class shared_ptr {
 private:
@@ -376,7 +374,7 @@ public:
 
 ##### 典型的控制块实现
 
-```
+```c++
 struct control_block {
     std::atomic<int> strong_ref_count;  // 强引用计数
     std::atomic<int> weak_ref_count;    // 弱引用计数
@@ -420,7 +418,7 @@ struct control_block {
 - 每次一个 `shared_ptr` 离开作用域或被显式销毁时，引用计数减 1。
 - 当引用计数减为 0 时，说明没有任何 `shared_ptr` 再管理该资源，资源会被释放，随后控制块也会被销毁。
 
-```
+```c++
 {
     std::shared_ptr<int> sp1 = std::make_shared<int>(10);  // 引用计数为1
     {
@@ -690,7 +688,7 @@ struct control_block {
 
    - 函数原型：
 
-     ```
+     ```c++
      int shm_open(const char *name, int oflag, mode_t mode);
      ```
 
@@ -702,7 +700,7 @@ struct control_block {
 
    - 函数原型：
 
-     ```
+     ```c++
      int ftruncate(int fd, off_t length);
      ```
 
@@ -716,7 +714,7 @@ struct control_block {
 
 - 函数原型：
 
-  ```
+  ```c++
   void *mmap(void *addr, size_t length, int prot, int flags, int fd, off_t offset);
   ```
 
@@ -728,7 +726,7 @@ struct control_block {
 
 简单实现：
 
-```
+```c++
 #include <sys/mman.h>
 #include <fcntl.h>
 #include <unistd.h>
@@ -790,7 +788,7 @@ POSIX 互斥锁（pthread_mutex_t）：
 - 互斥锁的内存区域可以放在共享内存区域中。
 - 通过 `pthread_mutex_lock` 和 `pthread_mutex_unlock` 操作互斥锁。
 
-```
+```c++
 #include <pthread.h>
 #include <sys/mman.h>
 #include <fcntl.h>
@@ -854,7 +852,7 @@ POSIX 信号量（`sem_t`）：
 - 通过 `sem_open` 创建命名信号量，`sem_wait` 和 `sem_post` 操作信号量。
 - 信号量的内存区域可以放在共享内存区域中。
 
-```
+```c++
 #include <semaphore.h>
 #include <sys/mman.h>
 #include <fcntl.h>
@@ -928,7 +926,7 @@ int main() {
 
 ##### C++
 
-```
+```c++
 #include <vector>
 #include <iostream>
 

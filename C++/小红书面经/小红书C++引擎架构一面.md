@@ -1187,7 +1187,7 @@ IO多路复用主要应用于网络编程中，特别是在需要处理大量并
 
 #### 参考代码
 
-```
+```c++
 #include <iostream>
 #include <unordered_map>
 using namespace std;

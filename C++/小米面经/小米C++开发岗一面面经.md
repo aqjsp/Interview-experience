@@ -1,3 +1,5 @@
+# 小米C++开发岗一面面经
+
 ## 网络部分
 
 来源：https://www.nowcoder.com/discuss/395324470116851712?sourceSSR=users
@@ -111,7 +113,7 @@ TCP（传输控制协议）首部中的序号字段主要用于实现 TCP 的可
 
 ### 5、看代码，改错
 
-```
+```c++
 // 一阶段
 char* get_buffer(const int size)
 {
@@ -132,7 +134,7 @@ char* get_buffer()
 
 为了修正这个问题，你可以将 `a` 定义为动态分配的数组，这样它的生命周期将延长到其所在的作用域结束。
 
-```
+```c++
 char* get_buffer(const int size)
 {
     char* a = new char[size]; // 使用动态内存分配
@@ -151,7 +153,7 @@ char* get_buffer(const int size)
 
 可以将 `a` 定义为 `static`，并且将其声明为 `static char a[10];` 放在函数外部，这样它就成为了一个全局的静态数组，并且可以在函数外部访问。
 
-```
+```c++
 static char a[10];
 
 char* get_buffer()
@@ -162,7 +164,7 @@ char* get_buffer()
 
 ### 6、提出需求，返回一个指定字节大小的内存，函数返回值代表成功与否，0代表成功，1代表失败
 
-```
+```c++
 int get_mem(char **a, int size)
 {
 	*a = new char[size];
@@ -201,7 +203,7 @@ int get_mem(char **a, int size)
 
 给个简单的示例，演示了如何在构造函数中使用智能指针来管理动态分配的内存，并处理可能抛出的异常：
 
-```
+```c++
 #include <memory>
 #include <iostream>
 
@@ -272,13 +274,13 @@ int main() {
 
 定义一个宏：
 
-```
+```c++
 #define SUM(x, y) ((x) + (y))
 ```
 
 这个宏接受两个参数 `x` 和 `y`，并返回它们的和。在使用时，你可以像下面这样使用宏：
 
-```
+```c++
 int a = 5;
 int b = 10;
 int result = SUM(a, b); // result 的值为 15
@@ -290,7 +292,7 @@ int result = SUM(a, b); // result 的值为 15
 
 给个例子：
 
-```
+```c++
 #include <iostream>
 
 // 定义一个函数，用于计算两个整数的和
@@ -440,7 +442,7 @@ int main() {
 
 在 Unix/Linux 系统中，可以使用 `shmget` 函数来创建共享内存。该函数的原型如下：
 
-```
+```c++
 #include <sys/ipc.h>
 #include <sys/shm.h>
 
@@ -457,7 +459,7 @@ int shmget(key_t key, size_t size, int shmflg);
 
 以下是一个简单的示例，演示了如何使用 `shmget` 函数创建共享内存：
 
-```
+```c++
 #include <stdio.h>
 #include <sys/ipc.h>
 #include <sys/shm.h>

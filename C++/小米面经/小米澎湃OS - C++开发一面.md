@@ -125,7 +125,7 @@ C++中，全局变量是在程序的全局作用域中定义的变量，它们�
 
 例如，计算斐波那契数列的第n项可以使用递归实现：
 
-```
+```c++
 int fibonacci(int n) {
     if (n <= 1) { // 基本情况
         return n;
@@ -146,108 +146,11 @@ int fibonacci(int n) {
 3. 在循环中，不断更新 pre、cur 和 node 的值，使得 cur 的 next 指向 pre，然后将 pre、cur 和 node 分别向后移动一位。
 4. 当 cur 移动到链表末尾时，pre 就是反转后的新头结点。
 
-演示过程：
-
-初始状态：
-
-![](https://raw.githubusercontent.com/aqjsp/Pictures/main/202401172027187.png)
-
-第一步：
-
-先定义一个空节点并初始化为nullptr，分别将这两个指针指向这个空节点和头结点，再定义一个节点用来临时存放节点。
-
-`ListNode* pre = nullptr; // 初始化 pre 为 nullptr`
-
-`ListNode* cur = head; // 初始化 cur 为头结点`
-
-` ListNode* node = nullptr; // 初始化 node 为 nullptr`
-
-![](https://raw.githubusercontent.com/aqjsp/Pictures/main/202401172029562.png)
-
-第二步：
-
-`node = cur->next; // 保存当前节点的下一个节点`
-
-`cur->next = pre; // 当前节点的 next 指向 pre，完成反转`
-
-![](https://raw.githubusercontent.com/aqjsp/Pictures/main/202401172031227.png)
-
-第三步：
-
-`pre = cur; // 更新 pre`
-`cur = node; // 更新 cur`
-
-![](https://raw.githubusercontent.com/aqjsp/Pictures/main/202401172031102.png)
-
-到这里，其实我们就可以使用一个循环，让继续这两步操作。不过为了大家更加看明白，我就将这个示例画完吧。
-
-第四步：
-
-`node = cur->next; // 保存当前节点的下一个节点`
-
-`cur->next = pre; // 当前节点的 next 指向 pre，完成反转`
-
-![](https://raw.githubusercontent.com/aqjsp/Pictures/main/202401172032580.png)
-
-第五步：
-
-`pre = cur; // 更新 pre`
-`cur = node; // 更新 cur`
-
-![](https://raw.githubusercontent.com/aqjsp/Pictures/main/202401172032184.png)
-
-第六步：
-
-`node = cur->next; // 保存当前节点的下一个节点`
-
-`cur->next = pre; // 当前节点的 next 指向 pre，完成反转`
-
-![](https://raw.githubusercontent.com/aqjsp/Pictures/main/202401172032268.png)
-
-第七步：
-
-`pre = cur; // 更新 pre`
-`cur = node; // 更新 cur`
-
-![](https://raw.githubusercontent.com/aqjsp/Pictures/main/202401172033026.png)
-
-第八步：
-
-`node = cur->next; // 保存当前节点的下一个节点`
-
-`cur->next = pre; // 当前节点的 next 指向 pre，完成反转`
-
-![](https://raw.githubusercontent.com/aqjsp/Pictures/main/202401172033264.png)
-
-第九步：
-
-`pre = cur; // 更新 pre`
-`cur = node; // 更新 cur`
-
-![](https://raw.githubusercontent.com/aqjsp/Pictures/main/202401172033432.png)
-
-第十步：
-
-`node = cur->next; // 保存当前节点的下一个节点`
-
-`cur->next = pre; // 当前节点的 next 指向 pre，完成反转`
-
-![](https://raw.githubusercontent.com/aqjsp/Pictures/main/202401172034510.png)
-
-第十一步：
-
-`pre = cur; // 更新 pre`
-`cur = node; // 更新 cur`
-
-![](https://raw.githubusercontent.com/aqjsp/Pictures/main/202401172034235.png)
-
-此时cur==nullptr，退出循环。
-
 #### 参考代码
 
 ##### C++
 
-```
+```c++
 #include <iostream>
 
 struct ListNode {

@@ -1,6 +1,4 @@
-# Momenta后端C++实习面经，C++实现线程池，感觉Momenta很喜欢考这种。。。
-
-
+# Momenta后端C++实习面经，C++实现线程池
 
 > 来源：https://www.nowcoder.com/share/jump/1741012808362
 

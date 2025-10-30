@@ -1,27 +1,6 @@
-# 【秋招面经】CVTE — C++面经，面试体验非常好，但还是不知道为什么没给过。。。
+# CVTE — C++面经
 
-大家好，我是Q。
-
-最近将Github界面做了一个全新的升级，之前也做过一个网站，但是维护起来还是非常麻烦的。
-
-所以直接就将Github当做自己的网站：
-
-![Github首页](https://cdn.jsdelivr.net/gh/aqjsp/photos/image-20250905182751464.png)
-
-小伙伴们直接可以去star了~
-
-https://github.com/aqjsp
-
-主要内容有：C++基础八股、LeetCode 100道热题（ACM模式）、C++后端面经等。
-
-今天还是继续给大家分享秋招面经，CVTE—C++面经，小伙伴说答得还都不错，但是还是没给过？？
-
-都有哪些原因呢？大家可以在评论区讨论讨论~
-
-
-```
-来源：https://www.nowcoder.com/discuss/793241858179600384
-```
+> 来源：https://www.nowcoder.com/discuss/793241858179600384
 
 ## 1、4 种智能指针有哪些分类？分别有什么作用？
 

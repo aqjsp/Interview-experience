@@ -1,3 +1,5 @@
+# 小米C++一面面经
+
 来源：https://www.nowcoder.com/discuss/557314429990207488
 
 ### 1、对于整个计算机体系的了解？
@@ -74,7 +76,7 @@
 
 来一个简单的无锁队列的示例：
 
-```C++
+```c++
 #include <atomic>
 #include <memory>
 

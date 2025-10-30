@@ -1,4 +1,6 @@
-来源：https://www.nowcoder.com/feed/main/detail/c9b2920227bd441a9da97ca5da4d567d
+# 虾皮C++后端一面
+
+> 来源：https://www.nowcoder.com/feed/main/detail/c9b2920227bd441a9da97ca5da4d567d
 
 简历上写的是c++，但面试官估计是Java的，一上来问我会不会Java，我说了会，他问了几个问题后，有些没答上来，就没有继续为难我。然后开启八股的轰炸。 
 
@@ -394,7 +396,7 @@ HTTPS是HTTP的安全版本，两者都用于在客户端和服务器之间传�
 
 示例代码：
 
-```C++
+```c++
 #include <iostream>
 #include <vector>
 #include <queue>

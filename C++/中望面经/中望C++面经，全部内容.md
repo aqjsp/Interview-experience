@@ -1,3 +1,5 @@
+# 中望软件C++面经
+
 来源：https://www.nowcoder.com/discuss/550638389125541888
 
 ## 一面 8.15 时长45min
@@ -149,7 +151,7 @@ link_directories(path/to/library)
 
 给个示例 CMakeLists.txt 文件：
 
-```C++
+```cmake
 # CMake 最低版本要求
 cmake_minimum_required(VERSION 3.10)
 

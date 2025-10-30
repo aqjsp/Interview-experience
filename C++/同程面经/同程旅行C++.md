@@ -1,15 +1,19 @@
+# 同程旅行C++面经
+
+>来源：https://www.nowcoder.com/feed/main/detail/efb0a2d156e84784b541ff713b7cbe1c
+
 ### 1、sizeof与strlen的区别？
 
 1. sizeof是C/C++中的操作符，用于获取一个数据类型或变量所占用的字节数。它是在编译时计算的，返回的是数据类型或变量的字节数，而不是字符数。主要用于静态分配内存和获取数据类型的大小。
 
-   ```
+   ```c++
    int arr[5];
    size_t size = sizeof(arr); // size = 20 (5 * 4 字节)
    ```
 
 2. strlen是C/C++中的函数，用于获取一个以null终止字符数组（C字符串）的长度，即字符数。它是在运行时计算的，遍历字符数组直到遇到null终止符。主要用于计算C字符串的长度。
 
-   ```
+   ```c++
    const char* str = "Hello, World!";
    size_t length = strlen(str); // length = 13
    ```
@@ -119,7 +123,7 @@
 
 参考代码
 
-```C++
+```c++
 #include <iostream>
 #include <vector>
 
@@ -180,7 +184,7 @@ int main() {
 
 使用示例：
 
-```C++
+```c++
 #include <iostream>
 #include <map>
 
@@ -313,5 +317,3 @@ TIME_WAIT状态和RST报文都与TCP连接的终止过程有关，但它们具�
 - 适用于高性能服务器，它能够轻松处理大量的并发连接。
 
 其余项目及实习经历不在这儿赘述。
-
-来源：https://www.nowcoder.com/feed/main/detail/efb0a2d156e84784b541ff713b7cbe1c

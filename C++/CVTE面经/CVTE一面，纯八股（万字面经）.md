@@ -1,3 +1,7 @@
+# CVTE一面，纯八股
+
+> 来源：https://www.nowcoder.com/discuss/536876532724256768
+
 ### 1、public、protected、private三者有什么联系、区别？
 
 1. `public`（公有）：
@@ -114,10 +118,6 @@ int main() {
 }
 ```
 
-结果输出：
-
-![img](https://vnkshn64w3.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjNmZWI0NTExYjdhNjc4ODEzZDUyYzA0ODQxN2ViYjFfYXBicXJqWGRXUmNiU2JpR1IxeVk4WXVSRkI4WnVScnhfVG9rZW46SEN2WWIzMWJ4bzhpemt4ZGljdmNWUVlibmptXzE3MDQ4MTQ3NzE6MTcwNDgxODM3MV9WNA)
-
 ### 7、有用过stl吗？里面有哪些内容？
 
 巴拉巴拉。。。
@@ -167,10 +167,6 @@ int main() {
     return 0;
 }
 ```
-
-结果输出：
-
-![img](https://vnkshn64w3.feishu.cn/space/api/box/stream/download/asynccode/?code=NzViOTA3ZTM3ZTU4MDA5NzA0MDlmYjdmZjFlOWFhYjdfb3BDVGlSZXNBZzFwUGFURHlDTks3VGo0RWhXdWpBVkRfVG9rZW46R3RzV2J5d1A1b1BLSkF4blZ1dWNWSE44bkdkXzE3MDQ4MTQ3NzE6MTcwNDgxODM3MV9WNA)
 
 ### 10、迭代器中如何删除一个迭代器又能保证后续迭代器不失效呢？
 
@@ -611,8 +607,6 @@ int main() {
 
 ### 21、计算机组成原理有了解吗？（可能是因为我本科非科班所以这么问）计算机的基本组件有哪些？
 
-![image-20240109234452815](E:\GitHub\Interview-experience\CVTE面经\assets\image-20240109234452815.png)
-
 1. 输入设备
 
 借助输入设备，用户可以将要处理的数据输入到计算机中。也就是说，输入设备使得用户和计算机之间创建了连接。 输入设备的功能是接收用户输入的数据，并将其转换为计算机能够处理的二进制形式。
@@ -730,5 +724,3 @@ HTTP（超文本传输协议）属于应用层。它是一种用于在Web上传�
 面试纯八股文，有些内容在上一个问题中提到了下个问题还会问让我觉得对方并不是很认真听我说了什么，对方口音有些重，我两三次没听明白问题，没开摄像头，语气较温和，觉得我答差不多了就ok问下一个。
 
 这是我第二次面试，感觉比第一次还是进步很多了，没有怯场，虽然半夜紧张到睡不着，后来想到“我只要把我知道的表达出来告诉对方就好了”就没那么紧张了，大家也可以试试。紧张的部分原因也是cvte27号晚上七点才发邮件约我28号早上面试，觉得准备时间好短，担心自己准备不够充分，所以大家在秋招期间平常就要好好准备，多多锻炼自己的表达能力，相信自己，只要把自己知道的全部表达完整、清晰就好！
-
-来源：https://www.nowcoder.com/discuss/536876532724256768

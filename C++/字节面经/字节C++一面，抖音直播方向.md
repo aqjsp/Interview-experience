@@ -1,7 +1,5 @@
 # 字节C++一面，抖音直播方向
 
-
-
 > 来源：https://www.nowcoder.com/feed/main/detail/191643ece75b4c5c95e4047f187e61e4
 
 ### 1、Python和C++的区别，Python的程序执行过程是怎样的？C和C++呢？
@@ -364,7 +362,7 @@ for (const auto& value : vec1) {
 
 哈希表通常由一个数组和一些辅助结构（如链表或树）组成。数组用于存储值，而辅助结构用于处理哈希冲突。
 
-```
+```c++
 #include <vector>
 #include <string>
 
@@ -411,7 +409,7 @@ public:
 - 每个数组元素存储一个链表（或其他数据结构），用于存储所有映射到该索引的键值对。
 - 当发生冲突时，新的键值对被添加到链表中。
 
-```
+```c++
 // 插入操作示例
 void insert(K key, V value) {
     int index = hashFunction(key) % size; // 计算索引
@@ -438,7 +436,7 @@ void insert(K key, V value) {
   - 二次探测：通过二次方函数来查找空位。
   - 双重哈希：使用第二个哈希函数确定步长。
 
-```
+```c++
 // 插入操作示例（线性探测）
 void insert(K key, V value) {
     int index = hashFunction(key) % size;
@@ -465,7 +463,7 @@ void insert(K key, V value) {
    - 如果为空，返回未找到。
    - 如果不为空，遍历链表或根据开放地址法查找，直到找到匹配的键。
 
-```
+```c++
 V find(K key) {
     int index = hashFunction(key) % size;
     Node* current = table[index];
@@ -485,7 +483,7 @@ V find(K key) {
 2. 如果找到，删除该节点。
 3. 更新链表或处理开放地址法中的占位符。
 
-```
+```c++
 void remove(K key) {
     int index = hashFunction(key) % size;
     Node* current = table[index];
@@ -521,7 +519,7 @@ void remove(K key) {
 
 - 扩展：当负载因子超过设定阈值时，创建一个更大的数组（通常是原数组大小的两倍），并重新计算所有元素的索引，插入到新的数组中。
 
-```
+```c++
 void resize() {
     int oldSize = size;
     size *= 2; // 扩展数组大小
@@ -555,7 +553,7 @@ B+树是一种自平衡的树数据结构，通常用于数据库和文件系统
 
 #### 2. B+树的结构示意
 
-```
+```c++
           [30]
          /    \
      [10,20]   [40,50]
@@ -572,7 +570,7 @@ B+树是一种自平衡的树数据结构，通常用于数据库和文件系统
 3. 如果叶子节点满了（超过最大容量），则需要分裂该节点，将中间键提升到父节点。
 4. 递归处理父节点，直到根节点。
 
-```
+```c++
 void insert(int key) {
     // 查找插入位置并插入
     // 处理节点分裂
@@ -586,7 +584,7 @@ void insert(int key) {
 3. 如果叶子节点的键值少于最小容量，需要从兄弟节点借一个键值或合并节点。
 4. 更新父节点的键值。
 
-```
+```c++
 void remove(int key) {
     // 查找并删除键值
     // 处理节点合并或借用
@@ -598,7 +596,7 @@ void remove(int key) {
 1. 从根节点开始，根据键值逐层向下查找。
 2. 到达叶子节点后返回数据或指针。
 
-```
+```c++
 bool search(int key) {
     // 查找并返回键值
 }
@@ -789,7 +787,7 @@ B+树支持并发访问，多个线程可以同时进行插入、删除和查找
 
 #### 参考代码
 
-```
+```c++
 #include <iostream>
 #include <vector>
 #include <string>

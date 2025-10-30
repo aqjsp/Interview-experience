@@ -2,8 +2,6 @@
 
 > 来源：https://www.nowcoder.com/discuss/799372861390471168
 
-
-
 ### 1、虚函数的实现机制？虚函数表和虚表指针的内存空间布局，他们的分别存放在哪里？
 
 虚函数（Virtual Function）是C++实现多态性（Polymorphism）的关键机制，它允许通过基类指针或引用调用派生类中重写的同名函数。这种机制的核心是**虚函数表（Virtual Table, vtable）**和**虚表指针（Virtual Table Pointer, vptr）**。
