@@ -273,7 +273,7 @@
 
 假设有一个类`Person`，其中包含一个指向字符串的指针成员变量`name`，进行浅拷贝和深拷贝。
 
-```c++
+```cpp
 #include <iostream>
 #include <cstring>
 
@@ -371,7 +371,7 @@ RAII是一种资源获取即初始化的编程技术，在对象的构造函数�
 
 - 示例：
 
-  ```c++
+  ```cpp
   std::unique_ptr<int> ptr(new int(5));
   ```
 
@@ -385,7 +385,7 @@ RAII是一种资源获取即初始化的编程技术，在对象的构造函数�
 
 - 示例：
 
-  ```c++
+  ```cpp
   std::shared_ptr<int> ptr1(new int(5));
   std::shared_ptr<int> ptr2 = ptr1;
   ```
@@ -399,7 +399,7 @@ RAII是一种资源获取即初始化的编程技术，在对象的构造函数�
 
 - 示例：
 
-  ```c++
+  ```cpp
   std::shared_ptr<int> ptr1(new int(5));
   std::weak_ptr<int> weakPtr = ptr1;
   std::shared_ptr<int> ptr2 = weakPtr.lock();
@@ -414,7 +414,7 @@ RAII是一种资源获取即初始化的编程技术，在对象的构造函数�
 
 - 示例：
 
-  ```c++
+  ```cpp
   std::auto_ptr<int> ptr(new int(5));  // C++11之前的写法
   ```
 

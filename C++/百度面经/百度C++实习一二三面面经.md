@@ -152,7 +152,7 @@ Coredump 是指当一个程序发生严重错误（如段错误、内存访问�
 
 ### 11、手撕线程池？
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -292,7 +292,7 @@ ZooKeeper 提供了简单而强大的 API，可以用于创建、删除、读取
 
 使用 `std::function` 需要指定函数的签名，即函数的参数类型和返回类型。以下是 `std::function` 的基本用法：
 
-```c++
+```cpp
 #include <functional>
 #include <iostream>
 
@@ -320,7 +320,7 @@ int main() {
 
 以下是 `std::bind` 的基本用法：
 
-```c++
+```cpp
 #include <functional>
 #include <iostream>
 
@@ -371,7 +371,7 @@ int main() {
 
 **值传递的拷贝构造函数**
 
-```c++
+```cpp
 class MyClass {
 public:
     int data;
@@ -388,7 +388,7 @@ public:
 
 **引用传递的拷贝构造函数**
 
-```c++
+```cpp
 class MyClass {
 public:
     int data;
@@ -431,7 +431,7 @@ public:
 
 `resize` 方法用于改变 `std::vector` 的大小，可以增加或减少元素的数量。当增加元素时，新元素将使用默认值进行初始化；当减少元素时，多余的元素将被删除。
 
-```c++
+```cpp
 #include <vector>
 #include <iostream>
 
@@ -452,7 +452,7 @@ int main() {
 
 `reserve` 方法用于预留容器的存储空间，但不改变容器的大小。这样做可以避免由于容器重新分配内存而导致的多次分配和拷贝，从而提高了 `push_back` 操作的性能。
 
-```c++
+```cpp
 #include <vector>
 #include <iostream>
 
@@ -596,7 +596,7 @@ int main() {
 
    - 使用场景：适用于多个智能指针需要共享同一块内存的情况。例如，在多个对象之间共享某个资源或数据。
 
-   - ```C++
+   - ```cpp
      std::shared_ptr<int> sharedInt = std::make_shared<int>(42);
      std::shared_ptr<int> anotherSharedInt = sharedInt; // 共享同一块内存
      ```
@@ -607,7 +607,7 @@ int main() {
 
    - 使用场景：适用于不需要多个指针共享同一块内存的情况，即单一所有权。通常用于资源管理，例如动态分配的对象或文件句柄。
 
-   - ```C++
+   - ```cpp
      std::unique_ptr<int> uniqueInt = std::make_unique<int>(42);
      // uniqueInt 的所有权是唯一的
      ```
@@ -618,7 +618,7 @@ int main() {
 
    - 使用场景：适用于协助解决`std::shared_ptr`的循环引用问题，其中多个`shared_ptr`互相引用，导致内存泄漏。
 
-   - ```C++
+   - ```cpp
      std::shared_ptr<int> sharedInt = std::make_shared<int>(42);
      std::weak_ptr<int> weakInt = sharedInt;
      ```
@@ -629,7 +629,7 @@ int main() {
 
    - 使用场景：在C++98标准中，可用于独占性地管理动态分配的对象。不推荐在现代C++中使用。
 
-   - ```C++
+   - ```cpp
      std::auto_ptr<int> autoInt(new int(42)); // 已废弃
      ```
 
@@ -644,7 +644,7 @@ int main() {
 
 **参考代码**：
 
-```c++
+```cpp
 #include <iostream>
 
 // 链表节点的定义
@@ -708,7 +708,7 @@ int main() {
 
 1. 首先使用 `awk` 命令从日志文件中提取出 IP 和访问时间，并计算访问时间的差值（假设以秒为单位），然后输出到一个临时文件中。假设日志文件的格式为 `IP 访问时间`，并且访问时间的格式为 `YYYY-MM-DD HH:MM:SS`，可以使用如下命令：
 
-```
+```bash
 awk '{split($2, a, /[\[\]:]/); "date -d\""a[2]" "a[3]"\""| getline d; print $1, $2, systime()-mktime(d)}' access.log > temp.log
 ```
 
@@ -716,7 +716,7 @@ awk '{split($2, a, /[\[\]:]/); "date -d\""a[2]" "a[3]"\""| getline d; print $1, 
 
 2. 然后使用 `sort` 命令对临时文件中的记录按照访问时间的差值进行排序，并输出到另一个临时文件中：
 
-```
+```bash
 sort -k3 -n temp.log > sorted_temp.log
 ```
 
@@ -724,7 +724,7 @@ sort -k3 -n temp.log > sorted_temp.log
 
 3. 最后使用 `awk` 命令输出访问时间超过阈值的 IP：
 
-```
+```bash
 awk '{if ($3 > 60) print $1}' sorted_temp.log
 ```
 

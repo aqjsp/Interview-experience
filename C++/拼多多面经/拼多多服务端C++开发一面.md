@@ -94,7 +94,7 @@
 
 ##### 给个例子
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -183,7 +183,7 @@ STL的空间配置器（Allocator）在SGI STL实现中采用了双层级配置�
 
 一级配置器的实现相对简单，主要依赖于C语言的内存管理函数。
 
-```c++
+```cpp
 template <class T>
 class primary_allocator {
 public:
@@ -219,7 +219,7 @@ public:
 
 二级配置器的实现较为复杂，涉及内存池和自由链表的管理。
 
-```c++
+```cpp
 template <class T>
 class secondary_allocator {
 public:
@@ -329,7 +329,7 @@ obj* secondary_allocator<>::free_list[16] = {0};
 
 给个简单的应用层内存池的实现示例，展示了如何在应用层实现内存池以优化内存管理：
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 #include <mutex>
@@ -446,7 +446,7 @@ int main() {
 
 给一个简化的 `malloc` 实现示例，展示了基本的内存池和链表管理机制：
 
-```c++
+```cpp
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -549,7 +549,7 @@ int main() {
 
 1. 程序访问内存：
 
-```c++
+```cpp
 char *ptr = malloc(30000);  // 调用 malloc 分配 30K 内存
 *ptr = 'A';  // 尝试写入一个字符
 ```
@@ -678,7 +678,7 @@ Linux内核通过多种策略来回收不再使用的内存，包括：
 
 函数重载是指在同一个作用域内定义多个同名函数，但这些函数的参数列表不同（参数的数量、类型或顺序不同）。编译器根据传入的参数类型和数量来选择合适的函数版本进行调用。
 
-```c++
+```cpp
 void print(int x) {
     std::cout << "Integer: " << x << std::endl;
 }
@@ -698,7 +698,7 @@ int main() {
 
 运算符重载是指重新定义某个运算符在特定类型对象上的行为。通过运算符重载，可以使用标准的运算符符号来操作自定义的数据类型，使代码更直观和自然。
 
-```c++
+```cpp
 class Complex {
 public:
     double real, imag;
@@ -734,7 +734,7 @@ int main() {
 
 虚函数是在基类中使用 `virtual` 关键字声明的成员函数。虚函数允许派生类重写（Override）基类中的同名函数，从而实现多态行为。
 
-```c++
+```cpp
 class Base {
 public:
     virtual void display() {
@@ -754,7 +754,7 @@ public:
 
 派生类中的虚函数必须与基类中的虚函数具有相同的函数签名（函数名、参数列表和返回类型），才能构成重写。重写的关键在于 `override` 关键字，它用于显式地表示派生类中的函数重写了基类中的虚函数。
 
-```c++
+```cpp
 class Derived : public Base {
 public:
     void display() override {
@@ -777,7 +777,7 @@ public:
 1. 对象创建：当创建一个对象时，编译器会在对象的内存布局中添加一个虚表指针，该指针指向类的虚函数表。
 2. 函数调用：当通过基类指针或引用调用虚函数时，编译器会通过虚表指针查找虚函数表，找到实际的函数地址，从而调用派生类中的函数。
 
-```c++
+```cpp
 Base* basePtr = new Derived();
 basePtr->display();  // 输出 "Display from Derived"
 ```
@@ -802,7 +802,7 @@ basePtr->display();  // 输出 "Display from Derived"
 
 如果基类的析构函数是虚函数，那么派生类的析构函数也会被视为虚函数。这样可以确保在通过基类指针删除派生类对象时，能够正确调用派生类的析构函数，从而避免内存泄漏。
 
-```c++
+```cpp
 class Base {
 public:
     virtual ~Base() {
@@ -828,7 +828,7 @@ int main() {
 
 抽象类是包含一个或多个纯虚函数（Pure Virtual Function）的类。纯虚函数是在基类中声明但没有实现的虚函数，形式为 `virtual ReturnType FunctionName() = 0;`。抽象类不能被实例化，但可以作为基类被派生。
 
-```c++
+```cpp
 class AbstractClass {
 public:
     virtual void doSomething() = 0;  // 纯虚函数
@@ -846,7 +846,7 @@ public:
 
 协变允许派生类的虚函数返回类型与基类的虚函数返回类型不同，但必须是基类返回类型的派生类。
 
-```c++
+```cpp
 class Base {};
 class Derived : public Base {};
 
@@ -890,7 +890,7 @@ public:
 
 当创建一个对象时，编译器会在对象的内存布局中插入一个虚表指针，并将其初始化为指向该类的虚函数表。
 
-```c++
+```cpp
 class Base {
 public:
     virtual void func1() { std::cout << "Base::func1" << std::endl; }
@@ -911,7 +911,7 @@ int main() {
 
 上述代码中，`Derived` 对象的内存布局如下：
 
-```c++
+```cpp
 +-----------------+
 | vptr            |  -> 指向 Derived 的虚函数表
 +-----------------+
@@ -923,7 +923,7 @@ int main() {
 
 当通过基类指针或引用调用虚函数时，编译器会通过虚表指针查找虚函数表，找到实际的函数地址，从而调用派生类中的函数。
 
-```c++
+```cpp
 basePtr->func1();  // 输出 "Derived::func1"
 basePtr->func2();  // 输出 "Derived::func2"
 ```
@@ -943,7 +943,7 @@ basePtr->func2();  // 输出 "Derived::func2"
 
 在继承关系中，派生类会继承基类的虚函数表，并在其中添加自己新增的虚函数的地址。如果派生类重写了基类的虚函数，虚函数表中的相应条目会被更新为指向派生类的实现。
 
-```c++
+```cpp
 class Base {
 public:
     virtual void func1() { std::cout << "Base::func1" << std::endl; }
@@ -993,7 +993,7 @@ public:
 
 #### 参考代码
 
-```c++
+```cpp
 #include <iostream>
 using namespace std;
 

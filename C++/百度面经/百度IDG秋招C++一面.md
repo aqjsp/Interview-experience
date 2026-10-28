@@ -14,7 +14,7 @@
 
 虚函数在基类中使用 `virtual` 关键字进行声明：
 
-```c++
+```cpp
 class Base {
 public:
     virtual void show() {
@@ -35,7 +35,7 @@ public:
 
 通过基类指针或引用调用虚函数时，将会根据实际对象的类型调用相应的函数版本：
 
-```c++
+```cpp
 int main() {
     Base* b = new Derived();
     b->show();  // 输出 "Derived class show function"
@@ -75,7 +75,7 @@ int main() {
 
 示例：
 
-```c++
+```cpp
 class Rectangle {
 private:
     double length;
@@ -116,7 +116,7 @@ public:
 
 示例：
 
-```c++
+```cpp
 class Shape {
 public:
     void setColor(std::string c) {
@@ -157,7 +157,7 @@ private:
 
 示例：
 
-```c++
+```cpp
 class Shape {
 public:
     virtual void draw() {
@@ -211,7 +211,7 @@ int main() {
 
 - 函数重载：同一个函数名可以有多个定义，编译器根据参数的类型、顺序、数量来决定调用哪个函数。
 
-```c++
+```cpp
 class Calculator {
 public:
     int add(int a, int b) {
@@ -228,7 +228,7 @@ public:
 
 - 运算符重载：对C++中的运算符（如`+`, `-`, `*`, `/` 等）进行重载，使其能够用于类对象。
 
-```c++
+```cpp
 class Complex {
 public:
     Complex operator+(const Complex& other) {
@@ -252,7 +252,7 @@ private:
 
 - 虚函数：在基类中声明虚函数，在派生类中可以重写（覆盖）这些虚函数，通过基类指针或引用调用这些虚函数时，根据实际对象的类型来决定调用哪个函数。
 
-```c++
+```cpp
 class Shape {
 public:
     virtual void draw() {
@@ -294,7 +294,7 @@ int main() {
 
 当一个类以 `public` 方式继承另一个类时，基类的 `public` 成员在派生类中保持为 `public`，基类的 `protected` 成员在派生类中保持为 `protected`，基类的 `private` 成员在派生类中依然不可访问。
 
-```c++
+```cpp
 class Base {
 public:
     int publicMember;
@@ -315,7 +315,7 @@ class Derived : public Base {
 
 当一个类以 `protected` 方式继承另一个类时，基类的 `public` 成员和 `protected` 成员在派生类中都变成 `protected`，基类的 `private` 成员在派生类中依然不可访问。
 
-```c++
+```cpp
 class Derived : protected Base {
     // publicMember 是 protected
     // protectedMember 是 protected
@@ -327,7 +327,7 @@ class Derived : protected Base {
 
 当一个类以 `private` 方式继承另一个类时，基类的 `public` 成员和 `protected` 成员在派生类中都变成 `private`，基类的 `private` 成员在派生类中依然不可访问。
 
-```c++
+```cpp
 class Derived : private Base {
     // publicMember 是 private
     // protectedMember 是 private
@@ -349,7 +349,7 @@ class Derived : private Base {
 
 ##### 示例：
 
-```c++
+```cpp
 class Example {
 public:
     void func(int a) {
@@ -384,7 +384,7 @@ int main() {
 
 ##### 示例：
 
-```c++
+```cpp
 class Base {
 public:
     virtual void show() {
@@ -736,7 +736,7 @@ HTTPS（HyperText Transfer Protocol Secure）是一种在 HTTP（超文本传输
 
 #### C++实现
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 using namespace std;

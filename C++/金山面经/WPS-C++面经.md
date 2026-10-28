@@ -57,7 +57,7 @@ TCP传输数据过程中会出现粘包问题的主要原因是TCP是面向流�
 
 参考代码：
 
-```C++
+```cpp
 #include <iostream>
 
 struct ListNode {
@@ -127,7 +127,7 @@ int main() {
 
 参考代码：
 
-```C++
+```cpp
 #include <iostream>
 
 struct TreeNode {
@@ -201,7 +201,7 @@ int main() {
 
 参考代码：
 
-```C++
+```cpp
 #include <iostream>
 #include <unordered_map>
 #include <unordered_set>
@@ -329,7 +329,7 @@ int main() {
 
 给个小demo：
 
-```C++
+```cpp
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -475,7 +475,7 @@ Muduo 是一个基于 Reactor 模式的 C++ 网络库，设计简洁高效，提
 
 给个demo：
 
-```C++
+```cpp
 #include <iostream>
 #include <queue>
 #include <mutex>

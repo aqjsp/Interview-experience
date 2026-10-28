@@ -14,7 +14,7 @@
 - 简化接口： 封装通过提供清晰的接口简化了类的使用，使用者只需关注如何使用接口而不需要了解内部实现。
 - 提高可维护性： 内部实现的修改不会影响外部使用者，从而提高了代码的可维护性。
 
-```C
+```cpp
 #include <iostream>
 #include <string>
 
@@ -67,7 +67,7 @@ int main() {
 - 层次结构： 继承可以创建类的层次结构，使得代码更有组织性和可扩展性。
 - 多态性支持： 继承是多态性的基础，通过基类指针或引用调用派生类的方法实现多态行为。
 
-```C
+```cpp
 #include <iostream>
 #include <string>
 
@@ -117,7 +117,7 @@ int main() {
 - 可扩展性： 可以轻松地添加新的派生类而不影响现有的代码，增加了系统的可扩展性。
 - 简化接口： 多态性简化了代码的接口，允许使用者按统一的方式与不同类型的对象交互。
 
-```C
+```cpp
 #include <iostream>
 #include <vector>
 
@@ -648,7 +648,7 @@ Redis 提供了一些配置参数来控制过期键的管理和删除行为：
 
 展示Redis 如何在客户端请求时进行惰性删除：
 
-```c
+```cpp
 // 检查键是否过期
 void checkExpiration(redisDb *db, robj *key) {
     long long expiretime = dictGetInteger(db->expires, key);
@@ -875,7 +875,7 @@ WHERE u.age > 20
 
 #### 参考代码
 
-```c++
+```cpp
 #include <vector>
 #include <algorithm>
 #include <iostream>

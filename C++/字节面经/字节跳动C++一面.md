@@ -8,7 +8,7 @@ mmap 是 Unix/Linux 系统中用于内存映射的一个系统调用，其主要
 
 #### `mmap`函数原型及参数
 
-```c++
+```cpp
 void *mmap(void *addr, size_t length, int prot, int flags, int fd, off_t offset);
 ```
 
@@ -64,13 +64,13 @@ Linux 特有的 I/O 多路复用机制，通过内核事件表和回调机制实
 
 `epoll_create`: 创建一个 epoll 实例，返回一个文件描述符（epfd）。
 
-```c++
+```cpp
 int epoll_create(int size);
 ```
 
 `epoll_ctl`: 向 epoll 实例注册、修改或删除文件描述符及其关注的事件。
 
-```c++
+```cpp
 int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event);
 ```
 
@@ -79,7 +79,7 @@ int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event);
 
 `epoll_wait`: 等待事件发生，返回就绪的事件列表。
 
-```c++
+```cpp
 int epoll_wait(int epfd, struct epoll_event *events, int maxevents, int timeout);
 ```
 
@@ -413,14 +413,14 @@ ET（边沿触发，Edge Triggered）：
 
 请求：
 
-```c++
+```cpp
 GET /path HTTP/1.0
 Host: example.com
 ```
 
 响应：
 
-```
+```http
 HTTP/1.0 200 OK
 Content-Type: text/html
 Content-Length: 123
@@ -475,7 +475,7 @@ HTTP/1.0 的性能瓶颈（如频繁建连）促使 HTTP/1.1 的推出，成为�
 
 请求：
 
-```
+```http
 GET /path HTTP/1.1
 Host: example.com
 Connection: keep-alive
@@ -483,7 +483,7 @@ Connection: keep-alive
 
 响应：
 
-```
+```http
 HTTP/1.1 200 OK
 Content-Type: text/html
 Transfer-Encoding: chunked
@@ -546,7 +546,7 @@ HTTP/1.1 在高并发和低延迟场景下性能不足，HTTP/2 引入了二进�
 
 数据以二进制帧传输：
 
-```
+```text
 Frame: [Length | Type | Flags | Stream ID | Payload]
 ```
 
@@ -597,7 +597,7 @@ HTTP/2 的 TCP 队头阻塞问题促使 HTTP/3 使用 UDP + QUIC 协议，进一
 
 QUIC 数据包：
 
-```
+```text
 [Header | Encrypted Payload]
 ```
 
@@ -651,7 +651,7 @@ TCP（传输控制协议）的三次握手是建立可靠连接的关键过程�
 
 三次握手的完整流程：
 
-```
+```text
 客户端                  服务器
   SYN (Seq=x)  ------>
              <------  SYN+ACK (Seq=y, Ack=x+1)
@@ -757,7 +757,7 @@ SYN 洪泛攻击是一种常见的拒绝服务（DoS）攻击，针对 TCP 三�
 
    修改 Linux 参数：
 
-   ```
+   ```text
    sysctl -w net.core.somaxconn=1024
    sysctl -w net.ipv4.tcp_max_syn_backlog=2048
    ```
@@ -770,7 +770,7 @@ SYN 洪泛攻击是一种常见的拒绝服务（DoS）攻击，针对 TCP 三�
 
    调整 tcp_synack_retries：
 
-   ```
+   ```text
    sysctl -w net.ipv4.tcp_synack_retries=1
    ```
 
@@ -787,7 +787,7 @@ SYN 洪泛攻击是一种常见的拒绝服务（DoS）攻击，针对 TCP 三�
 
    配置：
 
-   ```
+   ```text
    sysctl -w net.ipv4.tcp_syncookies=1
    ```
 
@@ -809,7 +809,7 @@ SYN 洪泛攻击是一种常见的拒绝服务（DoS）攻击，针对 TCP 三�
 
    在防火墙（如 iptables）限制 SYN 包速率：
 
-   ```
+   ```text
    iptables -A INPUT -p tcp --syn -m limit --limit 10/s -j ACCEPT
    iptables -A INPUT -p tcp --syn -j DROP
    ```
@@ -851,7 +851,7 @@ TCP 拥塞控制基于“加性增大、乘性减小”（AIMD）的思想。当
 
 MSS = 1460 字节，ssthresh = 16 MSS：
 
-```
+```text
 RTT 1: cwnd = 1  → 发送 1 段
 RTT 2: cwnd = 2  → 发送 2 段
 RTT 3: cwnd = 4  → 发送 4 段
@@ -881,7 +881,7 @@ RTT 5: cwnd = 16 → 进入拥塞避免
 
 ssthresh = 16 MSS：
 
-```
+```text
 RTT 1: cwnd = 16 → 发送 16 段
 RTT 2: cwnd = 17 → 发送 17 段
 RTT 3: cwnd = 18 → 发送 18 段
@@ -935,7 +935,7 @@ RTT 3: cwnd = 18 → 发送 18 段
 
 示例：
 
-```
+```text
 初始: cwnd = 20
 丢包后: 3 个重复 ACK
 调整: ssthresh = 10, cwnd = 13
@@ -1009,7 +1009,7 @@ Persist Timer：
 
 #### 参考代码（C++）
 
-```c++
+```cpp
 #include <stack>
 
 struct ListNode {

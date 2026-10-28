@@ -28,7 +28,7 @@
 3. 优点： 哈希表提供了快速的查找性能，平均情况下插入、查找和删除操作的时间复杂度为O(1)。它适用于需要高效查找的情况，如字典、集合、缓存等。
 4. 示例：
 
-```C
+```cpp
 #include <iostream>
 #include <unordered_map>  // C++标准库中的哈希表
 
@@ -58,7 +58,7 @@ int main() {
 3. 优点： 动态数组支持高效的随机访问（O(1)时间复杂度），并且可以动态调整大小以适应不同的数据集合大小。这使得它适用于需要灵活管理数据大小的情况。
 4. 示例：
 
-```C
+```cpp
 #include <iostream>
 #include <vector>  // C++标准库中的动态数组
 
@@ -96,7 +96,7 @@ int main() {
 
 1. 定义结构体： 首先，定义一个结构体，以表示数据库模型中的每一行记录。结构体的字段应该与数据库表的列相对应。
 
-```C
+```cpp
 struct UserInfo {
     int userId;
     std::string username;
@@ -106,7 +106,7 @@ struct UserInfo {
 
 2. 查询数据库： 使用数据库连接工具（如ODBC、JDBC、SQLAlchemy等）从数据库中查询记录。你需要编写SQL查询语句来检索所需的数据。
 
-```C
+```cpp
 // 假设使用SQL查询从数据库中检索用户信息
 std::string sqlQuery = "SELECT user_id, username, email FROM users WHERE user_id = ?";
 // 执行查询并获取结果
@@ -115,7 +115,7 @@ std::string sqlQuery = "SELECT user_id, username, email FROM users WHERE user_id
 
 3. 将结果映射到结构体： 遍历查询结果并将每一行的字段值分配给相应的结构体字段。
 
-```C
+```c
 // 假设查询结果已经保存在resultSet中
 UserInfo user;
 if (resultSet.next()) {  // 假设resultSet有一个next()方法用于迭代结果
@@ -127,7 +127,7 @@ if (resultSet.next()) {  // 假设resultSet有一个next()方法用于迭代结�
 
 4. 使用结构体： 一旦将数据库记录映射到结构体中，你可以在业务逻辑中使用该结构体。
 
-```C
+```cpp
 std::cout << "User ID: " << user.userId << std::endl;
 std::cout << "Username: " << user.username << std::endl;
 std::cout << "Email: " << user.email << std::endl;
@@ -194,7 +194,7 @@ B+ 树的特点：
 2. 关闭（Closed）： 关闭意味着已存在的代码不能随意修改。修改可能导致不必要的风险和不稳定性。因此，已存在的代码应该被视为稳定的，不应该被频繁修改。
 3. 示例：假设有一个形状（Shape）类，它有一个计算面积的方法，现在需要添加新的形状（例如圆形、三角形），可以通过创建新的形状子类来扩展该类而不修改现有代码。
 
-```C
+```cpp
 class Shape {
 public:
     virtual double area() const = 0; // 抽象方法
@@ -231,7 +231,7 @@ public:
 1. 单例模式（Singleton Pattern）： 用于确保一个类只有一个实例，并提供全局访问点。在项目中，单例模式常用于管理共享资源，如配置信息、日志记录器等。
    -  例如，一个日志记录器可以使用单例模式来确保在应用程序中只有一个日志记录器实例，以便在多个地方记录日志。
 
-```C
+```cpp
 class Logger {
 private:
     Logger() {}  // 私有构造函数，防止外部实例化
@@ -261,7 +261,7 @@ int main() {
 
 例如，一个图形库可以使用工厂模式来创建不同类型的图形对象。
 
-```C
+```cpp
 // 基类
 class Shape {
 public:
@@ -315,7 +315,7 @@ int main() {
 
 例如，一个新闻发布系统可以使用观察者模式，让多个订阅者（观察者）订阅新闻发布者（主题）的新闻。
 
-```C
+```cpp
 #include <iostream>
 #include <vector>
 
@@ -405,7 +405,7 @@ int main() {
 
 13. 虚拟代理（Virtual Proxy）： 虚拟代理用于延迟创建昂贵对象的实例，直到需要时才进行实际的创建。例如，在加载大型图片或文档时，可以使用虚拟代理来避免初始加载时间过长。
 
-```C
+```cpp
 #include <iostream>
 #include <string>
 

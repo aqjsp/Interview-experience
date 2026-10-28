@@ -77,7 +77,7 @@ C++ 中虚函数的实现涉及到虚函数表（vtable）和虚函数指针（v
 
 1. 固定大小分配：在分配内存之前，你可以明确知道所需的内存块大小，然后使用这个大小来分配内存。在释放内存时，你可以使用相同的大小信息。
 
-```C
+```bash
 size_t block_size = 100; // 假设内存块大小是100字节
 void* ptr = malloc(block_size);
 // ...
@@ -86,7 +86,7 @@ free(ptr);
 
 2. 分配包含大小信息的内存块：在实际分配的内存块前存储大小信息。这是一种常见的做法，通常称为"头信息"。这样，你可以在释放内存时，根据头信息来确定内存块的大小。
 
-```C
+```bash
 size_t block_size = 100;
 void* ptr = malloc(block_size + sizeof(size_t)); // 额外存储大小信息
 *((size_t*)ptr) = block_size; // 存储大小信息
@@ -120,7 +120,7 @@ free(ptr);
 
 1. 多态行为：多态是面向对象编程的一个重要特性，允许通过基类指针或引用来调用派生类的函数。如果基类的析构函数不是虚函数，那么在使用多态时可能会导致问题。考虑以下情况：
 
-```C
+```c
 Base* basePtr = new Derived;
 delete basePtr; // 如果析构函数不是虚函数，只会调用Base的析构函数
 ```
@@ -158,7 +158,7 @@ delete basePtr; // 如果析构函数不是虚函数，只会调用Base的析构
 
 示例：
 
-```C
+```c
 // mymacros.h
 #ifndef MYMACROS_H
 #define MYMACROS_H
@@ -170,7 +170,7 @@ delete basePtr; // 如果析构函数不是虚函数，只会调用Base的析构
 
 在源文件中包含头文件：
 
-```C
+```cpp
 // main.cpp
 #include "mymacros.h"
 #include <iostream>
@@ -185,7 +185,7 @@ int main() {
 
 2. 源文件：您也可以在源文件中定义宏，通常用于只在一个源文件中使用的情况。这些宏定义在源文件的顶部。
 
-```C
+```cpp
 // main.cpp
 #include <iostream>
 
@@ -201,7 +201,7 @@ int main() {
 
 3. 命令行参数：您可以在编译源文件时，通过命令行参数 `-D` 来定义宏。这种宏定义仅适用于特定的编译。
 
-```C
+```bash
 g++ -DDEBUG=1 main.cpp -o myprogram
 ```
 
@@ -213,19 +213,19 @@ g++ -DDEBUG=1 main.cpp -o myprogram
 
 1. 手动连接：这是最基本的连接方式，通常用于在运行时建立连接。你可以使用`QObject`的`connect()`方法手动连接信号和槽。这种方式需要使用`SIGNAL()`和`SLOT()`宏来指定信号和槽。例如：
 
-```C
+```c
 QObject::connect(sender, SIGNAL(senderSignal()), receiver, SLOT(receiverSlot()));
 ```
 
 2. 自动连接：Qt 5引入了新的连接语法，不再需要使用 `SIGNAL()` 和 `SLOT()` 宏，而是使用槽函数的指针。这种方式更加类型安全，编译器可以检测连接的有效性。示例：
 
-```C
+```c
 QObject::connect(sender, &SenderClass::senderSignal, receiver, &ReceiverClass::receiverSlot);
 ```
 
 3. Lambda表达式连接：你可以使用Lambda表达式连接信号与槽，这样可以在连接的同时执行一些自定义操作。示例：
 
-```C
+```c
 QObject::connect(sender, &SenderClass::senderSignal, [=]() {
     // 处理信号触发的操作
 });
@@ -311,7 +311,7 @@ QObject::connect(sender, &SenderClass::senderSignal, [=]() {
 3. 互斥锁的基本操作包括`lock()`（获取锁）、`unlock()`（释放锁）和`try_lock()`（尝试获取锁，不会阻塞）。
 4. 互斥锁的典型使用场景是用它来锁住对共享数据的访问，以确保一次只有一个线程能够修改共享数据。
 
-```C
+```cpp
 #include <iostream>
 #include <mutex>
 
@@ -330,7 +330,7 @@ void someFunction() {
 2. 在C++中，你可以使用`std::condition_variable`类来创建条件变量。
 3. 通常，条件变量与互斥锁一起使用。等待线程会等待某个条件为真时才能继续执行，而通知线程则会在某个条件变为真时通知等待线程。
 
-```C
+```cpp
 #include <iostream>
 #include <thread>
 #include <mutex>

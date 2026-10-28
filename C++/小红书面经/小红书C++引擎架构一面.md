@@ -18,7 +18,7 @@
 
 虚函数是 C++ 中实现多态的关键。在基类中声明虚函数，派生类可以重写（override）这些虚函数。通过基类的指针或引用来调用虚函数时，实际调用的是派生类中重写的方法。
 
-```c++
+```cpp
 class Base {
 public:
     virtual void show() {
@@ -57,7 +57,7 @@ public:
 
 ##### 基类 `Base`
 
-```c++
+```cpp
 class Base {
 public:
     virtual void show() {
@@ -69,7 +69,7 @@ public:
 
 ##### 派生类 `Derived`
 
-```c++
+```cpp
 class Derived : public Base {
 public:
     void show() override {
@@ -107,7 +107,7 @@ public:
 
 - 虚表的结构：
 
-```c++
+```cpp
 struct VTable {
     void (*show)(Base*);
 };
@@ -115,13 +115,13 @@ struct VTable {
 
 - 对于`Base`类，虚表如下：
 
-```c++
+```cpp
 VTable vtable_Base = { &Base::show };
 ```
 
 - 对于`Derived`类，虚表如下：
 
-```c++
+```cpp
 VTable vtable_Derived = { &Derived::show };
 ```
 
@@ -129,7 +129,7 @@ VTable vtable_Derived = { &Derived::show };
 
 构造函数：编译器在构造对象时，自动初始化对象的虚表指针，使其指向该类的虚表。
 
-```c++
+```cpp
 class Base {
 public:
     void* vptr;
@@ -162,7 +162,7 @@ public:
 
 通过虚表指针调用虚函数：当通过基类的指针或引用来调用虚函数时，实际上通过虚表指针访问虚表，找到对应的函数地址，然后调用该函数。
 
-```c++
+```cpp
 void callShow(Base* ptr) {
     // 通过虚表指针访问虚表，调用虚函数
     static_cast<void (*)(Base*)>(ptr->vptr[0])(ptr);
@@ -192,7 +192,7 @@ C++ 中，`explicit` 关键字用于防止隐式类型转换，通常应用于�
 
 ##### 未使用 `explicit`
 
-```c++
+```cpp
 class MyClass {
 public:
     MyClass(int value) : m_value(value) {}
@@ -221,7 +221,7 @@ int main() {
 
 为了防止这种隐式转换，可以使用 `explicit` 关键字修饰单参数构造函数。
 
-```c++
+```cpp
 class MyClass {
 public:
     explicit MyClass(int value) : m_value(value) {}
@@ -253,7 +253,7 @@ int main() {
 
 ##### 未使用 `explicit`
 
-```c++
+```cpp
 class MyInt {
 public:
     MyInt(int value) : m_value(value) {}
@@ -283,7 +283,7 @@ int main() {
 
 为了防止这种隐式转换，可以使用 `explicit` 关键字修饰转换运算符。
 
-```c++
+```cpp
 class MyInt {
 public:
     MyInt(int value) : m_value(value) {}
@@ -321,7 +321,7 @@ int main() {
 - 独占所有权：`std::unique_ptr` 不允许复制，但支持移动语义。这意味着所有权可以通过移动操作从一个 `std::unique_ptr` 转移到另一个 `std::unique_ptr`。
 - 自动资源管理：当 `std::unique_ptr` 离开作用域时，它会自动调用删除器（默认是 `std::default_delete`）来释放所管理的对象。
 
-```c++
+```cpp
 #include <memory>
 #include <iostream>
 
@@ -346,7 +346,7 @@ void example() {
 - 共享所有权：多个 `std::shared_ptr` 可以指向同一个对象，每个 `std::shared_ptr` 都会增加引用计数。
 - 自动资源管理：当引用计数降为零时，所管理的对象会被自动删除。
 
-```c++
+```cpp
 #include <memory>
 #include <iostream>
 
@@ -373,7 +373,7 @@ void example() {
 - 弱引用：`std::weak_ptr` 不增加引用计数，因此不会影响对象的生命周期。
 - 解决循环引用：当两个 `std::shared_ptr` 互相引用时，引用计数永远不会降为零，导致内存泄漏。`std::weak_ptr` 可以打破这种循环引用。
 
-```c++
+```cpp
 #include <memory>
 #include <iostream>
 
@@ -405,7 +405,7 @@ void example() {
 - 双重删除：多次删除同一个指针会导致未定义行为。
 - 资源管理复杂：手动管理资源容易出错，特别是在异常处理和多线程环境中。
 
-```c++
+```cpp
 void example() {
     int* ptr = new int(10);  // 分配内存
     std::cout << *ptr << std::endl;  // 使用指针
@@ -519,7 +519,7 @@ B+树的主要特点包括：
 
 ##### map
 
-```c++
+```cpp
 #include <iostream>
 #include <map>
 
@@ -540,7 +540,7 @@ int main() {
 
 ##### unordered_map
 
-```c++
+```cpp
 #include <iostream>
 #include <unordered_map>
 
@@ -565,13 +565,13 @@ int main() {
 
 1. 自动类型推导（Auto）： 允许编译器推导变量的类型，使代码更加简洁。
 
-```C++
+```cpp
 auto x = 5; // x的类型将被推导为int
 ```
 
 2. 范围-based for 循环： 简化了对容器元素的遍历。
 
-```C++
+```cpp
 std::vector<int> numbers = {1, 2, 3, 4, 5};
 for (const auto& num : numbers) {
     // 使用num
@@ -580,32 +580,32 @@ for (const auto& num : numbers) {
 
 3. 智能指针： 引入了`std::shared_ptr`和`std::unique_ptr`等智能指针，用于管理动态分配的内存，帮助防止内存泄漏。
 
-```C++
+```cpp
 std::shared_ptr<int> sharedPtr = std::make_shared<int>(42);
 ```
 
 4. Lambda 表达式： 允许在函数内部定义匿名函数，提高代码可读性和灵活性。
 
-```C++
+```cpp
 auto add = [](int a, int b) { return a + b; };
 ```
 
 5. nullptr： 引入了空指针常量`nullptr`，用于替代传统的空指针`NULL`。
 
-```C++
+```cpp
 int* ptr = nullptr;
 ```
 
 6. 强制类型转换（Type Casting）： 引入了`static_cast`、`dynamic_cast`、`const_cast`、`reinterpret_cast`等更安全和灵活的类型转换操作符。
 
-```C++
+```cpp
 double x = 3.14;
 int y = static_cast<int>(x);
 ```
 
 7. 右值引用和移动语义： 支持通过右值引用实现移动语义，提高了对临时对象的处理效率。
 
-```C++
+```cpp
 std::vector<int> getVector() {
     // 返回一个临时vector
     return std::vector<int>{1, 2, 3};
@@ -616,13 +616,13 @@ std::vector<int> numbers = getVector(); // 使用移动语义
 
 8. 新的容器和算法： 引入了新的容器，如`std::unordered_map`、`std::unordered_set`，以及一些新的算法。
 
-```C++
+```cpp
 std::unordered_map<int, std::string> myMap = {{1, "one"}, {2, "two"}};
 ```
 
 9. 线程支持（std::thread）： 提供了原生的多线程支持，使得并发编程更加方便。
 
-```C++
+```cpp
 #include <thread>
 
 void myFunction() {
@@ -642,7 +642,7 @@ int main() {
 
 引入了`<regex>`头文件，支持正则表达式的匹配和搜索。
 
-```c++
+```cpp
 #include <regex>
 std::regex re("(\\d+)-(\\d+)-(\\d+)");
 std::smatch match;
@@ -656,7 +656,7 @@ if (std::regex_search(s, match, re)) {
 
 引入了`<atomic>`头文件，支持原子操作，提高了多线程环境下的安全性。
 
-```c++
+```cpp
 #include <atomic>
 std::atomic<int> counter(0);
 counter.fetch_add(1);
@@ -666,7 +666,7 @@ counter.fetch_add(1);
 
 引入了`<chrono>`头文件，提供了更精确的时间和日期处理功能。
 
-```c++
+```cpp
 #include <chrono>
 auto start = std::chrono::high_resolution_clock::now();
 // 执行一些操作
@@ -679,7 +679,7 @@ std::cout << "Duration: " << duration << " microseconds" << std::endl;
 
 C++17 引入了`<filesystem>`头文件，提供了文件和目录操作的功能。
 
-```c++
+```cpp
 #include <filesystem>
 namespace fs = std::filesystem;
 fs::path p = "/path/to/directory";
@@ -694,7 +694,7 @@ if (fs::exists(p) && fs::is_directory(p)) {
 
 C++17 引入了`std::optional`，表示可能有值也可能没有值的类型，类似于其他语言中的`Nullable`类型。
 
-```c++
+```cpp
 #include <optional>
 std::optional<int> value;
 value = 42;
@@ -709,7 +709,7 @@ if (value) {
 
 C++17 引入了 `std::string_view`，提供了一种轻量级的字符串表示方式，避免了不必要的拷贝。
 
-```c++
+```cpp
 #include <string_view>
 std::string_view sv = "Hello, World!";
 std::cout << "Length: " << sv.length() << std::endl;
@@ -720,7 +720,7 @@ std::cout << "Substring: " << sv.substr(0, 5) << std::endl;
 
 C++17 引入了并行算法，支持并行执行标准库中的算法，提高了性能。
 
-```c++
+```cpp
 #include <algorithm>
 #include <execution>
 std::vector<int> vec = {1, 2, 3, 4, 5};
@@ -741,7 +741,7 @@ std::sort(std::execution::par, vec.begin(), vec.end());
 
 定义一个 `MyString` 类，包含一个指向动态分配内存的指针：
 
-```c++
+```cpp
 #include <iostream>
 #include <cstring>
 
@@ -807,7 +807,7 @@ private:
 
 假设有一个函数 `createString`，它创建并返回一个 `MyString` 对象：
 
-```c++
+```cpp
 MyString createString() {
     return MyString("Hello, World!");
 }
@@ -815,7 +815,7 @@ MyString createString() {
 
 当调用这个函数时，返回的 `MyString` 对象是一个临时对象，即右值。如果使用移动构造函数，可以显著提高性能：
 
-```c++
+```cpp
 int main() {
     MyString str1 = createString(); // 使用移动构造函数
     str1.print();
@@ -899,7 +899,7 @@ int main() {
 
 1. 普通对象的分配：最基本的 `new` 用法是为单个对象分配内存。
 
-```c++
+```cpp
 MyClass* obj = new MyClass();
 ```
 
@@ -907,7 +907,7 @@ MyClass* obj = new MyClass();
 
 2. 数组的分配：`new` 也可以用来分配一个对象数组。
 
-```c++
+```cpp
 MyClass* arr = new MyClass[10];
 ```
 
@@ -917,7 +917,7 @@ MyClass* arr = new MyClass[10];
 
 3. 带参数的构造函数：如果类的构造函数需要参数，可以在 `new` 表达式中直接提供这些参数。
 
-```c++
+```cpp
 MyClass* obj = new MyClass(param1, param2);
 ```
 
@@ -925,7 +925,7 @@ MyClass* obj = new MyClass(param1, param2);
 
 4. Placement new：这是一种特殊的 `new` 形式，允许程序员指定内存的位置，而不是由 `new` 自动分配。这主要用于需要精细控制内存布局的场景，如内存池管理。
 
-```c++
+```cpp
 char buffer[sizeof(MyClass)];
 MyClass* obj = new(buffer) MyClass();
 ```
@@ -940,19 +940,19 @@ MyClass* obj = new(buffer) MyClass();
 
 1. 启动调试：可以通过命令行启动GDB，同时指定要调试的程序。
 
-   ```sh
+   ```bash
    gdb ./your_program
    ```
 
    这将启动GDB，并加载名为 `your_program` 的可执行文件。如果需要传递命令行参数给程序，可以在启动GDB后使用 `set args` 命令。
 
-   ```
+   ```text
    set args arg1 arg2
    ```
 
 2. 运行程序：在GDB中启动程序的执行，可以使用 `run` 命令。
 
-   ```
+   ```text
    run
    ```
 
@@ -960,7 +960,7 @@ MyClass* obj = new(buffer) MyClass();
 
 1. 在指定行设置断点：使用 `break` 命令在源代码的特定行设置断点。
 
-   ```
+   ```text
    break filename:line_number
    ```
 
@@ -968,13 +968,13 @@ MyClass* obj = new(buffer) MyClass();
 
 2. 在函数入口设置断点：同样使用 `break` 命令，但这次指定函数名。
 
-   ```
+   ```text
    break function_name
    ```
 
 3. 条件断点：可以在满足特定条件时才触发的断点。
 
-   ```
+   ```text
    break filename:line_number if condition
    ```
 
@@ -984,19 +984,19 @@ MyClass* obj = new(buffer) MyClass();
 
 1. 单步执行：使用 `next` 命令单步执行代码，每次执行一行。
 
-   ```
+   ```text
    next
    ```
 
 2. 进入函数内部执行：如果当前行是一次函数调用，使用 `step` 命令可以进入该函数内部继续单步执行。
 
-   ```
+   ```text
    step
    ```
 
 3. 继续执行：当程序暂停在断点处时，使用 `continue` 命令可以让程序继续执行直到下一个断点或程序结束。
 
-   ```
+   ```text
    continue
    ```
 
@@ -1004,13 +1004,13 @@ MyClass* obj = new(buffer) MyClass();
 
 1. 打印变量值：使用 `print` 命令可以查看变量的当前值。
 
-   ```
+   ```text
    print variable_name
    ```
 
 2. 查看局部变量：使用 `info locals` 命令可以列出当前作用域内的所有局部变量及其值。
 
-   ```
+   ```text
    info locals
    ```
 
@@ -1018,7 +1018,7 @@ MyClass* obj = new(buffer) MyClass();
 
 1. 查看内存内容：使用 `x` 命令可以查看内存地址的内容。
 
-   ```
+   ```text
    x/4wx 0xaddress
    ```
 
@@ -1026,7 +1026,7 @@ MyClass* obj = new(buffer) MyClass();
 
 2. 修改变量值：使用 `set` 命令可以直接修改变量的值。
 
-   ```
+   ```text
    set variable_name = value
    ```
 
@@ -1034,13 +1034,13 @@ MyClass* obj = new(buffer) MyClass();
 
 1. 查看调用栈：使用 `backtrace` 或 `bt` 命令可以查看当前的调用栈。
 
-   ```
+   ```text
    backtrace
    ```
 
 2. 切换调用栈帧：使用 `frame` 命令可以选择不同的调用栈帧。
 
-   ```
+   ```text
    frame frame_number
    ```
 
@@ -1048,7 +1048,7 @@ MyClass* obj = new(buffer) MyClass();
 
 退出GDB：使用`quit`命令可以退出GDB。
 
-```
+```text
 quit
 ```
 
@@ -1066,7 +1066,7 @@ quit
 
 使用 `ln -s` 命令创建软连接：
 
-```
+```bash
 ln -s source_file_or_directory target_link
 ```
 
@@ -1091,7 +1091,7 @@ ln -s source_file_or_directory target_link
 
 使用 `ln` 命令创建硬链接（不带 `-s` 参数）：
 
-```
+```bash
 ln source_file target_link
 ```
 
@@ -1187,7 +1187,7 @@ IO多路复用主要应用于网络编程中，特别是在需要处理大量并
 
 #### 参考代码
 
-```c++
+```cpp
 #include <iostream>
 #include <unordered_map>
 using namespace std;

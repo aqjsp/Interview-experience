@@ -142,7 +142,7 @@ B+树：
 
 参考代码：
 
-```C++
+```cpp
 #include <unordered_map>
 using namespace std;
 
@@ -258,7 +258,7 @@ private:
 
 给个伪代码：
 
-```C++
+```cpp
 while true {
     if (lock_is_free) {
         if (atomic_compare_and_swap(&lock, 0, 1)) {
@@ -282,7 +282,7 @@ lock = 0; // 释放锁
 
 再来个伪代码：
 
-```C++
+```cpp
 mutex_lock(&lock); // 尝试获取锁，如果锁已被占用，线程被挂起
 // 访问临界区
 mutex_unlock(&lock); // 释放锁

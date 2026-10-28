@@ -383,7 +383,7 @@ MySQL 支持三种 Binlog 格式，每种格式有不同的特点和适用场景
 
 4. 解析 Binlog 内容：使用 `mysqlbinlog` 工具可以解析 Binlog 文件的内容，将其转换为可读的 SQL 语句：
 
-   ```sh
+   ```bash
    mysqlbinlog /path/to/mysql-bin.000001
    ```
 
@@ -393,7 +393,7 @@ MySQL 支持三种 Binlog 格式，每种格式有不同的特点和适用场景
 
 1. 数据恢复：通过重放 Binlog 中的事件，可以将数据库恢复到特定的时间点。例如，可以使用 `mysqlbinlog` 工具导出 Binlog 文件，然后将其应用于数据库：
 
-   ```sh
+   ```bash
    mysqlbinlog /path/to/mysql-bin.000001 | mysql -u root -p
    ```
 
@@ -746,7 +746,7 @@ Snowflake 是一种高效、可扩展的分布式ID生成算法，由 Twitter �
 
 一个64位的 Snowflake ID 分为几个部分：
 
-```c
+```text
 | 1-bit | 41-bit timestamp | 10-bit workerID | 12-bit sequence |
 ```
 
@@ -827,7 +827,7 @@ Snowflake 是一种高效、可扩展的分布式ID生成算法，由 Twitter �
 
 ##### 递归
 
-```c++
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -850,7 +850,7 @@ int main() {
 
 ##### 动态规划
 
-```c++
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -1260,7 +1260,7 @@ TCP/IP模型是一个实际运行的网络协议模型，虽然层次较少，�
 
 #### 参考代码
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 #include <string>

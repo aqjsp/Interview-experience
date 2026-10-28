@@ -21,7 +21,7 @@
 
 参考代码：
 
-```C++
+```cpp
 #include <iostream>
 #include <unordered_map>
 
@@ -98,7 +98,7 @@ int main() {
 
 参考代码：
 
-```C++
+```cpp
 #include <iostream>
 #include <vector>
 
@@ -207,7 +207,7 @@ int main() {
 
 一个简单的例子：
 
-```C++
+```cpp
 #include <sys/epoll.h>
 
 int main() {

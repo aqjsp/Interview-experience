@@ -12,7 +12,7 @@
 
 1. 在基类中声明虚函数：在基类中将要成为虚函数的成员函数声明为虚函数。
 
-```
+```cpp
 class Base {
 public:
     virtual void func();  // 声明为虚函数
@@ -21,7 +21,7 @@ public:
 
 2. 在派生类中重写虚函数：在派生类中重写（override）基类中的虚函数。重写时，函数名、参数列表和返回类型必须与基类中的虚函数相同，并且在函数声明前加上 `virtual` 关键字（这是为了明确表明该函数是对基类虚函数的重写，不过在派生类中加不加 `virtual` 都可以，但为了可读性和清晰性，建议加上）。
 
-```
+```cpp
 class Derived : public Base {
 public:
     void func() override;  // 重写基类中的虚函数
@@ -30,7 +30,7 @@ public:
 
 3. 实现虚函数的动态绑定：在运行时，根据对象的实际类型确定调用的是哪个函数。当基类指针指向派生类对象，并调用虚函数时，会根据对象的实际类型调用相应的函数。
 
-```
+```cpp
 Base* ptr = new Derived();
 ptr->func();  // 根据对象的实际类型调用 Derived 类中的 func() 函数
 ```
@@ -41,7 +41,7 @@ ptr->func();  // 根据对象的实际类型调用 Derived 类中的 func() 函�
 
 给个例子：
 
-```
+```cpp
 #include <iostream>
 
 class A {
@@ -86,7 +86,7 @@ int main() {
 
 示例：
 
-```
+```cpp
 #include <iostream>
 #include <unordered_map>
 

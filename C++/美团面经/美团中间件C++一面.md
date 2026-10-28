@@ -279,7 +279,7 @@ Page Cache 是虚拟内存管理的一部分。操作系统将文件系统的页
 
 #### 参考代码
 
-```c++
+```cpp
 struct ListNode {
     int val;
     ListNode* next;
@@ -594,7 +594,7 @@ InnoDB 适用于以下场景：
 
 ##### C++
 
-```c++
+```cpp
 #include <iostream>
 #include <unordered_map>
 #include <climits>

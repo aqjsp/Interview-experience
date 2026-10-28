@@ -33,7 +33,7 @@
 
 举个例子，说明基类和派生类的内存排布情况
 
-```c++
+```cpp
 #include <iostream>
 
 class Base {
@@ -139,7 +139,7 @@ int main() {
 
    例如，一个日志记录器可以使用单例模式来确保在应用程序中只有一个日志记录器实例，以便在多个地方记录日志。
 
-```C
+```cpp
 class Logger {
 private:
     Logger() {}  // 私有构造函数，防止外部实例化
@@ -175,7 +175,7 @@ int main() {
 
 ​	例如，一个图形库可以使用工厂模式来创建不同类型的图形对象。
 
-```C
+```cpp
 // 基类
 class Shape {
 public:
@@ -229,7 +229,7 @@ int main() {
 
 ​	例如，一个新闻发布系统可以使用观察者模式，让多个订阅者（观察者）订阅新闻发布者（主题）的新闻。
 
-```C
+```cpp
 #include <iostream>
 #include <vector>
 
@@ -319,7 +319,7 @@ int main() {
 
 13. 虚拟代理（Virtual Proxy）： 虚拟代理用于延迟创建昂贵对象的实例，直到需要时才进行实际的创建。例如，在加载大型图片或文档时，可以使用虚拟代理来避免初始加载时间过长。
 
-```C
+```cpp
 #include <iostream>
 #include <string>
 
@@ -477,7 +477,7 @@ int main() {
 
 递归：
 
-```C++
+```cpp
 #include <iostream>
 #include <vector>
 
@@ -540,7 +540,7 @@ int main() {
 
 非递归：
 
-```C++
+```cpp
 #include <iostream>
 #include <vector>
 #include <stack>

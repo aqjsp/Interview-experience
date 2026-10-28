@@ -10,7 +10,7 @@
 
 - 函数重载： 在同一作用域内，可以定义多个同名函数，但它们的参数列表（参数个数、类型、顺序）不同。编译器根据函数调用时传入的参数类型和数量来确定调用哪个函数。
 
-  ```c++
+  ```cpp
     #include <iostream>
   
     class Printer {
@@ -34,7 +34,7 @@
 
 - 函数模板： 通过模板，可以编写泛型函数，使其能够处理多种数据类型。编译器在编译时根据传入的参数类型生成相应的函数实例。
 
-  ```c++
+  ```cpp
     #include <iostream>
   
     template <typename T>
@@ -56,7 +56,7 @@
 
 虚函数： 在基类中使用 `virtual` 关键字声明的成员函数称为虚函数。派生类可以重写这些虚函数。当通过基类指针或引用调用虚函数时，程序会在运行时根据对象的实际类型来决定调用哪个派生类的重写函数。
 
-```c++
+```cpp
   #include <iostream>
 
   class Animal {
@@ -89,7 +89,7 @@ C++ 中的异常处理是一种机制，用于处理程序运行时发生的错�
 
 ##### 语法
 
-```c++
+```cpp
 try {
     // 可能抛出异常的代码
 } catch (异常类型 参数) {
@@ -340,7 +340,7 @@ VFS 的作用：
 - 内存占用逐渐增加。
 - 性能下降，最终可能导致程序崩溃（内存耗尽）。
 
-```c++
+```cpp
 void leak() {
     int* ptr = new int(10); // 分配内存
     // 未 delete ptr，函数退出后 ptr 丢失
@@ -353,7 +353,7 @@ void leak() {
 
 分配内存后未调用 delete 或 free。
 
-```c++
+```cpp
 int* ptr = new int[100];
 // 缺少 delete[] ptr;
 ```
@@ -362,7 +362,7 @@ int* ptr = new int[100];
 
 对动态内存的指针被重新赋值或超出作用域，导致无法访问原内存。
 
-```c++
+```cpp
 int* ptr = new int(5);
 ptr = nullptr; // 原内存无法访问
 ```
@@ -371,7 +371,7 @@ ptr = nullptr; // 原内存无法访问
 
 异常抛出时，内存未在适当位置释放。
 
-```c++
+```cpp
 void risky() {
     int* ptr = new int(10);
     throw std::runtime_error("Error"); // 未 delete ptr
@@ -382,7 +382,7 @@ void risky() {
 
 对象间相互引用（如智能指针循环），阻止内存释放。
 
-```c++
+```cpp
 struct Node {
     std::shared_ptr<Node> next;
 };
@@ -419,7 +419,7 @@ valgrind --leak-check=full ./xxxxx
 
 资源获取即初始化（Resource Acquisition Is Initialization），通过对象生命周期自动管理资源。
 
-```c++
+```cpp
 #include <memory>
 
 void safe() {
@@ -436,7 +436,7 @@ void safe() {
 
 使用容器替代裸指针。
 
-```c++
+```cpp
 #include <vector>
 
 std::vector<int> vec(100); // 替代 int* ptr = new int[100]
@@ -446,7 +446,7 @@ std::vector<int> vec(100); // 替代 int* ptr = new int[100]
 
 确保分配成功并正确释放。
 
-```c++
+```cpp
 int* ptr = new (std::nothrow) int[100];
 if (ptr) {
     // 使用 ptr
@@ -458,7 +458,7 @@ if (ptr) {
 
 使用 std::weak_ptr 打破循环。
 
-```c++
+```cpp
 struct Node {
     std::shared_ptr<Node> next;
     std::weak_ptr<Node> prev; // 避免循环
@@ -581,7 +581,7 @@ SQL 注入是一种常见的网络安全漏洞，攻击者通过向应用程序�
 
 动态拼接 SQL：应用程序将用户输入直接拼接到 SQL 语句。
 
-```c++
+```cpp
 std::string username = "admin";
 std::string password = "' OR '1'='1";
 std::string query = "SELECT * FROM users WHERE username = '" + username + "' AND password = '" + password + "'";
@@ -806,7 +806,7 @@ HTTP/2 使用二进制格式替代 HTTP/1.x 的文本格式。
 
 输出长度和子序列
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -860,7 +860,7 @@ int main() {
 
 输出：
 
-```c++
+```cpp
 Length: 5
 Subsequence: 1 2 2 3 4
 ```
@@ -869,7 +869,7 @@ Subsequence: 1 2 2 3 4
 
 仅求长度
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -905,6 +905,6 @@ int main() {
 
 输出：
 
-```c++
+```cpp
 Length: 5
 ```

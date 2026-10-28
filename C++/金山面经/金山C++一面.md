@@ -21,7 +21,7 @@
 
 1. 虚函数的定义： 虚函数是通过在基类（父类）中声明的。虚函数的定义包括返回类型、函数名和参数列表。
 
-```C++
+```cpp
 class Base {
 public:
     virtual void foo() { /* Base class implementation */ }
@@ -30,7 +30,7 @@ public:
 
 2. 派生类中的重写： 派生类（子类）可以重写虚函数，这意味着它可以提供自己的实现版本。在派生类中重新定义虚函数时，需要使用 `virtual` 关键字来保持虚函数性质。
 
-```C++
+```cpp
 class Derived : public Base {
 public:
     virtual void foo() override { /* Derived class implementation */ }
@@ -43,7 +43,7 @@ public:
 
 5. 运行时动态绑定： 当你通过基类指针或引用调用虚函数时，实际执行的是派生类中的版本（如果派生类重新定义了虚函数）。这是因为虚函数表指针（vptr）指向了正确的虚函数表，允许在运行时根据对象的类型进行动态绑定。
 
-```C++
+```cpp
 Base* ptr = new Derived;
 ptr->foo(); // 调用Derived类中的foo()
 ```
@@ -70,7 +70,7 @@ ptr->foo(); // 调用Derived类中的foo()
 
 示例：
 
-```C++
+```cpp
 class MyClass {
 public:
     int nonStaticVar; // 非静态成员变量
@@ -92,7 +92,7 @@ public:
 
 示例：
 
-```C++
+```cpp
 #include <iostream>
 
 void print(int value) {
@@ -120,7 +120,7 @@ int main() {
 
 示例：
 
-```C++
+```cpp
 #include <iostream>
 #include <thread>
 
@@ -144,7 +144,7 @@ C++11引入的内存模型定义了一些术语，如"原子操作"、"memory or
 
 示例：
 
-```C++
+```cpp
 #include <iostream>
 #include <thread>
 #include <atomic>
@@ -171,7 +171,7 @@ int main() {
 
 1. 初始化保护： 静态局部变量的初始化仅在第一次进入包含它的函数时执行，后续的函数调用将跳过初始化过程。这使得静态局部变量适合用于一些需要在多次函数调用中保持状态的情况。
 
-```C++
+```cpp
 int myFunction() {
     static int count = 0; // 静态局部变量，只在第一次调用时初始化
     count++;
@@ -191,7 +191,7 @@ int myFunction() {
 
 示例：
 
-```C++
+```cpp
 #include <iostream>
 
 int myFunction() {
@@ -218,7 +218,7 @@ int main() {
 
 示例：
 
-```C++
+```cpp
 int i = 42;
 double d = static_cast<double>(i); // 整数到浮点数的转换
 ```
@@ -231,7 +231,7 @@ double d = static_cast<double>(i); // 整数到浮点数的转换
 
 示例：
 
-```C++
+```cpp
 class Base {
     virtual void foo() {}
 };
@@ -255,7 +255,7 @@ if (derivedPtr) {
 
 示例：
 
-```C++
+```cpp
 const int i = 42;
 int* nonConstPtr = const_cast<int*>(&i); // 去除常量限定符
 ```
@@ -268,7 +268,7 @@ int* nonConstPtr = const_cast<int*>(&i); // 去除常量限定符
 
 示例：
 
-```C++
+```cpp
 int i = 42;
 void* ptr = reinterpret_cast<void*>(&i); // 指针到无关类型的转换
 ```
@@ -287,7 +287,7 @@ void* ptr = reinterpret_cast<void*>(&i); // 指针到无关类型的转换
 
 示例：如何使用`erase`来删除`std::vector`中的元素以及`erase`的返回值
 
-```C++
+```cpp
 #include <iostream>
 #include <vector>
 
@@ -325,7 +325,7 @@ int main() {
 
 下面是一个示例，展示如何将自定义`struct`对象插入`std::map`：
 
-```C++
+```cpp
 #include <iostream>
 #include <map>
 
@@ -416,7 +416,7 @@ int main() {
 2. 运行程序：程序在创建锁文件后，继续执行正常的任务。
 3. 删除锁文件：当程序完成任务后，应该删除锁文件，以允许将来的实例运行。
 
-```C++
+```cpp
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
@@ -491,7 +491,7 @@ TCP（传输控制协议）使用三次握手建立连接的原因是为了确�
 
 示例代码：
 
-```C++
+```cpp
 #include <iostream>
 #include <stack>
 
@@ -577,7 +577,7 @@ int main() {
 
 示例代码：
 
-```C++
+```cpp
 #include <iostream>
 
 // 定义链表节点结构

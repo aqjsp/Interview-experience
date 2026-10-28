@@ -105,7 +105,7 @@
 
 - Valgrind：Valgrind 是一个强大的内存调试工具，可以检测内存泄漏、内存访问错误等问题。适用于 C/C++ 程序。
 
-```
+```bash
 valgrind --leak-check=full ./your_program
 ```
 
@@ -113,7 +113,7 @@ valgrind --leak-check=full ./your_program
 
 - LeakSanitizer：LeakSanitizer 是 LLVM 项目的一部分，可以与 AddressSanitizer 一起使用，检测内存泄漏。
 
-```
+```bash
 clang -fsanitize=address -fsanitize=leak your_program.cpp -o your_program
 ./your_program
 ```
@@ -130,7 +130,7 @@ clang -fsanitize=address -fsanitize=leak your_program.cpp -o your_program
 
 C++11及以上版本引入了智能指针，如`std::shared_ptr`和`std::unique_ptr`，可以在对象生命周期结束时自动释放内存。
 
-```c++
+```cpp
 #include <memory>
 
 void useSmartPointers() {
@@ -145,7 +145,7 @@ void useSmartPointers() {
 
 RAII原则确保资源在对象构造时获得，并在对象析构时释放。通过这种方式，可以减少手动管理资源的需要，降低内存泄漏的风险。
 
-```c++
+```cpp
 class FileHandler {
 public:
     FileHandler(const std::string& fileName)
@@ -170,7 +170,7 @@ private:
 
 在可能发生异常的地方使用 `try-catch` 块，确保在异常发生时能够正确释放资源。
 
-```c++
+```cpp
 void handleException() {
     int* myData = nullptr;
     try {
@@ -189,7 +189,7 @@ void handleException() {
 
 确保基类的析构函数是虚函数，这样派生类的析构函数也能被调用。
 
-```c++
+```cpp
 class Base {
 public:
     virtual ~Base() {
@@ -217,7 +217,7 @@ public:
 - 自动释放资源：当 `std::unique_ptr` 对象超出作用域或被显式销毁时，它所管理的资源会被自动释放。
 - 轻量级：`std::unique_ptr` 的实现非常轻量级，几乎不会带来额外的性能开销。
 
-```c++
+```cpp
 #include <memory>
 #include <iostream>
 
@@ -245,7 +245,7 @@ void useUniquePtr() {
 - 引用计数：通过引用计数来管理资源的生命周期。当引用计数降为零时，资源会被自动释放。
 - 线程安全：引用计数的增减操作是线程安全的，但对资源的访问需要额外的同步机制。
 
-```c++
+```cpp
 #include <memory>
 #include <iostream>
 
@@ -272,7 +272,7 @@ void useSharedPtr() {
 - 不增加引用计数：`std::weak_ptr` 不会影响资源的生命周期。
 - 解决循环引用：通过 `std::weak_ptr` 可以打破 `std::shared_ptr` 之间的循环引用。
 
-```c++
+```cpp
 #include <memory>
 #include <iostream>
 
@@ -312,7 +312,7 @@ void useWeakPtr() {
 - 独占所有权：一个 `std::auto_ptr` 对象不能被复制，但可以通过拷贝和赋值操作转移所有权。
 - 已废弃：由于其设计上的缺陷，C++11 引入了 `std::unique_ptr` 作为更好的替代方案。
 
-```c++
+```cpp
 #include <memory>
 #include <iostream>
 
@@ -338,7 +338,7 @@ void useAutoPtr() {
 
 假设我们有两个类 `A` 和 `B`，它们分别持有对方的 `std::shared_ptr`，如下所示：
 
-```c++
+```cpp
 class A {
 public:
     std::shared_ptr<B> b_ptr;
@@ -352,7 +352,7 @@ public:
 
 当我们创建 `A` 和 `B` 的对象，并使它们互相引用时：
 
-```c++
+```cpp
 std::shared_ptr<A> a = std::make_shared<A>();
 std::shared_ptr<B> b = std::make_shared<B>();
 a->b_ptr = b;
@@ -371,7 +371,7 @@ b->a_ptr = a;
 
 为了解决循环引用问题，可以使用 `std::weak_ptr`。`std::weak_ptr` 不增加所指向对象的引用计数，因此可以打破循环引用。
 
-```c++
+```cpp
 class A {
 public:
     std::shared_ptr<B> b_ptr;
@@ -416,7 +416,7 @@ if (auto a_locked = b->a_ptr.lock()) {
 
 ##### 示例 1：引用计数更新，线程安全
 
-```c++
+```cpp
 std::shared_ptr<int> p = std::make_shared<int>(0);
 constexpr int N = 10000;
 std::vector<std::shared_ptr<int>> sp_arr1(N);
@@ -441,7 +441,7 @@ std::cout << p.use_count() << std::endl; // always 20001
 
 ##### 示例 2：同时读写内存区域，线程不安全
 
-```c++
+```cpp
 std::shared_ptr<int> p = std::make_shared<int>(0);
 
 void modify_memory() {
@@ -463,7 +463,7 @@ std::cout << "Final value of p: " << *p << std::endl; // possible result: 16171,
 
 ##### 示例 3：直接修改 `std::shared_ptr` 对象本身的指向，线程不安全
 
-```c++
+```cpp
 std::shared_ptr<int> sp = std::make_shared<int>(1);
 
 auto modify_sp_self = [&sp]() {
@@ -502,7 +502,7 @@ for (auto& t : threads) {
 
 互斥锁是最常见的同步机制之一，可以确保同一时间只有一个线程可以访问共享资源。通过在访问 `std::shared_ptr` 指向的数据或修改 `std::shared_ptr` 对象时使用互斥锁，可以有效防止数据竞争。
 
-```c++
+```cpp
 #include <iostream>
 #include <thread>
 #include <memory>
@@ -536,7 +536,7 @@ int main() {
 
 C++ 标准库提供了 `std::atomic<std::shared_ptr<T>>`，可以在多线程环境中安全地使用 `std::shared_ptr`。这确保了 `std::shared_ptr` 对象的读取和写入操作是原子的。
 
-```c++
+```cpp
 #include <iostream>
 #include <thread>
 #include <memory>
@@ -570,7 +570,7 @@ int main() {
 
 `std::shared_mutex` 允许多个读线程同时访问共享资源，但在写操作时独占锁。这可以提高读多写少场景下的性能。
 
-```c++
+```cpp
 #include <iostream>
 #include <thread>
 #include <memory>
@@ -616,7 +616,7 @@ int main() {
 
 在某些情况下，可能需要更复杂的线程同步机制。`std::condition_variable` 可以用于线程间的通信，确保在特定条件下执行某些操作。
 
-```c++
+```cpp
 #include <iostream>
 #include <thread>
 #include <memory>
@@ -664,7 +664,7 @@ int main() {
 
 `std::future` 和 `std::promise` 提供了一种简单的异步通信机制，可以在多线程环境中传递数据。
 
-```c++
+```cpp
 #include <iostream>
 #include <thread>
 #include <memory>
@@ -718,7 +718,7 @@ int main() {
 
 为了避免伪唤醒导致的问题，通常建议在使用条件变量时，将 `wait` 操作放在一个 `while` 循环中，而不是使用 `if` 语句。这样可以确保即使发生伪唤醒，线程也会重新检查条件，从而避免错误的行为。
 
-```c++
+```cpp
 #include <iostream>
 #include <thread>
 #include <condition_variable>
@@ -768,7 +768,7 @@ C++11 引入了右值引用（rvalue reference）和移动语义（move semantic
 
 `std::move` 函数将一个左值（lvalue）转换为右值（rvalue），从而允许 `std::unique_ptr` 的移动构造函数或移动赋值运算符被调用，实现所有权的转移。
 
-```c++
+```cpp
 #include <iostream>
 #include <memory>
 
@@ -795,7 +795,7 @@ int main() {
 
 `reset` 方法可以将 `std::unique_ptr` 指向新的对象，并释放原来管理的对象。如果在 `reset` 方法中传递一个新的原始指针，原来的对象会被销毁，新的对象会被管理。
 
-```c++
+```cpp
 #include <iostream>
 #include <memory>
 
@@ -823,7 +823,7 @@ int main() {
 
 `std::unique_ptr` 还可以作为函数的返回值，这在返回动态分配的对象时非常有用。通过返回 `unique_ptr`，可以确保资源的所有权被正确地转移。
 
-```c++
+```cpp
 #include <iostream>
 #include <memory>
 
@@ -878,7 +878,7 @@ int main() {
 
 `std::forward`是 C++11 标准库提供的一个函数模板，用于在转发参数时保持其左值或右值属性。`std::forward`的使用方法如下：
 
-```
+```cpp
 template <typename T>
 void forward(T&& param) {
     someFunction(std::forward<T>(param));
@@ -889,7 +889,7 @@ void forward(T&& param) {
 
 一个简单的示例，展示了如何使用完美转发来实现一个通用的日志记录函数：
 
-```c++
+```cpp
 #include <iostream>
 #include <utility>
 
@@ -943,7 +943,7 @@ int main() {
 
 假设我们有一个通用的模板类 `MyClass`，我们可以为 `int` 类型提供一个全特化的实现：
 
-```c++
+```cpp
 // 泛化的模板类
 template <typename T>
 class MyClass {
@@ -969,7 +969,7 @@ public:
 
 除了全特化整个类，还可以为类的某个成员函数提供全特化：
 
-```c++
+```cpp
 template <typename T>
 class MyClass {
 public:
@@ -990,7 +990,7 @@ void MyClass<int>::print() {
 
 假设我们有一个模板类 `MyClass`，它有两个模板参数 `T` 和 `U`，我们可以为 `T` 提供一个具体的类型，而 `U` 保持泛型：
 
-```c++
+```cpp
 // 泛化的模板类
 template <typename T, typename U>
 class MyClass {
@@ -1022,7 +1022,7 @@ public:
 
 一个综合示例，展示了模板的全特化和偏特化：
 
-```c++
+```cpp
 #include <iostream>
 
 // 泛化的模板类
@@ -1103,14 +1103,14 @@ int main() {
 
 - **`new`**：用于在堆上动态分配内存，并调用对象的构造函数。
 
-  ```c++
+  ```cpp
   T* ptr = new T;
   T* arr = new T[N];
   ```
 
 - **`delete`**：用于释放通过 `new` 分配的内存，并调用对象的析构函数。
 
-  ```c++
+  ```cpp
   delete p;
   delete[] arr;
   ```
@@ -1129,7 +1129,7 @@ int* p = (int*)malloc(10 * sizeof(int));
 
 在 C++ 中，`new` 返回的是指定类型的指针，不需要显式类型转换，因此更符合类型安全性的要求。
 
-```c++
+```cpp
 int* p = new int[10];
 ```
 
@@ -1143,7 +1143,7 @@ int* p = new int[10];
 
 在 C++ 中，`new` 不仅分配内存，还会调用对象的构造函数进行初始化。同样，`delete` 会调用对象的析构函数，确保对象的正确清理。
 
-```c++
+```cpp
 class MyClass {
 public:
     MyClass() { std::cout << "构造函数" << std::endl; }
@@ -1160,7 +1160,7 @@ delete obj;
 
 在 C 语言中，如果内存分配失败，`malloc` 和 `calloc` 会返回 `NULL`。需要手动检查返回值以判断内存分配是否成功。
 
-```c
+```cpp
 int* p = (int*)malloc(10 * sizeof(int));
 if (p == NULL) {
     // 处理内存分配失败
@@ -1171,7 +1171,7 @@ if (p == NULL) {
 
 在 C++ 中，如果内存分配失败，`new` 会抛出 `std::bad_alloc` 异常。可以通过捕获异常来处理内存分配失败的情况。
 
-```c++
+```cpp
 try {
     int* p = new int[1000000000];
 } catch (const std::bad_alloc& e) {
@@ -1197,7 +1197,7 @@ C++ 提供了更多的内存管理机制，如自定义的内存分配器、智�
 
 使用 `new` 分配普通对象的内存时，`new` 会调用对象的构造函数来初始化对象。
 
-```c++
+```cpp
 MyClass* obj = new MyClass;
 ```
 
@@ -1205,7 +1205,7 @@ MyClass* obj = new MyClass;
 
 使用 `delete` 释放普通对象的内存时，`delete` 会调用对象的析构函数来清理资源，然后再释放内存。
 
-```c++
+```cpp
 delete obj;
 ```
 
@@ -1215,7 +1215,7 @@ delete obj;
 
 使用 `new[]` 分配数组的内存时，`new[]` 会为数组中的每个元素调用构造函数来初始化对象。
 
-```c++
+```cpp
 MyClass* arr = new MyClass[10];
 ```
 
@@ -1223,7 +1223,7 @@ MyClass* arr = new MyClass[10];
 
 使用 `delete[]` 释放数组的内存时，`delete[]` 会为数组中的每个元素调用析构函数来清理资源，然后再释放整个数组的内存。
 
-```c++
+```cpp
 delete[] arr;
 ```
 
@@ -1240,7 +1240,7 @@ delete[] arr;
 
 ##### 错误示例 1：`new` + `delete[]`
 
-```c++
+```cpp
 MyClass* obj = new MyClass;
 delete[] obj;  // 错误
 ```
@@ -1249,7 +1249,7 @@ delete[] obj;  // 错误
 
 ##### 错误示例 2：`new[]` + `delete`
 
-```c++
+```cpp
 MyClass* arr = new MyClass[10];
 delete arr;  // 错误
 ```
@@ -1271,7 +1271,7 @@ delete arr;  // 错误
 
    - 对象的内存布局大致如下：
 
-     ```
+     ```text
      +-----------------+
      | vptr            |  -> 指向虚函数表
      +-----------------+
@@ -1294,7 +1294,7 @@ delete arr;  // 错误
 
 假设有一个基类 `Base` 和一个派生类 `Derived`，其中 `Base` 包含一个虚函数 `virtual void func()`，`Derived` 重写了这个虚函数。
 
-```c++
+```cpp
 class Base {
 public:
     virtual void func() { std::cout << "Base::func()" << std::endl; }
@@ -1310,7 +1310,7 @@ public:
 
 - `Base` 对象的内存布局：
 
-  ```
+  ```text
   +-----------------+
   | vptr            |  -> 指向 Base 的虚函数表
   +-----------------+
@@ -1318,7 +1318,7 @@ public:
 
 - `Derived` 对象的内存布局：
 
-  ```
+  ```text
   +-----------------+
   | vptr            |  -> 指向 Derived 的虚函数表
   +-----------------+
@@ -1328,7 +1328,7 @@ public:
 
 - `Base` 的虚函数表：
 
-  ```
+  ```text
   +-----------------+
   | &Base::func     |
   +-----------------+
@@ -1336,7 +1336,7 @@ public:
 
 - `Derived` 的虚函数表：
 
-  ```
+  ```text
   +-----------------+
   | &Derived::func  |
   +-----------------+
@@ -1344,7 +1344,7 @@ public:
 
 代码示例：
 
-```c++
+```cpp
 #include <iostream>
 
 class Base {
@@ -1379,7 +1379,7 @@ int main() {
 
 #### 示例代码
 
-```c++
+```cpp
 int removeDuplicates(int* nums, int numsSize) {
     if (numsSize == 0) return 0;
 
@@ -1494,7 +1494,7 @@ int removeDuplicates(int* nums, int numsSize) {
 
 以下是用 C++ 实现哈夫曼树构建的示例代码：
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -1691,7 +1691,7 @@ C++ STL 提供了一个现成的优先队列实现 `std::priority_queue`，它�
 
 ###### 基本用法
 
-```c++
+```cpp
 #include <iostream>
 #include <queue>
 #include <vector>
@@ -1728,7 +1728,7 @@ int main() {
 
 ###### 最小堆
 
-```c++
+```cpp
 #include <iostream>
 #include <queue>
 #include <vector>
@@ -1762,7 +1762,7 @@ int main() {
 
 ###### 自定义比较器
 
-```c++
+```cpp
 #include <iostream>
 #include <queue>
 #include <vector>
@@ -1801,7 +1801,7 @@ int main() {
 
 插入操作包括将新元素添加到堆的末尾，然后通过向上调整（Percolate Up）确保堆的性质。
 
-```c++
+```cpp
 void insert(std::vector<int>& heap, int value) {
     heap.push_back(value);
     int index = heap.size() - 1;
@@ -1816,7 +1816,7 @@ void insert(std::vector<int>& heap, int value) {
 
 删除操作包括移除堆顶元素，将堆的最后一个元素移到堆顶，然后通过向下调整（Percolate Down）确保堆的性质。
 
-```c++
+```cpp
 void remove(std::vector<int>& heap) {
     if (heap.empty()) return;
     heap[0] = heap.back();
@@ -1869,7 +1869,7 @@ void remove(std::vector<int>& heap) {
 
 ##### 1. 文件分割
 
-```c++
+```cpp
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -1909,7 +1909,7 @@ void split_file(const std::string& input_file, const std::string& output_dir, si
 
 ##### 2. 内部排序
 
-```c++
+```cpp
 #include <algorithm>
 
 void sort_chunk(const std::string& input_file, const std::string& output_file) {
@@ -1942,7 +1942,7 @@ void sort_chunks(const std::string& output_dir, const std::vector<std::string>& 
 
 ##### 3. 多路归并
 
-```c++
+```cpp
 #include <queue>
 #include <memory>
 #include <functional>
@@ -1999,7 +1999,7 @@ void merge_sorted_files(const std::vector<std::string>& chunk_files, const std::
 
 ##### 主函数
 
-```c++
+```cpp
 int main() {
     const std::string input_file = "large_file.txt";
     const std::string output_dir = "chunks";

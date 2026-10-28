@@ -145,7 +145,7 @@ B+ 树是应文件系统所需而产生的 B 树的变形树。B+ 树的特征�
 
 阿Q在这里给出一个简单的示例，一些比较细节的就不写了，供大家参考：
 
-```C
+```cpp
 #include <iostream>
 #include <vector>
 
@@ -357,7 +357,7 @@ int main() {
 
 TCP服务器：
 
-```C
+```cpp
 #include <iostream>
 #include <string>
 #include <cstring>
@@ -417,7 +417,7 @@ int main() {
 
 TCP客户端：
 
-```C
+```cpp
 #include <iostream>
 #include <cstring>
 #include <cstdlib>
@@ -530,7 +530,7 @@ RPC工作原理：
 
 示例代码：
 
-```C
+```cpp
 #include <iostream>
 #include <stack>
 
@@ -588,7 +588,7 @@ int main() {
 
 示例代码：
 
-```C
+```cpp
 #include <iostream>
 #include <string>
 #include <unordered_map>
@@ -633,7 +633,7 @@ int main() {
 
 使用一个哈希表来统计每个 IP 地址出现的次数，然后选择前十个出现次数最多的 IP 地址。
 
-```C
+```cpp
 #include <iostream>
 #include <vector>
 #include <unordered_map>

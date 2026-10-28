@@ -85,7 +85,7 @@
 
 可以使用结构体来封装数据，并通过函数来操作这些数据，实现封装的效果。
 
-```c++
+```cpp
 #include <stdio.h>
 
 // 定义一个封装数据的结构体
@@ -117,7 +117,7 @@ int main() {
 
 可以通过在子类中包含父类的结构体来实现继承的效果。
 
-```c++
+```cpp
 #include <stdio.h>
 
 // 父类结构体
@@ -151,7 +151,7 @@ int main() {
 
 可以通过函数指针来实现多态的效果。
 
-```c++
+```cpp
 #include <stdio.h>
 
 // 定义一个包含函数指针的结构体，实现多态
@@ -195,7 +195,7 @@ int main() {
 
 参考代码
 
-```c++
+```cpp
 // C++中的class
 class MyClass {
 private:
@@ -250,7 +250,7 @@ TCP 通信中，`read` 函数用于从已连接的 TCP 套接字中读取数据�
 
 代码
 
-```c++
+```cpp
 char buffer[1024];
 int bytesRead = read(socket_fd, buffer, sizeof(buffer));
 if (bytesRead == 0) {
@@ -281,7 +281,7 @@ if (bytesRead == 0) {
 
 代码
 
-```c++
+```cpp
 #include <stdlib.h>
 
 int main() {
@@ -307,7 +307,7 @@ int main() {
 
 2. 注册退出处理函数：可以使用 `atexit` 函数注册一个退出处理函数，在进程退出时自动调用。在退出处理函数中可以释放资源。
 
-   ```c++
+   ```cpp
    #include <stdlib.h>
    
    void cleanup() {

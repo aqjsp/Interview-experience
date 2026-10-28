@@ -10,7 +10,7 @@
    - 这种方式在程序启动时就会创建单例对象，无论是否需要使用，可能会导致资源浪费。
    - 不适合在多线程环境下使用，因为没有进行线程安全的处理。
 
-   ```c++
+   ```cpp
    class Singleton {
    public:
        static Singleton& getInstance() {
@@ -32,7 +32,7 @@
    - 在第一次调用时才创建单例对象，避免了在程序启动时就创建对象的资源浪费。
    - 不适合在多线程环境下使用，因为没有进行线程安全的处理。
 
-   ```c++
+   ```cpp
    class Singleton {
    public:
        static Singleton& getInstance() {
@@ -54,7 +54,7 @@
    - 使用加锁的方式保证在多线程环境下也能正常工作，但会影响性能。
    - 在 `getInstance` 方法中加锁，避免了多个线程同时创建实例的问题。
 
-   ```c++
+   ```cpp
    #include <mutex>
    
    class Singleton {
@@ -82,7 +82,7 @@
    - 利用 C++11 的特性，在静态变量的初始化阶段进行初始化，保证了线程安全性。
    - 使用静态局部变量的特性，在第一次调用 `getInstance` 方法时才进行实例化。
 
-   ```c++
+   ```cpp
    class Singleton {
    public:
        static Singleton& getInstance() {
@@ -124,7 +124,7 @@
 
 1. 硬件寄存器：在与硬件交互时，例如从设备读取状态寄存器的数据，寄存器的值可能随时变化，使用 `volatile` 可以防止编译器优化掉这些读取操作。
 
-   ```c++
+   ```cpp
    volatile int* statusRegister = (int*)0x40001000; // 假设是硬件寄存器地址
    while (*statusRegister != READY) {
        // 等待状态变化
@@ -133,7 +133,7 @@
 
 2. 共享内存（多线程）：一个线程可能会修改一个变量，而另一个线程则需要不断读取这个变量的变化。在这种情况下，`volatile` 可以防止编译器优化导致读取不到最新值。
 
-   ```c++
+   ```cpp
    volatile bool stopThread = false;
    
    void threadFunction() {
@@ -145,7 +145,7 @@
 
 3. 中断服务程序：在中断处理程序中，某些变量可能会被中断处理程序修改，但主程序中也会访问这些变量，使用 `volatile` 可以防止编译器优化。
 
-   ```c++
+   ```cpp
    volatile bool interruptFlag = false;
    
    void interruptHandler() {
@@ -375,7 +375,7 @@ HAVING AVG(sc.score) < 60;
 
 - 查看端口占用情况：
 
-  ```
+  ```bash
   netstat -tuln
   ```
 
@@ -386,7 +386,7 @@ HAVING AVG(sc.score) < 60;
 
 - 查看占用指定端口的进程：
 
-  ```
+  ```bash
   netstat -tulnp | grep <port_number>
   ```
 
@@ -398,7 +398,7 @@ HAVING AVG(sc.score) < 60;
 
 - 查看端口占用情况：
 
-  ```
+  ```text
   ss -tuln
   ```
 
@@ -409,7 +409,7 @@ HAVING AVG(sc.score) < 60;
 
 - 查看占用指定端口的进程：
 
-  ```
+  ```text
   ss -tulnp | grep <port_number>
   ```
 
@@ -421,7 +421,7 @@ HAVING AVG(sc.score) < 60;
 
 - 查看某个端口的占用情况：
 
-  ```
+  ```bash
   lsof -i :<port_number>
   ```
 
@@ -429,7 +429,7 @@ HAVING AVG(sc.score) < 60;
 
 - 查看所有端口的占用情况：
 
-  ```
+  ```bash
   lsof -i -P -n
   ```
 
@@ -442,7 +442,7 @@ HAVING AVG(sc.score) < 60;
 
 查看某个端口的占用情况：
 
-```
+```text
 fuser -n tcp <port_number>
 ```
 
@@ -454,7 +454,7 @@ fuser -n tcp <port_number>
 
 - 扫描某个 IP 的端口占用情况：
 
-  ```
+  ```text
   nmap <ip_address>
   ```
 
@@ -462,7 +462,7 @@ fuser -n tcp <port_number>
 
 - 扫描本地主机的端口：
 
-  ```
+  ```text
   nmap localhost
   ```
 
@@ -472,7 +472,7 @@ fuser -n tcp <port_number>
 
 使用 `pidstat` 查看网络占用情况：
 
-```
+```text
 pidstat -n -p <PID>
 ```
 
@@ -484,7 +484,7 @@ pidstat -n -p <PID>
 
 查看端口是否被防火墙规则拦截或允许：
 
-```
+```bash
 sudo iptables -L -n -v | grep <port_number>
 ```
 
@@ -496,7 +496,7 @@ sudo iptables -L -n -v | grep <port_number>
 
 - 查看某个进程的详细情况：
 
-  ```
+  ```bash
   top -p <PID>
   ```
 
@@ -514,7 +514,7 @@ sudo iptables -L -n -v | grep <port_number>
 
 启动 `htop`：
 
-```
+```text
 htop
 ```
 
@@ -526,7 +526,7 @@ htop
 
 - 查看进程详细信息：
 
-  ```
+  ```bash
   ps aux | grep <PID>
   ```
 
@@ -534,7 +534,7 @@ htop
 
 - 显示所有进程的详细信息：
 
-  ```
+  ```bash
   ps aux
   ```
 
@@ -546,7 +546,7 @@ htop
 
 - 查看某个进程的 CPU 使用情况：
 
-  ```
+  ```text
   pidstat -p <PID> 1
   ```
 
@@ -554,7 +554,7 @@ htop
 
 - 查看某个进程的内存使用情况：
 
-  ```
+  ```text
   pidstat -r -p <PID> 1
   ```
 
@@ -562,7 +562,7 @@ htop
 
 - 查看某个进程的 I/O 使用情况：
 
-  ```
+  ```text
   pidstat -d -p <PID> 1
   ```
 
@@ -574,7 +574,7 @@ htop
 
 - 查看进程的内存使用情况：
 
-  ```
+  ```text
   pmap <PID>
   ```
 
@@ -582,7 +582,7 @@ htop
 
 - 查看进程的内存汇总：
 
-  ```
+  ```text
   pmap -x <PID>
   ```
 
@@ -594,7 +594,7 @@ htop
 
 查看进程打开的文件：
 
-```
+```bash
 lsof -p <PID>
 ```
 
@@ -606,7 +606,7 @@ lsof -p <PID>
 
 跟踪进程的系统调用：
 
-```
+```bash
 strace -p <PID>
 ```
 
@@ -618,7 +618,7 @@ strace -p <PID>
 
 查看进程的 I/O 使用情况：
 
-```
+```text
 iotop -p <PID>
 ```
 
@@ -630,7 +630,7 @@ iotop -p <PID>
 
 查看进程的系统资源使用情况：
 
-```
+```text
 vmstat 1
 ```
 
@@ -642,7 +642,7 @@ vmstat 1
 
 查看进程的 CPU 使用情况：
 
-```
+```text
 sar -p <PID> 1
 ```
 
@@ -670,7 +670,7 @@ sar -p <PID> 1
 
 ##### 参考代码
 
-```c++
+```cpp
 #include <iostream>
 #include <algorithm>
 #include <climits>
@@ -751,7 +751,7 @@ int main() {
 
 ##### 参考代码
 
-```c++
+```cpp
 #include <iostream>
 #include <stack>
 #include <algorithm>

@@ -17,7 +17,7 @@
 
 参考代码：（这里给出ACM模式的）
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 #include <stack>
@@ -91,13 +91,13 @@ int main() {
 
 1. 自动类型推导（Auto）：允许编译器推导变量的类型，使代码更加简洁。
 
-```C++
+```cpp
 auto x = 5; // x的类型将被推导为int
 ```
 
 2. 范围-based for 循环：简化了对容器元素的遍历。
 
-```C++
+```cpp
 std::vector<int> numbers = {1, 2, 3, 4, 5};
 for (const auto& num : numbers) {
     // 使用num
@@ -106,32 +106,32 @@ for (const auto& num : numbers) {
 
 3. 智能指针：引入了`std::shared_ptr`和`std::unique_ptr`等智能指针，用于管理动态分配的内存，帮助防止内存泄漏。
 
-```C++
+```cpp
 std::shared_ptr<int> sharedPtr = std::make_shared<int>(42);
 ```
 
 4. Lambda 表达式：允许在函数内部定义匿名函数，提高代码可读性和灵活性。
 
-```C++
+```cpp
 auto add = [](int a, int b) { return a + b; };
 ```
 
 5. nullptr：引入了空指针常量`nullptr`，用于替代传统的空指针`NULL`。
 
-```C++
+```cpp
 int* ptr = nullptr;
 ```
 
 6. 强制类型转换（Type Casting）：引入了`static_cast`、`dynamic_cast`、`const_cast`、`reinterpret_cast`等更安全和灵活的类型转换操作符。
 
-```C++
+```cpp
 double x = 3.14;
 int y = static_cast<int>(x);
 ```
 
 7. 右值引用和移动语义：支持通过右值引用实现移动语义，提高了对临时对象的处理效率。
 
-```C++
+```cpp
 std::vector<int> getVector() {
     // 返回一个临时vector
     return std::vector<int>{1, 2, 3};
@@ -142,13 +142,13 @@ std::vector<int> numbers = getVector(); // 使用移动语义
 
 8. 新的容器和算法：引入了新的容器，如`std::unordered_map`、`std::unordered_set`，以及一些新的算法。
 
-```C++
+```cpp
 std::unordered_map<int, std::string> myMap = {{1, "one"}, {2, "two"}};
 ```
 
 9. 线程支持（std::thread）：提供了原生的多线程支持，使得并发编程更加方便。
 
-```C++
+```cpp
 #include <thread>
 
 void myFunction() {
@@ -183,7 +183,7 @@ int main() {
 
 Lambda表达式的一般形式如下：
 
-```c++
+```cpp
 [capture](parameters) -> return_type { body }
 ```
 

@@ -10,7 +10,7 @@ Go 中的 slice 是一种轻量级的数据结构，它包含三个部分：指�
 
 Go 中 slice 的内部表示：
 
-```c++
+```cpp
 type slice struct {
     ptr unsafe.Pointer // 指向底层数组的指针
     len int            // 当前 slice 中的元素数量
@@ -39,7 +39,7 @@ type slice struct {
 
 如果能预知需要存储的数据量，可以在创建 slice 时直接指定足够的容量，避免多次扩容。
 
-```c++
+```cpp
 // 假设需要存储 10000 个元素
 data := make([]int, 0, 10000)c
 ```
@@ -50,7 +50,7 @@ data := make([]int, 0, 10000)c
 
 与逐个 `append` 不同，批量添加数据可以减少扩容次数。例如，将待添加的数据先收集到一个临时数组中，然后一次性使用 `append` 合并：
 
-```c++
+```cpp
 temp := []int{...} // 批量数据
 data = append(data, temp...)
 ```
@@ -59,7 +59,7 @@ data = append(data, temp...)
 
 对于短生命周期的 slice，可以通过 `sync.Pool` 进行内存重用，减少频繁分配和释放内存的开销：
 
-```c++
+```cpp
 var slicePool = sync.Pool{
     New: func() interface{} {
         return make([]int, 0, 1024) // 根据业务场景设定合适的初始容量
@@ -139,7 +139,7 @@ func putSlice(s []int) {
 
 1. 获取锁：客户端生成一个唯一的标识（例如 UUID），然后尝试执行：
 
-   ```c++
+   ```cpp
    SET lock_key <unique_value> NX PX 3000
    ```
 
@@ -149,7 +149,7 @@ func putSlice(s []int) {
 
    通常采用 Lua 脚本保证原子性：
 
-   ```c++
+   ```cpp
    if redis.call("get", KEYS[1]) == ARGV[1] then
        return redis.call("del", KEYS[1])
    else
@@ -279,7 +279,7 @@ func putSlice(s []int) {
 
 - 禁用 swap：在 Linux 系统中，可以使用以下命令关闭所有交换分区或交换文件：
 
-  ```c++
+  ```cpp
   swapoff -a
   ```
 
@@ -287,13 +287,13 @@ func putSlice(s []int) {
 
 - 调整 swappiness 参数：Linux 内核有一个参数 `vm.swappiness`，用于控制内核使用 swap 的积极程度。值的范围是 0 到 100，数值越低，内核越不倾向于将内存页换出到 swap。当设置为 0 时，并非完全禁止 swap，但能最大限度地减少换页：
 
-  ```c++
+  ```cpp
   sysctl -w vm.swappiness=0
   ```
 
   或者修改 `/etc/sysctl.conf` 文件使之永久生效：
 
-  ```
+  ```text
   vm.swappiness = 0
   ```
 

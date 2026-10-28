@@ -290,7 +290,7 @@ QUIC（Quick UDP Internet Connections）是基于 UDP 的协议，为 HTTP/3 提
   - 平衡：所有叶子节点在同一层。
 - 示例（m=3）：
 
-```tex
+```text
      [5, 10]
     /  |  \
 [1, 3] [6, 8] [12, 15]
@@ -308,7 +308,7 @@ QUIC（Quick UDP Internet Connections）是基于 UDP 的协议，为 HTTP/3 提
   - 所有数据在叶子层，中间节点仅用于导航。
 - 示例（m=3）：
 
-```tex
+```text
      [5, 10]
     /  |  \
 [1, 3] [5, 8] [10, 15]
@@ -412,7 +412,7 @@ QUIC（Quick UDP Internet Connections）是基于 UDP 的协议，为 HTTP/3 提
 
 - 示例：
 
-  ```c++
+  ```cpp
   struct S {
       int x;  // 默认 public
   };
@@ -443,7 +443,7 @@ QUIC（Quick UDP Internet Connections）是基于 UDP 的协议，为 HTTP/3 提
   - 示例：类层次（如动物、车辆）。
 - 示例：
 
-```c++
+```cpp
 struct Point {
     int x, y;  // 公开数据
 };
@@ -462,7 +462,7 @@ public:
   - class：private 继承。
 - 示例：
 
-```c++
+```cpp
 struct Base { int x; };
 struct Derived : Base { };  // public 继承
 class DerivedC : Base { };  // private 继承
@@ -618,7 +618,7 @@ DerivedC dc; dc.x = 5;      // 错误
 - 使用互斥锁（Mutex）：
   在多线程环境中访问 `std::map` 时，可以使用互斥锁（如 `std::mutex`）来保护所有对 `std::map` 的访问（读和写）。
 
-```c++
+```cpp
 #include <map>
 #include <mutex>
 
@@ -646,7 +646,7 @@ int getValue(int key) {
 
   如果读操作远多于写操作，可以考虑使用读写锁（如 `std::shared_mutex` 或平台特定的实现）来允许多个线程并发读，但写操作时仍需要独占锁。
 
-```c++
+```cpp
 #include <map>
 #include <shared_mutex>
 
@@ -730,7 +730,7 @@ int getValue(int key) {
 
 #### 参考代码（C++）
 
-```c++
+```cpp
 #include <iostream>
 #include <string>
 #include <algorithm>

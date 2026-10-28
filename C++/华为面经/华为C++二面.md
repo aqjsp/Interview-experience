@@ -12,7 +12,7 @@
 
 #### 参考C++代码（ACM模式）
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 
@@ -63,7 +63,7 @@ int main() {
 
 给个demo
 
-```c++
+```cpp
 #include <iostream>
 #include <sys/epoll.h>
 #include <unistd.h>
@@ -212,7 +212,7 @@ int main() {
 
 给个例子：
 
-```c++
+```cpp
 #include <iostream>
 #include <thread>
 #include <mutex>
@@ -383,19 +383,19 @@ CMake 是一个开源的跨平台的构建工具，用于管理代码的构建�
 
 5. 运行 cmake：运行以下命令来配置项目，并生成相应的构建系统文件。
 
-   ```
+   ```bash
    cmake ..
    ```
 
 6. 运行构建工具：根据生成的构建系统文件（如 Makefile）来构建项目。
 
-   ```
+   ```bash
    make
    ```
 
 7. 生成二进制文件：构建成功后，在 build 目录中会生成项目的可执行文件或库文件，即项目的二进制文件。
 
-   ```
+   ```text
    ./MyExecutable
    ```
 
@@ -412,7 +412,7 @@ CMake 是一个开源的跨平台的构建工具，用于管理代码的构建�
 
 2. 创建新分支（可选）：如果需要在新的分支上进行开发，可以使用以下命令创建并切换到新分支。
 
-   ```
+   ```bash
    git checkout -b new_branch_name
    ```
 
@@ -420,37 +420,37 @@ CMake 是一个开源的跨平台的构建工具，用于管理代码的构建�
 
 4. 查看修改状态：可以使用以下命令查看文件的修改状态。
 
-   ```
+   ```bash
    git status
    ```
 
 5. 添加修改到暂存区：将修改的文件添加到暂存区。
 
-   ```
+   ```bash
    git add .
    ```
 
 6. 提交到本地仓库：将暂存区的修改提交到本地仓库。
 
-   ```
+   ```bash
    git commit -m "Commit message"
    ```
 
 7. 推送到远程仓库：如果是在新分支上开发，首次推送需要指定远程仓库和分支。
 
-   ```
+   ```bash
    git push -u origin new_branch_name
    ```
 
    如果是在已有分支上开发，可以直接使用以下命令推送。
 
-   ```
+   ```bash
    git push
    ```
 
 8. 合并到主分支（可选）：如果新功能开发完成，可以将新分支合并到主分支。
 
-   ```
+   ```bash
    git checkout main
    git merge new_branch_name
    git push
@@ -458,13 +458,13 @@ CMake 是一个开源的跨平台的构建工具，用于管理代码的构建�
 
 9. 删除本地分支（可选）：如果新分支已经合并到主分支，可以删除本地分支。
 
-   ```
+   ```bash
    git branch -d new_branch_name
    ```
 
 10. 删除远程分支（可选）：如果新分支已经合并到主分支，可以删除远程分支。
 
-    ```
+    ```bash
     git push origin --delete new_branch_name
     ```
 
@@ -472,13 +472,13 @@ CMake 是一个开源的跨平台的构建工具，用于管理代码的构建�
 
 1. 查看寄存器的值：使用 `info registers` 命令可以查看当前所有寄存器的值。
 
-   ```
+   ```text
    (gdb) info registers
    ```
 
    若要查看特定寄存器（如 eax）的值，可以使用 `info register` 命令：
 
-   ```
+   ```text
    (gdb) info register eax
    ```
 
@@ -486,13 +486,13 @@ CMake 是一个开源的跨平台的构建工具，用于管理代码的构建�
 
    - 使用 `print` 命令查看变量的值：
 
-     ```
+     ```text
      (gdb) print variable_name
      ```
 
    - 使用 `x` 命令查看内存内容，语法为 `x/[格式] 内存地址`，例如：
 
-     ```
+     ```text
      (gdb) x/4xw &variable_name
      ```
 
@@ -515,7 +515,7 @@ CMake 是一个开源的跨平台的构建工具，用于管理代码的构建�
 
 这里给大家一个最大堆的示例代码。
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 

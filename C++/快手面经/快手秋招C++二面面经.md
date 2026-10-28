@@ -14,7 +14,7 @@ auto x = 5; // x的类型将被推导为int
 
 2. 范围-based for 循环： 简化了对容器元素的遍历。
 
-```c
+```cpp
 std::vector<int> numbers = {1, 2, 3, 4, 5};
 for (const auto& num : numbers) {
     // 使用num
@@ -23,19 +23,19 @@ for (const auto& num : numbers) {
 
 3. 智能指针： 引入了`std::shared_ptr`和`std::unique_ptr`等智能指针，用于管理动态分配的内存，帮助防止内存泄漏。
 
-```c
+```cpp
 std::shared_ptr<int> sharedPtr = std::make_shared<int>(42);
 ```
 
 4. Lambda 表达式： 允许在函数内部定义匿名函数，提高代码可读性和灵活性。
 
-```c
+```cpp
 auto add = [](int a, int b) { return a + b; };
 ```
 
 5. nullptr： 引入了空指针常量`nullptr`，用于替代传统的空指针`NULL`。
 
-```c
+```cpp
 int* ptr = nullptr;
 ```
 
@@ -48,7 +48,7 @@ int y = static_cast<int>(x);
 
 7. 右值引用和移动语义： 支持通过右值引用实现移动语义，提高了对临时对象的处理效率。
 
-```c
+```cpp
 std::vector<int> getVector() {
     // 返回一个临时vector
     return std::vector<int>{1, 2, 3};
@@ -59,13 +59,13 @@ std::vector<int> numbers = getVector(); // 使用移动语义
 
 8. 新的容器和算法： 引入了新的容器，如`std::unordered_map`、`std::unordered_set`，以及一些新的算法。
 
-```c
+```cpp
 std::unordered_map<int, std::string> myMap = {{1, "one"}, {2, "two"}};
 ```
 
 9. 线程支持（std::thread）： 提供了原生的多线程支持，使得并发编程更加方便。
 
-```c
+```cpp
 #include <thread>
 
 void myFunction() {
@@ -89,7 +89,7 @@ int main() {
 
 例如，使用 `std::sort` 进行自定义排序：
 
-```c
+```cpp
 #include <algorithm>
 #include <vector>
 #include <iostream>
@@ -117,7 +117,7 @@ int main() {
 
 例如，模拟一个事件触发：
 
-```c
+```cpp
 #include <iostream>
 #include <functional>
 
@@ -142,7 +142,7 @@ int main() {
 
 例如，计算两个数的和：
 
-```c
+```cpp
 #include <iostream>
 
 int main() {
@@ -166,7 +166,7 @@ int main() {
 
 例如，启动一个线程：
 
-```c
+```cpp
 #include <iostream>
 #include <thread>
 
@@ -192,7 +192,7 @@ int main() {
 
 例如，使用 `std::function` 定义高阶函数：
 
-```c
+```cpp
 #include <iostream>
 #include <functional>
 
@@ -314,7 +314,7 @@ int main() {
 
 `find()` 方法返回一个迭代器，如果 `key` 存在，则返回指向该 `key` 的迭代器；如果 `key` 不存在，则返回 `map.end()`。
 
-```c
+```cpp
 #include <iostream>
 #include <map>
 
@@ -337,7 +337,7 @@ int main() {
 
 `count()` 方法返回 `key` 在 `map` 中出现的次数。由于 `map` 中的 `key` 是唯一的，如果 `key` 存在，`count()` 返回 1；否则返回 0。
 
-```c
+```cpp
 #include <iostream>
 #include <map>
 
@@ -360,7 +360,7 @@ int main() {
 
 `contains()` 方法是一个更直观的方法，用于检查 `map` 中是否存在指定的 `key`。
 
-```c
+```cpp
 #include <iostream>
 #include <map>
 
@@ -600,7 +600,7 @@ ssize_t recv(int sockfd, void *buf, size_t len, int flags);
 
 #### 示例代码
 
-```c
+```cpp
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -803,7 +803,7 @@ int main() {
   - 父子进程间的简单数据传递。
   - Shell命令中的命令管道（如 `ls | grep`）。
 
-```c
+```cpp
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
@@ -850,7 +850,7 @@ int main() {
   - 任意进程间的通信。
   - 跨进程的简单数据传递。
 
-```c
+```cpp
 #include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -898,7 +898,7 @@ int main() {
   - 多进程间的数据交换。
   - 需要按类型读取消息的场景。
 
-```c
+```cpp
 #include <stdio.h>
 #include <sys/msg.h>
 #include <string.h>
@@ -951,7 +951,7 @@ int main() {
   - 大数据量的快速传输。
   - 高性能的多进程协作。
 
-```c
+```cpp
 #include <stdio.h>
 #include <sys/shm.h>
 #include <string.h>
@@ -1090,7 +1090,7 @@ int main() {
   - 跨网络的进程间通信。
   - 本地主机进程间通信。
 
-```c
+```cpp
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -1165,7 +1165,7 @@ int main() {
 
 #### 参考代码
 
-```c
+```cpp
 #include <iostream>
 #include <unordered_map>
 #include <algorithm>

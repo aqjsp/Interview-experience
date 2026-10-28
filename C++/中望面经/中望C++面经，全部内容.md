@@ -10,13 +10,13 @@
 
 1. 编译时添加调试信息：在编译程序时，需要使用`-g`选项，以便将调试信息嵌入可执行文件中。例如：
 
-```Bash
+```bash
 g++ -g -o my_program my_program.cpp
 ```
 
 2. 启动 GDB：在终端中执行以下命令：
 
-```Bash
+```bash
 gdb ./my_program
 ```
 
@@ -24,7 +24,7 @@ gdb ./my_program
 
 3. 设置断点：设置断点以在程序执行到指定位置时暂停。可以使用`break`命令：
 
-```Bash
+```bash
 break main
 ```
 
@@ -32,7 +32,7 @@ break main
 
 4. 运行程序：在 GDB 中执行`run`命令启动程序：
 
-```Bash
+```bash
 run
 ```
 
@@ -40,37 +40,37 @@ run
 
 5. 查看变量的值：使用`print`或简写的`p`命令来查看变量的值：
 
-```Bash
+```bash
 print variable_name
 ```
 
 6. 单步执行：使用`step`命令来单步执行程序，进入函数内部：
 
-```Bash
+```bash
 step
 ```
 
 7. 下一步执行：使用`next`命令来执行下一行代码，不进入函数内部：
 
-```Bash
+```bash
 next
 ```
 
 8. 继续执行：使用`continue`或简写的`c`命令来继续执行程序直到下一个断点：
 
-```Bash
+```bash
 continue
 ```
 
 9. 查看堆栈：使用`backtrace`或简写的`bt`命令来查看函数调用堆栈：
 
-```Bash
+```bash
 backtrace
 ```
 
 10. 退出 GDB：使用`quit`或简写的`q`命令退出 GDB：
 
-```Bash
+```bash
 quit
 ```
 
@@ -81,7 +81,7 @@ quit
    - 处理工具： 预处理器（`cpp`）。
    - 过程： 预处理器会执行一系列的预处理操作，包括宏替换、文件包含、条件编译等。产生一个新的临时文件，通常以 `.i` 或 `.ii` 为扩展名。
 
-```Bash
+```bash
 gcc -E input.c -o output.i
 ```
 
@@ -93,7 +93,7 @@ gcc -E input.c -o output.i
 
    - 过程： 编译器将源代码翻译成汇编代码。产生一个汇编文件，通常以 `.s` 为扩展名。
 
-```Bash
+```bash
 gcc -S output.i -o output.s
 ```
 
@@ -105,7 +105,7 @@ gcc -S output.i -o output.s
 
    - 过程： 汇编器将汇编代码翻译成目标文件（机器码）。产生一个目标文件，通常以 `.o` 或 `.obj` 为扩展名。
 
-```Bash
+```bash
 gcc -c output.s -o output.o
 ```
 
@@ -117,7 +117,7 @@ gcc -c output.s -o output.o
 
    - 过程： 链接器将目标文件、库文件等合并生成最终的可执行文件。链接的过程包括地址解析、符号解析、重定位等。
 
-```Bash
+```bash
 gcc output.o -o executable
 ```
 
@@ -127,7 +127,7 @@ gcc output.o -o executable
 
 1. 添加头文件搜索路径：
 
-```C++
+```cpp
 include_directories(path/to/include)
 ```
 
@@ -135,7 +135,7 @@ include_directories(path/to/include)
 
 2. 添加动态链接库：
 
-```C++
+```cpp
 target_link_libraries(your_target_name library_name)
 ```
 
@@ -143,7 +143,7 @@ target_link_libraries(your_target_name library_name)
 
 如果库文件不在默认的系统库搜索路径中，你可能还需要使用 `link_directories` 指令指定库文件的搜索路径：
 
-```C++
+```cpp
 link_directories(path/to/library)
 ```
 
@@ -289,7 +289,7 @@ target_link_libraries(my_executable my_library)
 
 给个例子演示一下 `map`的迭代器的`++`操作：
 
-```C++
+```cpp
 #include <iostream>
 #include <map>
 
@@ -348,7 +348,7 @@ STL中的 `sort` 算法通常是使用一种混合排序的方法来实现的。
 
 给个例子：
 
-```C++
+```cpp
 #include <iostream>
 
 class Base {

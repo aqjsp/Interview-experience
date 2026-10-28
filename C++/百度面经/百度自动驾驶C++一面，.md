@@ -1601,7 +1601,7 @@ $1 = (int *) 0x0
            ps aux | grep nginx | grep -v grep
            ```
            输出示例：
-           ```
+           ```text
            root       1234  0.0  0.1  12345  6789 ?        Ss   Oct17   0:00 nginx: master process /usr/sbin/nginx
            www-data   1235  0.0  0.1  12345  6789 ?        S    Oct17   0:00 nginx: worker process
            ```
@@ -1617,7 +1617,7 @@ $1 = (int *) 0x0
            pgrep nginx
            ```
            输出示例：
-           ```
+           ```text
            1234
            1235
            ```
@@ -1634,7 +1634,7 @@ $1 = (int *) 0x0
            pidof sshd
            ```
            输出示例：
-           ```
+           ```text
            1024 1023
            ```
 
@@ -1655,7 +1655,7 @@ $1 = (int *) 0x0
            sudo lsof -i :80
            ```
            输出示例（PID通常在第二列）：
-           ```
+           ```text
            COMMAND    PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
            nginx     1234  root    6u  IPv4  12345      0t0  TCP *:http (LISTEN)
            ```
@@ -1665,7 +1665,7 @@ $1 = (int *) 0x0
            sudo netstat -tulnp | grep :80
            ```
            输出示例（PID通常在最后一列）：
-           ```
+           ```text
            tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      1234/nginx
            ```
 

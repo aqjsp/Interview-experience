@@ -33,7 +33,7 @@
 
 示例（C++）：
 
-```c++
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -84,7 +84,7 @@ int main() {
 
 示例（C++）：
 
-```c++
+```cpp
 class Base {
 public:
     virtual ~Base() { // 虚析构函数
@@ -151,7 +151,7 @@ int main() {
 
 示例（C++）：
 
-```c++
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -212,7 +212,7 @@ int main() {
 
 示例：
 
-```c++
+```cpp
 #include <iostream>
 #include <cstring>
 using namespace std;
@@ -450,7 +450,7 @@ LeetCode 56题
 
 参考代码：
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 #include <algorithm>

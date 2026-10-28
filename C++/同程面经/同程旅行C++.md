@@ -6,14 +6,14 @@
 
 1. sizeof是C/C++中的操作符，用于获取一个数据类型或变量所占用的字节数。它是在编译时计算的，返回的是数据类型或变量的字节数，而不是字符数。主要用于静态分配内存和获取数据类型的大小。
 
-   ```c++
+   ```cpp
    int arr[5];
    size_t size = sizeof(arr); // size = 20 (5 * 4 字节)
    ```
 
 2. strlen是C/C++中的函数，用于获取一个以null终止字符数组（C字符串）的长度，即字符数。它是在运行时计算的，遍历字符数组直到遇到null终止符。主要用于计算C字符串的长度。
 
-   ```c++
+   ```cpp
    const char* str = "Hello, World!";
    size_t length = strlen(str); // length = 13
    ```
@@ -123,7 +123,7 @@
 
 参考代码
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 
@@ -184,7 +184,7 @@ int main() {
 
 使用示例：
 
-```c++
+```cpp
 #include <iostream>
 #include <map>
 

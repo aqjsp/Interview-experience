@@ -188,7 +188,7 @@ int main() {
 
 ##### 代码示例
 
-```c
+```cpp
 #include <iostream>
 #include <thread>
 #include <condition_variable>
@@ -233,7 +233,7 @@ int main() {
 
 ##### 代码示例
 
-```c
+```cpp
 #include <iostream>
 #include <thread>
 #include <atomic>
@@ -380,7 +380,7 @@ int main() {
 
 给个例子：
 
-```c
+```cpp
 #include <iostream>
 #include <thread>
 #include <mutex>
@@ -570,7 +570,7 @@ int main() {
 
 #### 示例代码
 
-```c
+```cpp
 #include <iostream>
 #include <memory>
 
@@ -617,7 +617,7 @@ int main() {
 
 #### 输出
 
-```c
+```text
 sharedPtr use count: 1
 weakPtr use count: 1
 sharedPtr use count: 2
@@ -643,14 +643,14 @@ Object has been deleted.
 
 ##### 语法
 
-```c
+```cpp
 template <class T, class... Args>
 shared_ptr<T> make_shared(Args&&... args);
 ```
 
 ##### 示例代码
 
-```c
+```cpp
 #include <iostream>
 #include <memory>
 
@@ -961,7 +961,7 @@ int main() {
 
 - 移动构造函数（Move Constructor）：使用右值引用来接收资源，将其转移到当前对象中。
 
-  ```c
+  ```cpp
   class MyClass {
       int* data;
   public:
@@ -982,7 +982,7 @@ int main() {
 
 - 移动赋值运算符（Move Assignment Operator）：当一个对象被赋值时，检测是否可以使用右值引用来移动资源，而不是拷贝资源。
 
-  ```c
+  ```cpp
   class MyClass {
       int* data;
   public:
@@ -1015,14 +1015,14 @@ int main() {
 
 - `std::move`：将左值强制转换为右值引用，以便调用移动构造函数或移动赋值运算符。
 
-  ```c
+  ```cpp
   MyClass obj1(10);
   MyClass obj2 = std::move(obj1);  // 调用移动构造函数
   ```
 
 - `std::forward`：用于完美转发，保持参数的原始类型和值类别。
 
-  ```c
+  ```cpp
   template<typename T>
   void wrapper(T&& arg) {
       process(std::forward<T>(arg));  // 保持参数的原始类型和值类别
@@ -1033,7 +1033,7 @@ int main() {
 
 完美转发允许模板函数在转发参数时保持参数的原始类型和值类别，这对于实现移动语义和精确的函数封装非常重要。
 
-```c
+```cpp
 #include <iostream>
 #include <utility>
 
@@ -1072,7 +1072,7 @@ int main() {
 
 函数重载是指在同一作用域内，可以有多个同名函数，但它们的参数列表必须不同（参数个数、类型或顺序不同）。
 
-```c
+```cpp
 #include <iostream>
 
 // 函数重载
@@ -1095,7 +1095,7 @@ int main() {
 
 模板允许编写泛型代码，可以在编译时生成特定类型的代码。模板可以应用于函数和类。
 
-```c
+```cpp
 #include <iostream>
 
 // 函数模板
@@ -1119,7 +1119,7 @@ int main() {
 
 虚函数是在基类中使用 `virtual` 关键字声明的成员函数，允许子类重写这些函数。通过基类的指针或引用调用虚函数时，实际调用的是派生类中重写的方法。
 
-```c
+```cpp
 #include <iostream>
 
 class Base {
@@ -1159,7 +1159,7 @@ int main() {
 
 纯虚函数是没有具体实现的虚函数，形式为 `virtual void func() = 0;`。包含纯虚函数的类称为抽象类，不能实例化，只能被继承。
 
-```c
+```cpp
 #include <iostream>
 
 class AbstractBase {
@@ -1222,7 +1222,7 @@ int main() {
 
 #### 参考代码
 
-```c
+```cpp
 #include <vector>
 #include <unordered_set>
 #include <algorithm>

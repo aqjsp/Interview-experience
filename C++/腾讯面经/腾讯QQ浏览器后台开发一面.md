@@ -26,7 +26,7 @@
 
 - **GET**：获取资源。多次执行相同的GET请求，返回的结果是相同的，不会对服务器上的资源产生任何修改。
 
-  ```
+  ```text
   GET /resource/123
   ```
 
@@ -34,7 +34,7 @@
 
 - **PUT**：更新资源。多次执行相同的PUT请求，资源的最终状态保持一致，即便请求被重复，资源的内容仍然是更新后的状态。
 
-  ```
+  ```text
   PUT /resource/123
   Content-Type: application/json
   
@@ -48,7 +48,7 @@
 
 - **DELETE**：删除资源。多次执行相同的DELETE请求，资源的最终状态是被删除的，无论资源是否已经被删除，重复删除操作不会引起新的副作用。
 
-  ```
+  ```text
   DELETE /resource/123
   ```
 
@@ -60,7 +60,7 @@
 
 - POST：创建资源或提交数据。多次执行相同的POST请求，可能会导致不同的结果。例如，创建多个相同的资源或重复提交数据。
 
-  ```
+  ```text
   POST /resource
   Content-Type: application/json
   
@@ -395,7 +395,7 @@ ZSet 的底层数据结构是跳跃表（Skip List）和哈希表（Hash Table�
 
 ##### C++
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 #include <algorithm>

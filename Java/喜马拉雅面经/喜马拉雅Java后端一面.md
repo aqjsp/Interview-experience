@@ -84,7 +84,7 @@
 
 示例代码：
 
-```
+```java
 import java.util.concurrent.*;
 
 public class ThreadPoolExample {
@@ -125,7 +125,7 @@ public class ThreadPoolExample {
 
 给个例子：
 
-```
+```java
 public class RaceConditionExample {
     private static int counter = 0;
 
@@ -171,7 +171,7 @@ public class RaceConditionExample {
 
 #### 参考代码
 
-```
+```java
 public class ReverseNumber {
     public static long reverse(long num) {
         long reversed = 0;
@@ -204,7 +204,7 @@ public class ReverseNumber {
 
 #### 参考代码
 
-```
+```java
 public class ReverseWords {
     public static String reverseWords(String s) {
         String[] words = s.trim().split("\\s+"); // 按空格分割字符串，去除首尾空格
@@ -238,7 +238,7 @@ public class ReverseWords {
 
 ![img](https://raw.githubusercontent.com/aqjsp/Pictures/main/202402082302104.jpg)
 
-```
+```text
 输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]
 输出：[1,2,3,6,9,8,7,4,5]
 ```
@@ -247,7 +247,7 @@ public class ReverseWords {
 
 ![img](https://raw.githubusercontent.com/aqjsp/Pictures/main/202402082302222.jpg)
 
-```
+```text
 输入：matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
 输出：[1,2,3,4,8,12,11,10,9,5,6,7]
 ```
@@ -271,7 +271,7 @@ public class ReverseWords {
 
 #### 参考代码
 
-```
+```java
 import java.util.ArrayList;
 import java.util.List;
 

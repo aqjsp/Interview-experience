@@ -4,7 +4,7 @@
 
 ### 1、写出字符数组大小
 
-```c++
+```cpp
 char buf[10] = "123";
 char buf1[] = "123";
 char *p = "123";
@@ -21,7 +21,7 @@ sizeof(p) =
 
 ### 2、请输出下面的内容
 
-```c++
+```cpp
 int a = 10;
 int &b = a;
 b = 11;
@@ -35,7 +35,7 @@ printf("%d \n", a);
 
 ### 3、下面程序输出什么？
 
-```c++
+```cpp
 class AAA {
 public:
     void test1() {
@@ -76,7 +76,7 @@ int main() {
 
 示例：
 
-```c++
+```cpp
 // file1.cpp
 static int globalVar = 10;       // 只在 file1.cpp 内可见
 static void helper() {           // 只在 file1.cpp 内可调用
@@ -88,7 +88,7 @@ void publicFunc() {
 }
 ```
 
-```c++
+```cpp
 // file2.cpp
 extern int globalVar;  // ❌ 链接错误！找不到符号
 extern void helper();  // ❌ 链接错误！
@@ -116,7 +116,7 @@ void foo() {
 
 示例：
 
-```c++
+```cpp
 void counter() {
     static int count = 0;  // 只初始化一次
     count++;
@@ -148,7 +148,7 @@ int main() {
 
 示例：
 
-```c++
+```cpp
 class MyClass {
 public:
     static int count;  // 声明
@@ -181,7 +181,7 @@ int main() {
 
 示例：
 
-```c++
+```cpp
 class MathUtils {
 public:
     static int add(int a, int b) {
@@ -257,7 +257,7 @@ C++ 允许类或全局范围重载 `operator new`/`operator delete`。`delete` �
 
 ###### 正确：`new` / `delete`
 
-```c++
+```cpp
 struct Foo {
     Foo() { puts("ctor"); }
     ~Foo() { puts("dtor"); }
@@ -269,14 +269,14 @@ delete p; // 先调用 ~Foo，再释放内存
 
 ###### 错误：`new` + `free`（UB）
 
-```c++
+```cpp
 Foo* p = new Foo();
 free(p); // UB：不会调用 ~Foo，且释放方式与 operator delete 可能不匹配
 ```
 
 ###### 错误：`malloc` + `delete`（UB）
 
-```c++
+```cpp
 Foo* p = (Foo*)malloc(sizeof(Foo));         // 未构造对象
 new (p) Foo();                              // placement new，构造对象
 delete p; // UB：delete 假设 p 来自 new，而这里是 malloc/placement new
@@ -285,7 +285,7 @@ delete p; // UB：delete 假设 p 来自 new，而这里是 malloc/placement new
 
 ###### 数组分配注意：`new[]` / `delete[]`
 
-```c++
+```cpp
 Foo* a = new Foo[3];    // 调用 3 次构造
 delete [] a;            // 调用 3 次析构并释放
 // 不能写 delete a; 否则 UB
@@ -322,7 +322,7 @@ delete [] a;            // 调用 3 次析构并释放
 
 ###### 正确写法（基类析构虚）
 
-```c++
+```cpp
 #include <iostream>
 
 struct Base {
@@ -341,7 +341,7 @@ int main() {
 
 ###### 错误写法（基类析构非虚，UB）
 
-```c++
+```cpp
 #include <iostream>
 
 struct Base {
@@ -375,7 +375,7 @@ int main() {
 
 - ###### 但必须提供定义（即使是纯虚），因为派生类析构会间接调用基类析构的实现：
 
-  ```c++
+  ```cpp
   struct Base {
       virtual ~Base() = 0;
   };
@@ -405,7 +405,7 @@ int main() {
 
 写法等价于：
 
-```c++
+```cpp
 const int* p;
 ```
 
@@ -417,7 +417,7 @@ const int* p;
 
 ##### 示例
 
-```c++
+```cpp
 int a = 10;
 int b = 20;
 
@@ -442,7 +442,7 @@ p = &b;             // 正确：可以修改p指向
 
 ##### 示例
 
-```c++
+```cpp
 int a = 10;
 int b = 20;
 
@@ -470,7 +470,7 @@ int* const p = &a;  // p必须立刻初始化
 - `int const\*`（指向常量的指针）
    常用于函数参数，保证函数内部不会修改传入的对象：
 
-  ```c++
+  ```cpp
   void print(const int* p) {
       std::cout << *p << std::endl;
   }
@@ -481,7 +481,7 @@ int* const p = &a;  // p必须立刻初始化
 - `int\* const`（常量指针）
    常用于实现“固定绑定”，比如类成员内部保存某个对象的引用地址：
 
-  ```c++
+  ```cpp
   class Wrapper {
       int* const ptr;  // 必须在构造函数初始化，之后不能换对象
   public:
@@ -507,7 +507,7 @@ int* const p = &a;  // p必须立刻初始化
 
 `shared_ptr` 通过引用计数释放对象。若对象之间互相 `shared_ptr` 持有，会造成引用计数永远不为 0，从而泄漏：
 
-```c++
+```cpp
 struct B;
 struct A { std::shared_ptr<B> b; };
 struct B { std::shared_ptr<A> a; };
@@ -522,7 +522,7 @@ b->a = a; // 循环：A<->B，引用计数永远 >0 -> 泄漏
 
 ##### 2) 错误地从同一原始指针构造多个 `shared_ptr` 会导致双重删除（UB）
 
-```c++
+```cpp
 int* p = new int(42);
 std::shared_ptr<int> s1(p);
 std::shared_ptr<int> s2(p); // 错误：s1 和 s2 有各自 control block -> 双重 delete -> UB
@@ -574,7 +574,7 @@ Lambda（闭包）是一个匿名的可调用对象（编译器生成一个“�
 
 #### 8.2. 语法总览（最常见形式）
 
-```c++
+```cpp
 [capture-clause] (parameters) cv-qualifier exception-spec -> return-type {
     body
 }
@@ -590,7 +590,7 @@ Lambda（闭包）是一个匿名的可调用对象（编译器生成一个“�
 
 #### 8.3、基本示例（C++11 起）
 
-```c++
+```cpp
 auto f = [](int x){ return x + 1; };
 std::cout << f(10); // 11
 ```
@@ -599,7 +599,7 @@ std::cout << f(10); // 11
 
 等价于一个无状态的函数对象，可以转换为函数指针：
 
-```c++
+```cpp
 int (*fp)(int) = [](int x){ return x+1; }; // 可行（无捕获）
 ```
 
@@ -615,7 +615,7 @@ int (*fp)(int) = [](int x){ return x+1; }; // 可行（无捕获）
 
 - 初始化捕获（init-capture，C++14）：`[name = expr]`，可以把表达式的结果初始化到闭包的成员，常用于 **move capture**（把移动-only 类型移入闭包），例如：
 
-  ```c++
+  ```cpp
   auto up = std::make_unique<int>(42);
   auto f = [p = std::move(up)](){ return *p; }; // p 是闭包内的成员，持有 unique_ptr
   ```
@@ -634,7 +634,7 @@ int (*fp)(int) = [](int x){ return x+1; }; // 可行（无捕获）
 
 示例：
 
-```c++
+```cpp
 int x = 0;
 auto g = [x]() mutable { x += 1; return x; };
 std::cout << g(); // 1
@@ -649,7 +649,7 @@ std::cout << x;   // 0  （外部 x 未变）
 
 示例（若推导失败，可显式写）：
 
-```c++
+```cpp
 auto f = [](int x)->double { if (x>0) return 1.0; else return 0.0; }; // 显式尾置
 ```
 
@@ -657,7 +657,7 @@ auto f = [](int x)->double { if (x>0) return 1.0; else return 0.0; }; // 显式�
 
 - C++14：支持在参数列表中使用 `auto`，生成模板化的 `operator()`（称为“generic lambda”）。例如：
 
-  ```c++
+  ```cpp
   auto add = [](auto a, auto b){ return a + b; };
   add(1, 2); // int
   add(1.0, 2.5); // double
@@ -669,7 +669,7 @@ auto f = [](int x)->double { if (x>0) return 1.0; else return 0.0; }; // 显式�
 
 要把 `unique_ptr` 等 move-only 对象放进闭包，**必须**用 init-capture（C++14）：
 
-```c++
+```cpp
 auto up = std::make_unique<Foo>();
 auto f = [p = std::move(up)](){ p->do_something(); }; // OK
 ```
@@ -684,7 +684,7 @@ auto f = [p = std::move(up)](){ p->do_something(); }; // OK
 
   - 把对象用 `shared_ptr` 管理，捕获 `weak_ptr`，在闭包运行时 `lock()` 检查并转为 `shared_ptr`（避免延长生命周期又防止悬挂）：
 
-    ```c++
+    ```cpp
     auto wp = std::weak_ptr<My>(shared_ptr_this);
     auto f = [wp]{ if(auto sp = wp.lock()) sp->do_work(); };
     ```
@@ -702,7 +702,7 @@ auto f = [p = std::move(up)](){ p->do_something(); }; // OK
 - 有捕获的 lambda 不可转换为函数指针（因为它有状态）。
    示例：
 
-```c++
+```cpp
 auto no_cap = [](int x){ return x+1; };
 int (*fp)(int) = no_cap; // OK
 
@@ -715,7 +715,7 @@ auto cap = [y](int x){ return x + y; };
 
 - 如果用 lambda 启动 `std::thread`，确保捕获方式安全（不要捕引用到局部变量；线程可能在局部变量离开作用域后才运行）：
 
-  ```c++
+  ```cpp
   int x = 42;
   std::thread t([x]{ /* safe: captured by value */ });
   // vs
@@ -728,7 +728,7 @@ auto cap = [y](int x){ return x + y; };
 
 - 捕获 `i` 的 for-loop 问题（那种你在循环里创建多个 lambda 用于 later 调用）：要按值捕 `i`，否则闭包捕到的是同一个 `i`（循环结束后通常为最终值）。
 
-  ```c++
+  ```cpp
   std::vector<std::function<int()>> v;
   for(int i=0;i<3;++i){
       v.push_back([i]{ return i; }); // correct: capture i by value
@@ -761,7 +761,7 @@ auto cap = [y](int x){ return x + y; };
 
 ##### 简单捕值/捕引用
 
-```c++
+```cpp
 int a = 1;
 auto v = [a]() { return a + 1; }; // 捕值
 auto r = [&a]() { a += 2; };      // 捕引用
@@ -769,7 +769,7 @@ auto r = [&a]() { a += 2; };      // 捕引用
 
 ##### move-only capture（C++14）
 
-```c++
+```cpp
 auto up = std::make_unique<int>(5);
 auto f = [p = std::move(up)] { return *p + 1; };
 // up 已被移动，f 拥有该 unique_ptr
@@ -777,14 +777,14 @@ auto f = [p = std::move(up)] { return *p + 1; };
 
 ##### generic lambda（C++14）
 
-```c++
+```cpp
 auto add = [](auto x, auto y) { return x + y; };
 add(1, 2); add(1.5, 2.5);
 ```
 
 ##### C++20 模板 lambda
 
-```c++
+```cpp
 auto map = []<typename F, typename T>(F f, T x){ return f(x); };
 map.template operator()<std::function<int(int)>, int>([](int y){return y+1;}, 3);
 ```
@@ -806,7 +806,7 @@ map.template operator()<std::function<int(int)>, int>([](int y){return y+1;}, 3)
 
 ##### 示例
 
-```c++
+```cpp
 int x = 10;
 const int cx = x;
 int& rx = x;
@@ -829,7 +829,7 @@ auto& d = cx; // const int& (显式加引用，才保留 const)
 
 ##### 示例
 
-```c++
+```cpp
 int x = 10;
 const int cx = x;
 int& rx = x;
@@ -1015,7 +1015,7 @@ MySQL InnoDB 默认隔离级别是 Repeatable Read，而且通过 MVCC + Next-Ke
 
 #### 参考代码（C++）
 
-```c++
+```cpp
 // 定义链表节点结构
 struct ListNode {
     int val;
@@ -1133,7 +1133,7 @@ int main() {
 
 #### 参考代码（C++）
 
-```c++
+```cpp
 #include <iostream>
 #include <climits>
 using namespace std;
@@ -1247,7 +1247,7 @@ b->foo(); // calls Derived::foo()  —— 运行时决定
 
 ASCII 示意（单继承典型布局）：
 
-```
+```text
 vtable_for_Derived: [ &Derived::foo, &Derived::bar, &typeinfo, ... ]   // static in .rodata
 object (Derived):
   [ vptr ] -> points to vtable_for_Derived
@@ -1256,7 +1256,7 @@ object (Derived):
 
 调用流程（伪汇编）：
 
-```
+```text
 load vptr from object
 load func_ptr = vptr[offset_for_foo]
 call func_ptr
@@ -1296,7 +1296,7 @@ new Derived; // prints Base (in Base ctor), Derived (in Derived ctor if called),
 
 示意（Derived : Base1, Base2）：
 
-```c++
+```cpp
 object layout:
  [ vptr_for_Base1 ]  // Base1 subobject
  [ Base1 members ]
@@ -1322,7 +1322,7 @@ object layout:
 
 示例（多继承导致 this_adjustment）：
 
-```c++
+```cpp
 Base1* pb = static_cast<Base1*>(new Derived());
 pb->foo(); // vtable entry for foo may be a thunk that adjusts 'this' and calls Derived::foo
 ```
@@ -1475,7 +1475,7 @@ int y = INC_AND_SQR(i++); // i 被递增两次 —— 未预期副作用！
 
 - `#if` / `#ifdef`、`#error` 等只能看宏。你不能在预处理阶段用 `const` 值做 `#if` 判定（预处理器早于编译器运行）。
 
-  ```c
+  ```text
   #define MAXN 100
   #if MAXN > 10
   // 成功
@@ -1878,7 +1878,7 @@ int main() {
 
 大多数编译器输出结果是：
 
-```
+```text
 1
 ```
 
@@ -2145,7 +2145,7 @@ std::cout << &a << " " << &b << std::endl;
 1. 头文件包含（`#include`）  
    - 将 `#include <xxx>` 或 `#include "xxx"` 指令替换为对应头文件的内容。
    - 示例：
-     ```c++
+     ```cpp
      #include <iostream>
      ```
      会被替换为 `<iostream>` 头文件的完整内容（如 `std::cout` 的声明）。
@@ -2153,7 +2153,7 @@ std::cout << &a << " " << &b << std::endl;
 2. 宏定义与替换（`#define`）  
    - 将宏名替换为对应的值或代码片段。
    - 示例：
-     ```c++
+     ```cpp
      #define PI 3.14159
      ```
      预处理后，所有 `PI` 会被替换为 `3.14159`。
@@ -2387,7 +2387,7 @@ TCP 的连接在数据传输上是全双工的，客户端可以向服务器发�
 
 ##### 参考代码（C++）
 
-```c++
+```cpp
 #include <iostream>
 
 // 链表节点定义
@@ -2573,7 +2573,7 @@ int main() {
 
 ##### 参考代码（C++）
 
-```c++
+```cpp
 #include <iostream>
 #include <unordered_set>
 
@@ -2773,7 +2773,7 @@ int main() {
 
 ##### 参考代码（C++）
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 #include <string>

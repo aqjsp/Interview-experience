@@ -76,7 +76,7 @@
 
 来一个简单的无锁队列的示例：
 
-```c++
+```cpp
 #include <atomic>
 #include <memory>
 
@@ -121,13 +121,13 @@ public:
 
 1. 自动类型推导（Auto）： 允许编译器推导变量的类型，使代码更加简洁。
 
-```C++
+```cpp
 auto x = 5; // x的类型将被推导为int
 ```
 
 2. 范围-based for 循环： 简化了对容器元素的遍历。
 
-```C++
+```cpp
 std::vector<int> numbers = {1, 2, 3, 4, 5};
 for (const auto& num : numbers) {
     // 使用num
@@ -136,32 +136,32 @@ for (const auto& num : numbers) {
 
 3. 智能指针： 引入了`std::shared_ptr`和`std::unique_ptr`等智能指针，用于管理动态分配的内存，帮助防止内存泄漏。
 
-```C++
+```cpp
 std::shared_ptr<int> sharedPtr = std::make_shared<int>(42);
 ```
 
 4. Lambda 表达式： 允许在函数内部定义匿名函数，提高代码可读性和灵活性。
 
-```C++
+```cpp
 auto add = [](int a, int b) { return a + b; };
 ```
 
 5. nullptr： 引入了空指针常量`nullptr`，用于替代传统的空指针`NULL`。
 
-```C++
+```cpp
 int* ptr = nullptr;
 ```
 
 6. 强制类型转换（Type Casting）： 引入了`static_cast`、`dynamic_cast`、`const_cast`、`reinterpret_cast`等更安全和灵活的类型转换操作符。
 
-```C++
+```cpp
 double x = 3.14;
 int y = static_cast<int>(x);
 ```
 
 7. 右值引用和移动语义： 支持通过右值引用实现移动语义，提高了对临时对象的处理效率。
 
-```C++
+```cpp
 std::vector<int> getVector() {
     // 返回一个临时vector
     return std::vector<int>{1, 2, 3};
@@ -172,13 +172,13 @@ std::vector<int> numbers = getVector(); // 使用移动语义
 
 8. 新的容器和算法： 引入了新的容器，如`std::unordered_map`、`std::unordered_set`，以及一些新的算法。
 
-```C++
+```cpp
 std::unordered_map<int, std::string> myMap = {{1, "one"}, {2, "two"}};
 ```
 
 9. 线程支持（std::thread）： 提供了原生的多线程支持，使得并发编程更加方便。
 
-```C++
+```cpp
 #include <thread>
 
 void myFunction() {
@@ -200,7 +200,7 @@ int main() {
 
 给个例子，展示如何使用 `std::shared_ptr` 实现引用计数：
 
-```C++
+```cpp
 #include <memory>
 #include <iostream>
 
@@ -247,7 +247,7 @@ int main() {
 
 使用示例：
 
-```C++
+```cpp
 #include <memory>
 #include <iostream>
 
@@ -322,7 +322,7 @@ int main() {
 
 给个代码作参考：
 
-```C++
+```cpp
 class Base {
 public:
     virtual void foo() {
@@ -354,7 +354,7 @@ int main() {
 
 1. 区分成员变量和局部变量： 在成员函数中，如果有一个局部变量和一个成员变量同名，可以使用 `this` 指针来明确指出访问的是成员变量还是局部变量。
 
-```C++
+```cpp
 class MyClass {
 private:
     int x;
@@ -368,7 +368,7 @@ public:
 
 2. 在成员函数中返回对象自身： 可以在成员函数中返回对象自身，以便支持链式调用。
 
-```C++
+```cpp
 class MyClass {
 private:
     int value;
@@ -383,7 +383,7 @@ public:
 
 3. 在构造函数和析构函数中： 在构造函数和析构函数中，`this` 指针指向被构造或销毁的对象。
 
-```C++
+```cpp
 class MyClass {
 public:
     MyClass(int x) {
@@ -401,7 +401,7 @@ private:
 
 4. 在类的静态成员函数中： 静态成员函数是与类关联而不是与对象关联的，因此在静态成员函数中不可以使用 `this` 指针。
 
-```C++
+```cpp
 class MyClass {
 public:
     static void staticFunction() {
@@ -420,7 +420,7 @@ public:
 
 给个例子：
 
-```C++
+```cpp
 class Singleton {
 private:
     static Singleton* instance;
@@ -446,7 +446,7 @@ std::mutex Singleton::mtx;
 
 2. 饿汉式： 在类加载时就创建实例，不存在多线程环境时天然是线程安全的。
 
-```C++
+```cpp
 class Singleton {
 private:
     static Singleton* instance;
@@ -502,7 +502,7 @@ Singleton* Singleton::instance = new Singleton();
 
 1. 声明常量：
 
-```C++
+```cpp
 const int MAX_VALUE = 100;  // 常量值
 const double PI = 3.14159;  // 常量值
 ```
@@ -511,7 +511,7 @@ const double PI = 3.14159;  // 常量值
 
 2. 声明常量指针/引用：
 
-```C++
+```cpp
 int number = 42;
 const intptr = &number;  // 常量指针，指向的值不可修改
 const int& ref = number;   // 常量引用，引用的值不可修改
@@ -521,7 +521,7 @@ const int& ref = number;   // 常量引用，引用的值不可修改
 
 3. 常量成员函数：
 
-```C++
+```cpp
 class MyClass {
 public:void regularFunction() {
         // 可以修改成员变量
@@ -566,7 +566,7 @@ C++ 语言的特点：
 
    - 如果不调用 `join` 而直接销毁拥有线程的 `std::thread` 对象，程序会调用 `std::terminate` 终止程序。因此，`join` 是确保线程安全结束的一种方式。
 
-```C++
+```cpp
 #include <iostream>
 #include <thread>
 
@@ -592,7 +592,7 @@ int main() {
 
    - 当调用 `detach` 后，线程在运行时独立执行，不再受 `std::thread` 对象的控制。这样的线程通常在执行完任务后自行销毁，不需要等待主线程。
 
-```C++
+```cpp
 #include <iostream>
 #include <thread>
 
@@ -623,7 +623,7 @@ int main() {
 
 给个例子：
 
-```C++
+```cpp
 #include <iostream>
 
 class Base {
@@ -649,7 +649,7 @@ int main() {
 
 输出结果：
 
-```C++
+```cpp
 Base Constructor
 Derived Constructor
 ```
@@ -676,7 +676,7 @@ Derived Constructor
 
    在某些情况下，如果不将析构函数声明为虚函数，也可以通过显式调用派生类的析构函数来达到正确清理资源的目的，但这通常不是推荐的做法。
 
-```C++
+```cpp
 class Base {
 public:
     // 构造函数不能声明为虚函数

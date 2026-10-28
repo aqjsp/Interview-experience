@@ -10,7 +10,7 @@
 
    - 使用场景：适用于多个智能指针需要共享同一块内存的情况。例如，在多个对象之间共享某个资源或数据。
 
-   - ```C++
+   - ```cpp
      std::shared_ptr<int> sharedInt = std::make_shared<int>(42);
      std::shared_ptr<int> anotherSharedInt = sharedInt; // 共享同一块内存
      ```
@@ -21,7 +21,7 @@
 
    - 使用场景：适用于不需要多个指针共享同一块内存的情况，即单一所有权。通常用于资源管理，例如动态分配的对象或文件句柄。
 
-   - ```C++
+   - ```cpp
      std::unique_ptr<int> uniqueInt = std::make_unique<int>(42);
      // uniqueInt 的所有权是唯一的
      ```
@@ -32,7 +32,7 @@
 
    - 使用场景：适用于协助解决`std::shared_ptr`的循环引用问题，其中多个`shared_ptr`互相引用，导致内存泄漏。
 
-   - ```C++
+   - ```cpp
      std::shared_ptr<int> sharedInt = std::make_shared<int>(42);
      std::weak_ptr<int> weakInt = sharedInt;
      ```
@@ -43,7 +43,7 @@
 
    - 使用场景：在C++98标准中，可用于独占性地管理动态分配的对象。不推荐在现代C++中使用。
 
-   - ```C++
+   - ```cpp
      std::auto_ptr<int> autoInt(new int(42)); // 已废弃
      ```
 
@@ -82,14 +82,14 @@
 
 1. 防止修改变量的值： 将变量声明为 `const` 后，编译器会确保该变量的值在初始化后不能被修改。这有助于在程序中创建更加稳定和可维护的代码。
 
-```C++
+```cpp
 const int maxAttempts = 3;
 // maxAttempts = 4;  // 错误，无法修改常量
 ```
 
 2. 指定函数参数为只读： 在函数定义中，使用 `const` 可以指定某个参数是只读的，防止在函数内部修改参数的值。
 
-```C++
+```cpp
 void printMessage(const std::string& message) {
     // message += "!";  // 错误，无法修改只读参数
     std::cout << message << std::endl;
@@ -98,7 +98,7 @@ void printMessage(const std::string& message) {
 
 3. 确保成员函数不修改对象状态： 在成员函数声明和定义中使用 `const` 关键字，可以确保该成员函数不会修改调用对象的状态。这种方法被称为常量成员函数。
 
-```C++
+```cpp
 class MyClass {
 public:
     void modifyState();          // 普通成员函数
@@ -108,7 +108,7 @@ public:
 
 4. 指定常量指针或常量引用： 在指针或引用声明中使用 `const` 可以指定指针指向的对象是常量，或者引用的对象是常量。
 
-```C++
+```cpp
 const intptrToConst;  // 指向常量的指针
 int constconstPtr;    // 同样是指向常量的指针
 ```
@@ -151,7 +151,7 @@ int constconstPtr;    // 同样是指向常量的指针
 - 目的：通过相同的函数名来处理不同类型的参数，提高代码的灵活性。
 - 发生条件：函数名相同，但参数列表不同。
 
-```C++
+```cpp
 int add(int a, int b) {
     return a + b;
 }
@@ -167,7 +167,7 @@ double add(double a, double b) {
 - 目的： 支持多态性，允许基类的指针或引用在运行时指向派生类对象，并调用相应的派生类函数。
 - 发生条件： 子类继承自父类，子类中的函数与父类中的虚函数具有相同的函数签名。
 
-```C++
+```cpp
 class Shape {
 public:
     virtual void draw() const {
@@ -192,13 +192,13 @@ public:
 
 1. 初始化：指针在定义时最好立即初始化，可以为其赋予 `nullptr`（C++11 及以上）或 `NULL`，或者指向有效的内存地址。未初始化的指针具有不确定的值。
 
-```C++
+```cpp
 int* ptr = nullptr; // 推荐使用 nullptr 初始化指针
 ```
 
 2. 悬空指针：当指针指向的内存被释放后，如果不将指针置为 `nullptr`，该指针就成了悬空指针。使用悬空指针可能导致未定义行为。
 
-```C++
+```cpp
 int* ptr = new int;
 delete ptr;
 // ptr 现在是悬空指针
@@ -206,21 +206,21 @@ delete ptr;
 
 3. 野指针： 指针指向未知的内存地址，可能是未初始化的指针或者指向已释放的内存。使用野指针可能导致程序崩溃或不可预测的行为。
 
-```C++
+```cpp
 int* ptr; // 未初始化的指针
 *ptr = 42; // 野指针
 ```
 
 4. 空指针解引用：尝试解引用空指针会导致未定义行为。在解引用指针之前，应该确保指针不为 `nullptr`。
 
-```C++
+```cpp
 int* ptr = nullptr;
 // *ptr; // 错误，解引用空指针
 ```
 
 5. 指针的生命周期：指针在超出其作用域后不再有效，但如果指针指向的是动态分配的内存，需要手动释放以防止内存泄漏。
 
-```C++
+```cpp
 void foo() {
     int* ptr = new int;
     // 使用 ptr
@@ -230,7 +230,7 @@ void foo() {
 
 6. 指向栈上的内存：当指针指向栈上的内存时，应该确保在指针超出作用域之前，该内存仍然有效。
 
-```C++
+```cpp
 int* func() {
     int x = 42;
     return &x; // 错误，返回指向栈上的内存地址
@@ -281,7 +281,7 @@ C++ 是一种相对而言更加类型安全的编程语言。类型安全是指�
 
 1. 全局对象的构造：在 C++ 中，全局变量和静态变量的构造函数会在`main`函数执行之前调用。这意味着如果你有全局对象，它们的构造函数将在`main`函数执行前执行。
 
-```C++
+```cpp
 #include <iostream>
 
 class GlobalObject {
@@ -311,7 +311,7 @@ int main() {
 
 看个例子：
 
-```C++
+```cpp
 #include <iostream>
 
 class Base {
@@ -373,7 +373,7 @@ int main() {
 
 参考代码：
 
-```C++
+```cpp
 #include <iostream>
 #include <vector>
 

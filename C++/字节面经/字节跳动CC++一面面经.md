@@ -19,7 +19,7 @@
 
 C++代码，模拟虚拟地址到物理地址的转换过程：
 
-```c++
+```cpp
 #include <iostream>
 #include <unordered_map>
 
@@ -146,7 +146,7 @@ C++中，多态性是指对象可以根据当前的实际类型来调用不同�
 
 给个例子：
 
-```c++
+```cpp
 class Base {
 public:
     virtual void show() {
@@ -260,7 +260,7 @@ TTL的设置是为了防止数据报在网络中无限循环，当数据报经�
 
 ### 参考代码：
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 #include <string>

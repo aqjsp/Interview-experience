@@ -15,14 +15,14 @@
 
    - 指针： 使用 `*` 符号来声明指针，以及通过 `*` 来访问指针指向的值。
 
-   - ```C++
+   - ```cpp
      int x = 10;
      int *ptr = &x;  // 指针的声明和初始化int value = *ptr;  // 使用指针访问值
      ```
 
    - 引用： 使用 `&` 符号来声明引用，没有类似 `*` 的解引用符号。
 
-   - ```C++
+   - ```cpp
      int x = 10;
      int &ref = x;  // 引用的声明和初始化int value = ref;  // 直接使用引用访问值
      ```
@@ -117,7 +117,7 @@
    - 派生类继承了基类的成员变量和成员函数，包括公有、保护和私有的。
    - 派生类可以通过访问权限来限制对基类成员的访问。
 
-```C++
+```cpp
 class Base {
 public:
     int publicVar;
@@ -140,7 +140,7 @@ class Derived : public Base {// Derived 类继承了 Base 类的 publicVar, prot
 
    - 派生类的析构函数负责调用基类的析构函数，确保基类部分正确清理。
 
-```C++
+```cpp
 class Base {
 public:Base() {// 构造函数的实现
     }
@@ -162,7 +162,7 @@ public:Derived() : Base() {// 派生类构造函数调用基类构造函数
 
    - 虚函数在基类中声明为 `virtual`，并在派生类中重新定义。
 
-```C++
+```cpp
 class Base {
 public:virtual void someFunction() {// 虚函数的默认实现
     }
@@ -178,7 +178,7 @@ public:void someFunction() override {// 派生类重新定义的虚函数
 
 派生类可以通过访问权限控制来限制对基类成员的访问。`public` 继承保持原有的访问权限，而 `protected` 和 `private` 继承则改变访问权限。
 
-```C++
+```cpp
 class Base {
 public:
     int publicVar;
@@ -241,7 +241,7 @@ STL 主要包含以下几个组件：
 
 1. 比较函数： `std::map` 默认使用 `<` 运算符进行键的比较。如果你的自定义数据结构作为 `map` 的键，确保实现了 `<` 运算符或提供了比较函数（函数对象），以便 `map` 能够正确比较键的大小。
 
-```C++
+```cpp
 struct CustomStruct {
     int key;
     // other members
@@ -254,7 +254,7 @@ struct CustomStruct {
 
 2. 哈希函数（可选）： 如果你希望使用 `std::unordered_map`，那么你需要提供哈希函数。这个哈希函数可以帮助提高插入和查找的性能。
 
-```C++
+```cpp
 struct CustomStructHash {
     std::size_t operator()(const CustomStruct& obj) const {
         return std::hash<int>{}(obj.key);
@@ -264,7 +264,7 @@ struct CustomStructHash {
 
 3. 自定义比较函数对象（可选）： 如果默认的 `<` 运算符或者自定义的比较函数不满足你的需求，你可以使用自定义的比较函数对象。
 
-```C++
+```cpp
 struct CustomCompare {
     bool operator()(const CustomStruct& a, const CustomStruct& b) const {
         // your custom comparison logic
@@ -276,7 +276,7 @@ struct CustomCompare {
 
 5. 注意拷贝语义： 确保自定义数据结构正确支持拷贝构造函数和赋值运算符，因为`map` 在内部会进行键的拷贝。
 
-```C++
+```cpp
 struct CustomStruct {
     int key;
     // other members
@@ -303,13 +303,13 @@ struct CustomStruct {
 
 1. 自动类型推导（Auto）： 允许编译器推导变量的类型，使代码更加简洁。
 
-```C++
+```cpp
 auto x = 5; // x的类型将被推导为int
 ```
 
 2. 范围-based for 循环： 简化了对容器元素的遍历。
 
-```C++
+```cpp
 std::vector<int> numbers = {1, 2, 3, 4, 5};
 for (const auto& num : numbers) {
     // 使用num
@@ -318,32 +318,32 @@ for (const auto& num : numbers) {
 
 3. 智能指针： 引入了`std::shared_ptr`和`std::unique_ptr`等智能指针，用于管理动态分配的内存，帮助防止内存泄漏。
 
-```C++
+```cpp
 std::shared_ptr<int> sharedPtr = std::make_shared<int>(42);
 ```
 
 4. Lambda 表达式： 允许在函数内部定义匿名函数，提高代码可读性和灵活性。
 
-```C++
+```cpp
 auto add = [](int a, int b) { return a + b; };
 ```
 
 5. nullptr： 引入了空指针常量`nullptr`，用于替代传统的空指针`NULL`。
 
-```C++
+```cpp
 int* ptr = nullptr;
 ```
 
 6. 强制类型转换（Type Casting）： 引入了`static_cast`、`dynamic_cast`、`const_cast`、`reinterpret_cast`等更安全和灵活的类型转换操作符。
 
-```C++
+```cpp
 double x = 3.14;
 int y = static_cast<int>(x);
 ```
 
 7. 右值引用和移动语义： 支持通过右值引用实现移动语义，提高了对临时对象的处理效率。
 
-```C++
+```cpp
 std::vector<int> getVector() {
     // 返回一个临时vector
     return std::vector<int>{1, 2, 3};
@@ -354,13 +354,13 @@ std::vector<int> numbers = getVector(); // 使用移动语义
 
 8. 新的容器和算法： 引入了新的容器，如`std::unordered_map`、`std::unordered_set`，以及一些新的算法。
 
-```C++
+```cpp
 std::unordered_map<int, std::string> myMap = {{1, "one"}, {2, "two"}};
 ```
 
 9. 线程支持（std::thread）： 提供了原生的多线程支持，使得并发编程更加方便。
 
-```C++
+```cpp
 #include <thread>
 
 void myFunction() {
@@ -378,7 +378,7 @@ int main() {
 
 Lambda表达式是C++11引入的一个特性，用于创建匿名函数。Lambda表达式的语法如下：
 
-```C++
+```cpp
 [capture](parameters) -> return_type {
     // 函数体
 }
@@ -424,7 +424,7 @@ Lambda表达式的本质是一个可调用对象，可以像函数一样被调�
 
 下面是一个简单的示例，演示了如何在类中使用 `std::shared_ptr` 实现引用计数：
 
-```C++
+```cpp
 #include <iostream>
 #include <memory>
 
@@ -506,7 +506,7 @@ int main() {
 
 ### 13、算法题：整型转字符串？判断负号情况、传参数用引用。
 
-```C++
+```cpp
 #include <iostream>
 #include <string>
 
@@ -594,7 +594,7 @@ int main() {
 
 Qt 中使用信号与槽：
 
-```C++
+```cpp
 #include <QObject>
 #include <QTimer>
 #include <QDebug>
@@ -634,7 +634,7 @@ int main() {
 - 思想： 通过一趟排序将待排序记录分割成独立的两部分，其中一部分的所有记录都比另一部分的记录小，然后递归地对两部分进行排序。
 - C++ 示例：
 
-```C++
+```cpp
 #include <algorithm>
 
 std::vector<int> arr = {4, 2, 7, 1, 9, 5};
@@ -646,7 +646,7 @@ std::sort(arr.begin(), arr.end()); // 使用 STL 的 std::sort
 - 思想： 将待排序序列分成两个有序的子序列，再对子序列进行归并排序，最后合并这两个有序子序列。
 - C++ 示例：
 
-```C++
+```cpp
 #include <algorithm>
 
 std::vector<int> arr = {4, 2, 7, 1, 9, 5};
@@ -658,7 +658,7 @@ std::merge_sort(arr.begin(), arr.end()); // 自定义归并排序
 - 思想： 将一个记录插入到已经排好序的有序表中，从而得到一个新的、记录数增加1的有序表。
 - C++ 示例：
 
-```C++
+```cpp
 #include <algorithm>
 
 std::vector<int> arr = {4, 2, 7, 1, 9, 5};
@@ -670,7 +670,7 @@ std::insertion_sort(arr.begin(), arr.end()); // 自定义插入排序
 - 思想： 依次比较相邻的两个元素，将较大的元素交换到右侧，通过多次的遍历，将最大的元素移动到最右侧。
 - C++ 示例：
 
-```C++
+```cpp
 #include <algorithm>
 
 std::vector<int> arr = {4, 2, 7, 1, 9, 5};
@@ -682,7 +682,7 @@ std::bubble_sort(arr.begin(), arr.end()); // 自定义冒泡排序
 - 思想： 利用堆这种数据结构进行排序。将待排序的序列构建成一个最大堆，然后将堆顶元素与末尾元素交换，再重新调整堆，如此循环直至整个序列有序。
 - C++ 示例：
 
-```C++
+```cpp
 #include <algorithm>
 
 std::vector<int> arr = {4, 2, 7, 1, 9, 5};
@@ -695,7 +695,7 @@ std::sort_heap(arr.begin(), arr.end()); // 堆排序
 - 思想： 每次从待排序的序列中选择最小（或最大）的元素，将其与序列的第一个元素交换，然后在剩下的元素中选择最小（或最大）的元素，与序列的第二个元素交换，如此循环。
 - C++ 示例：
 
-```C++
+```cpp
 #include <algorithm>
 
 std::vector<int> arr = {4, 2, 7, 1, 9, 5};
@@ -707,7 +707,7 @@ std::selection_sort(arr.begin(), arr.end()); // 自定义选择排序
 - 思想： 统计待排序序列中每个元素出现的次数，然后根据统计信息将元素放回原序列的正确位置。
 - C++ 示例：
 
-```C++
+```cpp
 #include <algorithm>
 
 std::vector<int> arr = {4, 2, 7, 1, 9, 5};
@@ -719,7 +719,7 @@ std::counting_sort(arr.begin(), arr.end()); // 自定义计数排序
 - 思想： 将待排序序列划分为若干个桶，每个桶内部再分别排序，最后将各个桶的元素合并得到有序序列。
 - C++ 示例：
 
-```C++
+```cpp
 #include <algorithm>
 
 std::vector<int> arr = {4, 2, 7, 1, 9, 5};
@@ -731,7 +731,7 @@ std::bucket_sort(arr.begin(), arr.end()); // 自定义桶排序
 - 思想： 将待排序序列按照每一位进行排序，从最低位到最高位，最终得到有序序列。
 - C++ 示例：
 
-```C++
+```cpp
 #include <algorithm>
 
 std::vector<int> arr = {4, 2, 7, 1, 9, 5};
@@ -773,7 +773,7 @@ std::radix_sort(arr.begin(), arr.end()); // 自定义基数排序
 
 给个例子：
 
-```C++
+```cpp
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -893,7 +893,7 @@ int main() {
 
 参考代码：
 
-```C++
+```cpp
 #include <iostream>
 #include <stack>
 

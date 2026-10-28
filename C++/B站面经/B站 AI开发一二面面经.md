@@ -16,7 +16,7 @@
 
 3. 示例：
 
-   ```c++
+   ```cpp
    int x = 10;  // x是左值
    int* ptr = &x;  // &x是左值，表示x的地址
    ```
@@ -29,7 +29,7 @@
 
 3. 示例：
 
-   ```c++
+   ```cpp
    int sum = 5 + 3;  // 5 + 3是右值，表示一个临时的中间结果
    int&& ref = 5;    // 5是右值，可以通过右值引用引用
    ```
@@ -38,7 +38,7 @@ C++11引入的右值引用：
 
 右值引用是在C++11中引入的，允许我们显式地操作右值。右值引用使用 `&&` 符号表示。
 
-```c++
+```cpp
 int&& rvalueRef = 42;  // 右值引用绑定到右值
 ```
 
@@ -48,7 +48,7 @@ int&& rvalueRef = 42;  // 右值引用绑定到右值
 
 移动语义允许我们将资源（如动态分配的内存）从一个对象“移动”到另一个对象，而不是进行昂贵的拷贝操作。这对于提高性能和避免不必要的内存拷贝很有帮助。
 
-```c++
+```cpp
 std::vector<int> getVector() {
     std::vector<int> temp = {1, 2, 3};
     return temp;  // 返回右值
@@ -109,7 +109,7 @@ ET：
 
 参考代码：
 
-```c++
+```cpp
 #include <iostream>
 #include <algorithm>
 
@@ -193,7 +193,7 @@ int main() {
 
    - 使用场景：适用于多个智能指针需要共享同一块内存的情况。例如，在多个对象之间共享某个资源或数据。
 
-   - ```c++
+   - ```cpp
      std::shared_ptr<int> sharedInt = std::make_shared<int>(42);
      std::shared_ptr<int> anotherSharedInt = sharedInt; // 共享同一块内存
      ```
@@ -204,7 +204,7 @@ int main() {
 
    - 使用场景：适用于不需要多个指针共享同一块内存的情况，即单一所有权。通常用于资源管理，例如动态分配的对象或文件句柄。
 
-   - ```C++
+   - ```cpp
      std::unique_ptr<int> uniqueInt = std::make_unique<int>(42);
      // uniqueInt 的所有权是唯一的
      ```
@@ -215,7 +215,7 @@ int main() {
 
    - 使用场景：适用于协助解决`std::shared_ptr`的循环引用问题，其中多个`shared_ptr`互相引用，导致内存泄漏。
 
-   - ```C++
+   - ```cpp
      std::shared_ptr<int> sharedInt = std::make_shared<int>(42);
      std::weak_ptr<int> weakInt = sharedInt;
      ```
@@ -226,7 +226,7 @@ int main() {
 
 给个例子来说明循环引用及如何使用 `std::weak_ptr` 解决问题：
 
-```c++
+```cpp
 #include <memory>
 #include <iostream>
 
@@ -276,7 +276,7 @@ int main() {
 
 下面是如何使用 `std::weak_ptr` 解决这个问题：
 
-```c++
+```cpp
 #include <memory>
 #include <iostream>
 
@@ -389,7 +389,7 @@ int main() {
 
 给个简单的示例：
 
-```c++
+```cpp
 #include <vector>
 
 int main() {
@@ -408,7 +408,7 @@ int main() {
 
 `resize` 用于改变 `std::vector` 的大小，即容器中元素的数量。如果新的大小比当前大小大，将在尾部插入默认构造的元素；如果新的大小比当前大小小，将截断 vector。
 
-```c++
+```cpp
 #include <vector>
 
 int main() {
@@ -425,7 +425,7 @@ int main() {
 
 `reserve` 用于预留容器的存储空间，但并不改变容器的大小。这样可以在事先知道容器可能需要的存储空间的情况下，避免不必要的内存重新分配，提高效率。
 
-```c++
+```cpp
 #include <vector>
 
 int main() {
@@ -449,7 +449,7 @@ int main() {
 
 参考代码：
 
-```c++
+```cpp
 #include <iostream>
 
 // 函数定义：计算整数的开方根
@@ -506,7 +506,7 @@ int main() {
 
 参考代码：
 
-```c++
+```cpp
 #include <iostream>
 #include <algorithm>
 

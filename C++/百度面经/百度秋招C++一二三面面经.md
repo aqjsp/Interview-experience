@@ -10,7 +10,7 @@
 
 虚函数是在基类中声明的，而在派生类中进行重写（override）的函数。通过使用 `virtual` 关键字声明一个函数为虚函数，它使得在运行时能够动态地确定调用的是哪个版本的函数。
 
-```C++
+```cpp
 class Base {
 public:
     virtual void show() {
@@ -40,7 +40,7 @@ public:
 
 纯虚函数是一个在基类中声明但没有提供实现的虚函数，它通过在声明中使用 `= 0` 来标识。类含有纯虚函数的类被称为抽象类，不能被实例化。派生类必须实现纯虚函数，否则也会变为抽象类。
 
-```C++
+```cpp
 class AbstractBase {
 public:
     virtual void pureVirtualFunction() = 0;
@@ -51,7 +51,7 @@ public:
 
 如果基类的析构函数是虚函数，当通过基类指针删除派生类对象时，会调用派生类的析构函数。这是为了确保正确的对象销毁。
 
-```C++
+```cpp
 class Base {
 public:
     virtual ~Base() {
@@ -109,7 +109,7 @@ public:
 
 6. 简单实现代码：
 
-```C++
+```cpp
 #include <iostream>
 #include <vector>
 
@@ -183,13 +183,13 @@ private:
 
 1. 自动类型推导（Auto）： 允许编译器推导变量的类型，使代码更加简洁。
 
-```C++
+```cpp
 auto x = 5; // x的类型将被推导为int
 ```
 
 2. 范围-based for 循环： 简化了对容器元素的遍历。
 
-```C++
+```cpp
 std::vector<int> numbers = {1, 2, 3, 4, 5};
 for (const auto& num : numbers) {
     // 使用num
@@ -198,32 +198,32 @@ for (const auto& num : numbers) {
 
 3. 智能指针： 引入了`std::shared_ptr`和`std::unique_ptr`等智能指针，用于管理动态分配的内存，帮助防止内存泄漏。
 
-```C++
+```cpp
 std::shared_ptr<int> sharedPtr = std::make_shared<int>(42);
 ```
 
 4. Lambda 表达式： 允许在函数内部定义匿名函数，提高代码可读性和灵活性。
 
-```C++
+```cpp
 auto add = [](int a, int b) { return a + b; };
 ```
 
 5. nullptr： 引入了空指针常量`nullptr`，用于替代传统的空指针`NULL`。
 
-```C++
+```cpp
 int* ptr = nullptr;
 ```
 
 6. 强制类型转换（Type Casting）： 引入了`static_cast`、`dynamic_cast`、`const_cast`、`reinterpret_cast`等更安全和灵活的类型转换操作符。
 
-```C++
+```cpp
 double x = 3.14;
 int y = static_cast<int>(x);
 ```
 
 7. 右值引用和移动语义： 支持通过右值引用实现移动语义，提高了对临时对象的处理效率。
 
-```C++
+```cpp
 std::vector<int> getVector() {
     // 返回一个临时vector
     return std::vector<int>{1, 2, 3};
@@ -234,13 +234,13 @@ std::vector<int> numbers = getVector(); // 使用移动语义
 
 8. 新的容器和算法： 引入了新的容器，如`std::unordered_map`、`std::unordered_set`，以及一些新的算法。
 
-```C++
+```cpp
 std::unordered_map<int, std::string> myMap = {{1, "one"}, {2, "two"}};
 ```
 
 9. 线程支持（std::thread）： 提供了原生的多线程支持，使得并发编程更加方便。
 
-```C++
+```cpp
 #include <thread>
 
 void myFunction() {
@@ -258,7 +258,7 @@ int main() {
 
 1. 类型较长或复杂： 当变量的类型较长或复杂时，使用 `auto` 可以简化代码并提高可读性。
 
-```C++
+```cpp
 std::map<std::string, std::vector<int>> myMap;
 // 使用auto简化迭代器的声明
 for (auto it = myMap.begin(); it != myMap.end(); ++it) {
@@ -268,7 +268,7 @@ for (auto it = myMap.begin(); it != myMap.end(); ++it) {
 
 2. 模板编程： 在模板编程中，使用 `auto` 可以避免重复书写类型，使代码更通用。
 
-```C++
+```cpp
 template <typename T, typename U>
 auto add(T x, U y) -> decltype(x + y) {
     return x + y;
@@ -277,7 +277,7 @@ auto add(T x, U y) -> decltype(x + y) {
 
 3. 迭代器和范围-based for 循环： 在使用迭代器和范围-based for 循环时， `auto` 可以简化类型声明。
 
-```C++
+```cpp
 std::vector<int> numbers = {1, 2, 3, 4, 5};
 // 使用auto声明迭代器
 for (auto it = numbers.begin(); it != numbers.end(); ++it) {
@@ -291,7 +291,7 @@ for (const auto& num : numbers) {
 
 4. 函数返回类型推导： 在函数返回类型不明确的情况下，使用 `auto` 可以方便地进行类型推导。
 
-```C++
+```cpp
 auto multiply(int x, double y) -> decltype(x * y) {
     return x * y;
 }
@@ -299,7 +299,7 @@ auto multiply(int x, double y) -> decltype(x * y) {
 
 5. 方便迭代器类型： 当使用模板或容器类型时， `auto` 可以方便地获取迭代器的类型，而无需显式指定。
 
-```C++
+```cpp
 std::vector<int> numbers = {1, 2, 3, 4, 5};
 auto it = numbers.begin(); // it的类型是std::vector<int>::iterator
 ```
@@ -308,7 +308,7 @@ auto it = numbers.begin(); // it的类型是std::vector<int>::iterator
 
 1. `std::shared_ptr`： 共享指针。多个 `std::shared_ptr` 可以共享同一个对象，并且会跟踪对象的引用计数。当引用计数变为零时，对象会被删除。
 
-```C++
+```cpp
 #include <memory>
 
 int main() {
@@ -327,7 +327,7 @@ int main() {
 
 2. `std::unique_ptr`： 独占指针。一个 `std::unique_ptr` 拥有对其指向的对象的唯一所有权。当 `std::unique_ptr` 被销毁时，它指向的对象也会被销毁。
 
-```C++
+```cpp
 #include <memory>
 
 int main() {
@@ -347,7 +347,7 @@ int main() {
 
 3. `std::weak_ptr`： 弱引用指针。`std::weak_ptr` 是为了解决 `std::shared_ptr` 的循环引用问题而引入的。`std::weak_ptr` 既不增加引用计数，也不影响对象的生命周期。
 
-```C++
+```cpp
 #include <memory>
 
 int main() {
@@ -371,7 +371,7 @@ int main() {
 
 1. `std::map`： 是一个有序的关联容器，它使用红黑树实现。这意味着 `std::map` 中的元素是按键的升序顺序进行排序的。插入、查找和删除操作的时间复杂度是 O(log n)。
 
-```C++
+```cpp
 #include <iostream>
 #include <map>
 
@@ -394,7 +394,7 @@ int main() {
 
 2. `std::unordered_map`： 是一个无序的关联容器，它使用哈希表实现。这意味着 `std::unordered_map` 中的元素没有特定的顺序。插入、查找和删除操作的平均时间复杂度是 O(1)。但需要注意，对于某些特殊情况，最坏情况下的时间复杂度可能为 O(n)。
 
-```C++
+```cpp
 #include <iostream>
 #include <unordered_map>
 
@@ -435,7 +435,7 @@ Linux系统进程的大小会受到多种因素的影响，包括进程的功能
 
 参考命令：
 
-```C++
+```cpp
 pmap <pid>
 ```
 
@@ -449,7 +449,7 @@ pmap <pid>
 
 在 Linux 系统中，可以通过以下命令查看文件描述符的限制：
 
-```Bash
+```bash
 ulimit -n
 ```
 
@@ -470,7 +470,7 @@ ulimit -n
 
 参考代码：
 
-```C++
+```cpp
 #include <vector>
 #include <algorithm>
 
@@ -527,7 +527,7 @@ int main() {
 3. 初始化第一行和第一列的元素，分别计算到达每个位置的最小和最大非负积。
 4. 动态规划更新数组，从左上角开始遍历矩阵，对于每个位置 (i, j)，更新 `minProduct[i][j]` 和 `maxProduct[i][j]`：
 
-```C++
+```cpp
 minProduct[i][j] = min(minProduct[i-1][j], minProduct[i][j-1]) * grid[i][j];
 maxProduct[i][j] = max(maxProduct[i-1][j], maxProduct[i][j-1]) * grid[i][j];
 ```
@@ -540,7 +540,7 @@ maxProduct[i][j] = max(maxProduct[i-1][j], maxProduct[i][j-1]) * grid[i][j];
 
 参考代码：
 
-```C++
+```cpp
 #include <iostream>
 #include <vector>
 #include <climits>
@@ -642,7 +642,7 @@ int main() {
 
 给个例子：
 
-```C++
+```cpp
 #include <iostream>
 
 class Counter {
@@ -697,7 +697,7 @@ int main() {
 
 Linux下参考实现：
 
-```C++
+```cpp
 #include <cstdlib>
 #include <cstring>
 #include <unistd.h>
@@ -744,7 +744,7 @@ int main() {
 
 Linux 下的参考实现：
 
-```C++
+```cpp
 #include <fcntl.h>
 #include <unistd.h>
 
@@ -799,7 +799,7 @@ int main() {
 
 使用 `mv` 命令：
 
-```Bash
+```bash
 mv new_lib.so old_lib.so
 ```
 
@@ -807,7 +807,7 @@ mv new_lib.so old_lib.so
 
 使用 `cp` 命令：
 
-```Bash
+```bash
 cp new_lib.so old_lib.so
 ```
 
@@ -835,7 +835,7 @@ cp new_lib.so old_lib.so
 
 1. 创建套接字：使用`socket`函数创建一个套接字。在C/C++中，可以使用`socket`函数，返回的套接字描述符用于后续的操作。
 
-```C
+```c
 int sockfd = socket(AF_INET, SOCK_STREAM,0);
 ```
 
@@ -843,7 +843,7 @@ int sockfd = socket(AF_INET, SOCK_STREAM,0);
 
 2. 绑定地址和端口（服务端）：服务端需要绑定一个具体的地址和端口，以监听客户端的连接请求。
 
-```C
+```c
 struct sockaddr_in server_addr;
 server_addr.sin_family = AF_INET;
 server_addr.sin_addr.s_addr = INADDR_ANY;// 监听所有网络接口
@@ -855,7 +855,7 @@ bind(sockfd, (structsockaddr*)&server_addr,sizeof(server_addr));
 
 3. 监听连接（服务端）：在服务端调用`listen`函数开始监听客户端连接请求。
 
-```C
+```c
 listen(sockfd, backlog);
 ```
 
@@ -863,7 +863,7 @@ listen(sockfd, backlog);
 
 4. 建立连接（客户端）：客户端使用`connect`函数连接到服务端。
 
-```C
+```c
 struct sockaddr_in server_addr;
 server_addr.sin_family = AF_INET;
 server_addr.sin_addr.s_addr = inet_addr("服务器IP地址");
@@ -875,14 +875,14 @@ connect(sockfd, (structsockaddr*)&server_addr,sizeof(server_addr));
 
 6. 发送和接收数据：使用`send`和`recv`函数进行数据的发送和接收。在服务端和客户端之间可以通过套接字进行双向通信。
 
-```C
+```c
 send(sockfd, buffer,sizeof(buffer),0);
 recv(sockfd, buffer,sizeof(buffer),0);
 ```
 
 7. 关闭连接：使用`close`函数关闭套接字。
 
-```C
+```c
 close(sockfd);
 ```
 
@@ -1096,7 +1096,7 @@ RPC框架性能调优：
 
 原始矩阵：
 
-```Plaintext
+```text
 1  2  3
 4  5  6
 7  8  9
@@ -1104,7 +1104,7 @@ RPC框架性能调优：
 
 转置后的矩阵：
 
-```Plaintext
+```text
 1  4  7
 2  5  8
 3  6  9
@@ -1112,7 +1112,7 @@ RPC框架性能调优：
 
 每一行反转后的矩阵：
 
-```Plaintext
+```text
 7  4  1
 8  5  2
 9  6  3
@@ -1120,7 +1120,7 @@ RPC框架性能调优：
 
 因此，最终旋转后的矩阵为：
 
-```Plaintext
+```text
 7  4  1
 8  5  2
 9  6  3
@@ -1128,7 +1128,7 @@ RPC框架性能调优：
 
 #### 参考代码：
 
-```C++
+```cpp
 #include <vector>
 #include <algorithm>
 #include <iostream>

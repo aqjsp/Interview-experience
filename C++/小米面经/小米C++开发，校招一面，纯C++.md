@@ -23,7 +23,7 @@
 
 它是一种用来创建匿名函数的方式，可以在需要函数的地方直接定义函数，而不必显式地编写函数的名称。
 
-```c++
+```cpp
 [capture clause] (parameters) -> return_type { 
     // 函数体
 };
@@ -31,7 +31,7 @@
 
 其中：
 
-- ```
+- ```text
   capture clause
   ```
 
@@ -48,7 +48,7 @@
 
 给个例子：
 
-```c++
+```cpp
 #include <iostream>
 
 int main() {
@@ -78,7 +78,7 @@ int main() {
 
 例子：
 
-```c++
+```cpp
 #include <iostream>
 
 void process(int&& value) {
@@ -99,7 +99,7 @@ int main() {
 
 给个例子一清二楚：
 
-```c++
+```cpp
 #include <iostream>
 
 int main() {
@@ -175,7 +175,7 @@ int main() {
 
 1. 使用插入和删除返回的迭代器：STL 的插入和删除操作通常会返回一个指向被插入或删除元素的迭代器，可以使用这个新的迭代器来继续操作。
 
-```c++
+```cpp
 std::vector<int> vec = {1, 2, 3, 4, 5};
 auto it = vec.begin() + 2; // 指向 3
 it = vec.erase(it); // 删除 3，并返回指向 4 的迭代器
@@ -183,7 +183,7 @@ it = vec.erase(it); // 删除 3，并返回指向 4 的迭代器
 
 2. 使用成员函数返回的迭代器：某些容器的成员函数会返回一个指向特定位置的迭代器，如 `insert()` 返回插入元素后的迭代器，可以使用这个迭代器来操作。
 
-```c++
+```cpp
 std::list<int> lst = {1, 2, 3, 4, 5};
 auto it = lst.begin();
 it = lst.insert(it, 0); // 在 1 前插入 0，并返回指向 0 的迭代器
@@ -268,7 +268,7 @@ it = lst.insert(it, 0); // 在 1 前插入 0，并返回指向 0 的迭代器
 
 参考代码：
 
-```c++
+```cpp
 #include <iostream>
 
 class Base {
@@ -321,7 +321,7 @@ int main() {
 
 ![](https://cdn.jsdelivr.net/gh/aqjsp/Pictures/202404232355356.png)
 
-```c++
+```cpp
 输入：head = [3,2,0,-4], pos = 1
 输出：返回索引为 1 的链表节点
 解释：链表中有一个环，其尾部连接到第二个节点。
@@ -331,7 +331,7 @@ int main() {
 
 ![](https://cdn.jsdelivr.net/gh/aqjsp/Pictures/202404232355631.png)
 
-```c++
+```cpp
 输入：head = [1,2], pos = 0
 输出：返回索引为 0 的链表节点
 解释：链表中有一个环，其尾部连接到第一个节点。
@@ -341,7 +341,7 @@ int main() {
 
 ![](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist_test3.png)
 
-```c++
+```cpp
 输入：head = [1], pos = -1
 输出：返回 null
 解释：链表中没有环。
@@ -359,7 +359,7 @@ int main() {
 
 ##### C++
 
-```c++
+```cpp
 #include <iostream>
 
 using namespace std;

@@ -63,7 +63,7 @@
 
 #### 3. 例子
 
-```c++
+```cpp
 class MyClass {
 public:
     MyClass() { /* 构造函数 */ }
@@ -91,7 +91,7 @@ delete obj; // 1. 调用 MyClass 的析构函数
 
 C++ 允许程序员重载 `new` 和 `delete` 运算符，以提供自定义的内存管理策略。例如，可以在分配内存时记录分配的数量，或者实现自己的内存池。
 
-```c
+```cpp
 void* operator new(size_t size) {
     std::cout << "Allocating " << size << " bytes" << std::endl;
     return malloc(size);
@@ -116,7 +116,7 @@ void operator delete(void* pointer) {
 
 - 链式调用：在某些情况下，使用 `this` 可以实现链式调用，例如：
 
-```c++
+```cpp
 class MyClass {
 public:
     MyClass& setValue(int value) {
@@ -219,7 +219,7 @@ private:
   - 可以进行基本类型（如 `int` 和 `float`）之间的转换。
   - 可以将基类指针转换为派生类指针，但不安全，如果不确定类型，可能会导致未定义行为。
 
-```c++
+```cpp
 class Base {};
 class Derived : public Base {};
 
@@ -235,7 +235,7 @@ Derived* d = static_cast<Derived*>(b);  // 安全转换，假设 b 实际上指�
   - 在运行时进行类型检查，如果转换不合法，则返回 `nullptr`（对于指针）或抛出 `std::bad_cast` 异常（对于引用）。
   - 必须至少有一个虚函数，通常是基类的虚析构函数，以支持 RTTI（运行时类型信息）。
 
-```c++
+```cpp
 class Base {
     virtual ~Base() {}  // 必须有虚函数
 };
@@ -252,7 +252,7 @@ Derived* d = dynamic_cast<Derived*>(b);  // 转换失败，d 为 nullptr
   - 允许修改一个 `const` 或 `volatile` 对象的值。
   - 应用场景包括需要调用一个不能接受 `const` 参数的函数时。
 
-```c++
+```cpp
 const int a = 10;
 int* b = const_cast<int*>(&a);  // 去除 const 限定符
 *b = 20;  // 不安全，a 的原始值不可修改
@@ -266,7 +266,7 @@ int* b = const_cast<int*>(&a);  // 去除 const 限定符
   - 通常用于系统级编程或底层操作，不推荐在高层次应用中使用。
   - 结果未定义，除非你非常清楚正在做什么。
 
-```c++
+```cpp
 long p = 0x12345678;
 int* ip = reinterpret_cast<int*>(p);  // 将 long 转换为 int 指针
 ```
@@ -282,7 +282,7 @@ int* ip = reinterpret_cast<int*>(p);  // 将 long 转换为 int 指针
 - 资源管理：允许转移资源的所有权，避免不必要的复制，从而提高性能。
 - 实现移动语义：通过移动构造函数和移动赋值运算符，能够高效地管理动态分配的资源。
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 
@@ -312,7 +312,7 @@ int main() {
 
 用途：当我们希望将参数传递给另一个函数时，能够保留其原始的左值或右值属性。
 
-```c++
+```cpp
 #include <iostream>
 #include <utility>  // For std::forward
 
@@ -342,7 +342,7 @@ int main() {
 
 C++11 引入了 `std::atomic`，它提供了一种原子类型，可以安全地在多个线程间共享数据而不需要加锁。原子操作是不可中断的操作，保证了在多个线程同时访问时的一致性。
 
-```c++
+```cpp
 #include <iostream>
 #include <atomic>
 #include <thread>
@@ -379,7 +379,7 @@ int main() {
 
 示例：无锁栈（使用单向链表实现）：
 
-```c++
+```cpp
 #include <iostream>
 #include <atomic>
 #include <thread>
@@ -464,7 +464,7 @@ C++17 引入了 `std::shared_mutex` 和 `std::shared_lock`，也可以利用一�
 2. 如果不存在，再加锁以创建实例。
 3. 在加锁之后，再次检查实例是否已经存在，以防在锁定期间其他线程创建了实例。
 
-```
+```cpp
 #include <iostream>
 #include <mutex>
 
@@ -507,7 +507,7 @@ int main() {
 
 为了避免这种问题，可以使用 C++11 中的 `std::atomic` 来确保在构造完成之前，指针不会被其他线程看到。
 
-```c++
+```cpp
 #include <iostream>
 #include <atomic>
 #include <mutex>

@@ -22,7 +22,7 @@
 
 ##### 基本使用
 
-```c++
+```cpp
 #include <iostream>
 #include <atomic>
 #include <thread>
@@ -211,7 +211,7 @@ iostat：磁盘 I/O 性能。
 
 生产者-消费者模型
 
-```c++
+```cpp
 #include <iostream>
 #include <thread>
 #include <mutex>
@@ -269,7 +269,7 @@ int main() {
 
 输出：
 
-```c++
+```cpp
 Produced: 1
 Consumed: 1
 Produced: 2
@@ -302,7 +302,7 @@ Consumed: 5
 
 ##### 示例代码
 
-```c++
+```cpp
 #include <iostream>
 #include <memory>
 
@@ -338,7 +338,7 @@ void example_auto_ptr() {
 
 ##### 示例
 
-```c++
+```cpp
 #include <iostream>
 #include <memory>
 
@@ -365,7 +365,7 @@ void example_unique_ptr() {
 
 - 自定义删除器：支持指定删除函数（如释放文件句柄）。
 
-  ```c++
+  ```cpp
   auto deleter = [](FILE* fp) { fclose(fp); };
   std::unique_ptr<FILE, decltype(deleter)> fp(fopen("test.txt", "r"), deleter);
   ```
@@ -389,7 +389,7 @@ void example_unique_ptr() {
 
 ##### 示例
 
-```c++
+```cpp
 #include <iostream>
 #include <memory>
 
@@ -416,7 +416,7 @@ void example_shared_ptr() {
 
 - 自定义删除器：
 
-  ```c++
+  ```cpp
   std::shared_ptr<int> ptr(new int(30), [](int* p) { delete p; std::cout << "Deleted\n"; });
   ```
 
@@ -443,7 +443,7 @@ void example_shared_ptr() {
 
 ##### 示例用法
 
-```c++
+```cpp
 #include <iostream>
 #include <memory>
 
@@ -517,19 +517,19 @@ void example_weak_ptr() {
 
    - 编译源文件为目标文件：
 
-     ```c
+     ```bash
      g++ -c math.cpp -o math.o
      ```
 
    - 打包成静态库：
 
-     ```
+     ```text
      ar rcs libmath.a math.o
      ```
 
 2. 链接：
 
-   ```
+   ```bash
    g++ main.cpp -L. -lmath -o myprogram
    ```
 
@@ -543,25 +543,25 @@ void example_weak_ptr() {
 
    - 编译为位置无关代码（PIC）：
 
-     ```
+     ```bash
      g++ -fPIC -c math.cpp -o math.o
      ```
 
    - 创建动态库：
 
-     ```
+     ```bash
      g++ -shared -o libmath.so math.o
      ```
 
 2. 链接：
 
-   ```
+   ```bash
    g++ main.cpp -L. -lmath -o myprogram
    ```
 
    运行时需指定库路径：
 
-   ```
+   ```bash
    export LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH
    ./myprogram
    ```
@@ -622,7 +622,7 @@ void example_weak_ptr() {
 
 ##### 语法
 
-```c++
+```cpp
 class Base {
 public:
     virtual void func() {
@@ -648,7 +648,7 @@ public:
 
 ##### 示例代码
 
-```c++
+```cpp
 #include <iostream>
 class Base {
 public:
@@ -718,7 +718,7 @@ int main() {
 
 ##### 示例代码
 
-```c++
+```cpp
 #include <iostream>
 
 class Animal {
@@ -769,7 +769,7 @@ int main() {
 
 ##### 示例代码
 
-```c++
+```cpp
 #include <iostream>
 
 class Engine {
@@ -945,7 +945,7 @@ std::pair 是一个包含两个成员（first 和 second）的结构体，STL �
 
 #### 基本用法
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 
@@ -977,7 +977,7 @@ int main() {
 
 `std::vector`：`push_back`可能触发重新分配，所有迭代器失效。
 
-```c++
+```cpp
 std::vector<int> vec = {1, 2};
 auto it = vec.begin();
 vec.push_back(3); // it 可能失效
@@ -997,7 +997,7 @@ vec.push_back(3); // it 可能失效
 
 1. 使用返回值更新迭代器：
 
-   ```c++
+   ```cpp
    auto it = vec.erase(it); // 返回下一个有效迭代器
    ```
 
@@ -1022,7 +1022,7 @@ C++11 引入右值引用和转发引用，结合 `std::forward`，实现了完�
 
 右值：临时对象、无名字（如字面量、函数返回值）。
 
-```c++
+```cpp
 int x = 10;    // x 是左值
 int&& r = 20;  // 20 是右值，r 是右值引用
 ```
@@ -1031,7 +1031,7 @@ int&& r = 20;  // 20 是右值，r 是右值引用
 
 绑定到右值，用于移动语义。
 
-```c++
+```cpp
 void func(int&& r) {}
 func(42); // OK
 ```
@@ -1045,7 +1045,7 @@ func(42); // OK
 - 若传入左值，T 推导为 T&。
 - 若传入右值，T 推导为 T。
 
-```c++
+```cpp
 template<typename T>
 void func(T&& arg) {} // 转发引用
 int x = 10;
@@ -1061,7 +1061,7 @@ func(20);  // T 推导为 int
 
 这里给大家带有二分查找的 C++ 类。
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 

@@ -87,7 +87,7 @@
 
 下边我用一个例子给大家展示一下：
 
-```C++
+```cpp
 #include <iostream>
 
 class Parent {
@@ -145,7 +145,7 @@ int main() {
 
 下边演示一下“[]”运算符和“find”函数的不同行为：
 
-```C++
+```cpp
 #include <iostream>
 #include <map>
 
@@ -172,7 +172,7 @@ int main() {
 
 1. 使用迭代器的返回值： 在执行删除操作后，将迭代器的返回值（指向被删除元素的下一个元素的迭代器）赋值给原始迭代器，从而更新它。这样做可以确保后续迭代器不会失效。
 
-```C++
+```cpp
 std::map<int, std::string> myMap;
 // 填充map
 std::map<int, std::string>::iterator it = myMap.begin();
@@ -190,7 +190,7 @@ while (it != myMap.end()) {
 
 2. 使用后缀自增运算符： 可以使用后缀自增运算符 `it++` 而不是前缀自增运算符 `++it` 来移动迭代器，因为后缀自增运算符返回的是迭代器的副本，而不是引用，这样可以避免潜在的问题。
 
-```C++
+```cpp
 std::map<int, std::string> myMap;
 // 填充map
 std::map<int, std::string>::iterator it = myMap.begin();
@@ -229,7 +229,7 @@ shared_ptr内部的实现原理：
    - `malloc` 返回 `void*` 类型的指针，需要进行显式的类型转换，将其转换为所需的指针类型，这可能导致类型错误。
    - `new` 返回所需类型的指针，不需要显式类型转换，因此更类型安全。
 
-```C++
+```cpp
 // 使用malloc
 int *p1 = (int *)malloc(sizeof(int));
 
@@ -243,7 +243,7 @@ int *p2 = new int;
 
    - `new` 不仅分配内存，还会调用对象的构造函数进行初始化。这使得 `new` 更适合在C++中用于动态分配自定义类型的对象。
 
-```C++
+```cpp
 // 使用malloc，不会调用构造函数
 MyClass *obj1 = (MyClass *)malloc(sizeof(MyClass));
 
@@ -257,7 +257,7 @@ MyClass *obj2 = new MyClass;
 
    - `new` 在分配失败时引发 `std::bad_alloc` 异常，可以使用异常处理机制来处理。
 
-```C++
+```cpp
 int *p = new(std::nothrow) int; // 使用new，分配失败时返回nullptr，而不抛出异常
 if (!p) {
     // 处理分配失败情况
@@ -270,7 +270,7 @@ if (!p) {
 
    - `new` 用于分配特定类型的对象，它的大小由编译器自动计算，因此你不需要显式指定分配多少字节。
 
-```C++
+```cpp
 MyClass *obj = new MyClass; // 编译器计算对象大小
 ```
 
@@ -280,7 +280,7 @@ MyClass *obj = new MyClass; // 编译器计算对象大小
 
    - 使用 `new` 分配的内存应该使用 `delete` 运算符来释放，如果分配时使用了 `[]` 运算符（用于数组），则应该使用 `delete[]` 来释放。
 
-```C++
+```cpp
 // 使用malloc释放内存
 free(p1);
 
@@ -294,14 +294,14 @@ delete p2;
 
    - **引用**：引用是一个别名，使用 `&` 符号声明，通常在初始化时就要指定引用的目标对象，且一旦引用被初始化，就无法再重新绑定到其他对象。
 
-   - ```C++
+   - ```cpp
      int x = 10;
      int &ref = x; // 引用ref绑定到x
      ```
 
    - **指针**：指针是一个变量，用于存储另一个对象的内存地址，使用 `*` 符号声明，可以在任何时候改变指针所指向的对象。
 
-   - ```C++
+   - ```cpp
      int x = 10;
      int *ptr = &x; // ptr指向x的地址
      ```
@@ -337,13 +337,13 @@ delete p2;
 
    - Lambda表达式：Lambda表达式使用一种更简洁的语法，允许你在代码中定义匿名函数。Lambda表达式通常更容易阅读和编写。
 
-   - ```C++
+   - ```cpp
      auto add = [](int a, int b) { return a + b; };
      ```
 
    - 函数指针：函数指针需要显式声明一个函数，并将其地址赋给指针，这通常需要更多的代码，并且可读性较差。
 
-   - ```C++
+   - ```cpp
      int add(int a, int b) { return a + b; }
      int (*functionPtr)(int, int) = add;
      ```
@@ -352,7 +352,7 @@ delete p2;
 
    - Lambda表达式：Lambda表达式可以捕获其作用域内的外部变量，使得在Lambda内部可以访问这些变量。
 
-   - ```C++
+   - ```cpp
      int x = 10;
      auto lambda = [x](int a) { return a + x; };
      ```
@@ -363,7 +363,7 @@ delete p2;
 
    - Lambda表达式：Lambda表达式可以使用 `auto` 来推导返回值类型，使得代码更加简洁和灵活。
 
-   - ```C++
+   - ```cpp
      auto add = [](int a, int b) { return a + b; };
      ```
 
@@ -432,7 +432,7 @@ C++多线程大家可以去另一篇去了解了解：
 3. 如果链表是环形的，那么快指针和慢指针最终会相遇在某个节点上。如果链表不是环形的，那么快指针会在某一时刻到达链表的末尾（即快指针指向nullptr），此时可以确定链表不是环形的。
 4. 判断是否为环形链表的条件是，如果快指针和慢指针相遇了，就说明链表是环形的；如果快指针到达末尾了，就说明链表不是环形的。
 
-```C
+```cpp
 struct ListNode {
     int val;
     ListNode *next;
@@ -473,7 +473,7 @@ bool hasCycle(ListNode *head) {
 
 以下是方法二的示例代码：
 
-```C
+```cpp
 class MyCircularQueue {
 public:
     MyCircularQueue(int k) {
@@ -512,7 +512,7 @@ private:
 
 以下是方法二的示例代码：
 
-```C
+```cpp
 class MyCircularQueue {
 public:
     MyCircularQueue(int k) {
@@ -556,7 +556,7 @@ private:
 
 ### 21、如果给你一串英文单词，如何将单词都翻转过来？
 
-```C
+```cpp
 #include <iostream>
 #include <string>
 #include <sstream>

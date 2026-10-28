@@ -33,7 +33,7 @@ IP地址 = (第一段数字 << 24) | (第二段数字 << 16) | (第三段数字 
 
 #### 参考代码
 
-```c++
+```cpp
 #include <iostream>
 #include <string>
 #include <vector>
@@ -150,7 +150,7 @@ int main() {
 
 #### 参考代码
 
-```c++
+```cpp
 #include <iostream>
 #include <algorithm> // For std::max
 #include <limits>    // For std::numeric_limits<int>::min()
@@ -360,7 +360,7 @@ int main() {
 
 #### 参考代码
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 #include <utility> // For std::pair
@@ -645,7 +645,7 @@ int main() {
 
 #### 参考代码
 
-```c++
+```cpp
 #include <iostream>
 #include <string>
 #include <stack>
@@ -757,7 +757,7 @@ int main() {
   - public：可以在任何地方访问。
 - 示例：以下是一个简单的BankAccount（银行账户）类的示例：
 
-```c++
+```cpp
 class BankAccount {
 private:
     int accountNumber;  // 私有数据成员
@@ -796,7 +796,7 @@ public:
 - 定义与目的：通过继承，子类可以直接使用父类的非私有成员（数据和方法），并可以扩展或覆盖这些成员。其目标是提高开发效率，减少代码冗余。
 - 实现方式：在C++中，使用:符号来表示继承关系，并指定继承类型（public、protected、private）。例如：
 
-```c++
+```cpp
 class Animal {
 public:
     void eat() {
@@ -858,7 +858,7 @@ public:
 
   例如：
 
-```c++
+```cpp
 class Animal {
 public:
     virtual void makeSound() {  // 虚函数
@@ -889,7 +889,7 @@ void animalSound(Animal& animal) {  // 接受 Animal 类型的引用
 
 例如：
 
-```c++
+```cpp
 class Shape {
 public:
     virtual double calculateArea() = 0;  // 纯虚函数
@@ -931,7 +931,7 @@ private:
 
 例如：
 
-```c++
+```cpp
 struct MyStruct {
     int a;  // 默认 public
     void func() {}  // 默认 public
@@ -955,7 +955,7 @@ struct：通常用于表示简单的数据结构，主要用于存储数据，�
 
 例如：
 
-```c++
+```cpp
 struct Point {
     int x;
     int y;
@@ -968,7 +968,7 @@ class：通常用于表示具有行为和数据的对象，强调封装、继承
 
 例如：
 
-```c++
+```cpp
 class Person {
 private:
     std::string name;
@@ -988,7 +988,7 @@ public:
 
 例如：
 
-```c++
+```cpp
 struct Base {
     int x;
 };
@@ -1018,7 +1018,7 @@ class DerivedClass : Base {  // 默认 private 继承
 
 例如：
 
-```c++
+```cpp
 class A {
 public:
     int x;
@@ -1047,7 +1047,7 @@ public:
 
 在 B 和 C 继承 A 时，使用 virtual 关键字，例如：
 
-```c++
+```cpp
 class B : virtual public A {};
 class C : virtual public A {};
 ```
@@ -1061,7 +1061,7 @@ class C : virtual public A {};
 
 **示例代码**：
 
-```c++
+```cpp
 class A {
 public:
     int x;
@@ -1105,7 +1105,7 @@ public:
 
 函数重载允许在同一个作用域中定义多个同名函数，但这些函数的参数列表（参数类型、数量或顺序）必须不同。编译器根据函数调用时的参数类型来选择调用哪个函数。
 
-```c++
+```cpp
 class MathOperations {
 public:
     int add(int a, int b) {
@@ -1134,7 +1134,7 @@ int main() {
 
 运算符重载允许重定义C++中的运算符（如+, -, ==等）以适应用户自定义的数据类型。
 
-```c++
+```cpp
 class Complex {
 public:
     float real, imag;
@@ -1168,7 +1168,7 @@ int main() {
 
 虚函数是通过在基类中使用virtual关键字声明的函数。派生类可以重写（override）这些函数。当通过基类指针或引用调用虚函数时，实际调用的是派生类的版本。
 
-```c++
+```cpp
 class Shape {
 public:
     virtual float area() = 0;  // 纯虚函数，Shape为抽象类
@@ -1218,7 +1218,7 @@ int main() {
 
 除了以上两种主流的多态实现方式，C++还支持一种称为**模板（Templates）**的泛型编程方式，sometimes被视为一种编译时多态。模板允许编写可以适用于不同数据类型的代码，而无需显式地为每种类型编写单独的函数或类。
 
-```c++
+```cpp
 template <typename T>
 T max(T a, T b) {
     return (a > b) ? a : b;

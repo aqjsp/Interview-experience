@@ -146,25 +146,25 @@
 
 - 替换文本： 可以使用正则表达式在文本中查找并替换匹配的内容。
 
-```C++
+```cpp
 sed 's/old_pattern/new_pattern/g' filename
 ```
 
 - 删除行或文本块： 可以删除包含特定文本的行或文本块。
 
-```C++
+```cpp
 sed '/pattern/d' filename
 ```
 
 - 插入、追加和编辑文本： 可以插入、追加或编辑文本行。
 
-```C++
+```cpp
 sed '2i\This is a new line' filename
 ```
 
 - 打印文本： 可以选择性地打印文本。
 
-```C++
+```cpp
 sed -n '/pattern/p' filename
 ```
 
@@ -174,25 +174,25 @@ sed -n '/pattern/p' filename
 
 - 文本分割和字段提取： `awk` 可以将每行文本分割成字段，然后你可以访问和操作这些字段。
 
-```C++
+```cpp
 awk -F',' '{print $1, $3}' filename
 ```
 
 - 数据过滤和处理： 你可以使用 `awk` 来筛选、转换和操作文本数据。
 
-```C++
+```cpp
 awk '$2 > 50 {print $1, $2}' filename
 ```
 
 - 自定义输出格式： `awk` 允许你以自定义的格式输出文本。
 
-```C++
+```cpp
 awk '{printf "Name: %s, Age: %d\n", $1, $3}' filename
 ```
 
 - 循环和条件语句： 你可以在 `awk` 脚本中使用循环和条件语句来进行更复杂的数据处理。
 
-```C++
+```cpp
 awk '{if ($2 > 50) print $1, $2}' filename
 ```
 
@@ -377,13 +377,13 @@ TCP释放连接时之所以需要“四次挥手”,是因为FIN释放连接报�
 
 生成器表达式类似于列表推导，但是使用圆括号而不是方括号，并返回一个生成器对象。生成器表达式的语法如下：
 
-```Python
+```python
 (generator_expression)
 ```
 
 示例：
 
-```Python
+```python
 # 生成一个包含1到10之间所有偶数的生成器
 even_numbers = (x for x in range(1, 11) if x % 2 == 0)
 
@@ -398,7 +398,7 @@ for num in even_numbers:
 
 示例：
 
-```Python
+```python
 def count_up_to(n):
     i = 1
     while i <= n:
@@ -426,7 +426,7 @@ for num in counter:
 
 示例：
 
-```Python
+```python
 import asyncio
 
 async def foo():
@@ -454,7 +454,7 @@ asyncio.run(main())
 
 示例：
 
-```Python
+```python
 from multiprocessing import Process
 
 def foo():
@@ -501,7 +501,7 @@ if __name__ == "__main__":
 
 4. 格式化输出： 可以使用流操作符的参数来指定输出的格式，例如设置输出的小数位数、对齐方式、宽度等。例如：
 
-```Python
+```python
 cout << "Value: " << 42 << " Float: " << fixed << setprecision(2) << 3.14159 << endl;
 ```
 
@@ -511,7 +511,7 @@ cout << "Value: " << 42 << " Float: " << fixed << setprecision(2) << 3.14159 << 
 
 示例：
 
-```Python
+```python
 #include <iostream>
 #include <string>
 
@@ -540,7 +540,7 @@ int main() {
 
 给个例子：
 
-```Python
+```python
 // 目标接口
 class Target {
 public:
@@ -612,7 +612,7 @@ int main() {
 
 1. 循环引用（Circular References）： 这是最常见的智能指针内存泄漏情况之一。当两个或多个智能指针互相引用，形成一个循环引用时，这些对象将永远不会被销毁，因为它们的引用计数永远不会达到零。为了避免这种情况，可以使用`std::weak_ptr`来打破循环引用。
 
-```C++
+```cpp
 std::shared_ptr<A> a = std::make_shared<A>();
 std::shared_ptr<B> b = std::make_shared<B>();
 a->b = b; // a和b互相引用
@@ -621,7 +621,7 @@ b->a = a;
 
 解决方法：
 
-```C++
+```cpp
 struct A {
     std::shared_ptr<B> b;
 };
@@ -632,7 +632,7 @@ struct B {
 
 2. 裸指针（Raw Pointers）： 如果你将智能指针中的裸指针传递给其他函数或存储为全局变量，可能导致内存泄漏。这是因为这些裸指针超出了智能指针的管理范围，而无法正确释放资源。确保在传递智能指针时不要泄露裸指针，并避免存储智能指针的裸指针。
 
-```C++
+```cpp
 std::shared_ptr<int> sp = std::make_shared<int>(42);
 int* rawPtr = sp.get(); // 不应该将sp.get()泄露到其他函数或全局变量中
 ```
@@ -645,7 +645,7 @@ int* rawPtr = sp.get(); // 不应该将sp.get()泄露到其他函数或全局变
 
 4. 手动`reset`或`release`： 如果你手动调用`reset`或`release`方法，可能会导致智能指针失去对资源的控制，从而导致内存泄漏。
 
-```C++
+```cpp
 std::shared_ptr<int> sp = std::make_shared<int>(42);
 sp.reset(); // 此时sp不再管理资源，可能导致内存泄漏
 ```
@@ -664,7 +664,7 @@ sp.reset(); // 此时sp不再管理资源，可能导致内存泄漏
 
 #### 示例代码：
 
-```C++
+```cpp
 #include <iostream>
 
 // 定义链表节点

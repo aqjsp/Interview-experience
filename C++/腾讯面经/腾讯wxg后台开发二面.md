@@ -256,7 +256,7 @@ Kafka消息积压是指由于某种原因导致消息在Kafka中堆积积累，�
 
 #### 参考代码：
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 #include <string>
@@ -318,7 +318,7 @@ int main() {
 
 #### 参考代码：
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 

@@ -101,7 +101,7 @@
 
 给个伪代码示例：
 
-```c++
+```cpp
 // 读写锁结构体
 struct ReadWriteLock {
     pthread_mutex_t mutex;         // 用于保护读写锁的互斥锁
@@ -194,7 +194,7 @@ void write_unlock(ReadWriteLock* rwlock) {
 
 归并排序是稳定的排序算法，时间复杂度为 O(n log n)，空间复杂度为 O(n)，其中 n 是待排序序列的长度。
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -295,7 +295,7 @@ int main() {
 
 ##### 递归
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -351,7 +351,7 @@ int main() {
 
 ##### 非递归
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 #include <stack>
@@ -462,7 +462,7 @@ int main() {
 1. 分割成四个部分：192, 168, 1, 1。
 2. 转换为整数并拼接：192 << 24 | 168 << 16 | 1 << 8 | 1。
 
-```c++
+```cpp
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -523,14 +523,14 @@ int main() {
 
 假设 `words.txt` 内容如下：
 
-```
+```text
 the day is sunny the the
 the sunny is is
 ```
 
 你的脚本应当输出（以词频降序排列）：
 
-```
+```text
 the 4
 is 3
 sunny 2
@@ -546,7 +546,7 @@ day 1
 
 我就使用Linux命令给大家解答一下
 
-```
+```bash
 # 使用 tr 命令将空格替换为换行符，然后使用 sort 命令排序，再使用 uniq -c 统计每个单词的频率，最后再次排序
 cat words.txt | tr -s ' ' '\n' | sort | uniq -c | sort -nr | awk '{print $2, $1}'
 ```

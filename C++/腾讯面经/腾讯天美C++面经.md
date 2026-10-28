@@ -33,7 +33,7 @@
 
 - **函数重载：** 在同一作用域内，可以定义多个同名函数，但它们的参数列表（参数个数、类型、顺序）不同。编译器根据函数调用时传入的参数类型和数量来确定调用哪个函数。
 
-  ```c++
+  ```cpp
     #include <iostream>
   
     class Printer {
@@ -57,7 +57,7 @@
 
 - **函数模板：** 通过模板，可以编写泛型函数，使其能够处理多种数据类型。编译器在编译时根据传入的参数类型生成相应的函数实例。
 
-  ```c++
+  ```cpp
     #include <iostream>
   
     template <typename T>
@@ -79,7 +79,7 @@
 
 **虚函数：** 在基类中使用 `virtual` 关键字声明的成员函数称为虚函数。派生类可以重写这些虚函数。当通过基类指针或引用调用虚函数时，程序会在运行时根据对象的实际类型来决定调用哪个派生类的重写函数。
 
-```c++
+```cpp
   #include <iostream>
 
   class Animal {
@@ -126,7 +126,7 @@
 
 基本思想：从待排序的数组中选择一个元素作为基准（pivot），将数组分为两部分，一部分所有元素都小于基准，另一部分所有元素都大于基准，然后递归地对这两部分进行排序。
 
-```c++
+```cpp
 #include <iostream>
 #include <stack>
 #include <vector>
@@ -206,7 +206,7 @@ int main() {
 
 #### 代码实现
 
-```c++
+```cpp
 #include <iostream>
 #include <list>
 #include <unordered_map>
@@ -389,7 +389,7 @@ UDP（用户数据报协议）是一种无连接、面向报文的传输层协�
 
 #### 代码实现
 
-```c++
+```cpp
 #include <vector>
 #include <algorithm>
 using namespace std;

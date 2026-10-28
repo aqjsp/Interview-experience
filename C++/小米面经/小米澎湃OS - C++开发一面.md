@@ -17,7 +17,7 @@
    - 原理：`std::shared_ptr`是基于引用计数的智能指针，用于管理动态分配的对象。它维护一个引用计数，当计数为零时，释放对象的内存。
    - 使用场景：适用于多个智能指针需要共享同一块内存的情况。例如，在多个对象之间共享某个资源或数据。
 
-   ```C++
+   ```cpp
    std::shared_ptr<int> sharedInt = std::make_shared<int>(42);
    std::shared_ptr<int> anotherSharedInt = sharedInt; // 共享同一块内存
    ```
@@ -27,7 +27,7 @@
    - 原理：`std::unique_ptr`是独占式智能指针，意味着它独占拥有所管理的对象，当其生命周期结束时，对象会被自动销毁。
    - 使用场景：适用于不需要多个指针共享同一块内存的情况，即单一所有权。通常用于资源管理，例如动态分配的对象或文件句柄。
 
-   ```C++
+   ```cpp
    std::unique_ptr<int> uniqueInt = std::make_unique<int>(42);
    // uniqueInt 的所有权是唯一的
    ```
@@ -37,7 +37,7 @@
    - 原理：`std::weak_ptr`是一种弱引用指针，它不增加引用计数。它通常用于协助`std::shared_ptr`，以避免循环引用问题。
    - 使用场景：适用于协助解决`std::shared_ptr`的循环引用问题，其中多个`shared_ptr`互相引用，导致内存泄漏。
 
-   ```C++
+   ```cpp
    std::shared_ptr<int> sharedInt = std::make_shared<int>(42);
    std::weak_ptr<int> weakInt = sharedInt;
    ```
@@ -47,7 +47,7 @@
    - 原理：`std::auto_ptr`是C++98标准引入的智能指针，用于独占地管理对象。但由于其存在潜在的问题，已在C++11中被废弃。
    - 使用场景：在C++98标准中，可用于独占性地管理动态分配的对象。不推荐在现代C++中使用。
 
-   ```C++
+   ```cpp
    std::auto_ptr<int> autoInt(new int(42)); // 已废弃
    ```
 
@@ -125,7 +125,7 @@ C++中，全局变量是在程序的全局作用域中定义的变量，它们�
 
 例如，计算斐波那契数列的第n项可以使用递归实现：
 
-```c++
+```cpp
 int fibonacci(int n) {
     if (n <= 1) { // 基本情况
         return n;
@@ -150,7 +150,7 @@ int fibonacci(int n) {
 
 ##### C++
 
-```c++
+```cpp
 #include <iostream>
 
 struct ListNode {

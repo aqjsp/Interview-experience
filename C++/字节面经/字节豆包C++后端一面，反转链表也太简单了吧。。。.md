@@ -19,7 +19,7 @@
 
 ##### C++
 
-```c++
+```cpp
 #include <iostream>
 
 struct ListNode {
@@ -81,7 +81,7 @@ int main() {
 
 因此，状态转移方程为：
 
-```c++
+```cpp
 dp[i]=dp[i−1]+dp[i−2]
 ```
 
@@ -97,7 +97,7 @@ dp[i]=dp[i−1]+dp[i−2]
 
 ##### C++
 
-```c++
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -175,7 +175,7 @@ C++ 中的多态是一种面向对象编程的特性，允许同一接口（如�
 
 例子：
 
-```c++
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -223,7 +223,7 @@ int main() {
 
 - 函数重载（Function Overloading）：在同一个作用域中，定义多个函数名相同但参数列表不同的函数。编译器在编译时根据传递的参数类型和数量选择合适的函数版本。
 
-```c++
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -244,7 +244,7 @@ int main() {
 
 - 函数模板（Function Templates）：模板是泛型编程的一种形式，允许函数和类以通用方式实现。编译器根据传递的类型生成具体的函数版本。
 
-```c++
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -273,7 +273,7 @@ int main() {
 
 - 继承与虚函数：当基类中定义了虚函数时，子类可以重写该虚函数。在运行时，程序根据实际对象的类型动态决定调用基类版本还是子类版本的函数。
 
-```c++
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -336,7 +336,7 @@ int main() {
 - 多态的核心是通过基类的接口来调用不同子类的行为，使用相同的函数调用接口来实现不同的功能。
 - 基类指针或引用可以调用子类的重写函数，而不需要知道对象的具体类型。这种统一的接口方式极大地提高了代码的可扩展性和可维护性。
 
-```c++
+```cpp
 class Shape {
 public:
     virtual void draw() = 0;  // 纯虚函数
@@ -366,7 +366,7 @@ void display(Shape* shape) {
 - 通过虚函数实现的多态是在运行时决定调用哪个函数。这种机制称为动态绑定（late binding），即程序在运行时根据对象的实际类型确定要调用的函数。
 - 这使得程序能够根据实际的对象类型灵活调用相应的函数实现。
 
-```c++
+```cpp
 Shape* shape = new Circle();  // shape 指向 Circle 对象
 shape->draw();  // 调用 Circle 的 draw 方法，而非 Shape 的
 ```
@@ -376,7 +376,7 @@ shape->draw();  // 调用 Circle 的 draw 方法，而非 Shape 的
 - 多态通常与继承密切相关。基类定义虚函数，子类可以选择重写这些虚函数。通过虚函数，C++ 可以在运行时根据对象的实际类型调用适当的函数版本。
 - 如果没有虚函数，多态无法在 C++ 中实现。
 
-```c++
+```cpp
 class Animal {
 public:
     virtual void speak() {
@@ -414,7 +414,7 @@ public:
 - 在多态机制中，基类指针或引用可以指向子类对象。如果需要访问子类特有的成员，可以通过向下类型转换（downcasting）来完成。但这种操作通常伴随一定的风险，因此需要小心使用。
 - 在 C++ 中，`dynamic_cast` 可以进行安全的向下类型转换，并在不合法时返回 `nullptr`。
 
-```c++
+```cpp
 Animal* animal = new Dog();
 Dog* dog = dynamic_cast<Dog*>(animal);
 if (dog) {
@@ -439,7 +439,7 @@ C++11 标准库提供了几种智能指针，用于不同的场景：
    - `unique_ptr` 表示唯一所有权。一个 `unique_ptr` 只能拥有一个对象的所有权，不能共享。当 `unique_ptr` 被销毁时，自动释放它所管理的对象。
    - 不能复制或赋值，只能通过**转移所有权**（move semantics，移动语义）来传递所有权。
 
-```c++
+```cpp
 #include <iostream>
 #include <memory>
 
@@ -462,7 +462,7 @@ int main() {
 
    - 每个 `shared_ptr` 的复制操作都会增加引用计数，当所有 `shared_ptr` 都被销毁或重置时，引用计数为零，资源会自动释放。
 
-```c++
+```cpp
 #include <iostream>
 #include <memory>
 
@@ -485,7 +485,7 @@ int main() {
 
    - `weak_ptr` 不能直接访问对象，需要先通过 `lock()` 方法转换为 `shared_ptr`，然后才能使用。
 
-```c++
+```cpp
 #include <iostream>
 #include <memory>
 
@@ -627,7 +627,7 @@ int main() {
 
 基本语法如下：
 
-```c++
+```cpp
 void *mmap(void *addr, size_t length, int prot, int flags, int fd, off_t offset);
 ```
 
@@ -652,7 +652,7 @@ void *mmap(void *addr, size_t length, int prot, int flags, int fd, off_t offset)
 
 一个简单的示例程序，演示如何使用 `mmap` 将文件映射到内存中：
 
-```c++
+```cpp
 #include <stdio.h>
 #include <fcntl.h>
 #include <sys/mman.h>

@@ -68,7 +68,7 @@ connect函数的第五个参数？
 
 示例代码：
 
-```C
+```cpp
 class MyClass {
 public:
     MyClass() { /* 构造函数可能抛出异常 */ }
@@ -93,7 +93,7 @@ int main() {
 
 1. 友元函数： 友元函数是一个非成员函数，但被允许访问类的私有成员和保护成员。在类的声明中，可以使用 `friend` 关键字来声明一个函数为友元函数。友元函数通常用于重载运算符，以便在不同类型之间执行操作。
 
-```C
+```cpp
 class MyClass {
 private:
     int data;
@@ -109,7 +109,7 @@ void printData(const MyClass& obj) {
 
 2. 友元类： 除了友元函数，C++ 还支持友元类。友元类是一个类，可以访问另一个类的私有成员和保护成员。要声明一个友元类，可以在类的声明中使用 `friend` 关键字。
 
-```C
+```cpp
 class FriendClass {
 public:
     void accessMyClass(const MyClass& obj) {
@@ -197,7 +197,7 @@ C++内存管理里面的东西还是挺多的，这里简单说一下内存分�
 
 1. 函数的返回值类型推导：你可以使用`auto`来推导函数的返回值类型，这在某些情况下可以简化代码，特别是当返回值类型比较复杂或依赖于函数内部逻辑时。例如：
 
-```C
+```cpp
 auto add(int a, int b) -> decltype(a + b) {
     return a + b;
 }
@@ -205,7 +205,7 @@ auto add(int a, int b) -> decltype(a + b) {
 
 2. Lambda表达式的参数类型推导：Lambda表达式也可以使用`auto`来推导参数的类型，这使得Lambda函数更加通用。例如：
 
-```C
+```cpp
 auto lambda = [](auto a, auto b) {
     return a + b;
 };
@@ -222,7 +222,7 @@ double result2 = lambda(3.5, 2.7); // 参数类型被推导为double
 
 1. 使用std::swap交换
 
-```C
+```cpp
 #include <iostream>
 #include <memory>
 
@@ -242,7 +242,7 @@ int main() {
 
 2. 直接使用智能指针的构造函数
 
-```C
+```cpp
 #include <iostream>
 #include <memory>
 
@@ -313,7 +313,7 @@ int main() {
 
 给个例子：
 
-```C
+```cpp
 #include <iostream>
 #include <utility>
 
@@ -349,7 +349,7 @@ int main() {
 
    - 例子：
 
-   - ```C
+   - ```c
      double d = 3.14;
      int i = static_cast<int>(d);
      ```
@@ -364,7 +364,7 @@ int main() {
 
    - 例子：
 
-   - ```C
+   - ```c
      const int ci = 42;
      int* nonConstPtr = const_cast<int*>(&ci);
      ```
@@ -379,7 +379,7 @@ int main() {
 
    - 例子：
 
-   - ```C
+   - ```c
      int i = 42;
      void* voidPtr = reinterpret_cast<void*>(&i);
      ```
@@ -394,7 +394,7 @@ int main() {
 
    - 例子：
 
-   - ```C
+   - ```cpp
      class Base {
          virtual void foo() {}
      };

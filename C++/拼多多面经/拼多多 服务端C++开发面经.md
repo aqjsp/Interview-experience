@@ -22,7 +22,7 @@
 
 #### 参考代码
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -106,7 +106,7 @@ C++标准规定了每个数据类型的最小对齐要求，这些要求通常�
 
 #### 4. 实际示例
 
-```c++
+```cpp
 struct S1 {
     char c1;
     int i;
@@ -195,7 +195,7 @@ struct S2 {
 
 ##### 示例代码：
 
-```c++
+```cpp
 #include <sys/epoll.h>
 #include <sys/socket.h>
 #include <unistd.h>
@@ -272,7 +272,7 @@ int main() {
 
 ##### 示例代码：
 
-```c++
+```cpp
 #include <sys/epoll.h>
 #include <sys/socket.h>
 #include <unistd.h>
@@ -362,7 +362,7 @@ int main() {
 
 ##### 示例：
 
-```c++
+```cpp
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/types.h>
@@ -889,7 +889,7 @@ ZREVRANGE live:room:<room_id> 0 9 WITHSCORES
 
 - 获取指定范围的用户（例如第11到第20名）：
 
-```
+```text
 ZREVRANGE live:room:<room_id> 10 19 WITHSCORES
 ```
 
@@ -911,7 +911,7 @@ ZREM live:room:123 user1
 
 以下是一个简单的C++示例，展示如何使用Redis的有序集合实现直播打赏榜单：
 
-```c++
+```cpp
 #include <hiredis/hiredis.h>
 #include <iostream>
 #include <string>

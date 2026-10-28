@@ -18,7 +18,7 @@ C/C++中可以使用一些特殊的关键字或编译器指令来控制内存对
 
 `alignas`关键字： C++11引入了`alignas`关键字，用于指定对齐方式。
 
-```C++
+```cpp
 alignas(16) struct MyStruct {
     // 结构体成员
 };
@@ -26,7 +26,7 @@ alignas(16) struct MyStruct {
 
 `attribute((aligned(n)))`： 在一些编译器中，可以使用`attribute((aligned(n)))`来指定对齐方式。
 
-```C++
+```cpp
 struct MyStruct {
     // 结构体成员
 } __attribute__((aligned(16)));
@@ -45,7 +45,7 @@ struct MyStruct {
 
 简单例子：
 
-```C++
+```cpp
 #include <iostream>
 
 class MyClass {
@@ -74,7 +74,7 @@ int main() {
 
 简单的示例，说明了删除 `this` 指针的后果：
 
-```C++
+```cpp
 #include <iostream>
 
 class MyClass {
@@ -107,7 +107,7 @@ int main() {
 
 例子：
 
-```C++
+```cpp
 #include <iostream>
 
 int main() {
@@ -135,14 +135,14 @@ C++ 中越界访问是一种程序错误，它可能导致程序崩溃、未定�
 
 1. 数组越界： 访问数组元素时，索引超过数组的有效范围。
 
-```C++
+```cpp
 int arr[5];
 arr[5] = 42; // 越界访问
 ```
 
 2. 指针越界： 通过指针访问内存时，超出了指向对象的有效范围。
 
-```C++
+```cpp
 int arr[5];
 int* ptr = arr;
 *(ptr + 5) = 42; // 越界访问
@@ -150,7 +150,7 @@ int* ptr = arr;
 
 3. 迭代器越界： 在使用容器的迭代器时，超出了容器的有效范围。
 
-```C++
+```cpp
 #include <vector>
 #include <iostream>
 
@@ -167,7 +167,7 @@ int main() {
 
 4. 字符串越界： 对字符串进行操作时，超出了字符串的有效范围。
 
-```C++
+```cpp
 #include <iostream>
 #include <string>
 
@@ -196,7 +196,7 @@ int main() {
 
 参考代码：
 
-```C++
+```cpp
 #include <atomic>
 
 template <typename T>
@@ -299,37 +299,37 @@ public:
 
 1. 编译时添加调试信息： 在编译程序时，使用 `-g` 选项生成调试信息。例如：
 
-```C++
+```cpp
 g++ -g -o my_program my_program.cpp
 ```
 
 2. 启动GDB： 在命令行中启动GDB，并指定可执行文件的路径：
 
-```C++
+```cpp
 gdb ./my_program
 ```
 
 3. 设置断点： 在GDB中，使用 `break` 命令设置断点。例如，在 `main` 函数处设置断点：
 
-```C++
+```cpp
 break main
 ```
 
 4. 运行程序： 使用 `run` 命令运行程序，GDB会在断点处停止。
 
-```C++
+```cpp
 run
 ```
 
 5. 查看变量值： 使用 `print` 命令查看变量的值。
 
-```C++
+```cpp
 print my_variable
 ```
 
 6. 单步执行： 使用 `step` 命令单步执行程序，逐行查看代码的执行情况。
 
-```C++
+```cpp
 step
 ```
 
@@ -340,14 +340,14 @@ step
 1. 使用系统工具： 使用系统工具（如`top`、`htop`等）查看哪个进程占用了高CPU。确定具体是哪个进程引起的问题。
 2. 性能分析工具： 使用性能分析工具（如`perf`）来检查程序的性能瓶颈。例如，可以使用以下命令：
 
-```C++
+```cpp
 perf record -g -p <pid>
 perf report
 ```
 
 2. 核心转储文件： 如果程序崩溃或占用高CPU，可以生成核心转储文件，然后使用GDB进行分析。
 
-```C++
+```cpp
 gcore <pid>
 gdb -c core.<pid>
 ```
@@ -362,7 +362,7 @@ gdb -c core.<pid>
 
    - 使用场景：适用于多个智能指针需要共享同一块内存的情况。例如，在多个对象之间共享某个资源或数据。
 
-   - ```C++
+   - ```cpp
      std::shared_ptr<int> sharedInt = std::make_shared<int>(42);
      std::shared_ptr<int> anotherSharedInt = sharedInt; // 共享同一块内存
      ```
@@ -373,7 +373,7 @@ gdb -c core.<pid>
 
    - 使用场景：适用于不需要多个指针共享同一块内存的情况，即单一所有权。通常用于资源管理，例如动态分配的对象或文件句柄。
 
-   - ```C++
+   - ```cpp
      std::unique_ptr<int> uniqueInt = std::make_unique<int>(42);
      // uniqueInt 的所有权是唯一的
      ```
@@ -384,7 +384,7 @@ gdb -c core.<pid>
 
    - 使用场景：适用于协助解决`std::shared_ptr`的循环引用问题，其中多个`shared_ptr`互相引用，导致内存泄漏。
 
-   - ```C++
+   - ```cpp
      std::shared_ptr<int> sharedInt = std::make_shared<int>(42);
      std::weak_ptr<int> weakInt = sharedInt;
      ```
@@ -395,7 +395,7 @@ gdb -c core.<pid>
 
    - 使用场景：在C++98标准中，可用于独占性地管理动态分配的对象。不推荐在现代C++中使用。
 
-   - ```C++
+   - ```cpp
      std::auto_ptr<int> autoInt(new int(42)); // 已废弃
      ```
 
@@ -408,7 +408,7 @@ gdb -c core.<pid>
 - 生命周期： 只能引用临时对象，不会延长对象的生命周期。
 - 例子：
 
-```C++
+```cpp
 int&& x = 5;  // x是一个右值引用，引用了临时对象5
 ```
 
@@ -419,7 +419,7 @@ int&& x = 5;  // x是一个右值引用，引用了临时对象5
 - 实现： 通过移动构造函数和移动赋值运算符实现。
 - 例子：
 
-```C++
+```cpp
 // 移动构造函数
 MyClass(MyClass&& other) noexcept {
     // 进行资源的移动，而不是拷贝
@@ -469,7 +469,7 @@ MyClass& operator=(MyClass&& other) noexcept {
 
 实现代码：
 
-```C++
+```cpp
 class SingletonEager {
 private:
     // 私有的构造函数，防止外部实例化
@@ -503,7 +503,7 @@ SingletonEager SingletonEager::instance;
 
 实现代码：
 
-```C++
+```cpp
 class SingletonLazy {
 private:
     // 私有的构造函数，防止外部实例化
@@ -540,7 +540,7 @@ SingletonLazy* SingletonLazy::instance = nullptr;
 - 思想： 定义一个创建对象的接口，但由子类决定实例化哪个类。工厂方法使一个类的实例化延迟到其子类。
 - 代码示例：
 
-```C++
+```cpp
 // 抽象产品
 class Product {
 public:
@@ -591,7 +591,7 @@ public:
 - 思想：定义了一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖它的对象都得到通知并自动更新。
 - 代码示例：
 
-```C++
+```cpp
 // 抽象观察者
 class Observer {
 public:

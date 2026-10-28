@@ -165,7 +165,7 @@ URL 的主要组成部分：
 
    - 静态转换没有运行时检查，因此需要谨慎使用，以确保类型兼容性。它通常用于较为明显的类型转换。
 
-```C++
+```cpp
 double x = 10.5;
 int y = static_cast<int>(x);
 ```
@@ -176,7 +176,7 @@ int y = static_cast<int>(x);
 
    - 它需要基类有虚函数，以便进行运行时类型检查。如果不满足条件，转换将返回空指针或引发`std::bad_cast`异常。
 
-```C++
+```cpp
 class Base { virtual void foo() {} };
 class Derived : public Base { /* ... */ };
 
@@ -188,7 +188,7 @@ Derived* derivedPtr = dynamic_cast<Derived*>(basePtr);
 
 常量转换用于添加或删除`const`属性。它主要用于允许更改变量的`const`性质，但也需要谨慎使用，因为它可能引发未定义行为。
 
-```C++
+```cpp
 const int x = 5;
 int* y = const_cast<int*>(&x);
 ```
@@ -198,7 +198,7 @@ int* y = const_cast<int*>(&x);
 - 重新解释转换是最危险的类型转换，通常用于将一种类型的指针或引用解释为完全不同的类型。
 - 这种类型的转换几乎不进行任何类型检查，因此非常不安全。它通常用于处理底层的二进制数据。
 
-```C++
+```cpp
 int x = 42;
 double y = reinterpret_cast<double*>(&x);
 ```
@@ -255,7 +255,7 @@ double y = reinterpret_cast<double*>(&x);
 
 1. 静态变量：`static` 可以用于变量，使其成为静态变量，也称为类变量。静态变量与类相关联而不是与对象相关联，它们只有一个实例，无论创建多少类的对象。
 
-```C++
+```cpp
 class MyClass {
 public:
     static int myStaticVar; // 静态变量
@@ -274,7 +274,7 @@ int main() {
 
 2. 静态函数：`static` 关键字还可以用于函数，使其成为静态函数。静态函数只能访问静态变量或其他静态函数，不依赖于对象的状态。
 
-```C++
+```cpp
 class MyClass {
 public:
     static void myStaticFunction() {
@@ -290,7 +290,7 @@ int main() {
 
 3. 局部静态变量：`static` 关键字还可以用于局部变量，使其成为局部静态变量。局部静态变量只在首次调用函数时初始化，之后保留其值，直到程序结束。
 
-```C++
+```cpp
 void myFunction() {
     static int count = 0; // 局部静态变量
     count++;
@@ -306,7 +306,7 @@ int main() {
 
 4. 静态成员变量：`static` 还可以用于类的成员变量，使其成为静态成员变量。这些变量与类相关联，而不是与对象相关联，它们被所有类的对象所共享。
 
-```C++
+```cpp
 class MyClass {
 public:
     static int count; // 静态成员变量
@@ -375,7 +375,7 @@ int main() {
 
 示例：
 
-```C++
+```cpp
 #include <iostream>
 #include <map>
 

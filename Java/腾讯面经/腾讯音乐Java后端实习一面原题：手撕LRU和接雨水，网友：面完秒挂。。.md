@@ -6,7 +6,7 @@
 
 使用哈希表和双向链表来实现。
 
-```
+```java
 import java.util.HashMap;
 import java.util.Map;
 
@@ -259,7 +259,7 @@ Spring Boot 是一个用于快速构建基于 Spring 框架的应用程序的工
 
 1. 未使用索引字段：当查询条件中的字段未被索引覆盖，或者使用了函数、表达式、类型转换等操作，导致无法命中索引。例如：
 
-   ```
+   ```sql
    SELECT * FROM table WHERE YEAR(date_column) = 2022;
    ```
 
@@ -267,7 +267,7 @@ Spring Boot 是一个用于快速构建基于 Spring 框架的应用程序的工
 
 2. 索引列顺序不合理：当查询条件中的索引列不是组合索引的第一个列，或者组合索引的顺序与查询条件不匹配时，导致索引失效。例如：
 
-   ```
+   ```sql
    CREATE INDEX idx_name_age ON table (name, age);
    SELECT * FROM table WHERE age = 30 AND name = 'Alice';
    ```
@@ -276,7 +276,7 @@ Spring Boot 是一个用于快速构建基于 Spring 框架的应用程序的工
 
 3. 范围查询：当查询条件中包含范围查询（如 `BETWEEN`、`IN`、`LIKE` 等）时，索引可能无法被完全利用。例如：
 
-   ```
+   ```sql
    SELECT * FROM table WHERE age BETWEEN 20 AND 30;
    ```
 
@@ -284,7 +284,7 @@ Spring Boot 是一个用于快速构建基于 Spring 框架的应用程序的工
 
 4. 使用 `OR` 条件：当查询条件中使用了 `OR` 连接多个条件时，如果这些条件无法被合并为一个索引范围查询，可能导致索引失效。例如：
 
-   ```
+   ```sql
    SELECT * FROM table WHERE age = 20 OR name = 'Alice';
    ```
 
@@ -302,7 +302,7 @@ Spring Boot 是一个用于快速构建基于 Spring 框架的应用程序的工
 
 ![img](https://raw.githubusercontent.com/aqjsp/Pictures/main/202402032201947.png)
 
-```
+```text
 输入：height = [0,1,0,2,1,0,1,3,2,1,2,1]
 输出：6
 解释：上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。 
@@ -310,7 +310,7 @@ Spring Boot 是一个用于快速构建基于 Spring 框架的应用程序的工
 
 **示例 2：**
 
-```
+```text
 输入：height = [4,2,0,3,2,5]
 输出：9
 ```
@@ -334,7 +334,7 @@ Spring Boot 是一个用于快速构建基于 Spring 框架的应用程序的工
 
 ##### Java
 
-```
+```java
 class Solution {
     public int trap(int[] height) {
         int n = height.length;
@@ -377,7 +377,7 @@ class Solution {
 
 ##### C++
 
-```
+```cpp
 #include <vector>
 #include <algorithm>
 #include <iostream>
@@ -428,7 +428,7 @@ int main() {
 
 ##### Python
 
-```
+```python
 class Solution:
     def trap(self, height: List[int]) -> int:
         n = len(height)

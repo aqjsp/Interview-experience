@@ -24,13 +24,13 @@
 
 1. 自动类型推导（Auto）： 允许编译器推导变量的类型，使代码更加简洁。
 
-```C++
+```cpp
 auto x = 5; // x的类型将被推导为int
 ```
 
 2. 范围-based for 循环： 简化了对容器元素的遍历。
 
-```C++
+```cpp
 std::vector<int> numbers = {1, 2, 3, 4, 5};
 for (const auto& num : numbers) {
     // 使用num
@@ -39,32 +39,32 @@ for (const auto& num : numbers) {
 
 3. 智能指针： 引入了`std::shared_ptr`和`std::unique_ptr`等智能指针，用于管理动态分配的内存，帮助防止内存泄漏。
 
-```C++
+```cpp
 std::shared_ptr<int> sharedPtr = std::make_shared<int>(42);
 ```
 
 4. Lambda 表达式： 允许在函数内部定义匿名函数，提高代码可读性和灵活性。
 
-```C++
+```cpp
 auto add = [](int a, int b) { return a + b; };
 ```
 
 5. nullptr： 引入了空指针常量`nullptr`，用于替代传统的空指针`NULL`。
 
-```C++
+```cpp
 int* ptr = nullptr;
 ```
 
 6. 强制类型转换（Type Casting）： 引入了`static_cast`、`dynamic_cast`、`const_cast`、`reinterpret_cast`等更安全和灵活的类型转换操作符。
 
-```C++
+```cpp
 double x = 3.14;
 int y = static_cast<int>(x);
 ```
 
 7. 右值引用和移动语义： 支持通过右值引用实现移动语义，提高了对临时对象的处理效率。
 
-```C++
+```cpp
 std::vector<int> getVector() {
     // 返回一个临时vector
     return std::vector<int>{1, 2, 3};
@@ -75,13 +75,13 @@ std::vector<int> numbers = getVector(); // 使用移动语义
 
 8. 新的容器和算法： 引入了新的容器，如`std::unordered_map`、`std::unordered_set`，以及一些新的算法。
 
-```C++
+```cpp
 std::unordered_map<int, std::string> myMap = {{1, "one"}, {2, "two"}};
 ```
 
 9. 线程支持（std::thread）： 提供了原生的多线程支持，使得并发编程更加方便。
 
-```C++
+```cpp
 #include <thread>
 
 void myFunction() {
@@ -118,7 +118,7 @@ C++11引入了右值引用（Rvalue Reference）的概念，主要用于实现�
 
 给个例子：
 
-```C++
+```cpp
 #include <iostream>
 
 void processInt(int& lref) {
@@ -148,7 +148,7 @@ C++中的虚函数机制是为了实现多态性（Polymorphism）的一种机�
 1. 虚函数和虚表： 在含有虚函数的类中，会生成一个虚函数表（Virtual Table，简称 vtable）。虚函数表是一个指针数组，其中存储了该类的虚函数的地址。每个对象的实例都包含一个指向虚函数表的指针，这个指针称为虚表指针（vptr）。
 2. 虚函数的声明和定义： 在基类中，使用关键字 `virtual` 声明虚函数。派生类可以选择覆盖（override）基类的虚函数。虚函数的实现会放在虚函数表中，而不是直接在类定义中。
 
-```C++
+```cpp
 class Base {
 public:
     virtual void print() const {
@@ -166,7 +166,7 @@ public:
 
 动态绑定： 当通过基类指针或引用调用虚函数时，实际调用的是对象的动态类型所对应的虚函数。这种在运行时决定调用哪个函数的机制称为动态绑定。在下面的例子中，通过 `print` 函数调用时，根据对象的实际类型来调用相应的虚函数。
 
-```C++
+```cpp
 void printInfo(const Base& obj) {
     obj.print(); // 动态绑定，根据实际类型调用相应的虚函数
 }
@@ -190,7 +190,7 @@ int main() {
 
 当一个类使用单继承时，每个类都有自己的虚表。子类的虚表包含了从基类继承的虚函数以及自身新增的虚函数。在对象的内存布局中，通常会有一个指向该类虚表的虚表指针（vptr）。
 
-```C++
+```cpp
 class Base {
 public:
     virtual void funcBase() { /* Base class implementation */ }
@@ -206,7 +206,7 @@ public:
 
 当一个类使用虚继承时，主要是为了解决多重继承可能导致的菱形继承问题。在虚继承中，虚表的结构会更为复杂。基类的虚表包含了从所有虚继承的路径继承的虚函数，而子类的虚表只包含自己新增的虚函数。
 
-```C++
+```cpp
 class Base {
 public:
     virtual void funcBase() { /* Base class implementation */ }
@@ -231,7 +231,7 @@ public:
 
 纯虚函数的语法示例：
 
-```C++
+```cpp
 class AbstractBase {
 public:
     // 纯虚函数，没有实现
@@ -262,7 +262,7 @@ public:
 
 给个例子：
 
-```C++
+```cpp
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -293,7 +293,7 @@ void cStyleFunction();
    - 静态变量的初始化只在第一次进入声明它的函数时进行，之后的函数调用不会重新初始化。
    - 静态变量存储在全局数据区，而不是存储在栈上。
 
-```C++
+```cpp
 void exampleFunction() {
     static int staticVar = 0; // 静态变量
     // 其他代码
@@ -306,7 +306,7 @@ void exampleFunction() {
 
    - 静态成员函数不能访问非静态成员变量和非静态成员函数。
 
-```C++
+```cpp
 class MyClass {
 public:
     static void staticFunction() {
@@ -321,7 +321,7 @@ public:
 
    - 静态成员变量需要在类外部进行定义和初始化。
 
-```C++
+```cpp
 class MyClass {
 public:
     static int staticVar; // 静态成员变量声明
@@ -337,7 +337,7 @@ int MyClass::staticVar = 0;
 
    - 静态全局变量的生命周期贯穿整个程序运行期间。
 
-```C++
+```cpp
 // 文件1.cppstatic 
 int staticGlobalVar = 0;
 
@@ -380,7 +380,7 @@ int staticGlobalVar = 0;
 
 示例：
 
-```C++
+```cpp
 int value = 10;
 const int *ptr = &value;  // ptr是指针常量，不允许通过ptr修改value的值
 ```
@@ -392,7 +392,7 @@ const int *ptr = &value;  // ptr是指针常量，不允许通过ptr修改value�
 
 示例：
 
-```C++
+```cpp
 int value = 10;
 int *const ptr = &value;  // ptr是常量指针，不允许修改ptr指向的地址
 ```
@@ -408,7 +408,7 @@ int *const ptr = &value;  // ptr是常量指针，不允许修改ptr指向的地
 - 特点： 重载函数具有相同的名称但不同的参数类型、参数个数或参数顺序。
 - 示例：
 
-```C++
+```cpp
 // 重载函数
 int add(int a, int b) {
     return a + b;
@@ -425,7 +425,7 @@ double add(double a, double b) {
 - 特点： 重写的方法在基类和派生类中有相同的名称、相同的参数列表和相同的返回类型。
 - 示例：
 
-```C++
+```cpp
 // 基类
 class Shape {
 public:
@@ -481,7 +481,7 @@ public:
 
 示例：
 
-```C++
+```cpp
 // 使用 typedef 创建类型别名
 typedef int Integer;
 
@@ -500,7 +500,7 @@ typedef int Integer;
 
    - 主要用于相关类型之间的转换，例如基本数据类型之间的转换，父子类之间的指针或引用转换。静态转换在编译时进行，不提供运行时类型检查。
 
-```C++
+```cpp
 double myDouble = 3.14;
 int myInt = static_cast<int>(myDouble);
 ```
@@ -511,7 +511,7 @@ int myInt = static_cast<int>(myDouble);
 
    - 主要用于具有多态性质的类之间的指针或引用转换，提供运行时类型检查。只能用于含有虚函数的类。
 
-```C++
+```cpp
 class Base {
     virtual void foo() {}
 };
@@ -528,7 +528,7 @@ Derived* derivedPtr = dynamic_cast<Derived*>(basePtr);
 
    - 主要用于添加或移除 `const`、`volatile` 属性，但并不会真正改变对象的常量性。常量转换通常用于解决一些特殊情况下的编译错误。
 
-```C++
+```cpp
 const int myConst = 42;
 int* myPtr = const_cast<int*>(&myConst);
 ```
@@ -539,7 +539,7 @@ int* myPtr = const_cast<int*>(&myConst);
 
    - 主要用于不同类型之间的指针或引用转换，通常是比较底层的转换，不进行类型安全检查，慎用。
 
-```C++
+```cpp
 int myInt = 42;
 double* myDoublePtr = reinterpret_cast<double*>(&myInt);
 ```
@@ -607,7 +607,7 @@ double* myDoublePtr = reinterpret_cast<double*>(&myInt);
 
 示例：
 
-```C++
+```cpp
 #include <iostream>
 #include <thread>
 
@@ -650,20 +650,20 @@ int main() {
 
 1. 初始化指针： 在定义指针时，尽量立即将其初始化为 `nullptr` 或者 `NULL`，避免使用未初始化的指针。
 
-```C++
+```cpp
 int* ptr = nullptr;  // 或 int* ptr = NULL;
 ```
 
 2. 在释放指针后将其置为 `nullptr`： 在使用 `delete` 或 `free` 释放内存后，将指针置为 `nullptr`，以避免成为野指针。
 
-```C++
+```cpp
 delete ptr;
 ptr = nullptr;
 ```
 
 3. 避免悬挂指针： 在函数结束时，局部变量的指针会被销毁，如果其指向堆内存，需要注意不要返回该指针，否则可能导致悬挂指针问题。
 
-```C++
+```cpp
 int* createAndReturnPointer() {
     int* ptr = new int;
     // 不要返回 ptr，因为在函数结束后，ptr 将成为悬挂指针
@@ -673,7 +673,7 @@ int* createAndReturnPointer() {
 
 4. 使用智能指针： C++11 引入的智能指针（如 `std::unique_ptr`、`std::shared_ptr`）可以帮助自动管理内存，降低野指针的风险。
 
-```C++
+```cpp
 #include <memory>
 
 std::unique_ptr<int> ptr = std::make_unique<int>(42);
@@ -698,7 +698,7 @@ std::unique_ptr<int> ptr = std::make_unique<int>(42);
 
 #### 参考代码
 
-```C++
+```cpp
 #include <iostream>
 #include <vector>
 #include <algorithm>

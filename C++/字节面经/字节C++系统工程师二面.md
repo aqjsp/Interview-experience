@@ -31,7 +31,7 @@ C++的运行时多态是通过虚函数机制实现的，其底层依赖于虚�
 
 当通过基类指针或引用调用虚函数时，程序会通过对象的虚指针（vptr）找到对应的虚函数表（vtable），然后在虚函数表中查找实际要调用的函数地址，从而实现动态绑定和多态性。
 
-```c++
+```cpp
 #include <iostream>
 
 class Base {
@@ -89,7 +89,7 @@ type_info 是一个类，声明在 `<typeinfo>` 头文件中，由编译器生�
 
 例子：
 
-```c++
+```cpp
 #include <iostream>
 #include <typeinfo>
 
@@ -120,7 +120,7 @@ int main() {
 
 典型形式：
 
-```c++
+```cpp
 class MyClass {
 public:
     MyClass(const MyClass& other) {
@@ -137,7 +137,7 @@ public:
 
 示例：
 
-```c++
+```cpp
 class MyClass {
 public:
     MyClass(MyClass other) { // 按值传递
@@ -172,7 +172,7 @@ MyClass& 或 const MyClass& 仅传递对象的地址（通常 4 或 8 字节）�
 
 示例：
 
-```c++
+```cpp
 class MyClass {
     int* data;
 public:
@@ -191,7 +191,7 @@ public:
 
 示例：
 
-```c++
+```cpp
 class MyClass {
     int x;
 public:
@@ -221,7 +221,7 @@ int main() {
 
 示例：
 
-```c++
+```cpp
 class MyClass {
 public:
     MyClass(MyClass& other) {} // 非 const 引用
@@ -254,7 +254,7 @@ const 位于 * 和指针名之间，修饰指针变量。
 
 示例：
 
-```c++
+```cpp
 #include <iostream>
 
 int main() {
@@ -287,7 +287,7 @@ const 位于类型前，修饰指针所指向的数据。
 
 示例：
 
-```c++
+```cpp
 #include <iostream>
 
 int main() {
@@ -385,7 +385,7 @@ int main() {
 
 伪代码:
 
-```
+```text
 CALL(target):
     push EIP          // 保存返回地址
     EIP = target      // 跳转到目标地址
@@ -423,7 +423,7 @@ CALL(target):
 
 栈：
 
-```
+```text
 0x0FFC: [0x8048005] <- ESP
 0x1000: [之前的栈数据]
 ```
@@ -457,7 +457,7 @@ RET 指令：
 
 ##### 语法
 
-```c++
+```cpp
 int x = 10;
 int& lref = x;       // 左值引用，绑定到左值
 // int& rref = 10;   // 错误：左值引用不能绑定右值
@@ -466,7 +466,7 @@ int&& rref = 10;     // 右值引用，绑定到右值
 
 例子：
 
-```c++
+```cpp
 #include <iostream>
 
 void print(int&& r) {
@@ -493,7 +493,7 @@ int main() {
 
 示例：
 
-```c++
+```cpp
 #include <iostream>
 #include <cstring>
 
@@ -542,7 +542,7 @@ int main() {
 
 示例：
 
-```c++
+```cpp
 #include <iostream>
 
 void process(int& x) { std::cout << "Lvalue: " << x << std::endl; }
@@ -567,7 +567,7 @@ int main() {
 
 实现：
 
-```c++
+```cpp
 template<typename T>
 T&& move(T& obj) {
     return static_cast<T&&>(obj);
@@ -597,7 +597,7 @@ RAII：Resource Acquisition Is Initialization，资源获取即初始化。
 
 简单例子：
 
-```c++
+```cpp
 #include <iostream>
 
 class Resource {
@@ -623,7 +623,7 @@ int main() {
 
 输出：
 
-```c++
+```cpp
 Resource acquired
 42
 Resource released
@@ -672,7 +672,7 @@ RAII 将资源封装到类中：
 
 示例：
 
-```c++
+```cpp
 struct Node {
     std::shared_ptr<Node> next;
     ~Node() { std::cout << "Destroyed\n"; }
@@ -693,7 +693,7 @@ use_count 永不为 0，导致内存泄漏。
 
 使用 std::weak_ptr 打破循环：
 
-```c++
+```cpp
 struct Node {
     std::weak_ptr<Node> next;
 };
@@ -709,7 +709,7 @@ struct Node {
 
 内存布局：
 
-```c++
+```cpp
 [T 对象 | ControlBlock]
 ```
 
@@ -724,7 +724,7 @@ struct Node {
 
 内存布局：
 
-```c++
+```cpp
 [T 对象]        <- 裸指针
 [ControlBlock]   <- 独立分配
 ```
@@ -823,7 +823,7 @@ C 语言中，`malloc`（memory allocation 的缩写）函数用于在运行时�
 
 32 位示例
 
-```
+```text
 0xFFFFFFFF +-----------------+
            | 内核空间         |
 0xC0000000 +-----------------+
@@ -866,7 +866,7 @@ MMU 是 CPU 中的硬件组件，负责将虚拟地址转换为物理地址。
 
 - 示例（4KB 页，32 位地址）：
 
-  ```
+  ```text
   31        12 11        0
   +-----------+----------+
   | VPN       | Offset   |
@@ -940,7 +940,7 @@ TLB 是 MMU 中的高速缓存，用于加速虚拟地址到物理地址的转�
 
 #### 参考代码（C++）
 
-```c++
+```cpp
 #include <vector>
 #include <queue>
 

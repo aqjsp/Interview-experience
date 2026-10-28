@@ -250,7 +250,7 @@ void printPrivateData(const MyClass& obj) {
 
    在某些旧代码或特殊场景中，可能会使用宏或 `reinterpret_cast` 强行将对象指针转换为一个结构体指针，该结构体具有与私有成员相同的内存布局。
 
-   ```c++
+   ```cpp
    // 危险且不推荐：依赖于内存布局
    #define ACCESS_PRIVATE_MEMBER(object, member) \
        (*reinterpret_cast<decltype(&(object.member))>( \
@@ -330,7 +330,7 @@ void printPrivateData(const MyClass& obj) {
 
 由1, 2, 3 构成的 5 棵唯一的 BST 结构如下：
 
-```
+```text
    1         3     3      2      1
     \       /     /      / \      \
      3     2     1      1   3      2

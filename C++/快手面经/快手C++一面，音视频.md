@@ -15,7 +15,7 @@
 
 用法：
 
-```c++
+```cpp
 #include <memory>
 #include <iostream>
 
@@ -41,7 +41,7 @@ int main() {
 
 用法：
 
-```c++
+```cpp
 #include <memory>
 #include <iostream>
 
@@ -61,7 +61,7 @@ int main() {
 
 示例：
 
-```c++
+```cpp
 #include <memory>
 #include <iostream>
 
@@ -101,7 +101,7 @@ int main() {
 
 ##### 解决循环引用
 
-```c++
+```cpp
 #include <memory>
 #include <iostream>
 
@@ -123,7 +123,7 @@ int main() {
 
 输出：
 
-```c++
+```cpp
 n1 use_count: 1
 n2 use_count: 2
 Node destroyed
@@ -141,7 +141,7 @@ Node destroyed
 
 示例：
 
-```c++
+```cpp
 #include <memory>
 #include <iostream>
 
@@ -171,7 +171,7 @@ C++98 引入的早期智能指针，独占所有权，但有严重缺陷。
 
 问题：
 
-```c++
+```cpp
 std::auto_ptr<int> ap1(new int(40));
 std::auto_ptr<int> ap2 = ap1; // ap1 变空
 // *ap1 会崩溃
@@ -272,7 +272,7 @@ const 修饰 * 前的类型，表示指向的数据不可变。
 
 示例：
 
-```c++
+```cpp
 #include <iostream>
 
 int main() {
@@ -305,7 +305,7 @@ const 修饰 pointer，表示指针变量不可变。
 
 示例：
 
-```c++
+```cpp
 #include <iostream>
 
 int main() {
@@ -352,7 +352,7 @@ int main() {
 
 示例：匿名管道
 
-```c++
+```cpp
 #include <unistd.h>
 #include <iostream>
 
@@ -389,7 +389,7 @@ int main() {
 
 示例：POSIX 消息队列
 
-```c++
+```cpp
 #include <mqueue.h>
 #include <fcntl.h>
 #include <iostream>
@@ -428,7 +428,7 @@ int main() {
 
 示例：POSIX 共享内存
 
-```c++
+```cpp
 #include <sys/mman.h>
 #include <fcntl.h>
 #include <unistd.h>
@@ -461,7 +461,7 @@ int main() {
 
 示例：POSIX 信号量
 
-```c++
+```cpp
 #include <semaphore.h>
 #include <fcntl.h>
 #include <iostream>
@@ -497,7 +497,7 @@ int main() {
 
 实现：
 
-```c++
+```cpp
 #include <signal.h>
 #include <iostream>
 
@@ -740,7 +740,7 @@ int main() {
 
 #### 参考代码（C++）
 
-```c++
+```cpp
 #include <iostream>
 
 // 单链表节点定义
@@ -843,7 +843,7 @@ int main() {
 
 #### 参考代码（C++）
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 

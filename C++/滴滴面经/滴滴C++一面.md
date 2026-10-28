@@ -12,7 +12,7 @@
 2. 基类中有默认实现： 虚函数在基类中可以有默认的实现，如果派生类没有重写这个虚函数，将使用基类中的默认实现。
 3. 可被调用： 虚函数可以在基类中被调用，也可以在派生类中被调用。基类的指针或引用可以指向派生类的对象，并调用派生类中的虚函数。
 
-```C++
+```cpp
 class Base {
 public:
     virtual void virtualFunction() {
@@ -37,7 +37,7 @@ obj->virtualFunction();  // 调用派生类中的虚函数
 2. 没有默认实现： 纯虚函数在基类中没有默认实现，派生类必须提供具体的实现。
 3. 纯虚函数的类是抽象类： 包含纯虚函数的类被称为抽象类，无法被实例化。必须由派生类提供纯虚函数的实现。
 
-```C++
+```cpp
 class AbstractBase {
 public:
     virtual void pureVirtualFunction() = 0;  // 纯虚函数
@@ -60,7 +60,7 @@ obj->pureVirtualFunction();  // 调用派生类中的纯虚函数
 
 1. 实现多态性： 虚函数是实现运行时多态性的关键。通过基类指针或引用指向派生类对象，可以根据实际对象的类型来调用相应的虚函数。
 
-```C++
+```cpp
 class Shape {
 public:
     virtual void draw() const {
@@ -85,7 +85,7 @@ int main() {
 
 2. 提供默认实现： 虚函数在基类中可以提供默认的实现，如果派生类不重写，将使用基类的默认实现。
 
-```C++
+```cpp
 class Base {
 public:
     virtual void functionWithDefault() {
@@ -108,7 +108,7 @@ int main() {
 
 1. 实现抽象类： 包含纯虚函数的类是抽象类，无法被实例化。它们提供一个接口，要求派生类提供具体的实现。
 
-```C++
+```cpp
 class AbstractShape {
 public:
     virtual void draw() const = 0;  // 纯虚函数
@@ -131,7 +131,7 @@ int main() {
 
 2. 接口定义： 纯虚函数可以用于定义接口，让多个类共享相同的接口，但提供不同的实现。
 
-```C++
+```cpp
 class Interface {
 public:
     virtual void method() const = 0;  // 纯虚函数
@@ -170,7 +170,7 @@ int main() {
 2. 默认实现： 如果派生类没有提供虚函数的实现，将使用基类中的默认实现（如果有的话）。
 3. 重写： 如果在派生类中提供了虚函数的实现，可以使用 `override` 关键字进行标记。
 
-```C++
+```cpp
 class Base {
 public:
     virtual void virtualFunction() {
@@ -192,7 +192,7 @@ public:
 2. 没有默认实现： 纯虚函数在基类中没有默认的实现。
 3. 纯虚函数的类是抽象类： 包含纯虚函数的类被称为抽象类，无法被实例化。
 
-```C++
+```cpp
 class AbstractBase {
 public:
     virtual void pureVirtualFunction() = 0;  // 纯虚函数
@@ -216,7 +216,7 @@ public:
 
 1. 包含纯虚函数： 抽象类包含至少一个纯虚函数，通过在声明中使用 `= 0` 来标记。
 
-```C++
+```cpp
 class AbstractClass {
 public:
     virtual void pureVirtualFunction() = 0;
@@ -227,7 +227,7 @@ public:
 
 3. 可以包含普通函数： 抽象类可以包含普通的成员函数，不一定都是纯虚函数。
 
-```C++
+```cpp
 class AbstractClass {
 public:
     virtual void pureVirtualFunction() = 0;
@@ -241,7 +241,7 @@ public:
 
 1. 作为接口定义： 抽象类通常用于定义一组接口，要求派生类提供具体的实现。这样可以实现多态性，通过基类指针或引用调用派生类的实现。
 
-```C++
+```cpp
 AbstractClass* obj = new ConcreteDerived();
 obj->pureVirtualFunction();  // 调用派生类中的纯虚函数
 delete obj;
@@ -249,7 +249,7 @@ delete obj;
 
 2. 包含数据成员： 抽象类可以包含数据成员，不限制只有纯虚函数。
 
-```C++
+```cpp
 class AbstractShape {
 protected:
     double width;
@@ -264,7 +264,7 @@ public:
 
 3. 派生类实现接口： 派生类必须提供抽象类中纯虚函数的具体实现，否则派生类也会成为抽象类。
 
-```C++
+```cpp
 class ConcreteCircle : public AbstractShape {
 public:
     ConcreteCircle(double radius) : AbstractShape(radius, radius) {}
@@ -281,7 +281,7 @@ public:
 
 1. 定义方式： 内联函数的定义通常在类声明中，或者在函数定义前使用 `inline` 关键字。内联函数的定义会被编译器尽量地替换函数调用处的实际代码。
 
-```C++
+```cpp
 // 内联函数的定义
 inline int add(int a, int b) {
     return a + b;
@@ -298,7 +298,7 @@ inline int add(int a, int b) {
 
 1. 定义方式： 普通函数的定义通常在类声明之外，或者在一个独立的源文件中。
 
-```C++
+```cpp
 // 普通函数的定义
 int add(int a, int b) {
     return a + b;
@@ -323,14 +323,14 @@ int add(int a, int b) {
 
 - 指针： 指针是一个变量，其值是另一个变量的地址。指针需要通过 `*` 运算符来声明和使用。
 
-```C++
+```cpp
 int x = 10;
 int *ptr = &x;  // 指针的声明和初始化
 ```
 
 - 引用： 引用是一个别名，即某个变量的别名。引用在声明时使用 `&` 运算符。
 
-```C++
+```cpp
 int x = 10;
 int &ref = x;  // 引用的声明和初始化
 ```
@@ -339,7 +339,7 @@ int &ref = x;  // 引用的声明和初始化
 
 - 指针： 指针使用 `*` 运算符来访问所指向的变量。
 
-```C++
+```cpp
 int x = 10;
 int *ptr = &x;
 *ptr = 20;  // 通过指针修改 x 的值
@@ -347,7 +347,7 @@ int *ptr = &x;
 
 - 引用： 引用在声明时使用 `&` 运算符，但在使用时不需要。
 
-```C++
+```cpp
 int x = 10;
 int &ref = x;
 ref = 20;  // 直接修改 x 的值，无需使用运算符
@@ -357,13 +357,13 @@ ref = 20;  // 直接修改 x 的值，无需使用运算符
 
 - 指针： 指针可以是空指针（`nullptr` 或 `NULL`），即不指向任何有效的地址。
 
-```C++
+```cpp
 int *ptr = nullptr;  // 空指针
 ```
 
 - 引用： 引用必须在声明时初始化，并且一旦引用被初始化，它将一直引用同一个变量，不存在空引用的概念。
 
-```C++
+```cpp
 int x = 10;
 int &ref = x;  // 引用初始化
 ```
@@ -372,7 +372,7 @@ int &ref = x;  // 引用初始化
 
 - 指针： 指针可以重新赋值指向其他变量或空。
 
-```C++
+```cpp
 int x = 10;
 int y = 20;
 int *ptr = &x;
@@ -381,7 +381,7 @@ ptr = &y;  // 指针重新指向 y
 
 - 引用： 引用在初始化后不能再引用其他变量。
 
-```C++
+```cpp
 int x = 10;
 int y = 20;
 int &ref = x;
@@ -392,7 +392,7 @@ ref = y;  // 修改了 x 的值，但 ref 仍然引用 x
 
 - 指针： 指针可以用于遍历数组和作为函数参数传递。
 
-```C++
+```cpp
 int arr[5] = {1, 2, 3, 4, 5};
 int *ptr = arr;  // 指向数组的第一个元素
 void foo(int *ptr) {
@@ -402,7 +402,7 @@ void foo(int *ptr) {
 
 - 引用： 引用不直接用于遍历数组，但可以作为函数参数传递。
 
-```C++
+```cpp
 void foo(int &ref) {
     // 函数接受引用参数
 }
@@ -436,7 +436,7 @@ void foo(int &ref) {
 
    - 栈内存的生命周期由作用域控制，当变量超出作用域时，自动释放。
 
-```C++
+```cpp
 void exampleFunction() {
     int localVar = 42;  // 栈上分配的局部变量
     // ...
@@ -451,7 +451,7 @@ void exampleFunction() {
 
    - 堆上分配的内存需要手动释放，否则可能导致内存泄漏。
 
-```C++
+```cpp
 int* dynamicVar = new int;  // 堆上分配的动态变量
 // 使用 dynamicVar
 delete dynamicVar;  // 释放堆上分配的内存
@@ -463,7 +463,7 @@ delete dynamicVar;  // 释放堆上分配的内存
 
    - 全局变量存储在全局数据段，静态变量存储在静态数据段。
 
-```C++
+```cpp
 int globalVar;  // 全局变量
 static int staticVar;  // 静态变量
 ```
@@ -474,7 +474,7 @@ static int staticVar;  // 静态变量
 
    - 常量区的数据是只读的，不能修改。
 
-```C++
+```cpp
 const char* str = "Hello, World!";  // 字符串常量
 ```
 
@@ -509,7 +509,7 @@ const char* str = "Hello, World!";  // 字符串常量
 
 最终，返回的 `maxLength` 就是最长不含重复字符的子串的长度。
 
-```C
+```cpp
 #include <iostream>
 #include <string>
 #include <unordered_set>

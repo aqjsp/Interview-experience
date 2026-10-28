@@ -8,7 +8,7 @@
 
 1. 静态变量（静态成员变量）：在类中声明的静态变量是该类的所有对象共享的。这些变量通常用于表示类的状态或跟踪某个类的实例的数量。静态变量可以通过类名或类的对象访问。
 
-```C
+```cpp
 class MyClass {
 public:
     static int count;  // 静态成员变量
@@ -29,7 +29,7 @@ int main() {
 
 2. 静态函数（静态成员函数）： 静态函数是与类关联的函数，而不是与类的对象关联。它们通常用于执行与类相关的操作，而不需要访问类的实例。静态函数可以通过类名或类的对象调用，但不能访问非静态成员变量或函数。
 
-```C
+```cpp
 class MathUtility {
 public:
     static int add(int a, int b) {
@@ -42,7 +42,7 @@ int result = MathUtility::add(5, 3);  // 使用静态函数
 
 3. 静态局部变量： 静态局部变量在函数内部声明，但只初始化一次，然后在函数多次调用时保留其值。它们通常用于保存函数的状态信息。
 
-```C
+```cpp
 int myFunction() {
     static int counter = 0;  // 静态局部变量
     counter++;
@@ -52,7 +52,7 @@ int myFunction() {
 
 4. 静态类： 在 C++ 中，可以将类声明为静态，这将导致类的成员变量和成员函数也成为静态的，这意味着它们不需要类的实例来访问。静态类通常用于提供全局的、不依赖于特定对象的服务。
 
-```C
+```cpp
 class UtilityClass {
 public:
     static void doSomething() {
@@ -74,14 +74,14 @@ int main() {
 
 比方说，在一个源文件中定义一个全局变量：
 
-```C
+```c
 // File1.cpp
 int globalVar = 42;
 ```
 
 然后，在另一个源文件中，你可以使用 `extern` 来声明并访问这个变量：
 
-```C
+```cpp
 // File2.cpp
 extern int globalVar;
 void someFunction() {
@@ -95,7 +95,7 @@ void someFunction() {
 
 示例：
 
-```C
+```cpp
 // File1.cpp
 int add(int a, int b) {
     return a + b;
@@ -104,7 +104,7 @@ int add(int a, int b) {
 
 然后，在另一个源文件中，你可以使用 `extern` 来声明并调用这个函数：
 
-```C
+```cpp
 // File2.cpp
 extern int add(int a, int b);
 void someOtherFunction() {
@@ -122,7 +122,7 @@ void someOtherFunction() {
 
 1. C++ 调用 C 函数： 当你需要在 C++ 代码中调用一个在 C 代码中定义的函数时，你可以使用 `extern "C"` 来告诉 C++ 编译器使用 C 的函数名规则，以避免 C++ 函数名的名称修饰。这是因为 C++ 支持函数重载和名称修饰，而 C 不支持。
 
-```C
+```cpp
 extern "C" {
     int myCFunction(int param);
 }
@@ -137,7 +137,7 @@ int main() {
 
 在 C++ 头文件中声明：
 
-```C
+```cpp
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -151,7 +151,7 @@ void myCppFunction(int param);
 
 在 C 文件中包含该头文件即可：
 
-```C
+```text
 #include "myCppHeader.h"
 // 然后可以调用 myCppFunction
 ```
@@ -238,7 +238,7 @@ void myCppFunction(int param);
 
 参考代码：
 
-```C
+```cpp
 #include <vector>
 #include <algorithm>
 
@@ -297,7 +297,7 @@ int main() {
 
    - 通过使用 `std::mutex` 或类似的库提供的互斥锁，可以实现互斥访问共享数据。
 
-   - ```C
+   - ```cpp
      std::mutex mtx;    
      // ...
      mtx.lock();
@@ -311,7 +311,7 @@ int main() {
 
    - 通常与互斥锁一起使用，以实现等待-通知模式。
 
-   - ```C
+   - ```cpp
      std::mutex mtx;
      std::condition_variable cv;
      bool condition = false;
@@ -337,7 +337,7 @@ int main() {
 
    - 通常有两种类型：二进制信号量和计数信号量。
 
-   - ```C
+   - ```cpp
      std::mutex mtx;
      std::condition_variable cv;
      int count = 0;
@@ -363,7 +363,7 @@ int main() {
 
    - 适用于读操作远多于写操作的情况。
 
-   - ```C
+   - ```cpp
      std::shared_mutex rwLock;
      
      // 读线程
@@ -383,7 +383,7 @@ int main() {
 
    - 适用于短暂的临界区，因为它可能会消耗大量的 CPU 时间。
 
-   - ```C
+   - ```cpp
      std::atomic_flag spinLock = ATOMIC_FLAG_INIT;
      // ...
      while (spinLock.test_and_set(std::memory_order_acquire)) {
@@ -530,7 +530,7 @@ HTTP头部字段的长度取决于字段的数量和值的长度，它们是可�
 
 - 虚继承： 如果一个派生类通过多个路径继承同一个基类，可以使用虚继承来解决菱形继承问题。虚继承通过让中间的基类成为虚基类，确保只有一个实例被派生类继承。
 
-```c++
+```cpp
 class A {};
 class B : virtual public A {};
 class C : virtual public A {};
@@ -539,7 +539,7 @@ class D : public B, public C {};
 
 - 重命名冲突成员： 如果派生类继承了多个基类，其中有相同名称的成员，可以在派生类中重命名这些成员，以消除二义性。
 
-```c++
+```cpp
 class Base1 {
 public:
     void commonFunc() { /* ... */ }
@@ -560,7 +560,7 @@ public:
 
 - 使用虚函数： 如果有相同名称的函数，你可以使用虚函数来实现多态，从而避免二义性问题。
 
-```c++
+```cpp
 class Base1 {
 public:
     virtual void commonFunc() { /* ... */ }
@@ -585,7 +585,7 @@ public:
 
    - 这种转换在编译时进行，通常是安全的，但需要程序员确保类型转换是有意义的，否则可能导致不安全的操作。
 
-```c++
+```cpp
 double x = 3.14;
 int y = static_cast<int>(x);
 ```
@@ -596,7 +596,7 @@ int y = static_cast<int>(x);
 
    - 这种转换只适用于具有多态性（使用虚函数）的类，它在运行时检查是否可以执行类型转换。
 
-```c++
+```cpp
 Base* basePtr = new Derived;
 Derived* derivedPtr = dynamic_cast<Derived*>(basePtr);
 if (derivedPtr) {
@@ -612,7 +612,7 @@ if (derivedPtr) {
 
    - 使用 `const_cast` 转换可能导致未定义的行为，除非被转换的变量本来就是非常量。
 
-```c++
+```cpp
 const int x = 5;
 int* y = const_cast<int*>(&x); // 去除常量性
 ```
@@ -623,7 +623,7 @@ int* y = const_cast<int*>(&x); // 去除常量性
 
    - `reinterpret_cast` 进行的转换完全取决于编译器和底层硬件，因此不具有可移植性。
 
-```c++
+```cpp
 int x = 42;
 int* xPtr = &x;
 uintptr_t intValue = reinterpret_cast<uintptr_t>(xPtr);
@@ -639,7 +639,7 @@ uintptr_t intValue = reinterpret_cast<uintptr_t>(xPtr);
 
    - 使用右值引用，可以将一个对象的资源有效地“移动”到另一个对象，而不必复制数据。这对于容器和智能指针等数据结构特别有用。
 
-```c++
+```cpp
 std::vector<int> source;
 std::vector<int> destination = std::move(source); // 使用 std::move 移动资源
 ```
@@ -652,7 +652,7 @@ std::vector<int> destination = std::move(source); // 使用 std::move 移动资�
 
    - Lambda 函数可以直接在函数调用中使用，也可以作为参数传递给算法函数。
 
-```c++
+```cpp
 std::vector<int> numbers = {1, 2, 3, 4, 5};
 int total = 0;
 // 使用 Lambda 函数计算总和
@@ -669,7 +669,7 @@ xxxxxxxxxx class Base {public:    // 构造函数不能声明为虚函数   
 
 1. 右值引用和 std::forward： 完美转发使用右值引用（Rvalue Reference）来捕获传递给函数的参数。同时，为了将参数传递给其他函数，它使用 `std::forward` 来保持参数的值类别。
 
-```c++
+```cpp
 template <typename T>
 void wrapper(T&& arg) {
     other_function(std::forward<T>(arg));
@@ -678,7 +678,7 @@ void wrapper(T&& arg) {
 
 2. 模板参数和转发： 完美转发通常结合模板参数来实现。函数模板接受通用引用（Universal Reference），即 `T&&`，这允许函数接受左值和右值。
 
-```c++
+```cpp
 template <typename T>
 void forwarder(T&& arg) {
     target_function(std::forward<T>(arg));

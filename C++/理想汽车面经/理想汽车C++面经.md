@@ -221,7 +221,7 @@ RAII在C++中常见于各种场景，如使用`std::shared_ptr`来管理动态�
 
 在C++中，通过函数重载和模板，可以实现静态多态。给个示例：
 
-```C
+```cpp
 #include <iostream>
 
 void print(int value) {
@@ -253,7 +253,7 @@ int main() {
 
    - 这种智能指针适用于多个部分需要访问同一个对象的情况，但要小心避免循环引用。
 
-```C
+```cpp
 #include <memory>
 
 int main() {
@@ -270,7 +270,7 @@ int main() {
 
    - 这种智能指针适用于只有一个部分需要访问对象的情况，它保证了对象在 `std::unique_ptr` 离开作用域时被释放。
 
-```C
+```cpp
 #include <memory>
 
 int main() {
@@ -288,7 +288,7 @@ int main() {
 
    - `std::weak_ptr` 可以通过 `lock()` 方法创建一个有效的 `std::shared_ptr` 来访问对象，如果对象已经被销毁，则 `lock()` 返回一个空的 `std::shared_ptr`。
 
-```C
+```cpp
 #include <memory>
 
 int main() {
@@ -318,7 +318,7 @@ int main() {
 
 参考代码：
 
-```C
+```cpp
 #include <iostream>
 
 struct ListNode {

@@ -24,7 +24,7 @@ Spring Boot 是 Spring Framework 的一个扩展，主要是为了简化 Spring 
 - 配置 `ContextLoaderListener` 会在应用程序启动时加载 Spring 的根上下文（ApplicationContext），用于管理应用程序中的 bean。
 - 配置 `DispatcherServlet` 则会在应用程序启动时加载一个或多个 Spring 的 Web 上下文（WebApplicationContext），用于处理 web 请求。
 
-```
+```xml
 <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 </listener>
@@ -53,7 +53,7 @@ Spring Boot 是 Spring Framework 的一个扩展，主要是为了简化 Spring 
 - Spring Boot 的启动方式更加简单，主要通过 `SpringApplication` 类的静态 `run` 方法来启动应用程序，不需要额外的配置文件。
 - Spring Boot 会自动扫描应用程序中的类，并根据约定进行自动配置，包括自动配置 Spring 容器、自动配置 Web 应用程序、自动配置数据库等。
 
-```
+```java
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -238,7 +238,7 @@ LeetCode.3
 
 ##### C++
 
-```
+```cpp
 #include <iostream>
 #include <unordered_map>
 #include <algorithm>
@@ -281,7 +281,7 @@ int main() {
 
 ##### Java
 
-```
+```java
 import java.util.HashMap;
 
 public class Main {
@@ -319,7 +319,7 @@ public class Main {
 
 ##### Python
 
-```
+```python
 def lengthOfLongestSubstring(s: str) -> int:
     char_map = {}  # 哈希表，用于存储字符和字符在当前子串中的位置
     left = 0  # 左指针，表示当前子串的左边界

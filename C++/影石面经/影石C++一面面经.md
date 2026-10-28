@@ -261,7 +261,7 @@ int main() {
 ```
 
 输出：
-```c++
+```cpp
 Before any modification:
 s_global_zero: 0
 s_global_uninitialized: 0
@@ -1125,7 +1125,7 @@ int main() {
 ```
 
 运行结果：
-```
+```text
 Segmentation fault (core dumped)
 ```
 
@@ -1812,7 +1812,7 @@ void print_memory_layout() {
 ```
 
 典型的Linux进程虚拟地址空间布局（64位系统）：
-```
+```text
 0xFFFFFFFFFFFFFFFF  ┌─────────────────┐
                     │   内核空间      │ (不可访问)
 0xFFFF800000000000  ├─────────────────┤
@@ -2686,7 +2686,7 @@ void dump_page_table(struct mm_struct* mm, uint64_t virtual_addr) {
 
    - C++ 示例（直接用 syscall）：
 
-     ```C++
+     ```cpp
      #include <unistd.h>
      #include <sys/syscall.h>
      

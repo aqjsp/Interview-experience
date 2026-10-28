@@ -281,7 +281,7 @@ Hash索引的缺点：
 
 假设有一个表 `mytable`，有三列 `id`（主键）、`name`、`age`，并在 `name` 列上建立了非聚簇索引。如果有以下查询：
 
-```C++
+```cpp
 SELECT id, name FROM mytable WHERE name = 'John';
 ```
 
@@ -358,7 +358,7 @@ SELECT id, name FROM mytable WHERE name = 'John';
 
 参考代码：
 
-```C++
+```cpp
 #include <iostream>
 
 struct ListNode {
@@ -415,7 +415,7 @@ int main() {
 
 参考代码：
 
-```C++
+```cpp
 #include <iostream>
 
 struct ListNode {
@@ -479,7 +479,7 @@ int main() {
 
 #### 参考代码：
 
-```C++
+```cpp
 #include <iostream>
 #include <stack>
 

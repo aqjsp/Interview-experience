@@ -295,7 +295,7 @@ HTTP 协议的首部字段（Header Fields）用于描述请求或响应的各�
 
 ##### C++
 
-```c++
+```cpp
 class Solution {
 public:
     int mySqrt(int x) {

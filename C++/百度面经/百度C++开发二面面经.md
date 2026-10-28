@@ -27,7 +27,7 @@
 
 上个例子：
 
-```c++
+```cpp
 #include <iostream>
 #include <queue>
 using namespace std;
@@ -108,7 +108,7 @@ int main() {
 
    - 使用场景：适用于多个智能指针需要共享同一块内存的情况。例如，在多个对象之间共享某个资源或数据。
 
-   - ```C++
+   - ```cpp
      std::shared_ptr<int> sharedInt = std::make_shared<int>(42);
      std::shared_ptr<int> anotherSharedInt = sharedInt; // 共享同一块内存
      ```
@@ -119,7 +119,7 @@ int main() {
 
    - 使用场景：适用于不需要多个指针共享同一块内存的情况，即单一所有权。通常用于资源管理，例如动态分配的对象或文件句柄。
 
-   - ```C++
+   - ```cpp
      std::unique_ptr<int> uniqueInt = std::make_unique<int>(42);
      // uniqueInt 的所有权是唯一的
      ```
@@ -130,7 +130,7 @@ int main() {
 
    - 使用场景：适用于协助解决`std::shared_ptr`的循环引用问题，其中多个`shared_ptr`互相引用，导致内存泄漏。
 
-   - ```C++
+   - ```cpp
      std::shared_ptr<int> sharedInt = std::make_shared<int>(42);
      std::weak_ptr<int> weakInt = sharedInt;
      ```
@@ -141,7 +141,7 @@ int main() {
 
    - 使用场景：在C++98标准中，可用于独占性地管理动态分配的对象。不推荐在现代C++中使用。
 
-   - ```C++
+   - ```cpp
      std::auto_ptr<int> autoInt(new int(42)); // 已废弃
      ```
 
@@ -169,7 +169,7 @@ int main() {
 
 对于 `std::shared_ptr`，可以通过在创建 `std::shared_ptr` 时指定删除器来自定义删除函数。例子：
 
-```c++
+```cpp
 struct MyDeleter {
     void operator()(int* p) const {
         std::cout << "Deleting int pointer" << std::endl;
@@ -186,7 +186,7 @@ int main() {
 
 对于 `std::unique_ptr`，可以在创建 `std::unique_ptr` 对象时指定删除器，也可以在运行时使用 `std::unique_ptr::reset()` 方法重新指定删除器。例如：
 
-```c++
+```cpp
 struct MyDeleter {
     void operator()(int* p) const {
         std::cout << "Deleting int pointer" << std::endl;
@@ -265,7 +265,7 @@ int main() {
 
 例如：
 
-```c++
+```cpp
 int x = 10; // x 是左值
 int y = x;  // x 是左值，y 是左值
 int z = x + y; // x + y 是右值
@@ -291,7 +291,7 @@ int* ptr = &x; // &x 是左值，ptr 是左值
 
 1. 如果返回类型是非引用类型（如 `int`、`double` 等基本类型或者类类型），并且返回的是一个具体的对象（非引用），那么返回值是一个右值。
 
-   ```c++
+   ```cpp
    int getValue() {
        return 10; // 返回值是一个右值
    }
@@ -299,7 +299,7 @@ int* ptr = &x; // &x 是左值，ptr 是左值
 
 2. 如果返回类型是引用类型，那么返回值是一个左值。
 
-   ```c++
+   ```cpp
    int x = 10;
    int& getRef() {
        return x; // 返回值是一个左值引用
@@ -308,7 +308,7 @@ int* ptr = &x; // &x 是左值，ptr 是左值
 
 3. 如果返回类型是右值引用类型，那么返回值是一个右值。
 
-   ```c++
+   ```cpp
    int&& getRvalueRef() {
        return 10; // 返回值是一个右值引用
    }
@@ -322,7 +322,7 @@ int* ptr = &x; // &x 是左值，ptr 是左值
 
    - 返回的是递增后的值的引用。
 
-   ```c++
+   ```cpp
    int x = 10;
    int& ref = ++x; // x 先递增为 11，然后将递增后的值 11 赋给 ref
    ```
@@ -332,7 +332,7 @@ int* ptr = &x; // &x 是左值，ptr 是左值
    - 先返回操作数的原值，然后再对操作数进行递增操作。
    - 返回的是递增前的值的副本（而非引用）。
 
-   ```c++
+   ```cpp
    int x = 10;
    int y = x++; // 先将 x 的值 10 赋给 y，然后 x 递增为 11
    ```
@@ -347,7 +347,7 @@ int* ptr = &x; // &x 是左值，ptr 是左值
 
    - 重载函数可以有不同的返回类型，但不能仅仅通过返回类型来区分。
 
-   ```c++
+   ```cpp
    void print(int x) {
        // ...
    }
@@ -363,7 +363,7 @@ int* ptr = &x; // &x 是左值，ptr 是左值
    - 重写函数的函数名、参数列表和返回类型都必须与基类中的虚函数一致。
    - 重写函数可以通过 `override` 关键字进行标识，以增强代码的可读性和可维护性。
 
-   ```c++
+   ```cpp
    class Base {
    public:
        virtual void print() {
@@ -396,7 +396,7 @@ C++ 模板是一种通用编程工具，允许编写通用的类和函数，以�
    - 模板参数列表中可以包含类型参数、非类型参数和模板参数包等。
    - 调用函数模板时，编译器会根据实际参数类型推断模板参数类型，并生成相应的函数实例。
 
-   ```c++
+   ```cpp
    template <typename T>
    T max(T a, T b) {
        return (a > b) ? a : b;
@@ -415,7 +415,7 @@ C++ 模板是一种通用编程工具，允许编写通用的类和函数，以�
    - 类模板的模板参数列表和函数模板类似，可以包含类型参数、非类型参数和模板参数包等。
    - 使用类模板时，需要提供模板参数，用以实例化特定类型的类。
 
-   ```c++
+   ```cpp
    template <typename T>
    class MyContainer {
    public:
@@ -453,13 +453,13 @@ C++ 模板是一种通用编程工具，允许编写通用的类和函数，以�
 
 1. 编译时添加调试信息：在编译程序时，需要使用`-g`选项，以便将调试信息嵌入可执行文件中。例如：
 
-```Bash
+```bash
 g++ -g -o my_program my_program.cpp
 ```
 
 2. 启动 GDB：在终端中执行以下命令：
 
-```Bash
+```bash
 gdb ./my_program
 ```
 
@@ -467,7 +467,7 @@ gdb ./my_program
 
 3. 设置断点：设置断点以在程序执行到指定位置时暂停。可以使用`break`命令：
 
-```Bash
+```bash
 break main
 ```
 
@@ -475,7 +475,7 @@ break main
 
 4. 运行程序：在 GDB 中执行`run`命令启动程序：
 
-```Bash
+```bash
 run
 ```
 
@@ -483,37 +483,37 @@ run
 
 5. 查看变量的值：使用`print`或简写的`p`命令来查看变量的值：
 
-```Bash
+```bash
 print variable_name
 ```
 
 6. 单步执行：使用`step`命令来单步执行程序，进入函数内部：
 
-```Bash
+```bash
 step
 ```
 
 7. 下一步执行：使用`next`命令来执行下一行代码，不进入函数内部：
 
-```Bash
+```bash
 next
 ```
 
 8. 继续执行：使用`continue`或简写的`c`命令来继续执行程序直到下一个断点：
 
-```Bash
+```bash
 continue
 ```
 
 9. 查看堆栈：使用`backtrace`或简写的`bt`命令来查看函数调用堆栈：
 
-```Bash
+```bash
 backtrace
 ```
 
 10. 退出 GDB：使用`quit`或简写的`q`命令退出 GDB：
 
-```Bash
+```bash
 quit
 ```
 
@@ -525,7 +525,7 @@ quit
 
 懒汉式单例模式在需要时才创建单例实例。如果实例尚未创建，就创建并返回，否则直接返回现有的实例。这种方式在首次使用时才创建实例，延迟了对象的创建时间。
 
-```C++
+```cpp
 #include <iostream>
 
 class LazySingleton {
@@ -574,7 +574,7 @@ int main() {
 
 饿汉式单例模式在类加载时就创建了单例实例。这样可以确保实例在首次使用之前就已经存在。饿汉式的缺点是在程序启动时就创建实例，可能会导致不必要的资源浪费。
 
-```C++
+```cpp
 #include <iostream>
 
 class EagerSingleton {
@@ -631,7 +631,7 @@ int main() {
 
 代码：
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 #include <algorithm>

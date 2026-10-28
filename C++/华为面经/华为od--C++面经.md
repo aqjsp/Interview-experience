@@ -14,7 +14,7 @@
 
 1、继承：继承是指一个类（称为子类或派生类）可以继承另一个类（称为父类或基类）的属性和方法。子类可以访问父类的非私有成员（即公有成员和保护成员），并且可以在自己的定义中添加新的成员或重写父类的成员函数。继承可以实现代码的重用和扩展，使得代码更易于维护和理解。
 
-```c++
+```cpp
 class Animal {
 public:
     void eat() {
@@ -44,7 +44,7 @@ int main() {
 
 虚函数可以在父类中被声明为虚函数，子类可以根据需要覆盖（重写）这些虚函数。当通过父类的指针或引用调用虚函数时，会根据实际对象的类型来决定调用哪个版本的虚函数，从而实现多态。
 
-```c++
+```cpp
 class Animal {
 public:
     virtual void eat() {
@@ -143,7 +143,7 @@ int main() {
 
 **示例代码**：
 
-```C++
+```cpp
 #include <iostream>
 #include <vector>
 #include <stack>
@@ -231,7 +231,7 @@ int main() {
 
 归并排序是一种稳定的排序算法，其时间复杂度为O(nlogn)，空间复杂度为O(n)。由于归并排序是一种分治算法，因此其适用于大规模数据的排序，且具有良好的稳定性和可靠性。
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 
@@ -324,7 +324,7 @@ int main() {
 
 #### 参考代码
 
-```c++
+```cpp
 #include <iostream>
 #include <stack>
 #include <string>
@@ -403,7 +403,7 @@ int main() {
 
 虚函数可以在父类中被声明为虚函数，子类可以根据需要覆盖（重写）这些虚函数。当通过父类的指针或引用调用虚函数时，会根据实际对象的类型来决定调用哪个版本的虚函数，从而实现多态。
 
-```c++
+```cpp
 class Animal {
 public:
     virtual void eat() {
@@ -438,7 +438,7 @@ int main() {
 
      - 可以包括同名函数或方法的不同版本，例如：
 
-       ```c++
+       ```cpp
        int add(int a, int b);
        float add(float a, float b);
        ```
@@ -498,7 +498,7 @@ int main() {
 
    示例代码：
 
-   ```c++
+   ```cpp
    #include <iostream>
    #include <thread>
    #include <mutex>
@@ -529,7 +529,7 @@ int main() {
 
    示例代码：
 
-   ```c++
+   ```cpp
    #include <iostream>
    #include <thread>
    #include <mutex>
@@ -575,7 +575,7 @@ int main() {
 
    示例代码：
 
-   ```c++
+   ```cpp
    #include <iostream>
    #include <thread>
    #include <atomic>
@@ -623,7 +623,7 @@ int main() {
 
 - 示例代码如下所示：
 
-  ```c++
+  ```cpp
   #include <iostream>
   #include <thread>
   #include <mutex>
@@ -716,7 +716,7 @@ int main() {
 
 #### 参考代码
 
-```c++
+```cpp
 #include <vector>
 #include <algorithm>
 #include <iostream>

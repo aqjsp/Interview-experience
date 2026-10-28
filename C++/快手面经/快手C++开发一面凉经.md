@@ -10,7 +10,7 @@
 
 **用法**
 
-```c++
+```cpp
 #include <memory>
 
 int main() {
@@ -29,7 +29,7 @@ int main() {
 
 `std::unique_ptr` 的实现通常基于模板类 `std::unique_ptr`，其关键特性是通过一个模板参数指定要管理的对象类型，并使用模板的参数推导功能确定其大小。
 
-```c++
+```cpp
 template <typename T>
 class unique_ptr {
 public:
@@ -113,7 +113,7 @@ private:
 
 考虑以下基类 `Base` 和子类 `Derived` 的情况：
 
-```c++
+```cpp
 class Base {
 public:
     virtual void foo() {}
@@ -128,13 +128,13 @@ public:
 
 对于一个 `Base` 类型的指针 `Base* ptr = new Derived;`，在内存中的布局可能如下：
 
-```
+```text
 [虚函数表指针 | Base 类的数据成员]
 ```
 
 在这个布局中，虚函数表指针是一个指向虚函数表的指针，虚函数表中存储着虚函数的地址。虚函数表指针指向的虚函数表包含了 `Base` 类和 `Derived` 类的虚函数地址，在这个示例中，虚函数表可能是这样的：
 
-```
+```text
 [&Base::foo | &Derived::bar]
 ```
 
@@ -149,7 +149,7 @@ public:
 
 常量成员函数的声明通常形式为在函数声明或定义的末尾加上 `const` 关键字，例如：
 
-```c++
+```cpp
 class MyClass {
 public:
     void normalFunction();        // 非常量成员函数
@@ -159,7 +159,7 @@ public:
 
 在类外定义常量成员函数时，也要记得加上 `const` 关键字：
 
-```c++
+```cpp
 void MyClass::constFunction() const {
     // 实现代码
 }
@@ -173,7 +173,7 @@ void MyClass::constFunction() const {
 
 给个例子：
 
-```c++
+```cpp
 #include <memory>
 
 class MyClass : public std::enable_shared_from_this<MyClass> {
@@ -205,7 +205,7 @@ int main() {
 
 右值引用的语法使用双 &&，例如 `T&&`，其中 T 是类型。右值引用可以绑定到右值，但不能绑定到左值。
 
-```c++
+```cpp
 int&& rref = 42; // 右值引用绑定到临时整数
 ```
 
@@ -213,7 +213,7 @@ int&& rref = 42; // 右值引用绑定到临时整数
 
 右值引用最常用于实现移动语义，通过将资源的所有权从一个对象转移到另一个对象，避免不必要的资源拷贝。
 
-```c++
+```cpp
 #include <iostream>
 #include <string>
 
@@ -246,7 +246,7 @@ int main() {
 
 右值引用还可以与模板一起使用，实现完美转发，即在函数模板中保留参数的值类别（左值或右值）。
 
-```c++
+```cpp
 #include <iostream>
 #include <utility>
 
@@ -455,7 +455,7 @@ TIME_WAIT 状态的等待时间为 2MSL 的主要目的是确保在网络中存�
 
 **示例 1：**
 
-```c++
+```cpp
 输入：s = "(()"
 输出：2
 解释：最长有效括号子串是 "()"
@@ -463,7 +463,7 @@ TIME_WAIT 状态的等待时间为 2MSL 的主要目的是确保在网络中存�
 
 **示例 2：**
 
-```c++
+```cpp
 输入：s = ")()())"
 输出：4
 解释：最长有效括号子串是 "()()"
@@ -471,7 +471,7 @@ TIME_WAIT 状态的等待时间为 2MSL 的主要目的是确保在网络中存�
 
 **示例 3：**
 
-```c++
+```cpp
 输入：s = ""
 输出：0
 ```
@@ -490,7 +490,7 @@ TIME_WAIT 状态的等待时间为 2MSL 的主要目的是确保在网络中存�
 
 #### 参考代码
 
-```c++
+```cpp
 #include <iostream>
 #include <stack>
 #include <string>

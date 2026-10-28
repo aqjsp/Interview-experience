@@ -258,7 +258,7 @@ UDP 头部：UDP 头部较短（8字节），只包含源端口、目标端口�
 
 ##### 2.1 创建和初始化
 
-```c++
+```cpp
 #include <vector>
 
 // 默认构造函数
@@ -276,7 +276,7 @@ std::vector<int> vec4 = {1, 2, 3, 4, 5}; // 创建并初始化
 
 ##### 2.2 添加和删除元素
 
-```c++
+```cpp
 // 添加元素
 vec1.push_back(1); // 在末尾添加元素 1
 vec1.push_back(2); // 在末尾添加元素 2
@@ -288,14 +288,14 @@ vec1.erase(vec1.begin()); // 删除第一个元素
 
 ##### 2.3 访问元素
 
-```c++
+```cpp
 int first = vec1[0]; // 使用下标访问第一个元素
 int second = vec1.at(1); // 使用 at() 方法访问第二个元素，具有边界检查
 ```
 
 ##### 2.4 其他常用成员函数
 
-```c++
+```cpp
 // 获取当前大小
 size_t size = vec1.size(); // 返回当前元素数量
 
@@ -315,7 +315,7 @@ int back = vec1.back(); // 返回最后一个元素
 - `vector` 会在需要时自动扩展其容量。初始时容量可能小于大小，当元素数量超出容量时，`vector` 会分配新的内存并将现有元素复制到新内存中。
 - 由于这种扩展操作可能涉及大量内存复制，因此在预先知道 `vector` 最终大小的情况下，使用 `reserve()` 方法预分配内存可以提高性能。
 
-```c++
+```cpp
 vec1.reserve(100); // 预分配内存，避免多次扩展
 ```
 
@@ -323,7 +323,7 @@ vec1.reserve(100); // 预分配内存，避免多次扩展
 
 - `vector` 支持 STL 迭代器，可以使用迭代器遍历元素。
 
-```c++
+```cpp
 for (auto it = vec1.begin(); it != vec1.end(); ++it) {
     std::cout << *it << " ";
 }
@@ -331,7 +331,7 @@ for (auto it = vec1.begin(); it != vec1.end(); ++it) {
 
 - 使用范围-based for 循环遍历更简洁。
 
-```c++
+```cpp
 for (const auto& value : vec1) {
     std::cout << value << " ";
 }
@@ -362,7 +362,7 @@ for (const auto& value : vec1) {
 
 哈希表通常由一个数组和一些辅助结构（如链表或树）组成。数组用于存储值，而辅助结构用于处理哈希冲突。
 
-```c++
+```cpp
 #include <vector>
 #include <string>
 
@@ -409,7 +409,7 @@ public:
 - 每个数组元素存储一个链表（或其他数据结构），用于存储所有映射到该索引的键值对。
 - 当发生冲突时，新的键值对被添加到链表中。
 
-```c++
+```cpp
 // 插入操作示例
 void insert(K key, V value) {
     int index = hashFunction(key) % size; // 计算索引
@@ -436,7 +436,7 @@ void insert(K key, V value) {
   - 二次探测：通过二次方函数来查找空位。
   - 双重哈希：使用第二个哈希函数确定步长。
 
-```c++
+```cpp
 // 插入操作示例（线性探测）
 void insert(K key, V value) {
     int index = hashFunction(key) % size;
@@ -463,7 +463,7 @@ void insert(K key, V value) {
    - 如果为空，返回未找到。
    - 如果不为空，遍历链表或根据开放地址法查找，直到找到匹配的键。
 
-```c++
+```cpp
 V find(K key) {
     int index = hashFunction(key) % size;
     Node* current = table[index];
@@ -483,7 +483,7 @@ V find(K key) {
 2. 如果找到，删除该节点。
 3. 更新链表或处理开放地址法中的占位符。
 
-```c++
+```cpp
 void remove(K key) {
     int index = hashFunction(key) % size;
     Node* current = table[index];
@@ -519,7 +519,7 @@ void remove(K key) {
 
 - 扩展：当负载因子超过设定阈值时，创建一个更大的数组（通常是原数组大小的两倍），并重新计算所有元素的索引，插入到新的数组中。
 
-```c++
+```cpp
 void resize() {
     int oldSize = size;
     size *= 2; // 扩展数组大小
@@ -553,7 +553,7 @@ B+树是一种自平衡的树数据结构，通常用于数据库和文件系统
 
 #### 2. B+树的结构示意
 
-```c++
+```cpp
           [30]
          /    \
      [10,20]   [40,50]
@@ -570,7 +570,7 @@ B+树是一种自平衡的树数据结构，通常用于数据库和文件系统
 3. 如果叶子节点满了（超过最大容量），则需要分裂该节点，将中间键提升到父节点。
 4. 递归处理父节点，直到根节点。
 
-```c++
+```cpp
 void insert(int key) {
     // 查找插入位置并插入
     // 处理节点分裂
@@ -584,7 +584,7 @@ void insert(int key) {
 3. 如果叶子节点的键值少于最小容量，需要从兄弟节点借一个键值或合并节点。
 4. 更新父节点的键值。
 
-```c++
+```cpp
 void remove(int key) {
     // 查找并删除键值
     // 处理节点合并或借用
@@ -596,7 +596,7 @@ void remove(int key) {
 1. 从根节点开始，根据键值逐层向下查找。
 2. 到达叶子节点后返回数据或指针。
 
-```c++
+```cpp
 bool search(int key) {
     // 查找并返回键值
 }
@@ -604,7 +604,7 @@ bool search(int key) {
 
 代码示例：
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -787,7 +787,7 @@ B+树支持并发访问，多个线程可以同时进行插入、删除和查找
 
 #### 参考代码
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 #include <string>

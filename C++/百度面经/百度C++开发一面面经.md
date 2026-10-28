@@ -14,7 +14,7 @@
 
 直接给个例子：
 
-```c++
+```cpp
 #include <iostream>
 
 class Base {
@@ -50,7 +50,7 @@ int main() {
 
 菱形继承指的是一种多重继承的情况，其中一个类同时继承了两个其他类，而这两个其他类又各自继承了同一个基类。这样就会形成一个菱形的继承结构，如图：
 
-```
+```text
    A
   / \
  B   C
@@ -64,7 +64,7 @@ int main() {
 
 使用虚继承的语法是在派生类对基类的声明中使用 `virtual` 关键字，例如：
 
-```c++
+```cpp
 #include <iostream>
 
 class A {
@@ -128,7 +128,7 @@ int main() {
 
 再来个例子：
 
-```c++
+```cpp
 #include <iostream>
 
 // 抽象类 Shape，包含一个纯虚函数 area()
@@ -193,7 +193,7 @@ int main() {
 
 拷贝构造函数是 C++ 中一种特殊的构造函数，用于通过已存在的对象创建一个新的对象。拷贝构造函数的功能是按值（即深拷贝）复制一个对象，创建一个新的对象，新对象的内容与原对象相同。通常情况下，拷贝构造函数的原型为：
 
-```c++
+```cpp
 ClassName(const ClassName& other);
 ```
 
@@ -229,7 +229,7 @@ ClassName(const ClassName& other);
 
 移动构造函数的语法：
 
-```c++
+```cpp
 class MyClass {
 public:
     // 移动构造函数的声明
@@ -250,7 +250,7 @@ public:
 
 - `std::move()` 是一个用于将左值转换为对应的右值引用的函数。定义如下：
 
-- ```c++
+- ```cpp
   template <typename T>
   constexpr std::remove_reference_t<T>&& move(T&& t) noexcept {
       return static_cast<std::remove_reference_t<T>&&>(t);
@@ -265,7 +265,7 @@ public:
 
 - `std::forward()` 是一个用于完美转发的函数模板，定义如下：
 
-- ```c++
+- ```cpp
   template <typename T>
   constexpr T&& forward(std::remove_reference_t<T>& t) noexcept {
       return static_cast<T&&>(t);
@@ -282,7 +282,7 @@ public:
 
 可变参数模板的语法如下：
 
-```c++
+```cpp
 // 模板定义中的 "..." 表示可变参数模板的参数包
 template <typename... Args>
 void myFunction(Args... args) {
@@ -303,7 +303,7 @@ void myFunction(Args... args) {
 
 给个简单例子：
 
-```c++
+```cpp
 #include <iostream>
 #include <tuple>
 
@@ -346,7 +346,7 @@ int main() {
 
 3. 参考代码：
 
-```c++
+```cpp
 #include <iostream>
 #include <stack>
 #include <vector>
@@ -413,7 +413,7 @@ int main() {
 
 参考代码：
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 using namespace std;

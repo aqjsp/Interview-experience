@@ -111,7 +111,7 @@
 
 1. 互斥锁（Mutex）：使用互斥锁来保护共享资源，确保同一时刻只有一个线程可以访问共享资源。在C++中，可以使用 `std::mutex` 来实现互斥锁。
 
-```c++
+```cpp
 #include <iostream>
 #include <thread>
 #include <mutex>
@@ -136,7 +136,7 @@ int main() {
 
 3. 原子操作：对于简单的操作（如增加计数器），可以使用原子操作来保证操作的原子性。在C++中，可以使用 `std::atomic` 模板来定义原子操作的变量。
 
-```c++
+```cpp
 #include <iostream>
 #include <thread>
 #include <atomic>
@@ -159,7 +159,7 @@ int main() {
 
 4. 条件变量（Condition Variable）：用于线程间的通信，允许线程等待某个条件成立后再继续执行。在C++中，可以使用 `std::condition_variable` 来实现条件变量。
 
-```c++
+```cpp
 #include <iostream>
 #include <thread>
 #include <mutex>
@@ -204,7 +204,7 @@ int main() {
 
 1. 定义任务类：首先需要定义一个任务类，用于封装需要在线程池中执行的任务。任务类至少应该包含一个执行任务的方法，可以是一个函数指针或者是一个函数对象。
 
-   ```c++
+   ```cpp
    class Task {
    public:
        virtual void execute() = 0;
@@ -213,7 +213,7 @@ int main() {
 
 2. 定义线程池类：接下来定义线程池类，其中包含了线程池的管理逻辑，如线程的创建、销毁、任务的添加等。线程池类需要包含一个线程池容器，用于存放线程对象。
 
-   ```c++
+   ```cpp
    #include <vector>
    #include <thread>
    #include <queue>
@@ -238,7 +238,7 @@ int main() {
 
 3. 实现线程池类的构造函数和析构函数：在构造函数中创建指定数量的线程，并启动这些线程；在析构函数中停止线程池中的所有线程。
 
-   ```c++
+   ```cpp
    ThreadPool::ThreadPool(size_t numThreads) : stop(false) {
        for (size_t i = 0; i < numThreads; ++i) {
            workers.emplace_back([this] {
@@ -272,7 +272,7 @@ int main() {
 
 4. 实现添加任务的方法：在线程池类中添加一个方法用于向任务队列中添加任务。
 
-   ```c++
+   ```cpp
    void ThreadPool::addTask(Task* task) {
        {
            std::unique_lock<std::mutex> lock(queueMutex);
@@ -284,7 +284,7 @@ int main() {
 
 5. 使用线程池：最后，在主程序中使用定义好的线程池类来执行任务。
 
-   ```c++
+   ```cpp
    int main() {
        ThreadPool pool(4);  // 创建一个包含4个线程的线程池
    

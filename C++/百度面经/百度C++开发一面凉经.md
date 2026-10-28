@@ -91,7 +91,7 @@ bind(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr));
 
 `netstat` 是一个老牌的网络工具，可以列出所有网络连接及端口的使用情况。常用选项如下：
 
-```
+```bash
 netstat -tuln
 ```
 
@@ -104,7 +104,7 @@ netstat -tuln
 
 `ss` 是 `netstat` 的现代替代品，速度更快，功能也更强大。
 
-```
+```text
 ss -tuln
 ```
 
@@ -114,13 +114,13 @@ ss -tuln
 
 `lsof` 可以列出打开的文件（包括网络端口也是文件），你可以用它来查找哪个进程在使用某个端口。
 
-```
+```bash
 lsof -i :PORT_NUMBER
 ```
 
 例如，查找哪个进程在使用端口 8080：
 
-```
+```bash
 lsof -i :8080
 ```
 
@@ -128,13 +128,13 @@ lsof -i :8080
 
 `fuser` 可以显示使用某个端口的进程 ID（PID）。它主要用于查找某个端口的占用情况。
 
-```
+```text
 fuser -n tcp PORT_NUMBER
 ```
 
 例如，查找使用 TCP 端口 80 的进程：
 
-```
+```text
 fuser -n tcp 80
 ```
 
@@ -142,7 +142,7 @@ fuser -n tcp 80
 
 `nmap` 是一个网络扫描工具，主要用于扫描指定主机上开放的端口。
 
-```
+```text
 nmap localhost
 ```
 
@@ -296,7 +296,7 @@ DNS 解析器首先检查操作系统的缓存，看是否有这个域名的解�
 - 返回值类型可以不同，但不能仅靠返回值类型区分重载函数。
 - 重载发生在编译时，编译器根据传入的参数选择调用哪个函数。
 
-```c++
+```cpp
 #include <iostream>
 
 class Calculator {
@@ -337,7 +337,7 @@ int main() {
 - 使用虚函数表（vtable）来实现动态绑定（多态）。
 - 发生在运行时，根据对象的实际类型调用对应的子类方法。
 
-```c++
+```cpp
 #include <iostream>
 
 class Animal {
@@ -410,13 +410,13 @@ int main() {
 
 - **命名管道（Named Pipe）** 支持无关的进程之间通信，且可以双向通信。
 
-```
+```bash
 ls | grep .cpp
 ```
 
 管道将 `ls` 的输出传递给 `grep`。
 
-```C++
+```cpp
 int pipefd[2];
 pipe(pipefd);
 if (fork() == 0) {
@@ -558,13 +558,13 @@ C++ 提供了更严格的类型检查，避免了一些潜在的错误，增强�
 
 1. 自动类型推导（Auto）： 允许编译器推导变量的类型，使代码更加简洁。
 
-```C++
+```cpp
 auto x = 5; // x的类型将被推导为int
 ```
 
 2. 范围-based for 循环： 简化了对容器元素的遍历。
 
-```C++
+```cpp
 std::vector<int> numbers = {1, 2, 3, 4, 5};
 for (const auto& num : numbers) {
     // 使用num
@@ -573,32 +573,32 @@ for (const auto& num : numbers) {
 
 3. 智能指针： 引入了`std::shared_ptr`和`std::unique_ptr`等智能指针，用于管理动态分配的内存，帮助防止内存泄漏。
 
-```C++
+```cpp
 std::shared_ptr<int> sharedPtr = std::make_shared<int>(42);
 ```
 
 4. Lambda 表达式： 允许在函数内部定义匿名函数，提高代码可读性和灵活性。
 
-```C++
+```cpp
 auto add = [](int a, int b) { return a + b; };
 ```
 
 5. nullptr： 引入了空指针常量`nullptr`，用于替代传统的空指针`NULL`。
 
-```C++
+```cpp
 int* ptr = nullptr;
 ```
 
 6. 强制类型转换（Type Casting）： 引入了`static_cast`、`dynamic_cast`、`const_cast`、`reinterpret_cast`等更安全和灵活的类型转换操作符。
 
-```C++
+```cpp
 double x = 3.14;
 int y = static_cast<int>(x);
 ```
 
 7. 右值引用和移动语义： 支持通过右值引用实现移动语义，提高了对临时对象的处理效率。
 
-```C++
+```cpp
 std::vector<int> getVector() {
     // 返回一个临时vector
     return std::vector<int>{1, 2, 3};
@@ -609,13 +609,13 @@ std::vector<int> numbers = getVector(); // 使用移动语义
 
 8. 新的容器和算法： 引入了新的容器，如`std::unordered_map`、`std::unordered_set`，以及一些新的算法。
 
-```C++
+```cpp
 std::unordered_map<int, std::string> myMap = {{1, "one"}, {2, "two"}};
 ```
 
 9. 线程支持（std::thread）： 提供了原生的多线程支持，使得并发编程更加方便。
 
-```C++
+```cpp
 #include <thread>
 
 void myFunction() {
@@ -635,7 +635,7 @@ int main() {
    - 原理：`std::shared_ptr`是基于引用计数的智能指针，用于管理动态分配的对象。它维护一个引用计数，当计数为零时，释放对象的内存。
    - 使用场景：适用于多个智能指针需要共享同一块内存的情况。例如，在多个对象之间共享某个资源或数据。
 
-```C++
+```cpp
 std::shared_ptr<int> sharedInt = std::make_shared<int>(42);
 std::shared_ptr<int> anotherSharedInt = sharedInt; // 共享同一块内存
 ```
@@ -646,7 +646,7 @@ std::shared_ptr<int> anotherSharedInt = sharedInt; // 共享同一块内存
 
    - 使用场景：适用于不需要多个指针共享同一块内存的情况，即单一所有权。通常用于资源管理，例如动态分配的对象或文件句柄。
 
-```C++
+```cpp
 std::unique_ptr<int> uniqueInt = std::make_unique<int>(42);
 // uniqueInt 的所有权是唯一的
 ```
@@ -657,7 +657,7 @@ std::unique_ptr<int> uniqueInt = std::make_unique<int>(42);
 
    - 使用场景：适用于协助解决`std::shared_ptr`的循环引用问题，其中多个`shared_ptr`互相引用，导致内存泄漏。
 
-```C++
+```cpp
 std::shared_ptr<int> sharedInt = std::make_shared<int>(42);
 std::weak_ptr<int> weakInt = sharedInt;
 ```
@@ -668,7 +668,7 @@ std::weak_ptr<int> weakInt = sharedInt;
 
    - 使用场景：在C++98标准中，可用于独占性地管理动态分配的对象。不推荐在现代C++中使用。
 
-```C++
+```cpp
 std::auto_ptr<int> autoInt(new int(42)); // 已废弃
 ```
 
@@ -710,7 +710,7 @@ std::auto_ptr<int> autoInt(new int(42)); // 已废弃
 
 基类构造函数先执行：当创建一个子类对象时，基类的构造函数会在子类的构造函数之前被调用。这确保了基类的部分在子类的特定实现之前被正确初始化。
 
-```c++
+```cpp
 class Base {
 public:
     Base() { std::cout << "Base constructor" << std::endl; }
@@ -732,7 +732,7 @@ int main() {
 
 子类析构函数先执行：在销毁一个子类对象时，子类的析构函数会在基类的析构函数之后被调用。这确保了子类的资源被释放后，基类仍然有效，以便可以安全地清理基类的资源。
 
-```c++
+```cpp
 class Base {
 public:
     ~Base() { std::cout << "Base destructor" << std::endl; }
@@ -766,7 +766,7 @@ int main() {
 
 函数原型：
 
-```c++
+```cpp
 int pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine)(void *), void *arg);
 ```
 
@@ -788,7 +788,7 @@ int pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_
 - `pthread_detach(pthread_t thread)` 用于将线程设置为“分离状态”，使得线程在结束时自动释放其资源，而不需要被其他线程调用 `pthread_join` 来回收。
 - 这样做的好处是可以避免资源泄漏，适用于那些不需要等待线程结束结果的情况。
 
-```c++
+```cpp
 #include <pthread.h>
 #include <stdio.h>
 
@@ -839,7 +839,7 @@ int main() {
 
 这个是类似于魔方阵的题目，给段代码帮助大家理解。
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 

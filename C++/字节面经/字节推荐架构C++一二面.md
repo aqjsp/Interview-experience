@@ -16,7 +16,7 @@ shared_ptr的核心是引用计数机制，确保对象在最后一个指针销�
 - shared_ptr类管理构造、拷贝、移动和销毁操作。
 - 支持空指针和异常安全。
 
-```c++
+```cpp
 template<typename T>
 struct ControlBlock {
     int ref_count;
@@ -294,7 +294,7 @@ UDP：无连接的传输层协议，快速但不保证交付。
 
 #### 代码示例
 
-```c++
+```cpp
 #include <iostream>
 
 void func() {
@@ -493,7 +493,7 @@ int main() {
 
 ## 9、算法题：二叉树最大路径和，但要求从头到尾实现（包括构造树和测试用例）
 
-```c++
+```cpp
 #include <iostream>
 #include <algorithm>
 #include <limits>

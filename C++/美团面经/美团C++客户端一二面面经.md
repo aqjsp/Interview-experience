@@ -203,7 +203,7 @@
 
 一个简化的HTTP断点续传的示例：
 
-```C++
+```cpp
 GET /example.mp4 HTTP/1.1
 Host: example.com
 Range: bytes=500-999
@@ -211,7 +211,7 @@ Range: bytes=500-999
 
 服务器响应：
 
-```C++
+```cpp
 HTTP/1.1 206 Partial Content
 Content-Range: bytes 500-999/20000
 Content-Length: 500
@@ -222,7 +222,7 @@ Content-Type: video/mp4
 
 客户端续传时的请求：
 
-```C++
+```cpp
 GET /example.mp4 HTTP/1.1
 Host: example.com
 Range: bytes=1000-1999
@@ -320,14 +320,14 @@ HTTPS（Hypertext Transfer Protocol Secure）是一种通过加密和认证来�
 
 - 指针： 指针是一个变量，其值为另一个变量的地址。使用`*`操作符声明和访问指针。指针需要显式地初始化，可以为nullptr（空指针）。
 
-```C++
+```cpp
 int x = 10;
 int* ptr = &x; // 初始化指向x的指针
 ```
 
 - 引用： 引用是一个别名，它是某个已存在变量的别名。使用`&`操作符声明和访问引用。引用必须在声明时进行初始化，且初始化后不能再指向其他变量。
 
-```C++
+```cpp
 int y = 20;
 int& ref = y; // 初始化引用，ref是y的别名
 ```
@@ -336,13 +336,13 @@ int& ref = y; // 初始化引用，ref是y的别名
 
 - 指针： 使用`*`操作符访问指针所指向的值，使用`&`操作符获取变量的地址。
 
-```C++
+```cpp
 int value = *ptr;  // 获取ptr指向的值
 ```
 
 - 引用： 直接使用引用即可访问所引用变量的值，不需要额外的操作符。
 
-```C++
+```cpp
 int result = ref;  // 获取ref引用的值
 ```
 
@@ -350,7 +350,7 @@ int result = ref;  // 获取ref引用的值
 
 - 指针： 指针可以具有空值，通常使用nullptr（C++11及以上）或NULL来表示空指针。
 
-```C++
+```cpp
 int* ptr = nullptr;
 ```
 
@@ -360,7 +360,7 @@ int* ptr = nullptr;
 
 - 指针： 可以重新指向不同的地址。
 
-```C++
+```cpp
 int a = 5, b = 10;
 int* ptr = &a;
 ptr = &b;  // 可以重新指向b
@@ -368,7 +368,7 @@ ptr = &b;  // 可以重新指向b
 
 - 引用： 一旦初始化后，不能再引用其他变量。
 
-```C++
+```cpp
 int x = 5, y = 10;
 int& ref = x;
 // ref = &y; // 错误，引用不能重新赋值为其他变量
@@ -383,7 +383,7 @@ int& ref = x;
 
 - 指针： 可以传递指针给函数，使得函数能够修改指针所指向的值。
 
-```C++
+```cpp
 void modifyValue(int* ptr) {
     *ptr = 42;
 }
@@ -398,7 +398,7 @@ int main() {
 
 - 引用： 可以传递引用给函数，同样可以修改引用所引用的值。
 
-```C++
+```cpp
 void modifyValue(int& ref) {
     ref = 42;
 }
@@ -433,7 +433,7 @@ int main() {
 
 ### 13、代码题：
 
-```C++
+```cpp
 const int a;
 int const a;
 const int* a;
@@ -458,7 +458,7 @@ int* const a;
 
 这声明了一个指向整数的常量指针 `a`。这意味着可以通过 `a` 修改指向的整数的值，但是不能改变 `a` 指向的位置（即不能让 `a` 指向其他整数）。
 
-```C++
+```cpp
 int *a;
 float b;
 double c;
@@ -483,7 +483,7 @@ long long d;
 
 一个长长整数。`sizeof(long long)` 通常为 8 字节。
 
-```C++
+```cpp
 struct A{
     int* a;
     char b[10];
@@ -518,7 +518,7 @@ struct A{
 
 给个例子：
 
-```C++
+```cpp
 #include <iostream>
 #include <cstring>
 
@@ -584,7 +584,7 @@ int main() {
 
 懒汉式单例模式在需要时才创建单例实例。如果实例尚未创建，就创建并返回，否则直接返回现有的实例。这种方式在首次使用时才创建实例，延迟了对象的创建时间。
 
-```C++
+```cpp
 #include <iostream>
 
 class LazySingleton {
@@ -633,7 +633,7 @@ int main() {
 
 饿汉式单例模式在类加载时就创建了单例实例。这样可以确保实例在首次使用之前就已经存在。饿汉式的缺点是在程序启动时就创建实例，可能会导致不必要的资源浪费。
 
-```C++
+```cpp
 #include <iostream>
 
 class EagerSingleton {

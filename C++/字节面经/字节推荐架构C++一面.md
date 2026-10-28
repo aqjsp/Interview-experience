@@ -16,7 +16,7 @@
 
 代码示例：
 
-```c
+```cpp
 #include <iostream>
 #include <atomic>
 
@@ -473,7 +473,7 @@ if (ret > 0) {
 
 在 Linux 中，这些文件描述符表通常存在于进程的任务结构体中，每个任务结构体都有一个指向文件描述符表的指针。
 
-```c
+```cpp
 struct task_struct {
     ...
     struct files_struct *files;
@@ -489,7 +489,7 @@ struct task_struct {
 
 一个简单的 `struct file` 结构可能看起来如下：
 
-```c
+```cpp
 struct file {
     unsigned int f_flags;           // 文件的标志位
     struct file_operations *f_op;   // 文件操作的函数指针
@@ -586,7 +586,7 @@ struct file {
 
 代码示例：
 
-```c
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -769,7 +769,7 @@ int main() {
 
 这里就使用递归的方式给大家做一个代码展示
 
-```c
+```cpp
 #include <iostream>
 #include <climits>
 #include <algorithm>

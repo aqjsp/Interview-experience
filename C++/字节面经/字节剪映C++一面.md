@@ -216,7 +216,7 @@ HTTP/3.0：集成了TLS 1.3，提供了更强的安全性和隐私保护，默�
 
 ##### 示例代码
 
-```c++
+```cpp
 #include <iostream>
 #include <thread>
 #include <mutex>
@@ -265,7 +265,7 @@ int main() {
 
 C++20 `std::counting_semaphore`
 
-```c++
+```cpp
 #include <iostream>
 #include <thread>
 #include <vector>
@@ -296,7 +296,7 @@ int main() {
 
 输出：
 
-```c++
+```cpp
 Thread 0 working
 Thread 1 working
 Thread 0 done
@@ -462,7 +462,7 @@ Counter: 5
 
 #### 示例代码（C++）
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 #include <cstdlib>
@@ -615,7 +615,7 @@ $$
 
 #### 参考代码
 
-```c++
+```cpp
 #include <iostream>
 #include <string>
 #include <algorithm>

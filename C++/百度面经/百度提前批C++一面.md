@@ -211,7 +211,7 @@ Cookies 是一种在客户端存储小段数据的机制，通常由 Web 服务�
 
 当用户访问一个网站时，服务器在 HTTP 响应头中通过 Set-Cookie 标头创建一个 Cookie。该标头包含了一些关键信息，如 Cookie 的名称、值、过期时间、域名、路径等。
 
-```
+```text
 Set-Cookie: name=value; expires=Sat, 23 Oct 2023 00:00:00 GMT; path=/; domain=.example.com; secure; HttpOnly
 ```
 
@@ -219,7 +219,7 @@ Set-Cookie: name=value; expires=Sat, 23 Oct 2023 00:00:00 GMT; path=/; domain=.e
 
 浏览器接收到包含 Set-Cookie 的响应后，将该 Cookie 存储在本地。在接下来的每次请求中，浏览器都会将存储在本地的相关 Cookie 信息通过 Cookie 请求头发送给服务器。
 
-```
+```text
 Cookie: name=value
 ```
 
@@ -265,7 +265,7 @@ HTTP/1.1 引入了持久连接（Keep-Alive）机制，使得在一个 TCP 连�
 
 在 HTTP/1.1 中，引入了 Connection 头部，用于指示是否要保持连接打开。如果 Connection 头部的值为 "keep-alive"，则表示要使用持久连接。
 
-```
+```text
 Connection: keep-alive
 ```
 
@@ -273,7 +273,7 @@ Connection: keep-alive
 
 使用 Keep-Alive 头部可以进一步设置连接的参数，如超时时间和最大请求数。这样可以控制连接在空闲时的保持时间，以及在达到最大请求数时是否重新建立连接。
 
-```
+```text
 Keep-Alive: timeout=5, max=1000
 ```
 
@@ -281,7 +281,7 @@ Keep-Alive: timeout=5, max=1000
 
 当客户端和服务器都支持持久连接时，TCP 连接将保持打开状态，可以在该连接上发送多个 HTTP 请求。服务器在响应中会明确指示连接是否关闭。
 
-```
+```text
 Connection: keep-alive
 ```
 
@@ -364,7 +364,7 @@ Connection: keep-alive
 
 ##### 递归：
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 
@@ -427,7 +427,7 @@ int main() {
 
 ##### 非递归：
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 #include <stack>

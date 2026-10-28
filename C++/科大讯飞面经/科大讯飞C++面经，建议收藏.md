@@ -49,7 +49,7 @@
 
 示例：
 
-```C++
+```cpp
 extern int x; // x被声明为一个int类型的变量
 void myFunction(); // myFunction被声明为一个函数
 class MyClass; // MyClass被声明为一个类
@@ -63,7 +63,7 @@ class MyClass; // MyClass被声明为一个类
 
 示例：
 
-```C++
+```cpp
 int x = 10; // x被定义为一个int类型的变量并初始化为10
 void myFunction() {
     // 函数定义
@@ -85,7 +85,7 @@ class MyClass {
 
 示例：
 
-```C++
+```cpp
 struct Point {
     int x;
     int y;
@@ -107,7 +107,7 @@ int main() {
 
 示例：
 
-```C++
+```cpp
 struct Point {
     int x;
     int y;
@@ -138,7 +138,7 @@ C中的struct主要用于数据聚合，而C++中的struct在某种程度上类�
 
 示例：
 
-```C++
+```cpp
 class Shape {
 public:
     virtual void draw() {
@@ -163,7 +163,7 @@ public:
 
 示例：
 
-```C++
+```cpp
 class Calculator {
 public:
     int add(int a, int b) {
@@ -207,7 +207,7 @@ public:
 
 通过一个例子来解释：
 
-```C++
+```cpp
 #include <iostream>
 #include <thread>
 
@@ -248,13 +248,13 @@ C++标准库中的`std::vector`和`std::map`并不是线程安全的。这意味
 
 1. 包含必要的头文件：首先，你需要包含一些头文件来使用信号处理函数。在C++中，通常会包含 `<csignal>` 头文件。
 
-```C++
+```cpp
 #include <csignal>
 ```
 
 2. 定义信号处理函数：你需要编写一个信号处理函数，该函数的返回类型应该是 `void`，接受一个整数参数，该参数代表接收到的信号。
 
-```C++
+```cpp
 void signalHandler(int signal) {
     // 处理接收到的信号
 }
@@ -262,7 +262,7 @@ void signalHandler(int signal) {
 
 3. 设置信号处理函数：你需要将信号处理函数与特定的信号关联。这可以通过 `signal` 函数来完成。该函数接受两参数，第一个参数是信号的值，第二个参数是信号处理函数的指针。
 
-```C++
+```cpp
 signal(SIGINT, signalHandler); // 设置处理Ctrl+C信号
 ```
 
@@ -272,7 +272,7 @@ signal(SIGINT, signalHandler); // 设置处理Ctrl+C信号
 
 5. 可选：取消信号处理：如果你想取消信号处理并恢复信号的默认行为，可以使用 `signal` 函数将信号处理函数设置为 `SIG_DFL`。
 
-```C++
+```cpp
 signal(SIGINT, SIG_DFL); // 恢复Ctrl+C信号的默认处理
 ```
 
@@ -282,7 +282,7 @@ signal(SIGINT, SIG_DFL); // 恢复Ctrl+C信号的默认处理
 
 1. 创建TCP套接字：
 
-```C++
+```cpp
 int sockfd = socket(AF_INET, SOCK_STREAM, 0);
 ```
 
@@ -290,7 +290,7 @@ int sockfd = socket(AF_INET, SOCK_STREAM, 0);
 
 2. 创建UDP套接字：
 
-```C++
+```cpp
 int sockfd = socket(AF_INET, SOCK_DGRAM, 0);
 ```
 
@@ -356,7 +356,7 @@ int sockfd = socket(AF_INET, SOCK_DGRAM, 0);
 
    首先，你可以设置文件的权限，确保当前用户组内其他成员只能读取文件。你可以使用以下命令：
 
-```C++
+```cpp
 chmod 644 文件名
 ```
 
@@ -366,7 +366,7 @@ chmod 644 文件名
 
    确保文件的属主是你的用户名，文件的属组是你的用户组，可以使用以下命令：
 
-```C++
+```cpp
 chown 用户名:用户组 文件名
 ```
 
@@ -376,13 +376,13 @@ chown 用户名:用户组 文件名
 
 1. 使用`netstat`命令：
 
-```C++
+```cpp
 netstat -tuln
 ```
 
 这会列出所有的TCP连接，包括已经建立的连接和正在监听的连接。
 
-```C++
+```cpp
 -t：显示TCP连接。
 -u：显示UDP连接。
 -l：显示正在监听的连接。
@@ -391,13 +391,13 @@ netstat -tuln
 
 2. 使用`ss`命令：
 
-```C++
+```cpp
 ss -tuln
 ```
 
 `ss`命令提供了与`netstat`类似的功能，可以列出TCP和UDP连接，以及监听的连接。
 
-```C++
+```cpp
 -t：显示TCP连接。
 -u：显示UDP连接。
 -l：显示正在监听的连接。
@@ -431,7 +431,7 @@ Python使用垃圾回收机制来自动管理内存。Python的垃圾回收机�
 
 简单例子作理解：
 
-```C++
+```cpp
 class MyClass:
     def __new__(cls):
         print("Creating a new instance")
@@ -486,7 +486,7 @@ obj = MyClass()
 
 示例代码：
 
-```C++
+```cpp
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -560,7 +560,7 @@ int main() {
 
 懒汉模式是在首次请求单例实例时才进行初始化，以延迟对象的创建。这种方式在需要时才创建单例，节省了资源，但需要考虑线程安全。
 
-```C++
+```cpp
 class LazySingleton {
 public:
     // 获取单例实例的静态成员函数
@@ -588,7 +588,7 @@ private:
 
 饿汉模式是在类加载时就创建单例实例，无论是否需要。这种方式在程序启动时就创建单例，无需考虑线程安全问题。
 
-```C++
+```cpp
 class EagerSingleton {
 public:
     // 获取单例实例的静态成员函数

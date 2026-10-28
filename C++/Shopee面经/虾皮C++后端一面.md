@@ -91,7 +91,7 @@
 
 例子：
 
-```C++
+```cpp
 class Animal {
     void makeSound() {
         System.out.println("Some sound");
@@ -134,7 +134,7 @@ public class Main {
 - 一个类只能继承一个抽象类，即Java不支持多重继承。
 - 抽象类用`abstract`关键字定义，使用`extends`关键字来继承。
 
-```C++
+```cpp
 abstract class Shape {
     // 抽象方法
     public abstract void draw();
@@ -152,7 +152,7 @@ abstract class Shape {
 - 一个类可以实现多个接口，支持多接口继承。
 - 接口用`interface`关键字定义，使用`implements`关键字来实现。
 
-```C++
+```cpp
 interface Drawable {
     // 抽象方法
     void draw();
@@ -221,7 +221,7 @@ interface Movable {
 
 使用 `ps` 命令：
 
-```C++
+```cpp
 ps -aux | grep 进程名
 ps -ef | grep 进程号
 ```
@@ -396,7 +396,7 @@ HTTPS是HTTP的安全版本，两者都用于在客户端和服务器之间传�
 
 示例代码：
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 #include <queue>

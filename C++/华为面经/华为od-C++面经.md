@@ -15,7 +15,7 @@
    2. 第二个循环负责将数组 `a` 的前面 `(n-m)` 个元素复制到 `result` 数组的前面。
 4. 最后，函数返回 `result` 数组作为结果。
 
-```C
+```cpp
 #include <iostream>
 #include <vector>
 
@@ -69,7 +69,7 @@ int main() {
 
 输入示例：
 
-```C
+```text
 6 2   // 数组长度为5，右移距离为2
 1 2 3 4 5 6  // 数组元素
 ```
@@ -106,7 +106,7 @@ int main() {
 
 1. 析构函数：析构函数在对象的生命周期结束时被调用，用于清理对象占用的资源（如释放内存、关闭文件等）。当对象超出作用域、被 `delete` 运算符销毁或程序结束时，析构函数会被调用。
 
-   ```C
+   ```cpp
    class MyClass {
    public:
        ~MyClass() {
@@ -130,7 +130,7 @@ int main() {
 
    - 如果有继承关系，派生类的构造函数会首先调用基类的构造函数，然后再执行自己的构造逻辑。
 
-   - ```C
+   - ```cpp
      class MyClass {
      public:
          MyClass() {
@@ -151,7 +151,7 @@ int main() {
 
    - 当需要将一个对象从一种类型转换为另一种类型时，复制构造函数可能会被调用。
 
-   - ```C
+   - ```cpp
      class MyClass {
      public:
          MyClass(const MyClass& other) {
@@ -357,7 +357,7 @@ int main() {
 
 假设我们要在一个图中查找从起始节点到目标节点的最短路径。
 
-```C
+```cpp
 #include <iostream>
 #include <queue>
 #include <vector>
@@ -553,7 +553,7 @@ int main() {
 
 使用滑动窗口算法来解决：
 
-```C
+```cpp
 #include <iostream>
 #include <string>
 #include <unordered_map>

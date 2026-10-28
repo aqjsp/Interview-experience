@@ -42,7 +42,7 @@
 
 示例：
 
-```c++
+```cpp
 #include <iostream>
 
 void counter() {
@@ -65,7 +65,7 @@ int main() {
 
 示例：
 
-```c++
+```cpp
 // file1.cpp
 #include <iostream>
 static int globalVar = 10; // 文件内可见
@@ -89,7 +89,7 @@ int main() {
 
 示例：
 
-```c++
+```cpp
 // file1.cpp
 #include <iostream>
 static void helper() { // 文件内函数
@@ -111,7 +111,7 @@ int main() {
 
 示例：
 
-```c++
+```cpp
 #include <iostream>
 
 class MyClass {
@@ -136,7 +136,7 @@ int main() {
 
 示例：
 
-```c++
+```cpp
 #include <iostream>
 
 class MyClass {
@@ -162,7 +162,7 @@ int main() {
 
 #### 常量变量
 
-```c++
+```cpp
 const int maxSize = 100;
 // maxSize = 200; // 编译错误，不能修改 const 变量的值
 ```
@@ -175,7 +175,7 @@ const int maxSize = 100;
 
 指针指向的数据是只读的，但指针本身可以修改。
 
-```c++
+```cpp
 const int *p;      // 或 int const *p;
 int value = 10;
 p = &value;        // 合法：可以修改 p 指向哪个地址
@@ -186,7 +186,7 @@ p = &value;        // 合法：可以修改 p 指向哪个地址
 
 指针本身是只读的，指向的数据可以修改。
 
-```c++
+```cpp
 int *const p = &value;
 // p = &otherValue; // 错误：p 本身不可修改
 *p = 20;           // 合法：可以修改 p 指向的数据
@@ -196,7 +196,7 @@ int *const p = &value;
 
 指针和内容都不可变。
 
-```c++
+```cpp
 const int *const p = &value;
 // p 和 *p 都不能修改
 ```
@@ -209,7 +209,7 @@ const int *const p = &value;
 
 值传递中 const 作用有限，仅防止函数内修改。
 
-```c++
+```cpp
 #include <iostream>
 
 void print(const int x) {
@@ -226,7 +226,7 @@ int main() {
 
 ##### 示例2：引用传递
 
-```c++
+```cpp
 #include <iostream>
 
 void modify(const int& x) {
@@ -244,7 +244,7 @@ int main() {
 
 ##### 示例3：指针参数
 
-```c++
+```cpp
 #include <iostream>
 
 void printPtr(const int* ptr) {
@@ -270,7 +270,7 @@ int main() {
 
 示例：
 
-```c++
+```cpp
 #include <iostream>
 
 class MyClass {
@@ -298,7 +298,7 @@ int main() {
 
 示例：
 
-```c++
+```cpp
 #include <iostream>
 
 class MyClass {
@@ -338,7 +338,7 @@ int main() {
 
 ##### 示例
 
-```c++
+```cpp
 #include <iostream>
 
 class Base {
@@ -384,7 +384,7 @@ int main() {
 
 ##### 示例
 
-```c++
+```cpp
 #include <iostream>
 
 class Abstract {
@@ -449,7 +449,7 @@ C++98 标准中引入的智能指针，用于在对象生命周期结束时自�
 
 示例：
 
-```c++
+```cpp
 #include <iostream>
 #include <memory>
 
@@ -464,7 +464,7 @@ int main() {
 
 输出：
 
-```c++
+```cpp
 ptr1 null
 10
 ```
@@ -475,7 +475,7 @@ ptr1 null
 
 示例：
 
-```c++
+```cpp
 #include <iostream>
 #include <memory>
 
@@ -499,7 +499,7 @@ int main() {
 
 输出：
 
-```c++
+```cpp
 Constructed
 Value: 10
 Moved, ptr is null
@@ -517,7 +517,7 @@ Destructed
 
 示例：
 
-```c++
+```cpp
 #include <iostream>
 #include <memory>
 
@@ -540,7 +540,7 @@ int main() {
 
 输出：
 
-```c++
+```cpp
 Constructed
 Use count: 2
 Use count: 1
@@ -558,7 +558,7 @@ Destructed
 
 示例：
 
-```c++
+```cpp
 #include <iostream>
 #include <memory>
 
@@ -580,7 +580,7 @@ int main() {
 
 输出：
 
-```c++
+```cpp
 Destructed
 Destructed
 ```
@@ -826,7 +826,7 @@ Linux命令全集
 
 #### 参考代码（C++）
 
-```c++
+```cpp
 #include <iostream>
 
 // 定义二叉树节点结构体
@@ -911,7 +911,7 @@ int main() {
 
 #### 参考代码（C++）
 
-```c++
+```cpp
 #include <unordered_map>
 
 // 双向链表节点结构

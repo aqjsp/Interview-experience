@@ -89,7 +89,7 @@ Linux通过虚拟内存实现多进程并发，每个进程有独立地址空间
 
 1. 函数重载：同名函数，参数列表不同。
 
-```c++
+```cpp
 void print(int num) {
     std::cout << "Integer: " << num << std::endl;
 }
@@ -105,7 +105,7 @@ int main() {
 
 2. 模板：泛型编程，编译时生成特定类型版本。
 
-```c++
+```cpp
 template<typename T>
 T max(T a, T b) {
     return (a > b) ? a : b;
@@ -126,7 +126,7 @@ int main() {
 - 基类声明虚函数（virtual），派生类可重写（override）。
 - 使用基类指针或引用调用，运行时通过虚表（vtable）动态绑定。
 
-```c++
+```cpp
 class Shape {
 public:
     virtual void draw() = 0; // 纯虚函数
@@ -299,7 +299,7 @@ C++中，函数重载主要看函数名和参数列表（包括参数类型和�
 3. 同步机制：使用条件变量（std::condition_variable）和互斥锁（std::mutex）确保线程安全，防止竞争条件。
 4. 任务提交和执行：提供接口提交任务，线程池调度执行。
 
-```c++
+```cpp
 #include <iostream>
 #include <queue>
 #include <thread>

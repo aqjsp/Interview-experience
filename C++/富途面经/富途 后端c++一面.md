@@ -6,7 +6,7 @@
 
 ### 1、手撕 字符串去除相邻重复的字母
 
-```C
+```cpp
 #include <iostream>
 #include <string>
 
@@ -70,7 +70,7 @@ Makefile由一系列规则（rules）组成，每个规则通常包含以下部�
 
 一个简单的Makefile示例，用于构建一个名为 `myprogram` 的可执行文件：
 
-```C
+```bash
 myprogram: main.o utils.o
     g++ -o myprogram main.o utils.o
 
@@ -85,19 +85,19 @@ Makefile的使用：
 
 要使用Makefile来构建项目，可以在项目目录中运行以下命令：
 
-```C
+```bash
 make
 ```
 
 Make工具将自动查找名为 `Makefile` 或 `makefile` 的文件，并根据文件中的规则执行构建。如果要构建特定的目标，使用：
 
-```C
+```bash
 make target_name
 ```
 
 例如，要构建上述示例中的 `myprogram`，可以运行：
 
-```C
+```bash
 make myprogram
 ```
 
@@ -107,7 +107,7 @@ Makefile还支持变量的定义和条件判断，以便更灵活地管理项目
 
 示例：
 
-```C
+```c
 CC = g++
 CFLAGS = -Wall -O2
 SRC = main.cpp utils.cpp
@@ -134,7 +134,7 @@ utils.o: utils.cpp
 
 如果你的编译命令如下：
 
-```C
+```bash
 g++ -o myprogram myprogram.cpp -L/path/to/libA -lA -L/path/to/libB -lB
 ```
 
@@ -142,7 +142,7 @@ g++ -o myprogram myprogram.cpp -L/path/to/libA -lA -L/path/to/libB -lB
 
 如果你想要调用 `libB.dll` 中的 `myFunction`，可以将链接顺序颠倒：
 
-```C
+```bash
 g++ -o myprogram myprogram.cpp -L/path/to/libB -lB -L/path/to/libA -lA
 ```
 
@@ -196,7 +196,7 @@ g++ -o myprogram myprogram.cpp -L/path/to/libB -lB -L/path/to/libA -lA
 
 1. 请求行（Request Line）： 请求行包含了请求的方法、请求的URL和HTTP协议版本。例如：
 
-```C
+```http
 GET /index.html HTTP/1.1
 ```
 
@@ -220,7 +220,7 @@ GET /index.html HTTP/1.1
 
 1. 状态行（Status Line）： 状态行包含了响应的HTTP协议版本、状态码和状态消息。例如：
 
-```C
+```http
 HTTP/1.1 200 OK
 ```
 
@@ -268,7 +268,7 @@ HTTP/1.1 200 OK
 
 示例：
 
-```c++
+```cpp
 #include <iostream>
 #include <list>
 using namespace std;
@@ -363,7 +363,7 @@ int main() {
 
 ### 16、场景题1
 
-```c++
+```cpp
 #include <iostream>
 
 class A {
@@ -412,7 +412,7 @@ b 对象调用的是子类 B 的 func()。这是因为在 B 类中重写了虚�
 
 ### 17、场景题2：
 
-```c++
+```cpp
 class B {
     virtual void funcB(){};
 };
